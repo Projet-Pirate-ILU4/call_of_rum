@@ -1,4 +1,4 @@
-package fr.tmp;
+package fr.call_of_rum;
 
 public class Main {
    
