@@ -12,14 +12,7 @@ plugins {
 }
 
 application {
-    // Define the main class
-    mainClassName = 'fr.call_of_rum.Main'
-}
-
-jar {
-	manifest {
-		attributes 'Main-Class': 'fr.call_of_rum.Main'
-	}
+    mainClass.set('fr.call_of_rum.Main')
 }
 
 repositories {
@@ -33,6 +26,12 @@ dependencies {
 
     // This dependency is used by the application.
     implementation libs.guava
+}
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'fr.call_of_rum.Main'
+	}
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
