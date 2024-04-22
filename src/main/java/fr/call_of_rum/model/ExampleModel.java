@@ -1,17 +1,13 @@
 package fr.call_of_rum.model;
 
-import fr.call_of_rum.boundary.IBoundary;
+import java.util.logging.Logger;
 
 public class ExampleModel {
 	
-	private IBoundary boundary;
+	private static final Logger logger = Logger.getLogger(ExampleModel.class.getName());
 	
-	public void setBoundary(IBoundary boundary) {
-		this.boundary = boundary;
-	}
-	
-	public void downcall() {
-		boundary.upcall();
+	public void doSomething() {
+		logger.info("doing something ...");
 	}
 	
 }

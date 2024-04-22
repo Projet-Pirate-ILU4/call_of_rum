@@ -8,6 +8,6 @@
 *.bat           text eol=crlf
 
 # Lang files should be stored in utf-8 charset
-*.lang          text=auto charset=utf-8
+*.properties          text=auto charset=utf-8
 
 

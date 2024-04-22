@@ -4,6 +4,9 @@
  */
 package fr.call_of_rum.boundary.presentation;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import fr.call_of_rum.boundary.dialog.ExampleDialog;
 
 /**
@@ -11,6 +14,12 @@ import fr.call_of_rum.boundary.dialog.ExampleDialog;
  * @author loferga
  */
 public class ExamplePresentation extends javax.swing.JFrame {
+	
+	private static final String LANGUAGE_BASE_FILENAME = "messages";
+	private static final Locale LOCALE = Locale.ENGLISH;
+	
+	// language bundle
+	private ResourceBundle bundle;
     
     private ExampleDialog exampleDialog;
     
@@ -18,6 +27,7 @@ public class ExamplePresentation extends javax.swing.JFrame {
      * Creates new form ExampleBoundary
      */
     public ExamplePresentation() {
+		this.bundle = ResourceBundle.getBundle(LANGUAGE_BASE_FILENAME, LOCALE);
         initComponents();
     }
 
@@ -78,7 +88,7 @@ public class ExamplePresentation extends javax.swing.JFrame {
     }
     
     public void upcall() {
-    	upcall.setText("message reçu par le modèle");
+    	upcall.setText(bundle.getString("upcall"));
     }
     
     /**

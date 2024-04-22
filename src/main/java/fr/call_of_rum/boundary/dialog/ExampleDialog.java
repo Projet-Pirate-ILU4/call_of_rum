@@ -2,18 +2,19 @@ package fr.call_of_rum.boundary.dialog;
 
 import java.awt.EventQueue;
 
-import fr.call_of_rum.boundary.ExampleFunctionalKernelAdapter;
+import fr.call_of_rum.boundary.IFunctionalKernel;
+import fr.call_of_rum.boundary.IGraphicInterface;
 import fr.call_of_rum.boundary.presentation.ExamplePresentation;
 
-public class ExampleDialog {
+public class ExampleDialog implements IGraphicInterface {
 	
 	private ExamplePresentation examplePresentation;
-	private ExampleFunctionalKernelAdapter exampleFunctionalKernelAdapter;
+	private IFunctionalKernel functionalKernel;
 	
-	public ExampleDialog(ExampleFunctionalKernelAdapter exampleFunctionalKernelAdapter) {
+	public ExampleDialog(IFunctionalKernel functionalKernel) {
 		this.examplePresentation = new ExamplePresentation();
 		this.examplePresentation.setDialog(this);
-		this.exampleFunctionalKernelAdapter = exampleFunctionalKernelAdapter;
+		this.functionalKernel = functionalKernel;
 	}
 	
 	public void initDialog() {
@@ -21,7 +22,7 @@ public class ExampleDialog {
 	}
 	
 	public void downcall() {
-		exampleFunctionalKernelAdapter.downcall();
+		functionalKernel.downcall();
 	}
 	
 	public void upcall() {

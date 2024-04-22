@@ -1,28 +1,30 @@
 package fr.call_of_rum.boundary;
 
 import fr.call_of_rum.boundary.dialog.ExampleDialog;
-import fr.call_of_rum.controller.ExampleController;
+import fr.call_of_rum.controller.IDownCall;
 
-public class ExampleFunctionalKernelAdapter implements IBoundary {
+public class ExampleFunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	
-	private ExampleDialog exampleDialog;
-	private ExampleController exampleController;
+	private ExampleDialog dialog;
+	private IDownCall downcallController;
+	// and every controller needed to implements IFunctionalKernel
 	
-	public ExampleFunctionalKernelAdapter(ExampleController exampleController) {
-		this.exampleController = exampleController;
+	public void setDialog(ExampleDialog dialog) {
+		this.dialog = dialog;
 	}
 	
-	public void setDialog(ExampleDialog exampleDialog) {
-		this.exampleDialog = exampleDialog;
+	public void setDownCallController(IDownCall downcallController) {
+		this.downcallController = downcallController;
 	}
 	
+	@Override
 	public void downcall() {
-		exampleController.downcall();
+		downcallController.downcall();
 	}
 
 	@Override
 	public void upcall() {
-		exampleDialog.upcall();
+		dialog.upcall();
 	}
 
 }
