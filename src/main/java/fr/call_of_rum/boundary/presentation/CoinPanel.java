@@ -7,46 +7,33 @@ package fr.call_of_rum.boundary.presentation;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
 /**
  *
  * @author Joseph Wilkens M.J.
  */
 public class CoinPanel extends javax.swing.JPanel {
-
+    
+    private final BufferedImage image = ImageLoader.loadImage(CoinPanel.class.getName(), "presentation/coin1.png");
+    
     /**
      * Creates new form CoinPanel
      */
     public CoinPanel() {
-        try {
-            this.image = ImageIO.read(new File("images/coin1.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(CoinPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
         initComponents();
     }
     
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (image != null) {
-            int x = (getWidth() - image.getWidth()) / 2;
-            int y = (getHeight() - image.getHeight()) / 2;
-            g.drawImage(image, x, y, this);
-        }
+        int x = (getWidth() - image.getWidth()) / 2;
+        int y = (getHeight() - image.getHeight()) / 2;
+        g.drawImage(image, x, y, this);
     }
     
     @Override
     public Dimension getPreferredSize() {
-        if (image != null) {
-            return new Dimension(image.getWidth(), image.getHeight());
-        }
-        return super.getPreferredSize();
+        return new Dimension(image.getWidth(), image.getHeight());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,5 +59,4 @@ public class CoinPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    private BufferedImage image;
 }
