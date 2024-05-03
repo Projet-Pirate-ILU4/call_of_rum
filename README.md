@@ -23,3 +23,14 @@ Une fois cela fait vous devrez trouver la fenêtre des tâches Gradle
 
 En tant que développeur vous pourrez utiliser la tâche `application/run` qui compile et exécute la classe Main,
 ainsi que la tâche `build/build` pour compiler, check et importer les éventuelles dépendances du projet.
+
+# Versions de Java sur Apache NetBeans
+
+Si vous rencontrez des problèmes pour importer le projet sur NetBeans, veuillez suivre ces consignes:
+
+1. Vérifiez que vous êtes bien sur la branche `gui`
+2. Définissez explicitement le JDK utilisé par NetBeans:
+    1. Dans les propriétés du projet cherchez un onglet `Gradle Execution`
+    2. Sélectionnez le JDK 17 dans la liste déroulante.
+    Si il n'est pas disponible, dans `Manage Runtimes`, ajoutez une nouvelle plateforme avec le dossier d'installation du jdk 17 (sur Windows: `C:\Program Files\Java\jdk-17`)
+3. Si le problème persiste contactez le Responsable Technique ou soumettez une Issue
