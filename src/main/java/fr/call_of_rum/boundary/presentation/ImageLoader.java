@@ -19,7 +19,7 @@ public class ImageLoader {
     
     private static final ClassLoader classLoader = ImageLoader.class.getClassLoader();
     
-    public static BufferedImage loadImage(String sourceName, String pathToResource) {
+    public static BufferedImage loadImage(String pathToResource) {
         try {
             URL resourceURL = classLoader.getResource(pathToResource);
             return ImageIO.read(resourceURL);

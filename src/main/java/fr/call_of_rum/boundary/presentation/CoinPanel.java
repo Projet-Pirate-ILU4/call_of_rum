@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
  */
 public class CoinPanel extends javax.swing.JPanel {
     
-    private final BufferedImage image = ImageLoader.loadImage(CoinPanel.class.getName(), "presentation/coin1.png");
+    private final BufferedImage image = ImageLoader.loadImage("presentation/coin1.png");
     
     /**
      * Creates new form CoinPanel
