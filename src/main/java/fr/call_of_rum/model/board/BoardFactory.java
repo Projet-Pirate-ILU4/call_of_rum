@@ -8,12 +8,12 @@ public class BoardFactory {
 		return new BoardFactory();
 	}
 	
-	public Board build() {
-		return new Board();
-	}
-	
 	public static Board getDefaultBoard() {
 		return new BoardFactory().build();
+	}
+	
+	public Board build() {
+		return new Board();
 	}
 	
 }
