@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -27,6 +28,11 @@ public class ImageLoader {
             Logger.getLogger(ImageLoader.class.getName()).log(Level.SEVERE, "can''t open {0}", pathToResource);
             return null;
         }
+    }
+    
+    public static ImageIcon loadIcon(String pathToResouce) {
+        URL resourceURL = classLoader.getResource(pathToResouce);
+        return new ImageIcon(resourceURL);
     }
     
 }
