@@ -42,7 +42,7 @@ public class LifeBarPanel extends javax.swing.JPanel {
 
         progressBar.setForeground(new java.awt.Color(255, 0, 105));
         progressBar.setOpaque(true);
-        progressBar.setString("0%");
+        progressBar.setString("");
         progressBar.setStringPainted(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
