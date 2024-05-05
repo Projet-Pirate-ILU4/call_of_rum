@@ -1,10 +1,13 @@
 package fr.call_of_rum;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import fr.call_of_rum.boundary.ExampleBoundary;
 import fr.call_of_rum.boundary.ExampleFunctionalKernelAdapter;
 import fr.call_of_rum.boundary.dialog.ExampleDialog;
+import fr.call_of_rum.boundary.presentation.ExamplePresentation;
 import fr.call_of_rum.controller.ExampleController;
 import fr.call_of_rum.model.ExampleModel;
+import javax.swing.UIManager;
 
 public class Main {
    
@@ -31,7 +34,14 @@ public class Main {
     }
     
     @SuppressWarnings("unused")
-	private static void launchOnGUI() {
+    private static void launchOnGUI() {
+        // Look And Feel
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ExamplePresentation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
     	// boundary initialization
     	ExampleFunctionalKernelAdapter functionalKernelAdapter = new ExampleFunctionalKernelAdapter();
     	ExampleDialog exampleDialog = new ExampleDialog(functionalKernelAdapter);
@@ -51,7 +61,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-    	launchOnTUI();
+    	launchOnGUI();
     }
 
 }
