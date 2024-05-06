@@ -8,12 +8,12 @@ package fr.call_of_rum.boundary.presentation;
  *
  * @author Solène
  */
-public class CasePanel extends javax.swing.JPanel {
+public class CellPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form CasePanel
+     * Creates new form CellPanel
      */
-    public CasePanel() {
+    public CellPanel() {
         initComponents();
     }
 
@@ -28,7 +28,7 @@ public class CasePanel extends javax.swing.JPanel {
 
         numLabel = new javax.swing.JLabel();
 
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setMinimumSize(new java.awt.Dimension(100, 100));
 
         numLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -39,7 +39,7 @@ public class CasePanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
+                .addContainerGap(80, Short.MAX_VALUE)
                 .addComponent(numLabel)
                 .addContainerGap())
         );
@@ -48,12 +48,12 @@ public class CasePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(numLabel)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     public void setNum(int num){
-        numLabel.setText(num+"");
+        numLabel.setText(""+num);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
