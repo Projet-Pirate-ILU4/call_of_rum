@@ -2,7 +2,7 @@ package fr.call_of_rum.controller.game;
 
 import fr.call_of_rum.boundary.IBoundary;
 import fr.call_of_rum.model.board.Board;
-import fr.call_of_rum.model.player.Pirate;
+import fr.call_of_rum.model.pirate.Pirate;
 
 public class GameController {
 	
@@ -24,7 +24,7 @@ public class GameController {
 	}
 	
 	private boolean isGameFinished() {
-		return  true;
+		return true;
 	}
 	
 	public void start() {
