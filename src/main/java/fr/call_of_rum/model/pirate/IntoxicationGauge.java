@@ -1,4 +1,4 @@
-package fr.call_of_rum.model.player;
+package fr.call_of_rum.model.pirate;
 
 public class IntoxicationGauge {
 	

@@ -3,12 +3,12 @@ package fr.call_of_rum.model;
 import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.board.BoardFactory;
 import fr.call_of_rum.model.item.artefacts.Clover;
-import fr.call_of_rum.model.player.Pirate;
+import fr.call_of_rum.model.pirate.Pirate;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		Pirate pirate = new Pirate(0, 5);
+		Pirate pirate = new Pirate("Bill Jambe De Bois", 0, 5);
 		Clover clover = new Clover();
 		Board board = BoardFactory.getDefaultBoard();
 		

@@ -1,6 +1,6 @@
 package fr.call_of_rum.model.item;
 
-import fr.call_of_rum.model.player.IntoxicationGauge;
+import fr.call_of_rum.model.pirate.IntoxicationGauge;
 
 public abstract class Liquid extends UseableItem {
 	

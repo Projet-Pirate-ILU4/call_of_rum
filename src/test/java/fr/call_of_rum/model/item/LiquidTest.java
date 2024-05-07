@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.call_of_rum.model.player.Pirate;
+import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.model.stubs.LiquidStub;
 
 public class LiquidTest {
@@ -15,7 +15,7 @@ public class LiquidTest {
 
 	@Before
 	public void setUp() throws Exception {
-		pirate = new Pirate(0, 6);
+		pirate = new Pirate("pirate", 0, 6);
 		liquid = new LiquidStub(2, 0.2f);
 		pirate.setHealthPoints(3);
 	}

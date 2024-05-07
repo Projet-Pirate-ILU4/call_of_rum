@@ -4,23 +4,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 import fr.call_of_rum.model.board.cells.Cell;
-import fr.call_of_rum.model.player.Pirate;
+import fr.call_of_rum.model.pirate.Pirate;
 
 public class Board {
 	
-	private static final int BOARD_SIZE = 30;
-	
-	private int merchant;
 	private Cell[] cells;
+	private int boardSize;
+	private int merchant;
+	
 	private Map<Pirate, Integer> pirateLocations = new HashMap<>();
 	
-	Board() {
-		cells = new Cell[BOARD_SIZE];
-		// TODO init cells
-		for (int i = 0; i < BOARD_SIZE; i++)
-			cells[i] = new Cell(i);
-		// TODO randomly set merchant index
-		merchant = 16;
+	Board(Cell[] cells, int boardSize, int merchantIndex) {
+		this.cells = cells;
+		this.boardSize = boardSize;
+		this.merchant = merchantIndex;
+	}
+	
+	public int getBoardSize() {
+		return boardSize;
 	}
 	
 	public void addPirate(Pirate pirate) {
@@ -28,14 +29,19 @@ public class Board {
 		pirateLocations.put(pirate, 0);
 	}
 	
+	private int getPirateLocation(Pirate pirate) {
+		if (!pirateLocations.containsKey(pirate))
+			throw new PirateNotOnBoardException(pirate);
+		return pirateLocations.get(pirate);
+	}
+	
 	public Cell getCellOf(Pirate pirate) {
-		if (!pirateLocations.containsKey(pirate)) return null;
-		int pirateLocation = pirateLocations.get(pirate);
+		int pirateLocation = getPirateLocation(pirate);
 		return cells[pirateLocation];
 	}
 	
 	public void movePirate(Pirate pirate, int amount) {
-		int newLocation = pirateLocations.get(pirate) + amount % BOARD_SIZE;
+		int newLocation = pirateLocations.get(pirate) + amount % boardSize;
 		pirateLocations.replace(pirate, newLocation);
 	}
 	
@@ -58,7 +64,7 @@ public class Board {
 		StringBuilder str = new StringBuilder();
 		str.append("[");
 		int i;
-		for (i = 0; i < BOARD_SIZE-1; i++) {
+		for (i = 0; i < boardSize-1; i++) {
 			if (i == merchant) str.append('M');
 			str.append(cells[i]);
 			str.append("|");

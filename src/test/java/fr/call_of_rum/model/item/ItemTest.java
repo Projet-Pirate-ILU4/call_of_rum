@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.board.BoardFactory;
-import fr.call_of_rum.model.player.Pirate;
+import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.model.stubs.ItemStub;
 
 public class ItemTest {
@@ -21,7 +21,7 @@ public class ItemTest {
 
 	@Before
 	public void setUpBeforeClass() throws Exception {
-		pirate = new Pirate(0, 5);
+		pirate = new Pirate("pirate", 0, 5);
 		item = new ItemStub();
 		board = BoardFactory.getDefaultBoard();
 		pirate.give(item);

@@ -1,4 +1,4 @@
-package fr.call_of_rum.model.player;
+package fr.call_of_rum.model.pirate;
 
 import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.item.Item;
@@ -7,6 +7,7 @@ import fr.call_of_rum.model.item.Weapon;
 
 public class Pirate {
 	
+	private String name;
 	private int coins;
 	private int healthPoints;
 	private int maxHealthPoints;
@@ -16,10 +17,15 @@ public class Pirate {
 	private Board board;
 	
 	
-	public Pirate(int coins, int maxHealthPoints) {
+	public Pirate(String name, int coins, int maxHealthPoints) {
+		this.name = name;
 		this.coins = coins;
 		this.maxHealthPoints = maxHealthPoints;
 		this.healthPoints = maxHealthPoints;
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	public int getCoins() {
@@ -74,6 +80,11 @@ public class Pirate {
 	
 	public void setBoard(Board newBoard) {
 		board = newBoard;
+	}
+	
+	@Override
+	public String toString() {
+		return name;
 	}
 	
 }

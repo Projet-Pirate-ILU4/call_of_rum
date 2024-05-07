@@ -10,6 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.call_of_rum.model.item.Item;
+import fr.call_of_rum.model.pirate.Inventory;
+import fr.call_of_rum.model.pirate.NoFreeSlotException;
+import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.model.stubs.ItemStub;
 
 public class InventoryTest {
@@ -21,7 +24,7 @@ public class InventoryTest {
 
 	@Before
 	public void setUp() throws Exception {
-		pirate = new Pirate(0, 5);
+		pirate = new Pirate("pirate", 0, 5);
 		inv = pirate.getInventory();
 		item1 = new ItemStub();
 		item2 = new ItemStub();
@@ -35,7 +38,7 @@ public class InventoryTest {
 		assertEquals(item2, inv.get(1));
 		inv.add(item1);
 		inv.add(item1);
-		assertThrows(Inventory.NoFreeSlotException.class, () -> inv.add(item1));
+		assertThrows(NoFreeSlotException.class, () -> inv.add(item1));
 	}
 	
 	@Test

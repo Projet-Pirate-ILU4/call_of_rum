@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.call_of_rum.model.board.cells.Cell;
-import fr.call_of_rum.model.player.Pirate;
+import fr.call_of_rum.model.pirate.Pirate;
 
 public class BoardTest {
 	
@@ -17,7 +17,7 @@ public class BoardTest {
 
 	@Before
 	public void setUp() throws Exception {
-		pirate = new Pirate(0, 5);
+		pirate = new Pirate("pirate", 0, 5);
 		board = BoardFactory.getDefaultBoard();
 		board.addPirate(pirate);
 	}

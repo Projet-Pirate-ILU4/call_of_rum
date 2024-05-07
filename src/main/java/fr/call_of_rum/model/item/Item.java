@@ -1,6 +1,6 @@
 package fr.call_of_rum.model.item;
 
-import fr.call_of_rum.model.player.Pirate;
+import fr.call_of_rum.model.pirate.Pirate;
 
 public abstract class Item {
 	

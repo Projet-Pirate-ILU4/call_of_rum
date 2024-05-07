@@ -1,4 +1,4 @@
-package fr.call_of_rum.model.player;
+package fr.call_of_rum.model.pirate;
 
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -6,9 +6,6 @@ import java.util.function.Predicate;
 import fr.call_of_rum.model.item.Item;
 
 public class Inventory {
-	
-	@SuppressWarnings("serial")
-	public static class NoFreeSlotException extends RuntimeException {}
 	
 	private static final int MAX_CAPACITY = 4;
 	
