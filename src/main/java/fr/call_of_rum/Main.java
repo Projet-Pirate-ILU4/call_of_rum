@@ -11,7 +11,7 @@ public class Main {
     public String getGreeting() {
          return "Hello World, this is Main!";
     }
-
+    
     public static void main(String[] args) {
     	// boundary initialization
     	ConsoleBoundary boundary = new ConsoleBoundary();
