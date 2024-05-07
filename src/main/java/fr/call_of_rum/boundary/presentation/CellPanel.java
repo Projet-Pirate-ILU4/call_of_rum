@@ -4,12 +4,18 @@
  */
 package fr.call_of_rum.boundary.presentation;
 
+import fr.call_of_rum.util.CellType;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Solène
  */
 public class CellPanel extends javax.swing.JPanel {
 
+    private CellType cellType;
     /**
      * Creates new form CellPanel
      */
@@ -27,36 +33,46 @@ public class CellPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         numLabel = new javax.swing.JLabel();
+        imageLabel = new javax.swing.JLabel();
 
         setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setMinimumSize(new java.awt.Dimension(100, 100));
+        setPreferredSize(new java.awt.Dimension(100, 100));
+        setLayout(null);
 
         numLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         numLabel.setText("1");
+        numLabel.setAlignmentX(1.0F);
+        numLabel.setAlignmentY(0.0F);
+        add(numLabel);
+        numLabel.setBounds(70, 10, 20, 20);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
-                .addComponent(numLabel)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(numLabel)
-                .addContainerGap(68, Short.MAX_VALUE))
-        );
+        imageLabel.setAlignmentY(0.0F);
+        imageLabel.setMaximumSize(new java.awt.Dimension(100, 100));
+        imageLabel.setMinimumSize(new java.awt.Dimension(100, 100));
+        imageLabel.setPreferredSize(new java.awt.Dimension(100, 100));
+        add(imageLabel);
+        imageLabel.setBounds(0, 0, 100, 100);
     }// </editor-fold>//GEN-END:initComponents
 
     public void setNum(int num){
-        numLabel.setText(""+num);
+        numLabel.setText(String.valueOf(num));
     }
-
+    
+    public void setType(CellType type){
+        cellType=type;
+        putImage();
+    }
+    // TODO change images
+    public void putImage(){
+        BufferedImage typeImage = ImageLoader.loadImage("presentation/cell/"+cellType.toString().toLowerCase()+".png");
+        Image scaledTypeImage = typeImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        ImageIcon typeIcon = new ImageIcon(scaledTypeImage);
+        imageLabel.setIcon(typeIcon);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel numLabel;
     // End of variables declaration//GEN-END:variables
 }
