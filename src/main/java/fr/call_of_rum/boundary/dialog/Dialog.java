@@ -27,8 +27,19 @@ public class Dialog implements IDialog, IGraphicInterface {
 	}
 
 	@Override
-	public void showMessage(String msg) {
-		presentation.showMessage(msg);
+	public void giveTurn(int player) {
+		presentation.enableDices();
+		presentation.enableShop();
+	}
+
+	@Override
+	public void printMessage(String msg) {
+		presentation.printMessage(msg);
+	}
+	
+	@Override
+	public void clearMessages() {
+		presentation.clearMessages();
 	}
 	
 	@Override

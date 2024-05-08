@@ -153,10 +153,21 @@ public class GameFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-	public void showMessage(String msg) {
-		JOptionPane.showMessageDialog(this, msg);
-		this.setVisible(false);
+    
+    public void enableDices() {
+    	// TODO implements
+    }
+    
+    public void enableShop() {
+    	// TODO implements
+    }
+    
+	public void printMessage(String msg) {
+		// TODO implements
+	}
+	
+	public void clearMessages() {
+		// TODO implements
 	}
     
     /**

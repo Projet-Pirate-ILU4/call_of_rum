@@ -23,10 +23,16 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	public CellType askCellType(int numCell) {
 		return null;
 	}
+	
+	@Override
+	public void giveTurn(int player) {
+		graphicInterface.giveTurn(player);
+		graphicInterface.printMessage(String.format(bundle.getString("your_turn"), player));
+	}
 
 	@Override
 	public void gameEnded(int winner) {
-		graphicInterface.showMessage(String.format(bundle.getString("gameEnded"), winner));
+		graphicInterface.printMessage(String.format(bundle.getString("game_ended"), winner));
 		graphicInterface.close();
 	}
 

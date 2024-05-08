@@ -2,7 +2,7 @@ package fr.call_of_rum;
 
 import fr.call_of_rum.boundary.FunctionalKernelAdapter;
 import fr.call_of_rum.boundary.dialog.Dialog;
-import fr.call_of_rum.controller.game.GameController;
+import fr.call_of_rum.controller.GameController;
 import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.board.BoardFactory;
 import fr.call_of_rum.model.pirate.Pirate;
@@ -51,7 +51,7 @@ public class Main {
     	// wiring IBoundary and IFunctionalKernel
     	
     	// launch
-    	gameController.start(); */
+    	gameController.start();*/
     }
 
 }
