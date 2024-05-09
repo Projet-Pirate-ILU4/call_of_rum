@@ -4,16 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.call_of_rum.model.item.Item;
+import fr.call_of_rum.util.CellType;
 
-public class Cell {
+public abstract class Cell {
 	
 	private int num;
 	private List<Item> droppedItems;
 	
-	public Cell(int num) {
+	protected Cell(int num) {
 		this.num = num;
 		droppedItems = new ArrayList<>();
 	}
+	
+	public abstract CellType getType();
 	
 	public int getNum() {
 		return num;

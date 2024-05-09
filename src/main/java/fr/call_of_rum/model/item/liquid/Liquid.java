@@ -8,7 +8,8 @@ public abstract class Liquid extends UseableItem {
 	protected int recovery;
 	protected float intoxication;
 	
-	protected Liquid(int recovery, float intoxication) {
+	protected Liquid(String namespace, int recovery, float intoxication) {
+		super(namespace);
 		this.recovery = recovery;
 		this.intoxication = intoxication;
 	}
