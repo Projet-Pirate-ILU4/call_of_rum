@@ -7,13 +7,13 @@ import fr.call_of_rum.model.item.Item;
 
 public class Inventory {
 	
-	private static final int MAX_CAPACITY = 4;
-	
+	private int maxCapacity;
 	private Item[] items;
 	
-	public Inventory() {
-		items = new Item[MAX_CAPACITY];
-		for (int i = 0; i < MAX_CAPACITY; i++)
+	public Inventory(int maxCapacity) {
+		this.maxCapacity = maxCapacity;
+		items = new Item[maxCapacity];
+		for (int i = 0; i < maxCapacity; i++)
 			items[i] = null;
 	}
 	
@@ -21,7 +21,7 @@ public class Inventory {
 		Predicate<Item> criteria;
 		Item current;
 		int i = 0;
-		while (i < MAX_CAPACITY) {
+		while (i < maxCapacity) {
 			current = items[i];
 			criteria = current == null || item == null ? it -> it == item : it -> it.equals(item);
 			if (criteria.test(current))
@@ -67,7 +67,7 @@ public class Inventory {
 		StringBuilder str = new StringBuilder();
 		str.append("[ ");
 		int i;
-		for (i = 0; i < MAX_CAPACITY-1; i++) {
+		for (i = 0; i < maxCapacity-1; i++) {
 			String element = items[i] == null ? BLANK_ITEM : items[0].toString();
 			str.append(element);
 			str.append(" | ");

@@ -12,7 +12,7 @@ public class Pirate {
 	private int healthPoints;
 	private int maxHealthPoints;
 	private Weapon equippedWeapon = null;
-	private Inventory inventory = new Inventory();
+	private Inventory inventory = new Inventory(3);
 	private IntoxicationGauge intoxicationGauge = new IntoxicationGauge();
 	private Board board;
 	
