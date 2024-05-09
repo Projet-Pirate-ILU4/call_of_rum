@@ -22,7 +22,7 @@ public abstract class Cell {
 		return num;
 	}
 	
-	public List<Item> getAllItems() {
+	public List<Item> getDroppedItems() {
 		return droppedItems;
 	}
 	

@@ -3,9 +3,9 @@ package fr.call_of_rum.model.board;
 import java.util.Random;
 
 import fr.call_of_rum.model.board.cells.Cell;
-import fr.call_of_rum.model.board.cells.ChestCell;
-import fr.call_of_rum.model.board.cells.NormalCell;
-import fr.call_of_rum.model.board.cells.TrapCell;
+import fr.call_of_rum.model.board.cells.Chest;
+import fr.call_of_rum.model.board.cells.Land;
+import fr.call_of_rum.model.board.cells.Trap;
 import fr.call_of_rum.model.board.cells.TrapType;
 import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.model.item.ItemRegistry;
@@ -53,24 +53,24 @@ public class BoardFactory {
 		return this;
 	}
 	
-	private ChestCell generateChest(int num, ItemRegistry itemRegistry) {
+	private Chest generateChest(int num, ItemRegistry itemRegistry) {
 		int goldAmount = RNG.nextInt(chestGoldBounds[0], chestGoldBounds[1]);
 		Item item = null;
 		if (itemRegistry.getSize() > 0) {
 			int randomItemIndex = RNG.nextInt(itemRegistry.getSize());
 			item = itemRegistry.getInstance(randomItemIndex);
 		}
-		return new ChestCell(num, goldAmount, item);
+		return new Chest(num, goldAmount, item);
 	}
 	
-	private TrapCell pickTrap(int num) {
+	private Trap pickTrap(int num) {
 		TrapType[] trapTypes = TrapType.values();
 		TrapType trapType = trapTypes[RNG.nextInt(trapTypes.length)];
-		return new TrapCell(num, trapType);
+		return new Trap(num, trapType);
 	}
 	
 	private Cell generateCell(int num, ItemRegistry itemRegistry) {
-		if (RNG.nextFloat() >= specialCaseOdds) return new NormalCell(num);
+		if (RNG.nextFloat() >= specialCaseOdds) return new Land(num);
 		
 		if (RNG.nextFloat() < chestOdds) return generateChest(num, itemRegistry);
 		

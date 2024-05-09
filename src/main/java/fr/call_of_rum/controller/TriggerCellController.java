@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import fr.call_of_rum.boundary.IBoundary;
 import fr.call_of_rum.model.board.cells.Cell;
-import fr.call_of_rum.model.board.cells.ChestCell;
+import fr.call_of_rum.model.board.cells.Chest;
 import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.util.CellType;
@@ -20,12 +20,12 @@ public class TriggerCellController {
 		this.gameController = gameController;
 	}
 	
-	private void triggerChestCell(ChestCell chest) {
+	private void triggerChestCell(Chest chest) {
 		boundary.chestFound(chest.getCoins(), chest.getItem().getNamespace());
 		chest.setOpened(true);
 	}
 	
-	private void triggerOpenedChestCell(ChestCell chest) {
+	private void triggerOpenedChestCell(Chest chest) {
 		Item chestItem = chest.getItem();
 		Optional<String> itemNamespace = chestItem == null ? Optional.empty() : Optional.of(chestItem.getNamespace());
 		boundary.openedChestFound(chest.getCoins(), itemNamespace);
@@ -51,10 +51,10 @@ public class TriggerCellController {
 		CellType cellType = cell.getType();
 		switch (cellType) {
 		case CHEST:
-			triggerChestCell((ChestCell) cell);
+			triggerChestCell((Chest) cell);
 			break;
 		case OPENED_CHEST:
-			triggerOpenedChestCell((ChestCell) cell);
+			triggerOpenedChestCell((Chest) cell);
 			break;
 		case BOMB:
 			triggerBombCell(pirate);

@@ -31,11 +31,11 @@ public class ItemTest {
 	@Test
 	public void dropTest() {
 		assertTrue(pirate.getInventory().contains(item));
-		assertFalse(board.getCell(pirate).getAllItems().contains(item));
+		assertFalse(board.getCell(pirate).getDroppedItems().contains(item));
 		assertEquals(pirate, item.getOwner());
 		item.drop();
 		assertFalse(pirate.getInventory().contains(item));
-		assertTrue(board.getCell(pirate).getAllItems().contains(item));
+		assertTrue(board.getCell(pirate).getDroppedItems().contains(item));
 		assertNull(item.getOwner());
 	}
 

@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
+import fr.call_of_rum.util.ShortcutMethod;
+
 public class ItemRegistry {
 	
 	private List<Class<? extends Item>> registeredItems;
@@ -20,6 +22,7 @@ public class ItemRegistry {
 		return this;
 	}
 	
+	@ShortcutMethod
 	public ItemRegistry registerItems(@SuppressWarnings("unchecked") Class<? extends Item>... itemClasses) {
 		for (Class<? extends Item> itemClass : itemClasses)
 			registerItem(itemClass);

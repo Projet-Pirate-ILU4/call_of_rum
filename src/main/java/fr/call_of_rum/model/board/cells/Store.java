@@ -2,9 +2,9 @@ package fr.call_of_rum.model.board.cells;
 
 import fr.call_of_rum.util.CellType;
 
-public class MerchantCell extends Cell {
+public class Store extends Cell {
 
-	public MerchantCell(int num) {
+	public Store(int num) {
 		super(num);
 	}
 

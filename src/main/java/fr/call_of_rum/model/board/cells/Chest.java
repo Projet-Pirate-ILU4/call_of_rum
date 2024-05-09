@@ -3,13 +3,13 @@ package fr.call_of_rum.model.board.cells;
 import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.util.CellType;
 
-public class ChestCell extends Cell {
+public class Chest extends Cell {
 	
 	private boolean opened = false;
 	private int coins;
 	private Item item;
 	
-	public ChestCell(int num, int coins, Item item) {
+	public Chest(int num, int coins, Item item) {
 		super(num);
 		this.coins = coins;
 		this.item = item;

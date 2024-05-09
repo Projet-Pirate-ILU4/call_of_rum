@@ -2,9 +2,9 @@ package fr.call_of_rum.model.board.cells;
 
 import fr.call_of_rum.util.CellType;
 
-public class NormalCell extends Cell {
+public class Land extends Cell {
 
-	public NormalCell(int num) {
+	public Land(int num) {
 		super(num);
 	}
 
