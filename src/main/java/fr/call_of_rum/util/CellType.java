@@ -12,6 +12,7 @@ public enum CellType {
    NORMAL,
    CHEST,
    TRAP,
-   // TODO extends list
+   BOMB,
+   SHORTCUT,
    MERCHANT;
 }
