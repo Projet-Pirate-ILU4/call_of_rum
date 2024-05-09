@@ -5,6 +5,8 @@ package fr.call_of_rum.boundary;
  */
 public interface IBoundary {
 	
-	void upcall();
+	void giveTurn(int player);
+	
+	void gameEnded(int winner);
 	
 }

@@ -1,8 +1,13 @@
 package fr.call_of_rum.boundary;
 
-/**
- * This interface contains all functionalities that the graphic interface should provide.
- */
 public interface IGraphicInterface {
+	
+	void giveTurn(int player);
+	
+	void printMessage(String msg);
+	
+	void clearMessages();
+	
+	void close();
 	
 }
