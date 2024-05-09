@@ -5,9 +5,9 @@ import java.util.Random;
 import fr.call_of_rum.model.board.cells.Cell;
 import fr.call_of_rum.model.board.cells.Chest;
 import fr.call_of_rum.model.board.cells.Trap;
+import fr.call_of_rum.model.board.cells.TrapType;
 import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.model.item.ItemRegistry;
-import fr.call_of_rum.util.TrapType;
 
 public class BoardFactory {
 	
