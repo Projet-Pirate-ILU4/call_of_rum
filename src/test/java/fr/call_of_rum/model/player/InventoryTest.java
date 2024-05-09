@@ -12,7 +12,6 @@ import org.junit.Test;
 import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.model.pirate.Inventory;
 import fr.call_of_rum.model.pirate.NoFreeSlotException;
-import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.model.stubs.ItemStub;
 
 public class InventoryTest {
