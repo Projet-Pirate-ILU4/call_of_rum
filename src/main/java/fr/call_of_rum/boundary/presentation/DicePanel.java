@@ -31,7 +31,7 @@ public class DicePanel extends javax.swing.JPanel {
 
         dice1 = new fr.call_of_rum.boundary.presentation.Dice();
         jButton1 = new javax.swing.JButton();
-        dice3 = new fr.call_of_rum.boundary.presentation.Dice();
+        dice2 = new fr.call_of_rum.boundary.presentation.Dice();
 
         javax.swing.GroupLayout dice1Layout = new javax.swing.GroupLayout(dice1);
         dice1.setLayout(dice1Layout);
@@ -56,14 +56,14 @@ public class DicePanel extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout dice3Layout = new javax.swing.GroupLayout(dice3);
-        dice3.setLayout(dice3Layout);
-        dice3Layout.setHorizontalGroup(
-            dice3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout dice2Layout = new javax.swing.GroupLayout(dice2);
+        dice2.setLayout(dice2Layout);
+        dice2Layout.setHorizontalGroup(
+            dice2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 162, Short.MAX_VALUE)
         );
-        dice3Layout.setVerticalGroup(
-            dice3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        dice2Layout.setVerticalGroup(
+            dice2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 167, Short.MAX_VALUE)
         );
 
@@ -75,7 +75,7 @@ public class DicePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(dice3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dice2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(dice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -88,7 +88,7 @@ public class DicePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dice3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dice2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
@@ -141,7 +141,7 @@ public class DicePanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private fr.call_of_rum.boundary.presentation.Dice dice1;
-    private fr.call_of_rum.boundary.presentation.Dice dice3;
+    private fr.call_of_rum.boundary.presentation.Dice dice2;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 
