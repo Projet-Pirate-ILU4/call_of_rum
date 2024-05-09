@@ -37,6 +37,7 @@ public class CellPanel extends javax.swing.JPanel {
 
         setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setMinimumSize(new java.awt.Dimension(100, 100));
+        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(100, 100));
         setLayout(null);
 
