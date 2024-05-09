@@ -15,8 +15,8 @@ public class Dialog implements IDialog, IGraphicInterface {
 	private IFunctionalKernel functionalKernelAdapter;
 	
 	public Dialog(IFunctionalKernel functionalKernelAdapter) {
-		this.presentation = new GameFrame(this);
 		this.functionalKernelAdapter = functionalKernelAdapter;
+		this.presentation = new GameFrame(this);
 	}
 	
 	public void initDialog() {
@@ -27,11 +27,31 @@ public class Dialog implements IDialog, IGraphicInterface {
 	public CellType askCellType(int numCell) {
 		return functionalKernelAdapter.askCellType(numCell);
 	}
+	
+	private boolean isTurnEnded;
 
 	@Override
 	public void giveTurn(Player player) {
-		presentation.enableDices();
-		presentation.enableShop();
+		if (player == Player.JACK_LE_BORGNE) {
+			presentation.enableFirstPlayer();
+		} else {
+			presentation.enableSecondPlayer();
+		}
+		isTurnEnded = false;
+		synchronized (presentation) {
+			while (!isTurnEnded) {
+                try {
+                    presentation.wait();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    // Handle interruption
+                }
+            }
+		}
+	}
+	
+	public void endTurn() {
+		isTurnEnded = true;
 	}
 	
 	@Override

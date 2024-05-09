@@ -38,6 +38,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="69" green="0" red="ff" type="rgb"/>
         </Property>
+        <Property name="value" type="int" value="100"/>
         <Property name="opaque" type="boolean" value="true"/>
         <Property name="string" type="java.lang.String" value=""/>
         <Property name="stringPainted" type="boolean" value="true"/>

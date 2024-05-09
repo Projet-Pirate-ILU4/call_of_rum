@@ -11,5 +11,9 @@ import fr.call_of_rum.util.CellType;
  * @author Solène
  */
 public interface IDialog {
+	
     CellType askCellType(int numCell);
+    
+    void endTurn();
+    
 }

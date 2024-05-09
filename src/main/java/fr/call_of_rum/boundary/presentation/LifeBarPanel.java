@@ -41,6 +41,7 @@ public class LifeBarPanel extends javax.swing.JPanel {
         imageLabel = new javax.swing.JLabel();
 
         progressBar.setForeground(new java.awt.Color(255, 0, 105));
+        progressBar.setValue(100);
         progressBar.setOpaque(true);
         progressBar.setString("");
         progressBar.setStringPainted(true);

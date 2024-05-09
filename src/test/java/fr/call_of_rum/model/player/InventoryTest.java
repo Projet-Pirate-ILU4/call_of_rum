@@ -49,7 +49,7 @@ public class InventoryTest {
 	public void removeTest() {
 		inv.add(item1);
 		inv.add(item2);
-		inv.removeItem(item1);
+		inv.remove(item1);
 		assertNull(inv.get(0));
 		assertEquals(item2, inv.get(1));
 	}

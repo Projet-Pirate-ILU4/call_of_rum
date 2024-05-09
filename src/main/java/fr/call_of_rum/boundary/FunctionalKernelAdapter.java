@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import fr.call_of_rum.controller.IBoardController;
+import fr.call_of_rum.controller.IMoveController;
 import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.Player;
 
@@ -63,9 +64,14 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	*****************************/
 	
 	private IBoardController boardController;
+	private IMoveController moveController;
 	
 	public void setBoardController(IBoardController boardController) {
 		this.boardController = boardController;
+	}
+	
+	public void setMoveController(IMoveController moveController) {
+		this.moveController = moveController;
 	}
 
 	@Override

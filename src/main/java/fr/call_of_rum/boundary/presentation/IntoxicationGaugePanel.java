@@ -13,7 +13,7 @@ import java.awt.Graphics;
  */
 public class IntoxicationGaugePanel extends javax.swing.JPanel {
     
-    private static final Color BACKGROUND_COLOR = new Color(10, 10, 10);
+    private static final Color BACKGROUND_COLOR = new Color(20, 20, 20);
     private static final Color INTOXICATION_COLOR = new Color(91, 143, 31);
     
     private float level = 0.0f;

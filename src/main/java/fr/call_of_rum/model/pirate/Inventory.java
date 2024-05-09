@@ -46,7 +46,7 @@ public class Inventory {
 		items[index] = item;
 	}
 	
-	public void removeItem(Item item) {
+	public void remove(Item item) {
 		Optional<Integer> itemSlot = findFirst(item);
 		if (itemSlot.isEmpty()) return;
 		items[itemSlot.get()] = null;

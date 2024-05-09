@@ -25,7 +25,7 @@ public abstract class Item {
 	
 	public void drop() {
 		owner.getBoard().getCell(owner).getAllItems().add(this);
-		owner.getInventory().removeItem(this);
+		owner.getInventory().remove(this);
 		owner = null;
 	}
 	
