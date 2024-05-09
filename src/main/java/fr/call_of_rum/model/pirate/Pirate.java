@@ -2,8 +2,8 @@ package fr.call_of_rum.model.pirate;
 
 import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.item.Item;
-import fr.call_of_rum.model.item.Liquid;
-import fr.call_of_rum.model.item.Weapon;
+import fr.call_of_rum.model.item.liquid.Liquid;
+import fr.call_of_rum.model.item.weapon.Weapon;
 
 public class Pirate {
 	
@@ -80,6 +80,20 @@ public class Pirate {
 	
 	public void setBoard(Board newBoard) {
 		board = newBoard;
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if (other != null && other.getClass() == this.getClass()) {
+			Pirate otherPirate = (Pirate) other;
+			return this.name.equals(otherPirate.name);
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return name.hashCode();
 	}
 	
 	@Override

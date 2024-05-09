@@ -31,8 +31,8 @@ public class GameController {
 	private boolean isGameFinished() {
 		return  players[0].getHealthPoints() == 0 ||
 				players[1].getHealthPoints() == 0 ||
-				board.getCellOf(players[0]).getNum() == board.getBoardSize() - 1 ||
-				board.getCellOf(players[1]).getNum() == board.getBoardSize() - 1;
+				board.getCell(players[0]).getNum() == board.getBoardSize() - 1 ||
+				board.getCell(players[1]).getNum() == board.getBoardSize() - 1;
 	}
 	
 	public void start() {

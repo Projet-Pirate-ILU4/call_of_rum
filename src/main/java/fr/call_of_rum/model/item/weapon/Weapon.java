@@ -1,12 +1,14 @@
-package fr.call_of_rum.model.item;
+package fr.call_of_rum.model.item.weapon;
+
+import fr.call_of_rum.model.item.UseableItem;
 
 public abstract class Weapon extends UseableItem {
 	
 	private float fightBonus;
 	private int damages;
-	private int stealingPotential;
+	private float stealingPotential;
 
-	protected Weapon(float fightBonus, int damages, int stealingPotential) {
+	protected Weapon(float fightBonus, int damages, float stealingPotential) {
 		this.fightBonus = fightBonus;
 		this.damages = damages;
 		this.stealingPotential = stealingPotential;
@@ -21,7 +23,7 @@ public abstract class Weapon extends UseableItem {
 		return damages;
 	}
 	
-	public int getStealingPotential() {
+	public float getStealingPotential() {
 		return stealingPotential;
 	}
 	

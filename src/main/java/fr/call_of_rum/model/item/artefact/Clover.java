@@ -1,4 +1,4 @@
-package fr.call_of_rum.model.item.artefacts;
+package fr.call_of_rum.model.item.artefact;
 
 import fr.call_of_rum.model.item.Item;
 

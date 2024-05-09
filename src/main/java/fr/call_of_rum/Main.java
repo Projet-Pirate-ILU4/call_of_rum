@@ -5,6 +5,7 @@ import fr.call_of_rum.boundary.dialog.Dialog;
 import fr.call_of_rum.controller.GameController;
 import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.board.BoardFactory;
+import fr.call_of_rum.model.item.ItemRegistry;
 import fr.call_of_rum.model.pirate.Pirate;
 
 public class Main {
@@ -18,7 +19,7 @@ public class Main {
     	FunctionalKernelAdapter boundary = new FunctionalKernelAdapter();
     	
     	// model initialization
-    	Board board = BoardFactory.getDefaultBoard();
+    	Board board = BoardFactory.getDefaultBoard(new ItemRegistry());
     	Pirate pirate1 = new Pirate("Jack Le Borgne", 0, 10);
     	Pirate pirate2 = new Pirate("Bill Jambe De Bois", 0, 10);
     	board.addPirate(pirate1);

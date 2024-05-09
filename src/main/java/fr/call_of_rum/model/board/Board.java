@@ -5,13 +5,14 @@ import java.util.Map;
 
 import fr.call_of_rum.model.board.cells.Cell;
 import fr.call_of_rum.model.pirate.Pirate;
+import fr.call_of_rum.util.ShortcutMethod;
 
 public class Board {
-	
+
 	private Cell[] cells;
 	private int boardSize;
 	private int merchant;
-	
+
 	private Map<Pirate, Integer> pirateLocations = new HashMap<>();
 	
 	Board(Cell[] cells, int boardSize, int merchantIndex) {
@@ -20,8 +21,26 @@ public class Board {
 		this.merchant = merchantIndex;
 	}
 	
+	public Cell getCell(int cellNumber) {
+		if (cellNumber < 0 && boardSize <= cellNumber) return null;
+		return cells[cellNumber];
+	}
+	
+	@ShortcutMethod
+	public Cell getCell(Pirate pirate) {
+		return getCell(getPirateLocation(pirate));
+	}
+	
 	public int getBoardSize() {
 		return boardSize;
+	}
+	
+	public int getMerchantCellNumber() {
+		return merchant;
+	}
+	
+	public int getPirateLocation(Pirate pirate) {
+		return pirateLocations.get(pirate);
 	}
 	
 	public void addPirate(Pirate pirate) {
@@ -29,34 +48,38 @@ public class Board {
 		pirateLocations.put(pirate, 0);
 	}
 	
-	private int getPirateLocation(Pirate pirate) {
-		if (!pirateLocations.containsKey(pirate))
-			throw new PirateNotOnBoardException(pirate);
-		return pirateLocations.get(pirate);
+	private boolean isCellNumberValid(int cellNumber) {
+		return 0 <= cellNumber && cellNumber < boardSize;
 	}
 	
-	public Cell getCellOf(Pirate pirate) {
-		int pirateLocation = getPirateLocation(pirate);
-		return cells[pirateLocation];
+	public void movePirateTo(Pirate pirate, int cellNumber) {
+		if (!isCellNumberValid(cellNumber)) return;
+		pirateLocations.replace(pirate, cellNumber);
 	}
 	
-	public void movePirate(Pirate pirate, int amount) {
-		int newLocation = pirateLocations.get(pirate) + amount % boardSize;
-		pirateLocations.replace(pirate, newLocation);
+	@ShortcutMethod
+	public void movePirateTo(Pirate pirate, Pirate otherPirate) {
+		pirateLocations.replace(pirate, getPirateLocation(otherPirate));
 	}
 	
-	private boolean canMoveToMerchant(int cellIndex) {
-		return 7 <= cellIndex && cellIndex <= 26;
-	}
-	
-	public void moveToMerchant(Pirate pirate) {
-		int pirateLocation = pirateLocations.get(pirate);
-		if (!canMoveToMerchant(pirateLocation)) return;
+	@ShortcutMethod
+	public void movePirateToMerchant(Pirate pirate) {
+		if (!canMoveToMerchant(getPirateLocation(pirate))) return;
 		pirateLocations.replace(pirate, merchant);
 	}
+
+	public boolean canMoveToMerchant(int cellNumber) {
+		return 7 <= cellNumber && cellNumber <= 26;
+	}
 	
-	public Cell getMerchantcell() {
-		return cells[merchant];
+	@ShortcutMethod
+	public boolean canMoveToMerchant(Pirate pirate) {
+		return canMoveToMerchant(getPirateLocation(pirate));
+	}
+	
+	@ShortcutMethod
+	public boolean isPirateOnMerchant(Pirate pirate) {
+		return getPirateLocation(pirate) == merchant;
 	}
 	
 	@Override

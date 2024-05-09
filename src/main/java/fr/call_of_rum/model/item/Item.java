@@ -19,7 +19,7 @@ public abstract class Item {
 	public abstract String getDescription();
 	
 	public void drop() {
-		owner.getBoard().getCellOf(owner).getAllItems().add(this);
+		owner.getBoard().getCell(owner).getAllItems().add(this);
 		owner.getInventory().removeItem(this);
 		owner = null;
 	}

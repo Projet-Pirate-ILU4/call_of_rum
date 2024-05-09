@@ -1,11 +1,18 @@
 package fr.call_of_rum.model.board.cells;
 
-public abstract class Trap extends Cell {
-	
-	public Trap(int num) {
-		super(num);
-	}
+import fr.call_of_rum.util.TrapType;
 
-	public abstract void action();
+public class Trap extends Cell {
+	
+	private TrapType trapType;
+
+	public Trap(int num, TrapType trapType) {
+		super(num);
+		this.trapType = trapType;
+	}
+	
+	public TrapType getTrapType() {
+		return trapType;
+	}
 	
 }

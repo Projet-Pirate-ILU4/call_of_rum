@@ -23,7 +23,7 @@ public class ItemTest {
 	public void setUpBeforeClass() throws Exception {
 		pirate = new Pirate("pirate", 0, 5);
 		item = new ItemStub();
-		board = BoardFactory.getDefaultBoard();
+		board = BoardFactory.getDefaultBoard(new ItemRegistry() /* empty registry */);
 		pirate.give(item);
 		board.addPirate(pirate);
 	}
@@ -31,11 +31,11 @@ public class ItemTest {
 	@Test
 	public void dropTest() {
 		assertTrue(pirate.getInventory().contains(item));
-		assertFalse(board.getCellOf(pirate).getAllItems().contains(item));
+		assertFalse(board.getCell(pirate).getAllItems().contains(item));
 		assertEquals(pirate, item.getOwner());
 		item.drop();
 		assertFalse(pirate.getInventory().contains(item));
-		assertTrue(board.getCellOf(pirate).getAllItems().contains(item));
+		assertTrue(board.getCell(pirate).getAllItems().contains(item));
 		assertNull(item.getOwner());
 	}
 
