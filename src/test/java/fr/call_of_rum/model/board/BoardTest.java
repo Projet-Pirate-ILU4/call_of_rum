@@ -19,9 +19,10 @@ public class BoardTest {
 	@Before
 	public void setUp() throws Exception {
 		pirate = new Pirate("pirate", 0, 5);
-		pirate = new Pirate("other pirate", 0, 5);
+		otherPirate = new Pirate("other pirate", 0, 5);
 		board = BoardFactory.getDefaultBoard(new ItemRegistry() /* empty registry */);
 		board.addPirate(pirate);
+		board.addPirate(otherPirate);
 	}
 
 	@Test
@@ -36,7 +37,7 @@ public class BoardTest {
 		assertEquals(previousLocation, board.getPirateLocation(pirate));
 		// test edge case with no movement
 		previousLocation = board.getPirateLocation(pirate);
-		board.movePirateTo(pirate, 0);
+		board.movePirateTo(pirate, board.getPirateLocation(pirate));
 		assertEquals(previousLocation, board.getPirateLocation(pirate));
 		// test move pirate to pirate
 		board.movePirateTo(pirate, otherPirate);
