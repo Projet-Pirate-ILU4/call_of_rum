@@ -1,10 +1,12 @@
 package fr.call_of_rum.model.board.cells;
 
-public class Trap extends Cell {
+import fr.call_of_rum.util.CellType;
+
+public class TrapCell extends Cell {
 	
 	private TrapType trapType;
 
-	public Trap(int num, TrapType trapType) {
+	public TrapCell(int num, TrapType trapType) {
 		super(num);
 		this.trapType = trapType;
 	}
@@ -12,5 +14,14 @@ public class Trap extends Cell {
 	public TrapType getTrapType() {
 		return trapType;
 	}
+
+	@Override
+	public CellType getType() {
+		return CellType.valueOf(trapType.toString());
+	}
 	
+	@Override
+	public String toString() {
+		return trapType.toString() + super.getNum();
+	}
 }

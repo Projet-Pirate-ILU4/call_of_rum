@@ -8,7 +8,8 @@ public abstract class Weapon extends UseableItem {
 	private int damages;
 	private float stealingPotential;
 
-	protected Weapon(float fightBonus, int damages, float stealingPotential) {
+	protected Weapon(String namespace, float fightBonus, int damages, float stealingPotential) {
+		super(namespace);
 		this.fightBonus = fightBonus;
 		this.damages = damages;
 		this.stealingPotential = stealingPotential;

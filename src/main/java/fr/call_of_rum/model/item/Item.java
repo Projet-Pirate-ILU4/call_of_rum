@@ -5,6 +5,11 @@ import fr.call_of_rum.model.pirate.Pirate;
 public abstract class Item {
 	
 	protected Pirate owner;
+	private String namespace;
+	
+	protected Item(String namespace) {
+		this.namespace = namespace;
+	}
 	
 	public Pirate getOwner() {
 		return owner;
@@ -14,9 +19,9 @@ public abstract class Item {
 		this.owner = newOwner;
 	}
 	
-	public abstract String getName();
-	
-	public abstract String getDescription();
+	public String getNamespace() {
+		return namespace;
+	}
 	
 	public void drop() {
 		owner.getBoard().getCell(owner).getAllItems().add(this);
@@ -26,7 +31,7 @@ public abstract class Item {
 	
 	@Override
 	public String toString() {
-		return getName();
+		return namespace;
 	}
 	
 }
