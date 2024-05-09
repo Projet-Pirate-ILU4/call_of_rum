@@ -17,15 +17,13 @@ import fr.call_of_rum.model.stubs.ItemStub;
 
 public class InventoryTest {
 	
-	private Pirate pirate;
 	private Inventory inv;
 	private Item item1;
 	private Item item2;
 
 	@Before
 	public void setUp() throws Exception {
-		pirate = new Pirate("pirate", 0, 5);
-		inv = pirate.getInventory();
+		inv = new Inventory(3);
 		item1 = new ItemStub();
 		item2 = new ItemStub();
 	}
@@ -37,15 +35,14 @@ public class InventoryTest {
 		assertEquals(item1, inv.get(0));
 		assertEquals(item2, inv.get(1));
 		inv.add(item1);
-		inv.add(item1);
 		assertThrows(NoFreeSlotException.class, () -> inv.add(item1));
 	}
 	
 	@Test
 	public void insertTest() {
-		inv.insert(item1, 3);
+		inv.insert(item1, 2);
 		inv.insert(item2, 1);
-		assertEquals(item1, inv.get(3));
+		assertEquals(item1, inv.get(2));
 		assertEquals(item2, inv.get(1));
 	}
 	
