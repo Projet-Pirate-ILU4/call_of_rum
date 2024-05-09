@@ -11,8 +11,9 @@ package fr.call_of_rum.util;
 public enum CellType {
    NORMAL,
    CHEST,
-   TRAP,
+   OPENED_CHEST,
+   MERCHANT,
+   // traps
    BOMB,
-   SHORTCUT,
-   MERCHANT;
+   SHORTCUT;
 }

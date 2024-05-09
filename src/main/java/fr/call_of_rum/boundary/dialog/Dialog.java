@@ -1,11 +1,13 @@
 package fr.call_of_rum.boundary.dialog;
 
 import java.awt.EventQueue;
+import java.util.Optional;
 
 import fr.call_of_rum.boundary.IFunctionalKernel;
 import fr.call_of_rum.boundary.IGraphicInterface;
 import fr.call_of_rum.boundary.presentation.GameFrame;
 import fr.call_of_rum.util.CellType;
+import fr.call_of_rum.util.Player;
 
 public class Dialog implements IDialog, IGraphicInterface {
 	
@@ -27,11 +29,32 @@ public class Dialog implements IDialog, IGraphicInterface {
 	}
 
 	@Override
-	public void giveTurn(int player) {
+	public void giveTurn(Player player) {
 		presentation.enableDices();
 		presentation.enableShop();
 	}
+	
+	@Override
+	public void showChest(int coinAmount, String itemNamespace) {
+		// TODO implements
+	}
 
+	@Override
+	public void showOpenedChest(int coinAmount, Optional<String> itemNamespace) {
+		// TODO implements
+		
+	}
+	
+	@Override
+	public void showExplosion() {
+		// TODO implements
+	}
+
+	@Override
+	public void showShortcut() {
+		// TODO implements
+	}
+	
 	@Override
 	public void printMessage(String msg) {
 		presentation.printMessage(msg);
