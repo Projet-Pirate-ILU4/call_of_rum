@@ -9,6 +9,10 @@ import fr.call_of_rum.boundary.presentation.GameFrame;
 import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.Player;
 
+/**
+ * 
+ * @author Mateo LAFORGE
+ */
 public class Dialog implements IDialog, IGraphicInterface {
 	
 	private GameFrame presentation;

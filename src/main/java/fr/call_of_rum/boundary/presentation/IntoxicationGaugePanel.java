@@ -9,7 +9,7 @@ import java.awt.Graphics;
 
 /**
  *
- * @author loferga
+ * @author Mateo LAFORGE
  */
 public class IntoxicationGaugePanel extends javax.swing.JPanel {
     
