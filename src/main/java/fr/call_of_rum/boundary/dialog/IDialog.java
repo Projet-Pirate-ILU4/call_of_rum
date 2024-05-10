@@ -12,7 +12,7 @@ import fr.call_of_rum.util.CellType;
  */
 public interface IDialog {
 	
-    CellType askCellType(int numCell);
+    CellType[] getCellsType();
     
     void endTurn();
     

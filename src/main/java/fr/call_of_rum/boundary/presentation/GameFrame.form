@@ -272,7 +272,7 @@
               <SubComponents>
                 <Component class="fr.call_of_rum.boundary.presentation.BoardPanel" name="boardPanel1">
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.BoardPanel(this.dialog);"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.BoardPanel();&#xd;&#xa;boardPanel1.setCellsType(dialog.getCellsType());"/>
                   </AuxValues>
                 </Component>
               </SubComponents>

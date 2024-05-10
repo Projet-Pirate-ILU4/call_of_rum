@@ -22,6 +22,7 @@ public class GameFrame extends javax.swing.JFrame {
 	
     /**
      * Creates new form GameFrame
+     * @param dialog
      */
     public GameFrame(IDialog dialog) {
     	this.dialog = dialog;
@@ -56,7 +57,8 @@ public class GameFrame extends javax.swing.JFrame {
         lifeBarPanel2 = new fr.call_of_rum.boundary.presentation.LifeBarPanel();
         endTurnFirstPlayer = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        boardPanel1 = new fr.call_of_rum.boundary.presentation.BoardPanel(this.dialog);
+        boardPanel1 = new fr.call_of_rum.boundary.presentation.BoardPanel();
+        boardPanel1.setCellsType(dialog.getCellsType());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -278,13 +280,17 @@ public class GameFrame extends javax.swing.JFrame {
         }
         
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new GameFrame(new IDialog() {
 				@Override
-				public CellType askCellType(int numCell) {
-					return CellType.NORMAL;
+				public CellType[] getCellsType() {
+					CellType[] cellsType = new CellType[30];
+                                        for (int i = 0; i < 30; i++) {
+                                            cellsType[i] = CellType.NORMAL;
+                                        }
+                                        return cellsType;
 				}
 				@Override
 				public void endTurn() {

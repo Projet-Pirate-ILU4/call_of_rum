@@ -28,8 +28,13 @@ public class Dialog implements IDialog, IGraphicInterface {
 	}
 
 	@Override
-	public CellType askCellType(int numCell) {
-		return functionalKernelAdapter.askCellType(numCell);
+	public CellType[] getCellsType() {
+            // TODO modify architecture
+            CellType[] cellTypes = new CellType[30];
+            for (int i = 0; i < 40; i++) {
+                cellTypes[i] = functionalKernelAdapter.askCellType(i);
+            }
+            return cellTypes;
 	}
 	
 	private boolean isTurnEnded;

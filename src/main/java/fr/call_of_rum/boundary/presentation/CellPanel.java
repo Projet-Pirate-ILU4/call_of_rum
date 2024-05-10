@@ -62,7 +62,6 @@ public class CellPanel extends javax.swing.JPanel {
     
     public void setType(CellType type){
         cellType=type;
-        putImage();
     }
     // TODO change images
     public void putImage(){

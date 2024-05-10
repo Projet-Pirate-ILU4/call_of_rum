@@ -28,7 +28,7 @@
   <SubComponents>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel1">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel1.setNum(1);&#xd;&#xa;cellPanel1.setType(iDialog.askCellType(0));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel1.setNum(1);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -38,7 +38,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel2">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel2.setNum(2);&#xd;&#xa;cellPanel2.setType(iDialog.askCellType(1));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel1.setNum(2);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -48,7 +48,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel3">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel3.setNum(3);&#xd;&#xa;cellPanel3.setType(iDialog.askCellType(2));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel1.setNum(3);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -58,7 +58,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel4">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel4.setNum(4);&#xd;&#xa;cellPanel4.setType(iDialog.askCellType(3));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel1.setNum(4);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -68,7 +68,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel5">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel5.setNum(5);&#xd;&#xa;cellPanel5.setType(iDialog.askCellType(4));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xa;cellPanel1.setNum(5)"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -78,7 +78,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel6">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel6.setNum(6);&#xd;&#xa;cellPanel6.setType(iDialog.askCellType(5));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xa;cellPanel1.setNum(6)"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -88,7 +88,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel30">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel30.setNum(30);&#xd;&#xa;cellPanel30.setType(iDialog.askCellType(29));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xa;cellPanel1.setNum(30)"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -98,7 +98,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel23">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel23.setNum(23);&#xd;&#xa;cellPanel23.setType(iDialog.askCellType(22));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xa;cellPanel1.setNum(23)"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -108,7 +108,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel22">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel22.setNum(22);&#xd;&#xa;cellPanel22.setType(iDialog.askCellType(21));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xa;cellPanel22.setNum(22)"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -118,7 +118,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel15">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel15.setNum(15);&#xd;&#xa;cellPanel15.setType(iDialog.askCellType(14));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel15.setNum(15);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -128,7 +128,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel14">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel14.setNum(14);&#xd;&#xa;cellPanel14.setType(iDialog.askCellType(13));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel14.setNum(14);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -138,7 +138,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel7">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel7.setNum(7);&#xd;&#xa;cellPanel7.setType(iDialog.askCellType(6));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel7.setNum(7);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -148,7 +148,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel24">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel24.setNum(24);&#xd;&#xa;cellPanel24.setType(iDialog.askCellType(23));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel24.setNum(24);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -158,7 +158,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel21">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel21.setNum(21);&#xd;&#xa;cellPanel21.setType(iDialog.askCellType(20));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel21.setNum(21);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -168,7 +168,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel16">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel16.setNum(16);&#xd;&#xa;cellPanel16.setType(iDialog.askCellType(15));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel16.setNum(16);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -178,7 +178,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel13">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel13.setNum(13);&#xd;&#xa;cellPanel13.setType(iDialog.askCellType(12));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel13.setNum(13);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -188,7 +188,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel8">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel8.setNum(8);&#xd;&#xa;cellPanel8.setType(iDialog.askCellType(7));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel8.setNum(8);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -198,7 +198,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel29">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel29.setNum(29);&#xd;&#xa;cellPanel29.setType(iDialog.askCellType(28));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel29.setNum(29);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -208,7 +208,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel28">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel28.setNum(28);&#xd;&#xa;cellPanel28.setType(iDialog.askCellType(27));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel28.setNum(28);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -218,7 +218,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel25">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel25.setNum(25);&#xd;&#xa;cellPanel25.setType(iDialog.askCellType(24));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel25.setNum(25);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -228,7 +228,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel20">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel20.setNum(20);&#xd;&#xa;cellPanel20.setType(iDialog.askCellType(19));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel20.setNum(20);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -238,7 +238,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel17">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel17.setNum(17);&#xd;&#xa;cellPanel17.setType(iDialog.askCellType(16));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel17.setNum(17);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -248,7 +248,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel12">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel12.setNum(12);&#xd;&#xa;cellPanel12.setType(iDialog.askCellType(11));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel12.setNum(12);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -258,7 +258,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel9">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel9.setNum(9);&#xd;&#xa;cellPanel9.setType(iDialog.askCellType(8));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel9.setNum(9);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -268,7 +268,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel27">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel27.setNum(27);&#xd;&#xa;cellPanel27.setType(iDialog.askCellType(26));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel27.setNum(27);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -278,7 +278,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel26">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel26.setNum(26);&#xd;&#xa;cellPanel26.setType(iDialog.askCellType(25));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel26.setNum(26);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -288,7 +288,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel19">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel19.setNum(19);&#xd;&#xa;cellPanel19.setType(iDialog.askCellType(18));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel19.setNum(19);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -298,7 +298,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel18">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel18.setNum(18);&#xd;&#xa;cellPanel18.setType(iDialog.askCellType(17));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel18.setNum(18);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -308,7 +308,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel11">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel11.setNum(11);&#xd;&#xa;cellPanel11.setType(iDialog.askCellType(10));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel11.setNum(11);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -318,7 +318,7 @@
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.CellPanel" name="cellPanel10">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel10.setNum(10);&#xd;&#xa;cellPanel10.setType(iDialog.askCellType(9));"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.CellPanel();&#xd;&#xa;cellPanel10.setNum(10);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
