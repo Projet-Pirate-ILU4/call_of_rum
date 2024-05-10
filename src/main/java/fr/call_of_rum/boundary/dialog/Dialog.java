@@ -31,7 +31,7 @@ public class Dialog implements IDialog, IGraphicInterface {
 	public CellType[] getCellsType() {
             // TODO modify architecture
             CellType[] cellTypes = new CellType[30];
-            for (int i = 0; i < 40; i++) {
+            for (int i = 0; i < cellTypes.length; i++) {
                 cellTypes[i] = functionalKernelAdapter.askCellType(i);
             }
             return cellTypes;
