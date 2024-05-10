@@ -5,6 +5,7 @@
 package fr.call_of_rum.boundary.presentation;
 
 import fr.call_of_rum.util.CellType;
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
@@ -14,15 +15,48 @@ import javax.swing.ImageIcon;
  * @author Solène
  */
 public class BoardPanel extends javax.swing.JPanel {
+    
+    private CellPanel[] cellsPanel;
     /**
      * Creates new form BoardPanel
      */
     public BoardPanel() {
         initComponents();
-        BufferedImage typeImage = ImageLoader.loadImage("presentation/background.png");
+        BufferedImage typeImage = ImageLoader.loadImage("presentation/test.png");
         Image scaledTypeImage = typeImage.getScaledInstance(600, 500, Image.SCALE_SMOOTH);
         ImageIcon typeIcon = new ImageIcon(scaledTypeImage);
         backgroundLabel.setIcon(typeIcon);
+        cellsPanel=new CellPanel[30];
+        cellsPanel[0]=cellPanel1;
+        cellsPanel[1]=cellPanel2;
+        cellsPanel[2]=cellPanel3;
+        cellsPanel[3]=cellPanel4;
+        cellsPanel[4]=cellPanel5;
+        cellsPanel[5]=cellPanel6;
+        cellsPanel[6]=cellPanel7;
+        cellsPanel[7]=cellPanel8;
+        cellsPanel[8]=cellPanel9;
+        cellsPanel[9]=cellPanel10;
+        cellsPanel[10]=cellPanel11;
+        cellsPanel[11]=cellPanel12;
+        cellsPanel[12]=cellPanel13;
+        cellsPanel[13]=cellPanel14;
+        cellsPanel[14]=cellPanel15;
+        cellsPanel[15]=cellPanel16;
+        cellsPanel[16]=cellPanel17;
+        cellsPanel[17]=cellPanel18;
+        cellsPanel[18]=cellPanel19;
+        cellsPanel[19]=cellPanel20;
+        cellsPanel[20]=cellPanel21;
+        cellsPanel[21]=cellPanel22;
+        cellsPanel[22]=cellPanel23;
+        cellsPanel[23]=cellPanel24;
+        cellsPanel[24]=cellPanel25;
+        cellsPanel[25]=cellPanel26;
+        cellsPanel[26]=cellPanel27;
+        cellsPanel[27]=cellPanel28;
+        cellsPanel[28]=cellPanel29;
+        cellsPanel[29]=cellPanel30;
     }
 
     /**
@@ -37,19 +71,19 @@ public class BoardPanel extends javax.swing.JPanel {
         cellPanel1 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel1.setNum(1);
         cellPanel2 = new fr.call_of_rum.boundary.presentation.CellPanel();
-        cellPanel1.setNum(2);
+        cellPanel2.setNum(2);
         cellPanel3 = new fr.call_of_rum.boundary.presentation.CellPanel();
-        cellPanel1.setNum(3);
+        cellPanel3.setNum(3);
         cellPanel4 = new fr.call_of_rum.boundary.presentation.CellPanel();
-        cellPanel1.setNum(4);
+        cellPanel4.setNum(4);
         cellPanel5 = new fr.call_of_rum.boundary.presentation.CellPanel();
-        cellPanel1.setNum(5);
+        cellPanel5.setNum(5);
         cellPanel6 = new fr.call_of_rum.boundary.presentation.CellPanel();
-        cellPanel1.setNum(6);
+        cellPanel6.setNum(6);
         cellPanel30 = new fr.call_of_rum.boundary.presentation.CellPanel();
-        cellPanel1.setNum(30);
+        cellPanel30.setNum(30);
         cellPanel23 = new fr.call_of_rum.boundary.presentation.CellPanel();
-        cellPanel1.setNum(23);
+        cellPanel23.setNum(23);
         cellPanel22 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel22.setNum(22);
         cellPanel15 = new fr.call_of_rum.boundary.presentation.CellPanel();
@@ -58,6 +92,8 @@ public class BoardPanel extends javax.swing.JPanel {
         cellPanel14.setNum(14);
         cellPanel7 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel7.setNum(7);
+        cellPanel29 = new fr.call_of_rum.boundary.presentation.CellPanel();
+        cellPanel29.setNum(29);
         cellPanel24 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel24.setNum(24);
         cellPanel21 = new fr.call_of_rum.boundary.presentation.CellPanel();
@@ -68,8 +104,6 @@ public class BoardPanel extends javax.swing.JPanel {
         cellPanel13.setNum(13);
         cellPanel8 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel8.setNum(8);
-        cellPanel29 = new fr.call_of_rum.boundary.presentation.CellPanel();
-        cellPanel29.setNum(29);
         cellPanel28 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel28.setNum(28);
         cellPanel25 = new fr.call_of_rum.boundary.presentation.CellPanel();
@@ -123,6 +157,8 @@ public class BoardPanel extends javax.swing.JPanel {
         cellPanel14.setBounds(400, 100, 100, 100);
         add(cellPanel7);
         cellPanel7.setBounds(500, 100, 100, 100);
+        add(cellPanel29);
+        cellPanel29.setBounds(0, 200, 100, 100);
         add(cellPanel24);
         cellPanel24.setBounds(100, 200, 100, 100);
         add(cellPanel21);
@@ -133,8 +169,6 @@ public class BoardPanel extends javax.swing.JPanel {
         cellPanel13.setBounds(400, 200, 100, 100);
         add(cellPanel8);
         cellPanel8.setBounds(500, 200, 100, 100);
-        add(cellPanel29);
-        cellPanel29.setBounds(0, 200, 100, 100);
         add(cellPanel28);
         cellPanel28.setBounds(0, 300, 100, 100);
         add(cellPanel25);
@@ -167,7 +201,9 @@ public class BoardPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void setCellsType(CellType[] cellsType) {
-        // TODO implements
+        for (int i=0;i<30;i++){
+            cellsPanel[i].setType(cellsType[i]);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

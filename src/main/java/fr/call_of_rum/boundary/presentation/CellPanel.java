@@ -62,11 +62,17 @@ public class CellPanel extends javax.swing.JPanel {
     
     public void setType(CellType type){
         cellType=type;
+        putImage();
     }
     // TODO change images
     public void putImage(){
         BufferedImage typeImage = ImageLoader.loadImage("presentation/cell/"+cellType.toString().toLowerCase()+".png");
-        Image scaledTypeImage = typeImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        Image scaledTypeImage;
+        if (cellType.toString().toLowerCase().equals("shortcut")){
+            scaledTypeImage = typeImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        }else{
+            scaledTypeImage = typeImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        }
         ImageIcon typeIcon = new ImageIcon(scaledTypeImage);
         imageLabel.setIcon(typeIcon);
     }
