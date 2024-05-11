@@ -22,7 +22,7 @@ public class BoardPanel extends javax.swing.JPanel {
      */
     public BoardPanel() {
         initComponents();
-        BufferedImage typeImage = ImageLoader.loadImage("presentation/test.png");
+        BufferedImage typeImage = ImageLoader.loadImage("presentation/background.png");
         Image scaledTypeImage = typeImage.getScaledInstance(600, 500, Image.SCALE_SMOOTH);
         ImageIcon typeIcon = new ImageIcon(scaledTypeImage);
         backgroundLabel.setIcon(typeIcon);

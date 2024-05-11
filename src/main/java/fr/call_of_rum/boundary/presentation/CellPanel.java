@@ -42,6 +42,7 @@ public class CellPanel extends javax.swing.JPanel {
         setLayout(null);
 
         numLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        numLabel.setForeground(new java.awt.Color(255, 255, 255));
         numLabel.setText("1");
         numLabel.setAlignmentX(1.0F);
         numLabel.setAlignmentY(0.0F);
