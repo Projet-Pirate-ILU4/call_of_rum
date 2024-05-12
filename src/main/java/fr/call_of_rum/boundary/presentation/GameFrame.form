@@ -50,10 +50,6 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="coinScorePanel2" min="-2" pref="51" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -66,6 +62,13 @@
                                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="coinScorePanel2" min="-2" pref="51" max="-2" attributes="0"/>
+                                  <Component id="weaponChoicePanel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="intoxicationGaugePanel2" min="-2" max="-2" attributes="0"/>
@@ -83,6 +86,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                       <Component id="coinScorePanel2" min="-2" pref="62" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="weaponChoicePanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="endTurnSecondPlayer" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
@@ -120,6 +125,8 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="endTurnSecondPlayerActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="fr.call_of_rum.boundary.presentation.WeaponChoicePanel" name="weaponChoicePanel2">
             </Component>
           </SubComponents>
         </Container>
@@ -176,6 +183,11 @@
                                   <Component id="endTurnFirstPlayer" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="weaponChoicePanel1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -197,6 +209,8 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                           <Component id="coinScorePanel1" min="-2" pref="62" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                          <Component id="weaponChoicePanel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="endTurnFirstPlayer" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
@@ -239,6 +253,8 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="endTurnFirstPlayerActionPerformed"/>
                   </Events>
+                </Component>
+                <Component class="fr.call_of_rum.boundary.presentation.WeaponChoicePanel" name="weaponChoicePanel1">
                 </Component>
               </SubComponents>
             </Container>

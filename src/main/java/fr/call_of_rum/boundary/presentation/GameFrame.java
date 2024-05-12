@@ -49,6 +49,7 @@ public class GameFrame extends javax.swing.JFrame {
         intoxicationGaugePanel2 = new fr.call_of_rum.boundary.presentation.IntoxicationGaugePanel();
         lifeBarPanel1 = new fr.call_of_rum.boundary.presentation.LifeBarPanel();
         endTurnSecondPlayer = new javax.swing.JButton();
+        weaponChoicePanel2 = new fr.call_of_rum.boundary.presentation.WeaponChoicePanel();
         jPanel2 = new javax.swing.JPanel();
         jSplitPane2 = new javax.swing.JSplitPane();
         jPanel3 = new javax.swing.JPanel();
@@ -56,6 +57,7 @@ public class GameFrame extends javax.swing.JFrame {
         coinScorePanel1 = new fr.call_of_rum.boundary.presentation.CoinScorePanel();
         lifeBarPanel2 = new fr.call_of_rum.boundary.presentation.LifeBarPanel();
         endTurnFirstPlayer = new javax.swing.JButton();
+        weaponChoicePanel1 = new fr.call_of_rum.boundary.presentation.WeaponChoicePanel();
         jPanel4 = new javax.swing.JPanel();
         boardPanel1 = new fr.call_of_rum.boundary.presentation.BoardPanel();
         boardPanel1.setCellsType(dialog.getCellsType());
@@ -88,9 +90,6 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(coinScorePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 6, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,7 +98,12 @@ public class GameFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(endTurnSecondPlayer)
-                                .addGap(55, 55, 55)))))
+                                .addGap(55, 55, 55))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(coinScorePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(weaponChoicePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(intoxicationGaugePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -112,6 +116,8 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addComponent(coinScorePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(weaponChoicePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(endTurnSecondPlayer)
                 .addGap(76, 76, 76)
@@ -168,7 +174,11 @@ public class GameFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(endTurnFirstPlayer)
-                        .addGap(52, 52, 52))))
+                        .addGap(52, 52, 52))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(weaponChoicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                     .addContainerGap(28, Short.MAX_VALUE)
@@ -184,6 +194,8 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(coinScorePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(weaponChoicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(endTurnFirstPlayer)
                 .addGap(111, 111, 111))
@@ -315,5 +327,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane2;
     private fr.call_of_rum.boundary.presentation.LifeBarPanel lifeBarPanel1;
     private fr.call_of_rum.boundary.presentation.LifeBarPanel lifeBarPanel2;
+    private fr.call_of_rum.boundary.presentation.WeaponChoicePanel weaponChoicePanel1;
+    private fr.call_of_rum.boundary.presentation.WeaponChoicePanel weaponChoicePanel2;
     // End of variables declaration//GEN-END:variables
 }
