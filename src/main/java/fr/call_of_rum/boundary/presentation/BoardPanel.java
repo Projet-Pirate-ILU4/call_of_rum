@@ -206,6 +206,10 @@ public class BoardPanel extends javax.swing.JPanel {
         }
     }
 
+    public void chestOpened(int numCell){
+        cellsPanel[numCell].setType(CellType.OPENED_CHEST);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backgroundLabel;
     private fr.call_of_rum.boundary.presentation.CellPanel cellPanel1;

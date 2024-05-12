@@ -71,8 +71,10 @@ public class CellPanel extends javax.swing.JPanel {
         Image scaledTypeImage;
         if (cellType.toString().toLowerCase().equals("shortcut")){
             scaledTypeImage = typeImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imageLabel.setLocation(20, 10);
         }else{
-            scaledTypeImage = typeImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+            scaledTypeImage = typeImage.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+            imageLabel.setLocation(20, 10);
         }
         ImageIcon typeIcon = new ImageIcon(scaledTypeImage);
         imageLabel.setIcon(typeIcon);
