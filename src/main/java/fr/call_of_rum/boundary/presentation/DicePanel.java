@@ -4,8 +4,10 @@
  */
 package fr.call_of_rum.boundary.presentation;
 
-import javax.swing.*;
+import fr.call_of_rum.boundary.dialog.Dialog;
+
 import java.util.Random;
+import javax.swing.JFrame;
 
 /**
  *
@@ -30,18 +32,29 @@ public class DicePanel extends javax.swing.JPanel {
     private void initComponents() {
 
         dice1 = new fr.call_of_rum.boundary.presentation.Dice();
-        jButton1 = new javax.swing.JButton();
         dice2 = new fr.call_of_rum.boundary.presentation.Dice();
+        jButton1 = new javax.swing.JButton();
 
         javax.swing.GroupLayout dice1Layout = new javax.swing.GroupLayout(dice1);
         dice1.setLayout(dice1Layout);
         dice1Layout.setHorizontalGroup(
             dice1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 162, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
         dice1Layout.setVerticalGroup(
             dice1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 167, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout dice2Layout = new javax.swing.GroupLayout(dice2);
+        dice2.setLayout(dice2Layout);
+        dice2Layout.setHorizontalGroup(
+            dice2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        dice2Layout.setVerticalGroup(
+            dice2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         jButton1.setText("Lancer dès");
@@ -56,56 +69,41 @@ public class DicePanel extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout dice2Layout = new javax.swing.GroupLayout(dice2);
-        dice2.setLayout(dice2Layout);
-        dice2Layout.setHorizontalGroup(
-            dice2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 162, Short.MAX_VALUE)
-        );
-        dice2Layout.setVerticalGroup(
-            dice2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 167, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(dice2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(dice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(jButton1)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addComponent(dice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dice2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(69, 69, 69))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dice2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dice2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-         throwDice();
-    }//GEN-LAST:event_jButton1MouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         throwDice();
-    }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-
-
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        throwDice();
+    }//GEN-LAST:event_jButton1MouseClicked
     public static int generateRandomNumber() {
         Random rand = new Random();
         return rand.nextInt(6) + 1; // Génère un nombre entre 0 et 5, on ajoute 1 pour obtenir un nombre entre 1 et 6
@@ -118,7 +116,6 @@ public class DicePanel extends javax.swing.JPanel {
         }
     }
     public void throwDice(){
-
         jButton1.setEnabled(false);
         animDice(dice1);
         animDice(dice2);
@@ -138,13 +135,6 @@ public class DicePanel extends javax.swing.JPanel {
         Thread t = new Thread(myThread);
         t.start();
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private fr.call_of_rum.boundary.presentation.Dice dice1;
-    private fr.call_of_rum.boundary.presentation.Dice dice2;
-    private javax.swing.JButton jButton1;
-    // End of variables declaration//GEN-END:variables
-
     public static void main(String[] args) {
         JFrame frame = new JFrame("Dice Faces");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -152,4 +142,11 @@ public class DicePanel extends javax.swing.JPanel {
         frame.add(new DicePanel());
         frame.setVisible(true);
     }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private fr.call_of_rum.boundary.presentation.Dice dice1;
+    private fr.call_of_rum.boundary.presentation.Dice dice2;
+    private javax.swing.JButton jButton1;
+    private Dialog dialog;
+
+    // End of variables declaration//GEN-END:variables
 }
