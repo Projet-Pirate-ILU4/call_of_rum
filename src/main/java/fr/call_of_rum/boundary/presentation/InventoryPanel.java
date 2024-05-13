@@ -122,6 +122,7 @@ public class InventoryPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+<<<<<<< Updated upstream
         popUpItem();
     }//GEN-LAST:event_jPanel1MouseClicked
 
@@ -136,21 +137,78 @@ public class InventoryPanel extends javax.swing.JPanel {
 void popUpItem(){
     String message = "";
        
+=======
+    String message = "";
+        /*if (objectDescription != null) {
+            message += "Description de l'objet : \n" + objectDescription + "\n\n";
+        }*/
         message += "Que voulez-vous faire avec cet objet ?";
-        Object[] options = {"Utiliser", "Jeter", "Examiner", "Ne rien Faire"};
-        int choice = JOptionPane.showOptionDialog(null, message, "Actions sur l'objet", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[3]);
+        Object[] options = {"Utiliser", "Jeter", "Ne rien faire"};
+        int choice = JOptionPane.showOptionDialog(null, message, "Actions sur l'objet", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
         switch (choice) {
             case JOptionPane.YES_OPTION:
                 System.out.println("L'objet a été utilisé");
+                // Ajoutez votre logique pour l'utilisation de l'objet ici
                 break;
             case JOptionPane.NO_OPTION:
                 System.out.println("L'objet a été jeté");
+                // Ajoutez votre logique pour jeter l'objet ici
                 break;
             case JOptionPane.CANCEL_OPTION:
-                 System.out.println("Vous examinez l'objet");
-                break;
-            case 3:
+            case JOptionPane.CLOSED_OPTION:
                 System.out.println("Aucune action n'a été effectuée sur l'objet");
+                // Aucune action, le joueur a choisi de ne rien faire
+                break;
+        }
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        String message = "";
+        /*if (objectDescription != null) {
+            message += "Description de l'objet : \n" + objectDescription + "\n\n";
+        }*/
+        message += "Que voulez-vous faire avec cet objet ?";
+        Object[] options = {"Utiliser", "Jeter", "Ne rien faire"};
+        int choice = JOptionPane.showOptionDialog(null, message, "Actions sur l'objet", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
+        switch (choice) {
+            case JOptionPane.YES_OPTION:
+                System.out.println("L'objet a été utilisé");
+                // Ajoutez votre logique pour l'utilisation de l'objet ici
+                break;
+            case JOptionPane.NO_OPTION:
+                System.out.println("L'objet a été jeté");
+                // Ajoutez votre logique pour jeter l'objet ici
+                break;
+            case JOptionPane.CANCEL_OPTION:
+            case JOptionPane.CLOSED_OPTION:
+                System.out.println("Aucune action n'a été effectuée sur l'objet");
+                // Aucune action, le joueur a choisi de ne rien faire
+                break;
+        }
+    }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+        String message = "";
+        /*if (objectDescription != null) {
+            message += "Description de l'objet : \n" + objectDescription + "\n\n";
+        }*/
+>>>>>>> Stashed changes
+        message += "Que voulez-vous faire avec cet objet ?";
+        Object[] options = {"Utiliser", "Jeter", "Ne rien faire"};
+        int choice = JOptionPane.showOptionDialog(null, message, "Actions sur l'objet", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
+        switch (choice) {
+            case JOptionPane.YES_OPTION:
+                System.out.println("L'objet a été utilisé");
+                // Ajoutez votre logique pour l'utilisation de l'objet ici
+                break;
+            case JOptionPane.NO_OPTION:
+                System.out.println("L'objet a été jeté");
+                // Ajoutez votre logique pour jeter l'objet ici
+                break;
+            case JOptionPane.CANCEL_OPTION:
+            case JOptionPane.CLOSED_OPTION:
+                System.out.println("Aucune action n'a été effectuée sur l'objet");
+                // Aucune action, le joueur a choisi de ne rien faire
                 break;
         }
 }
