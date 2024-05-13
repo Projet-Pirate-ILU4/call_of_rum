@@ -7,6 +7,7 @@ import fr.call_of_rum.boundary.IFunctionalKernel;
 import fr.call_of_rum.boundary.IGraphicInterface;
 import fr.call_of_rum.boundary.presentation.GameFrame;
 import fr.call_of_rum.util.CellType;
+import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 
 /**
@@ -36,7 +37,27 @@ public class Dialog implements IDialog, IGraphicInterface {
             }
             return cellTypes;
 	}
-	
+
+	@Override
+	public boolean buy(ItemType item, Player player) {
+		return false;
+	}
+
+	@Override
+	public int getPrice(ItemType itemType) {
+		return 0;
+	}
+
+	@Override
+	public int getSizeInventaireAvailable(Player player) {
+		return 0;
+	}
+
+	@Override
+	public int checkfound(Player player) {
+		return 0;
+	}
+
 	private boolean isTurnEnded;
 
 	@Override
@@ -62,7 +83,17 @@ public class Dialog implements IDialog, IGraphicInterface {
 	public void endTurn() {
 		isTurnEnded = true;
 	}
-	
+
+	@Override
+	public ItemType[] getItemMarket() {
+		return new ItemType[0];
+	}
+
+	@Override
+	public void buy(Player player, ItemType[] itemTypesSelect) {
+
+	}
+
 	@Override
 	public void showChest(int coinAmount, String itemNamespace) {
 		// TODO implements
