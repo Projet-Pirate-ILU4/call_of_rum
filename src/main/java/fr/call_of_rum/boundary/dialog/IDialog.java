@@ -9,6 +9,8 @@ import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 
+import java.util.List;
+
 /**
  *
  * @author Solène
@@ -24,8 +26,7 @@ public interface IDialog {
     int getSizeInventaireAvailable(Player player);
     
     int checkfound(Player player);
-    
-    
+
            
     void endTurn();
 
@@ -33,8 +34,9 @@ public interface IDialog {
     ItemType[] getItemMarket();
 
 
-    void buy(Player player,ItemType[] itemTypesSelect);
+    void buy(Player player, List<ItemType> itemTypesSelect);
 
+    String getNameItem(ItemType itemType);
 
-	boolean buy(ItemType item, Player player);
+    String getDescribe(ItemType itemType);
 }

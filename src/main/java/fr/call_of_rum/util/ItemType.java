@@ -19,4 +19,5 @@ public enum ItemType {
     DAGGER,
     FLINTLOCK_PISTOL,
     MUSKET;
+
 }
