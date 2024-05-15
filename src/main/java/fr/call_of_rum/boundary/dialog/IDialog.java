@@ -38,5 +38,13 @@ public interface IDialog {
 
     String getNameItem(ItemType itemType);
 
-    String getDescribe(ItemType itemType);
+    String getDescribe(int itemIndex);
+
+
+	void useItem(int itemIndex);
+
+
+	void throwItem(int itemIndex);
+
+
 }

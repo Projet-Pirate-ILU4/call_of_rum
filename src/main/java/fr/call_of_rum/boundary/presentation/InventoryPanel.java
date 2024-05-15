@@ -6,6 +6,9 @@ package fr.call_of_rum.boundary.presentation;
 
 import javax.swing.JOptionPane;
 
+import fr.call_of_rum.boundary.dialog.Dialog;
+import fr.call_of_rum.boundary.dialog.IDialog;
+
 /**
  *
  * @author jerem
@@ -120,20 +123,29 @@ public class InventoryPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    public void setDialog(IDialog dialog) {
+		this.dialog = dialog;
+    }
+    
+    private IDialog dialog;
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        popUpItem();
+    	int itemIndex = 0;
+        popUpItem(itemIndex);
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        popUpItem();
+    	int itemIndex = 0;
+    	popUpItem(itemIndex);
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
-        popUpItem();
+    	int itemIndex = 0;
+    	popUpItem(itemIndex);
     }//GEN-LAST:event_jPanel3MouseClicked
 
-void popUpItem(){
+void popUpItem(int itemIndex){
     String message = "";
        
         message += "Que voulez-vous faire avec cet objet ?";
@@ -141,13 +153,17 @@ void popUpItem(){
         int choice = JOptionPane.showOptionDialog(null, message, "Actions sur l'objet", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[3]);
         switch (choice) {
             case JOptionPane.YES_OPTION:
+            	dialog.useItem(itemIndex);
                 System.out.println("L'objet a été utilisé");
                 break;
             case JOptionPane.NO_OPTION:
+            	dialog.throwItem(itemIndex);
                 System.out.println("L'objet a été jeté");
                 break;
             case JOptionPane.CANCEL_OPTION:
-                 System.out.println("Vous examinez l'objet");
+            	String description = dialog.getDescribe(itemIndex);
+                JOptionPane.showMessageDialog(null, description, "Description de l'objet", JOptionPane.INFORMATION_MESSAGE);
+                System.out.println("Vous examinez l'objet");
                 break;
             case 3:
                 System.out.println("Aucune action n'a été effectuée sur l'objet");
