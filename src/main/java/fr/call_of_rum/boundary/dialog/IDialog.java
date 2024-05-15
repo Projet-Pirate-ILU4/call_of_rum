@@ -34,4 +34,7 @@ public interface IDialog {
 
 
     void buy(Player player,ItemType[] itemTypesSelect);
+
+
+	boolean buy(ItemType item, Player player);
 }

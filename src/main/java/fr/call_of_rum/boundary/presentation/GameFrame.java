@@ -11,6 +11,8 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import fr.call_of_rum.boundary.dialog.IDialog;
 import fr.call_of_rum.util.CellType;
+import fr.call_of_rum.util.ItemType;
+import fr.call_of_rum.util.Player;
 
 /**
  *
@@ -306,6 +308,36 @@ public class GameFrame extends javax.swing.JFrame {
 				}
 				@Override
 				public void endTurn() {
+				}
+				@Override
+				public int getPrice(ItemType itemType) {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				@Override
+				public int getSizeInventaireAvailable(Player player) {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				@Override
+				public int checkfound(Player player) {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				@Override
+				public ItemType[] getItemMarket() {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				@Override
+				public void buy(Player player, ItemType[] itemTypesSelect) {
+					// TODO Auto-generated method stub
+					
+				}
+				@Override
+				public boolean buy(ItemType item, Player player) {
+					// TODO Auto-generated method stub
+					return false;
 				}
             }).setVisible(true);
         });
