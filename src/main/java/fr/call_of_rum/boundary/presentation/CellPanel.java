@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 public class CellPanel extends javax.swing.JPanel {
 
     private CellType cellType;
+    private boolean arrival=false;
     /**
      * Creates new form CellPanel
      */
@@ -49,9 +50,6 @@ public class CellPanel extends javax.swing.JPanel {
         add(numLabel);
         numLabel.setBounds(70, 10, 20, 20);
 
-        imageLabel.setAlignmentY(0.0F);
-        imageLabel.setMaximumSize(new java.awt.Dimension(100, 100));
-        imageLabel.setMinimumSize(new java.awt.Dimension(100, 100));
         imageLabel.setPreferredSize(new java.awt.Dimension(100, 100));
         add(imageLabel);
         imageLabel.setBounds(0, 0, 100, 100);
