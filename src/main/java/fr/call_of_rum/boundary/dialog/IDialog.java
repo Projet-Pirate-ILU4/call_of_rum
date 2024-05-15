@@ -38,8 +38,7 @@ public interface IDialog {
 
     String getNameItem(ItemType itemType);
 
-    String getDescribe(int itemIndex);
-
+    String getDescribe(ItemType itemType);
 
 	void useItem(int itemIndex);
 
@@ -47,4 +46,7 @@ public interface IDialog {
 	void throwItem(int itemIndex);
 
 
+    String getDescribe2(int itemIndex);
+
+    void print(String s);
 }

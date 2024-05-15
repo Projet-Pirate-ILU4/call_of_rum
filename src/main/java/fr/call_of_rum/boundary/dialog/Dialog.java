@@ -107,7 +107,7 @@ public class Dialog implements IDialog, IGraphicInterface {
 	}
 
 	@Override
-	public String getDescribe(int itemIndex) {
+	public String getDescribe(ItemType itemType) {
 		return "Lorem ipsum dolor sit amet, consectetur adipiscing elit,";
 	}
 
@@ -131,7 +131,17 @@ public class Dialog implements IDialog, IGraphicInterface {
 	public void throwItem(int itemIndex) {
 		// TODO implements
 	}
-	
+
+	@Override
+	public String getDescribe2(int itemIndex) {
+		return null;
+	}
+
+	@Override
+	public void print(String s) {
+
+	}
+
 	@Override
 	public void showExplosion() {
 		// TODO implements

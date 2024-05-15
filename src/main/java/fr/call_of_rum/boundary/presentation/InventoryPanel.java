@@ -161,7 +161,7 @@ void popUpItem(int itemIndex){
                 System.out.println("L'objet a été jeté");
                 break;
             case JOptionPane.CANCEL_OPTION:
-            	String description = dialog.getDescribe(itemIndex);
+            	String description = dialog.getDescribe2(itemIndex);
                 JOptionPane.showMessageDialog(null, description, "Description de l'objet", JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Vous examinez l'objet");
                 break;

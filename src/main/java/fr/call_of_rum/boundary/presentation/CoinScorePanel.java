@@ -17,12 +17,15 @@ public class CoinScorePanel extends javax.swing.JPanel {
         initComponents();
     }
     
-    public void setScore(int value){
+
+    public void addScore(int value){
         int s= Integer.parseInt(score.getText());
         s+=value;
         score.setText(""+s);
     }
-
+public void setScore(int value){
+        score.setText(""+value);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

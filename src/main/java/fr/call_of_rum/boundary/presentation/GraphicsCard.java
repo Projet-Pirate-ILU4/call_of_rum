@@ -6,7 +6,8 @@ package fr.call_of_rum.boundary.presentation;
 
 import fr.call_of_rum.boundary.dialog.IDialog;
 import fr.call_of_rum.util.ItemType;
-import java.awt.Image;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
@@ -17,6 +18,8 @@ import javax.swing.ImageIcon;
 public class GraphicsCard extends javax.swing.JPanel {
     private ItemType imageName;
     private  IDialog dialog;
+    private boolean clickable = true;
+
 
 
     public GraphicsCard() {
@@ -40,7 +43,7 @@ public class GraphicsCard extends javax.swing.JPanel {
         System.out.println(imageName.toString());
         BufferedImage image = ImageLoader.loadImage("presentation/"+imageName.toString().toLowerCase()+".png");
         Image scaledTypeImage;
-        scaledTypeImage = image.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        scaledTypeImage = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         imageContainer.setLocation(0, getWidth()/2);
         price.setText(""+value);
         nameLabel.setText(nameValue);
@@ -48,6 +51,21 @@ public class GraphicsCard extends javax.swing.JPanel {
         
         ImageIcon typeIcon = new ImageIcon(scaledTypeImage);
         imageContainer.setIcon(typeIcon);
+    }
+
+    // Méthode pour mettre à jour l'état de clic
+    private void updateClickableState() {
+        setEnabled(false); // Désactive le clic si le JPanel n'est pas cliquable
+        if (!clickable) {
+            setForeground(Color.PINK); // Grise visuellement le JPanel
+        }
+    }
+
+    // Méthode pour activer ou désactiver le clic
+    public void setClickable(boolean clickable) {
+        this.clickable = clickable;
+        System.out.println("je ne suis pâs sensé etre clicable");
+        updateClickableState(); // Met à jour l'état de clic après chaque modification
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,9 +97,7 @@ public class GraphicsCard extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(description)
                     .addComponent(price)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(nameLabel)))
+                    .addComponent(nameLabel))
                 .addContainerGap(280, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
