@@ -4,6 +4,7 @@
  */
 package fr.call_of_rum.boundary.presentation;
 
+import fr.call_of_rum.boundary.dialog.IDialog;
 import fr.call_of_rum.util.ItemType;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -15,19 +16,26 @@ import javax.swing.ImageIcon;
  */
 public class GraphicsCard extends javax.swing.JPanel {
     private ItemType imageName;
+    private  IDialog dialog;
 
-    /**
-     * Creates new form GraphicsCard
-     */
+
     public GraphicsCard() {
         initComponents();
     }
     
-    public void setImage(ItemType imageName, int price, String name , String description){
-        this.imageName=imageName;
-        designImage(price,name,description);
+    public void setImage(ItemType item){
+        this.imageName=item;
+        designImage(dialog.getPrice(item),dialog.getNameItem(item),dialog.getDescribe(item));
     }
     
+    public void setDialog(IDialog dialog){
+        this.dialog = dialog;
+    }
+
+    public ItemType getItemType() {
+        return imageName;
+    }
+
     private void designImage(int value, String nameValue, String descriptionValue){
         System.out.println(imageName.toString());
         BufferedImage image = ImageLoader.loadImage("presentation/"+imageName.toString().toLowerCase()+".png");

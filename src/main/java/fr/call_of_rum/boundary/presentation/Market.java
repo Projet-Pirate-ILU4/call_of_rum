@@ -5,13 +5,21 @@
 package fr.call_of_rum.boundary.presentation;
 
 import fr.call_of_rum.boundary.dialog.Dialog;
+import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
+import fr.call_of_rum.boundary.dialog.IDialog;
 
-import java.awt.Color;
+import java.awt.*;
 import javax.swing.*;
 
-import static java.lang.constant.ConstantDescs.NULL;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+
+import static fr.call_of_rum.util.ItemType.*;
+import static fr.call_of_rum.util.ItemType.LICIDITY_STONE;
 
 /**
  *
@@ -22,15 +30,23 @@ public class Market extends javax.swing.JDialog {
     /**
      * Creates new form Market
      */
-    public Market(java.awt.Frame parent, boolean modal,Player player,Dialog dialog) {
-        super(parent, modal);
+    public Market(Frame parent, Player player, IDialog dialog) {
+        super(parent);
         this.player = player;
-        itemTypes = new ItemType[3];
-        itemTypesSelect = dialog.getItemMarket();
-        itemTypesSelect = new ItemType[dialog.getSizeInventaireAvailable(player)];
+        this.dialog = dialog;
+        focus = new Hashtable<>();
+        this.size = dialog.getSizeInventaireAvailable(player);
+        itemTypesSelect = new ArrayList<>();
         score = dialog.checkfound(player);
+        itemTypes = dialog.getItemMarket();
+
         initComponents();
 
+        focus.put(graphicsCard1, false);
+        focus.put(graphicsCard2, false);
+        focus.put(graphicsCard3, false);
+        focus.put(graphicsCard4, false);
+        updateMarket();
     }
 
     /**
@@ -47,14 +63,22 @@ public class Market extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         coinScorePanel1 = new fr.call_of_rum.boundary.presentation.CoinScorePanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        graphicsCard2 = new fr.call_of_rum.boundary.presentation.GraphicsCard();
+        graphicsCard3 = new fr.call_of_rum.boundary.presentation.GraphicsCard();
+        graphicsCard4 = new fr.call_of_rum.boundary.presentation.GraphicsCard();
+        graphicsCard1 = new fr.call_of_rum.boundary.presentation.GraphicsCard();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        coinScorePanel1.setScore(score);
+        graphicsCard1.setDialog(dialog);
+        graphicsCard2.setDialog(dialog);
+        graphicsCard3.setDialog(dialog);
+        graphicsCard4.setDialog(dialog);
+
+        graphicsCard1.setImage(itemTypes[0]);
+        graphicsCard2.setImage(itemTypes[1]);
+        graphicsCard3.setImage(itemTypes[2]);
+        graphicsCard4.setImage(itemTypes[3]);
 
         jButton1.setText("Valider");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -74,31 +98,16 @@ public class Market extends javax.swing.JDialog {
 
         jLabel3.setText("Bienvenue dans le marché");
 
-        jButton3.setText("jButton2");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        graphicsCard2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton4.setText("jButton2");
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        graphicsCard3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        graphicsCard4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        graphicsCard1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        graphicsCard1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
-            }
-        });
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setText("jButton2");
-
-        jButton6.setText("jButton2");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                graphicsCard1MouseClicked(evt);
             }
         });
 
@@ -111,23 +120,33 @@ public class Market extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(coinScorePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 35, 35))
+                        .addComponent(coinScorePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(172, 172, 172))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(112, 112, 112)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(graphicsCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(graphicsCard3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(graphicsCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(184, 184, 184))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(graphicsCard4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,21 +156,23 @@ public class Market extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(coinScorePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel3)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(coinScorePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel2)))
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(graphicsCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(graphicsCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(graphicsCard4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(graphicsCard3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
@@ -165,106 +186,76 @@ public class Market extends javax.swing.JDialog {
         valider();
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        focusItem(jButton3);
-    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        focusItem(jButton6);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void graphicsCard3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_graphicsCard3MouseClicked
+        toogle(graphicsCard3);
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        focusItem(jButton4);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_graphicsCard3MouseClicked
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        focusItem(jButton4);
-    }
+    private void graphicsCard2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_graphicsCard2MouseClicked
+        toogle(graphicsCard2);
+    }//GEN-LAST:event_graphicsCard2MouseClicked
 
-    
-    private boolean acheter(){
-        return false;
-    }
-    
-    
+    private void graphicsCard4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_graphicsCard4MouseClicked
+        toogle(graphicsCard4);
+    }//GEN-LAST:event_graphicsCard4MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Market.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Market.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Market.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Market.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void graphicsCard1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_graphicsCard5MouseClicked
+        toogle(graphicsCard1);
+    }//GEN-LAST:event_graphicsCard5MouseClicked
+
+
+    private void focusItem(GraphicsCard graphicsCard){
+        int prix = dialog.getPrice(graphicsCard.getItemType());
+        if (score > prix) {
+            graphicsCard.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+            size--;
+            System.out.println(score);
+            score -= dialog.getPrice(graphicsCard.getItemType());
+            System.out.println(score);
+            itemTypesSelect.add(graphicsCard.getItemType());
+            focus.put(graphicsCard,!focus.get(graphicsCard));
+            updateMarket();
         }
-        //</editor-fold>
+    }
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                //Market dialog = new Market(new javax.swing.JFrame(), true);
-                //dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                  //  @Override
-                    //public void windowClosing(java.awt.event.WindowEvent e) {
-                      //  System.exit(0);
-                   // }
-                //});
-                //dialog.setVisible(true);
-            }
-        });
-    }
-    
-    private void focusItem(javax.swing.JButton Button1){
-        Button1.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-        score -= dialog.getPrice(itemTypesSelect[0]);
-        // attente des cartes pour pouvoir mettere
-    }
-    
-    private void unFocusitem(javax.swing.JButton jButton1){
-        jButton1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+    private void unFocusitem(GraphicsCard graphicsCard){
+        graphicsCard.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        size ++;
+        score += dialog.getPrice(graphicsCard.getItemType());
+        itemTypesSelect.remove(graphicsCard.getItemType());
+        focus.put(graphicsCard,!focus.get(graphicsCard));
         updateMarket();
     }
 
     private void updateMarket() {
         coinScorePanel1.setScore(score);
-        if (dialog.getSizeInventaireAvailable(player) == 0) {
-            jButton3.setEnabled(true);
-            jButton4.setEnabled(true);
-            jButton5.setEnabled(true);
-            jButton6.setEnabled(true);
+        if (!focus.get(graphicsCard1) && (score < dialog.getPrice(graphicsCard1.getItemType()) || size == 0)){
+            graphicsCard1.setEnabled(true);
+        }else {
+            graphicsCard1.setEnabled(false);
         }
-        if (score < dialog.getPrice(itemTypes[1])) {
-            jButton3.setEnabled(true);
+        if (!focus.get(graphicsCard2) && (score < dialog.getPrice(graphicsCard2.getItemType()) || size == 0)){
+            graphicsCard2.setEnabled(true);
+        }else {
+            graphicsCard2.setEnabled(false);
         }
-        if (score < dialog.getPrice(itemTypes[2])) {
-            jButton4.setEnabled(true);
+        if (!focus.get(graphicsCard3) && (score < dialog.getPrice(graphicsCard3.getItemType()) || size == 0)){
+            graphicsCard3.setEnabled(true);
+        }else {
+            graphicsCard3.setEnabled(false);
         }
-        if (score < dialog.getPrice(itemTypes[3])) {
-            jButton4.setEnabled(true);
+        if (!focus.get(graphicsCard4) && (score < dialog.getPrice(graphicsCard4.getItemType()) || size == 0)){
+            graphicsCard4.setEnabled(true);
+        }else {
+            graphicsCard4.setEnabled(false);
         }
-        if (score < dialog.getPrice(itemTypes[4])) {
-            jButton3.setEnabled(true);
-        }
+
+
     }
 
     private void valider() {
-        if (itemTypesSelect.length != 0) {
+        if ( ! itemTypesSelect.isEmpty()) {
             dialog.buy(player, itemTypesSelect);
             // renvoie dans la chatbox ce que le joueur a achter ainsi que son new solde
         } else {
@@ -273,21 +264,115 @@ public class Market extends javax.swing.JDialog {
         dispose();
     }
 
+    public void toogle(GraphicsCard graphicsCard) {
+        if (!focus.get(graphicsCard)) {
+            unFocusitem(graphicsCard);
+        } else {
+            focusItem(graphicsCard);
+        }
+        System.out.println("\nContenu de la HashMap :");
+        for (Map.Entry<GraphicsCard, Boolean> focus : focus.entrySet()) {
+            System.out.println(focus.getKey().getItemType() + " : " + focus.getValue());
+        }
+    }
+
+
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Market.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(() -> {
+            new Market(new javax.swing.JFrame(), Player.JACK_LE_BORGNE, new IDialog() {
+                @Override
+                public CellType[] getCellsType() {
+                    CellType[] cellsType = new CellType[30];
+                    for (int i = 0; i < 30; i++) {
+                        cellsType[i] = CellType.NORMAL;
+                    }
+                    return cellsType;
+                }
+
+                @Override
+                public int getPrice(ItemType itemType) {
+                    return 75;
+                }
+
+                @Override
+                public int getSizeInventaireAvailable(Player player) {
+                    return 3;
+                }
+
+                @Override
+                public int checkfound(Player player) {
+                    return 100;
+                }
+
+                @Override
+                public void endTurn() {
+                }
+
+                @Override
+                public ItemType[] getItemMarket() {
+                    ItemType[] itemTypes = new ItemType[4];
+                    itemTypes[0] = CLOVER;
+                    itemTypes[1] = BANDANA;
+                    itemTypes[2] = GUNPOWDER;
+                    itemTypes[3] = LICIDITY_STONE;
+                    return  itemTypes;
+                }
+
+
+                @Override
+                public void buy(Player player, List<ItemType> itemTypesSelect) {
+
+                }
+
+                @Override
+                public String getNameItem(ItemType itemType) {
+                    return  itemType.toString();
+                }
+
+                @Override
+                public String getDescribe(ItemType itemType) {
+                    return "Lorem ipsum dolor sit amet, consectetur adipiscing elit,";
+                }
+            }).setVisible(true);
+        });
+    }
+
+
+    private Hashtable<GraphicsCard,Boolean> focus;
     private Player player;
-    private Dialog dialog;
+    private IDialog dialog;
     private ItemType[] itemTypes;
-    private ItemType[] itemTypesSelect;
+    private List<ItemType> itemTypesSelect;
     private int score ;
+    private int size;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private fr.call_of_rum.boundary.presentation.CoinScorePanel coinScorePanel1;
+    private fr.call_of_rum.boundary.presentation.GraphicsCard graphicsCard2;
+    private fr.call_of_rum.boundary.presentation.GraphicsCard graphicsCard3;
+    private fr.call_of_rum.boundary.presentation.GraphicsCard graphicsCard4;
+    private fr.call_of_rum.boundary.presentation.GraphicsCard graphicsCard1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
+
+
+
 }
