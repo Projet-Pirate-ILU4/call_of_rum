@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 public class CellPanel extends javax.swing.JPanel {
 
     private CellType cellType;
+    private boolean arrival=false;
     /**
      * Creates new form CellPanel
      */
@@ -42,15 +43,13 @@ public class CellPanel extends javax.swing.JPanel {
         setLayout(null);
 
         numLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        numLabel.setForeground(new java.awt.Color(255, 255, 255));
         numLabel.setText("1");
         numLabel.setAlignmentX(1.0F);
         numLabel.setAlignmentY(0.0F);
         add(numLabel);
         numLabel.setBounds(70, 10, 20, 20);
 
-        imageLabel.setAlignmentY(0.0F);
-        imageLabel.setMaximumSize(new java.awt.Dimension(100, 100));
-        imageLabel.setMinimumSize(new java.awt.Dimension(100, 100));
         imageLabel.setPreferredSize(new java.awt.Dimension(100, 100));
         add(imageLabel);
         imageLabel.setBounds(0, 0, 100, 100);
@@ -67,7 +66,14 @@ public class CellPanel extends javax.swing.JPanel {
     // TODO change images
     public void putImage(){
         BufferedImage typeImage = ImageLoader.loadImage("presentation/cell/"+cellType.toString().toLowerCase()+".png");
-        Image scaledTypeImage = typeImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        Image scaledTypeImage;
+        if (cellType.toString().toLowerCase().equals("shortcut")){
+            scaledTypeImage = typeImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            imageLabel.setLocation(20, 10);
+        }else{
+            scaledTypeImage = typeImage.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+            imageLabel.setLocation(20, 10);
+        }
         ImageIcon typeIcon = new ImageIcon(scaledTypeImage);
         imageLabel.setIcon(typeIcon);
     }

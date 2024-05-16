@@ -1,11 +1,11 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JLayeredPane.java to edit this template
  */
 package fr.call_of_rum.boundary.presentation;
 
-import fr.call_of_rum.boundary.dialog.IDialog;
 import fr.call_of_rum.util.CellType;
+import fr.call_of_rum.util.Player;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
@@ -14,19 +14,76 @@ import javax.swing.ImageIcon;
  *
  * @author Solène
  */
-public class BoardPanel extends javax.swing.JPanel {
-
-    private IDialog iDialog;
+public class BoardPanel extends javax.swing.JLayeredPane {
+    
+    private CellPanel[] cellsPanel;
+    private boolean isToken1Movable = true;
+    private boolean isToken2Movable = false;
+    /*private boolean isToken1Clicked = false;
+    //private boolean isToken2Clicked = false;
+    
+    public void setToken1AsClicked() {
+        isToken1Clicked = true;
+    }
+    
+    public void setToken2AsClicked() {
+        isToken2Clicked = true;
+    }*/
+    public void setToken1asMovable() {
+        isToken1Movable = true;
+    }
+    
+    public void setToken2asMovable() {
+        isToken2Movable = true;
+    }
+    
+    public boolean getisToken1Movable() {
+        return isToken1Movable;
+    }
+    
+    public boolean getisToken2Movable() {
+        return isToken2Movable;
+    }
     /**
      * Creates new form BoardPanel
      */
-    public BoardPanel(IDialog iDialog) {
-        this.iDialog = iDialog;
+    public BoardPanel() {
         initComponents();
         BufferedImage typeImage = ImageLoader.loadImage("presentation/background.png");
         Image scaledTypeImage = typeImage.getScaledInstance(600, 500, Image.SCALE_SMOOTH);
         ImageIcon typeIcon = new ImageIcon(scaledTypeImage);
         backgroundLabel.setIcon(typeIcon);
+        cellsPanel=new CellPanel[30];
+        cellsPanel[0]=cellPanel1;
+        cellsPanel[1]=cellPanel2;
+        cellsPanel[2]=cellPanel3;
+        cellsPanel[3]=cellPanel4;
+        cellsPanel[4]=cellPanel5;
+        cellsPanel[5]=cellPanel6;
+        cellsPanel[6]=cellPanel7;
+        cellsPanel[7]=cellPanel8;
+        cellsPanel[8]=cellPanel9;
+        cellsPanel[9]=cellPanel10;
+        cellsPanel[10]=cellPanel11;
+        cellsPanel[11]=cellPanel12;
+        cellsPanel[12]=cellPanel13;
+        cellsPanel[13]=cellPanel14;
+        cellsPanel[14]=cellPanel15;
+        cellsPanel[15]=cellPanel16;
+        cellsPanel[16]=cellPanel17;
+        cellsPanel[17]=cellPanel18;
+        cellsPanel[18]=cellPanel19;
+        cellsPanel[19]=cellPanel20;
+        cellsPanel[20]=cellPanel21;
+        cellsPanel[21]=cellPanel22;
+        cellsPanel[22]=cellPanel23;
+        cellsPanel[23]=cellPanel24;
+        cellsPanel[24]=cellPanel25;
+        cellsPanel[25]=cellPanel26;
+        cellsPanel[26]=cellPanel27;
+        cellsPanel[27]=cellPanel28;
+        cellsPanel[28]=cellPanel29;
+        cellsPanel[29]=cellPanel30;
     }
 
     /**
@@ -40,167 +97,302 @@ public class BoardPanel extends javax.swing.JPanel {
 
         cellPanel1 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel1.setNum(1);
-        cellPanel1.setType(iDialog.askCellType(0));
         cellPanel2 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel2.setNum(2);
-        cellPanel2.setType(iDialog.askCellType(1));
         cellPanel3 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel3.setNum(3);
-        cellPanel3.setType(iDialog.askCellType(2));
         cellPanel4 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel4.setNum(4);
-        cellPanel4.setType(iDialog.askCellType(3));
         cellPanel5 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel5.setNum(5);
-        cellPanel5.setType(iDialog.askCellType(4));
         cellPanel6 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel6.setNum(6);
-        cellPanel6.setType(iDialog.askCellType(5));
         cellPanel30 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel30.setNum(30);
-        cellPanel30.setType(iDialog.askCellType(29));
         cellPanel23 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel23.setNum(23);
-        cellPanel23.setType(iDialog.askCellType(22));
         cellPanel22 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel22.setNum(22);
-        cellPanel22.setType(iDialog.askCellType(21));
         cellPanel15 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel15.setNum(15);
-        cellPanel15.setType(iDialog.askCellType(14));
         cellPanel14 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel14.setNum(14);
-        cellPanel14.setType(iDialog.askCellType(13));
         cellPanel7 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel7.setNum(7);
-        cellPanel7.setType(iDialog.askCellType(6));
-        cellPanel24 = new fr.call_of_rum.boundary.presentation.CellPanel();
-        cellPanel24.setNum(24);
-        cellPanel24.setType(iDialog.askCellType(23));
-        cellPanel21 = new fr.call_of_rum.boundary.presentation.CellPanel();
-        cellPanel21.setNum(21);
-        cellPanel21.setType(iDialog.askCellType(20));
-        cellPanel16 = new fr.call_of_rum.boundary.presentation.CellPanel();
-        cellPanel16.setNum(16);
-        cellPanel16.setType(iDialog.askCellType(15));
-        cellPanel13 = new fr.call_of_rum.boundary.presentation.CellPanel();
-        cellPanel13.setNum(13);
-        cellPanel13.setType(iDialog.askCellType(12));
-        cellPanel8 = new fr.call_of_rum.boundary.presentation.CellPanel();
-        cellPanel8.setNum(8);
-        cellPanel8.setType(iDialog.askCellType(7));
         cellPanel29 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel29.setNum(29);
-        cellPanel29.setType(iDialog.askCellType(28));
+        cellPanel24 = new fr.call_of_rum.boundary.presentation.CellPanel();
+        cellPanel24.setNum(24);
+        cellPanel21 = new fr.call_of_rum.boundary.presentation.CellPanel();
+        cellPanel21.setNum(21);
+        cellPanel16 = new fr.call_of_rum.boundary.presentation.CellPanel();
+        cellPanel16.setNum(16);
+        cellPanel13 = new fr.call_of_rum.boundary.presentation.CellPanel();
+        cellPanel13.setNum(13);
+        cellPanel8 = new fr.call_of_rum.boundary.presentation.CellPanel();
+        cellPanel8.setNum(8);
         cellPanel28 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel28.setNum(28);
-        cellPanel28.setType(iDialog.askCellType(27));
         cellPanel25 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel25.setNum(25);
-        cellPanel25.setType(iDialog.askCellType(24));
         cellPanel20 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel20.setNum(20);
-        cellPanel20.setType(iDialog.askCellType(19));
         cellPanel17 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel17.setNum(17);
-        cellPanel17.setType(iDialog.askCellType(16));
         cellPanel12 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel12.setNum(12);
-        cellPanel12.setType(iDialog.askCellType(11));
         cellPanel9 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel9.setNum(9);
-        cellPanel9.setType(iDialog.askCellType(8));
         cellPanel27 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel27.setNum(27);
-        cellPanel27.setType(iDialog.askCellType(26));
         cellPanel26 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel26.setNum(26);
-        cellPanel26.setType(iDialog.askCellType(25));
         cellPanel19 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel19.setNum(19);
-        cellPanel19.setType(iDialog.askCellType(18));
         cellPanel18 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel18.setNum(18);
-        cellPanel18.setType(iDialog.askCellType(17));
         cellPanel11 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel11.setNum(11);
-        cellPanel11.setType(iDialog.askCellType(10));
         cellPanel10 = new fr.call_of_rum.boundary.presentation.CellPanel();
         cellPanel10.setNum(10);
-        cellPanel10.setType(iDialog.askCellType(9));
         backgroundLabel = new javax.swing.JLabel();
+        tokenPanelPlayer1 = new fr.call_of_rum.boundary.presentation.TokenPanel();
+        tokenPanelPlayer1.setBoardPanel(this);
+        tokenPanelPlayer1.setPlayer(Player.BILL_JAMBE_DE_BOIS);
+        tokenPanelPlayer2 = new fr.call_of_rum.boundary.presentation.TokenPanel();
+        tokenPanelPlayer2.setBoardPanel(this);
+        tokenPanelPlayer2.setPlayer(Player.JACK_LE_BORGNE);
 
         setMinimumSize(new java.awt.Dimension(600, 500));
-        setPreferredSize(new java.awt.Dimension(600, 500));
-        setLayout(null);
-        add(cellPanel1);
-        cellPanel1.setBounds(0, 0, 100, 100);
-        add(cellPanel2);
-        cellPanel2.setBounds(100, 0, 100, 100);
-        add(cellPanel3);
-        cellPanel3.setBounds(200, 0, 100, 100);
-        add(cellPanel4);
-        cellPanel4.setBounds(300, 0, 100, 100);
-        add(cellPanel5);
-        cellPanel5.setBounds(400, 0, 100, 100);
-        add(cellPanel6);
-        cellPanel6.setBounds(500, 0, 100, 100);
-        add(cellPanel30);
-        cellPanel30.setBounds(0, 100, 100, 100);
-        add(cellPanel23);
-        cellPanel23.setBounds(100, 100, 100, 100);
-        add(cellPanel22);
-        cellPanel22.setBounds(200, 100, 100, 100);
-        add(cellPanel15);
-        cellPanel15.setBounds(300, 100, 100, 100);
-        add(cellPanel14);
-        cellPanel14.setBounds(400, 100, 100, 100);
-        add(cellPanel7);
-        cellPanel7.setBounds(500, 100, 100, 100);
-        add(cellPanel24);
-        cellPanel24.setBounds(100, 200, 100, 100);
-        add(cellPanel21);
-        cellPanel21.setBounds(200, 200, 100, 100);
-        add(cellPanel16);
-        cellPanel16.setBounds(300, 200, 100, 100);
-        add(cellPanel13);
-        cellPanel13.setBounds(400, 200, 100, 100);
-        add(cellPanel8);
-        cellPanel8.setBounds(500, 200, 100, 100);
-        add(cellPanel29);
-        cellPanel29.setBounds(0, 200, 100, 100);
-        add(cellPanel28);
-        cellPanel28.setBounds(0, 300, 100, 100);
-        add(cellPanel25);
-        cellPanel25.setBounds(100, 300, 100, 100);
-        add(cellPanel20);
-        cellPanel20.setBounds(200, 300, 100, 100);
-        add(cellPanel17);
-        cellPanel17.setBounds(300, 300, 100, 100);
-        add(cellPanel12);
-        cellPanel12.setBounds(400, 300, 100, 100);
-        add(cellPanel9);
-        cellPanel9.setBounds(500, 300, 100, 100);
-        add(cellPanel27);
-        cellPanel27.setBounds(0, 400, 100, 100);
-        add(cellPanel26);
-        cellPanel26.setBounds(100, 400, 100, 100);
-        add(cellPanel19);
-        cellPanel19.setBounds(200, 400, 100, 100);
-        add(cellPanel18);
-        cellPanel18.setBounds(300, 400, 100, 100);
-        add(cellPanel11);
-        cellPanel11.setBounds(400, 400, 100, 100);
-        add(cellPanel10);
-        cellPanel10.setBounds(500, 400, 100, 100);
 
         backgroundLabel.setMinimumSize(new java.awt.Dimension(600, 500));
         backgroundLabel.setPreferredSize(new java.awt.Dimension(600, 500));
-        add(backgroundLabel);
-        backgroundLabel.setBounds(0, 0, 600, 500);
+
+        setLayer(cellPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel30, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel23, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel29, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel28, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel25, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel20, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel27, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel26, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel19, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel18, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(cellPanel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(backgroundLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(tokenPanelPlayer1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(tokenPanelPlayer2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(tokenPanelPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(420, 420, 420)
+                .addComponent(cellPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(cellPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(cellPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(500, 500, 500)
+                .addComponent(cellPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(cellPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(500, 500, 500)
+                .addComponent(cellPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(cellPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(cellPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(cellPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(cellPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(cellPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(cellPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(tokenPanelPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(cellPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(cellPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(500, 500, 500)
+                .addComponent(cellPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(cellPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(cellPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cellPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(cellPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(cellPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(cellPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(cellPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(cellPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(cellPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(cellPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(cellPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(cellPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(cellPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(cellPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(500, 500, 500)
+                .addComponent(cellPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(backgroundLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(tokenPanelPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(cellPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cellPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(cellPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(cellPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(cellPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(cellPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(cellPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(cellPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(cellPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(cellPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(cellPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(cellPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(tokenPanelPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(cellPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(cellPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(cellPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(cellPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(cellPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(cellPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(cellPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(cellPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(cellPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(cellPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(cellPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(cellPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(cellPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(cellPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(cellPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(cellPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(cellPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(cellPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(backgroundLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setCellsType(CellType[] cellsType) {
+        for (int i=0;i<30;i++){
+            cellsPanel[i].setType(cellsType[i]);
+        }
+    }
 
+    public void chestOpened(int numCell){
+        cellsPanel[numCell].setType(CellType.OPENED_CHEST);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backgroundLabel;
     private fr.call_of_rum.boundary.presentation.CellPanel cellPanel1;
@@ -233,5 +425,7 @@ public class BoardPanel extends javax.swing.JPanel {
     private fr.call_of_rum.boundary.presentation.CellPanel cellPanel7;
     private fr.call_of_rum.boundary.presentation.CellPanel cellPanel8;
     private fr.call_of_rum.boundary.presentation.CellPanel cellPanel9;
+    private fr.call_of_rum.boundary.presentation.TokenPanel tokenPanelPlayer1;
+    private fr.call_of_rum.boundary.presentation.TokenPanel tokenPanelPlayer2;
     // End of variables declaration//GEN-END:variables
 }

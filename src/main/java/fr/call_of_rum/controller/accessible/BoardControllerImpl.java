@@ -1,13 +1,13 @@
-package fr.call_of_rum.controller;
+package fr.call_of_rum.controller.accessible;
 
 import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.util.CellType;
 
-public class BoardController implements IBoardController {
+public class BoardControllerImpl implements BoardController {
 	
 	private Board board;
 	
-	public BoardController(Board board) {
+	public BoardControllerImpl(Board board) {
 		this.board = board;
 	}
 

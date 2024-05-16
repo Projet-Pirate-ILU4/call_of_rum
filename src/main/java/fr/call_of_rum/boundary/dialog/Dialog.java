@@ -1,13 +1,17 @@
 package fr.call_of_rum.boundary.dialog;
 
 import java.awt.EventQueue;
+import java.util.List;
 import java.util.Optional;
 
 import fr.call_of_rum.boundary.IFunctionalKernel;
 import fr.call_of_rum.boundary.IGraphicInterface;
 import fr.call_of_rum.boundary.presentation.GameFrame;
 import fr.call_of_rum.util.CellType;
+import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
+
+import static fr.call_of_rum.util.ItemType.*;
 
 /**
  * 
@@ -28,10 +32,34 @@ public class Dialog implements IDialog, IGraphicInterface {
 	}
 
 	@Override
-	public CellType askCellType(int numCell) {
-		return functionalKernelAdapter.askCellType(numCell);
+	public CellType[] getCellsType() {
+            // TODO modify architecture
+            CellType[] cellTypes = new CellType[30];
+            for (int i = 0; i < cellTypes.length; i++) {
+                cellTypes[i] = functionalKernelAdapter.askCellType(i);
+            }
+            return cellTypes;
 	}
-	
+
+	public boolean buy(ItemType item, Player player) {
+		return false;
+	}
+
+	@Override
+	public int getPrice(ItemType itemType) {
+		return 100;
+	}
+
+	@Override
+	public int getSizeInventaireAvailable(Player player) {
+		return 2;
+	}
+
+	@Override
+	public int checkfound(Player player) {
+		return 200;
+	}
+
 	private boolean isTurnEnded;
 
 	@Override
@@ -57,7 +85,32 @@ public class Dialog implements IDialog, IGraphicInterface {
 	public void endTurn() {
 		isTurnEnded = true;
 	}
-	
+
+	@Override
+	public ItemType[] getItemMarket() {
+		ItemType[] itemTypes = new ItemType[4];
+		itemTypes[0] = CLOVER;
+		itemTypes[1] = BANDANA;
+		itemTypes[2] = GUNPOWDER;
+		itemTypes[3] = LICIDITY_STONE;
+		return  itemTypes;
+	}
+
+	@Override
+	public void buy(Player player, List<ItemType> itemTypesSelect) {
+
+	}
+
+	@Override
+	public String getNameItem(ItemType itemType) {
+		return  itemType.toString();
+	}
+
+	@Override
+	public String getDescribe(ItemType itemType) {
+		return "Lorem ipsum dolor sit amet, consectetur adipiscing elit,";
+	}
+
 	@Override
 	public void showChest(int coinAmount, String itemNamespace) {
 		// TODO implements
@@ -69,6 +122,26 @@ public class Dialog implements IDialog, IGraphicInterface {
 		
 	}
 	
+	@Override
+	public void useItem(int itemIndex) {
+		// TODO implements
+	}
+	
+	 @Override
+	public void throwItem(int itemIndex) {
+		// TODO implements
+	}
+
+	@Override
+	public String getDescribe2(int itemIndex) {
+		return null;
+	}
+
+	@Override
+	public void print(String s) {
+
+	}
+
 	@Override
 	public void showExplosion() {
 		// TODO implements
@@ -93,5 +166,6 @@ public class Dialog implements IDialog, IGraphicInterface {
 	public void close() {
 		presentation.dispose();
 	}
+
 
 }

@@ -129,7 +129,10 @@ public class Dice extends javax.swing.JPanel {
     private void drawDotMidRight(Graphics g, int x, int y,int squareSize,int dotSize){
         drawDot(g, x + squareSize - dotSize *2, y + squareSize / 2 - dotSize/2,dotSize ); // Point au milieu
     }
-    
+
+    public int getValue() {
+        return faceValue;
+    }
     
     
     /**
