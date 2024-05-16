@@ -2,12 +2,12 @@ package fr.call_of_rum;
 
 import fr.call_of_rum.boundary.FunctionalKernelAdapter;
 import fr.call_of_rum.boundary.dialog.Dialog;
-import fr.call_of_rum.controller.BoardController;
 import fr.call_of_rum.controller.GameController;
-import fr.call_of_rum.controller.IBoardController;
-import fr.call_of_rum.controller.IMoveController;
-import fr.call_of_rum.controller.MoveController;
 import fr.call_of_rum.controller.TriggerCellController;
+import fr.call_of_rum.controller.accessible.BoardController;
+import fr.call_of_rum.controller.accessible.BoardControllerImpl;
+import fr.call_of_rum.controller.accessible.MoveController;
+import fr.call_of_rum.controller.accessible.MoveControllerImpl;
 import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.board.BoardFactory;
 import fr.call_of_rum.model.item.ItemRegistry;
@@ -32,9 +32,9 @@ public class Main {
     	
     	// controller initialization
     	GameController gameController = new GameController(boundary, board, pirate1, pirate2);
-    	IBoardController boardController = new BoardController(board);
-    	TriggerCellController triggerCellController = new TriggerCellController(boundary, gameController);
-    	IMoveController moveController = new MoveController(gameController, triggerCellController, board);
+    	BoardController boardController = new BoardControllerImpl(board);
+    	TriggerCellController triggerCellController = new TriggerCellController(boundary);
+    	MoveController moveController = new MoveControllerImpl(triggerCellController, board, pirate1, pirate2);
     	
     	// wiring IBoundary and IFunctionalKernel
     	boundary.setBoardController(boardController);

@@ -11,17 +11,15 @@ public class GameController {
 	
 	private Board board;
 	private int numberOfPlayers;
-	private Pirate[] players;
+	private Pirate[] players = new Pirate[2];
 	private int currentPlayer = 0;
 	
-	public GameController(IBoundary boundary, Board board, Pirate... players) {
+	public GameController(IBoundary boundary, Board board, Pirate player1, Pirate player2) {
 		this.boundary = boundary;
 		this.board = board;
 		this.numberOfPlayers = Player.values().length;
-		this.players = new Pirate[numberOfPlayers];
-		for (int i = 0; i<numberOfPlayers; i++) {
-			this.players[i] = players[i];
-		}
+		players[0] = player1;
+		players[1] = player2;
 	}
 	
 	private Player getWinner() {
@@ -46,15 +44,5 @@ public class GameController {
 		}
 		boundary.gameEnded(getWinner());
 	}
-	
-	/************************************
-	*   Methods for other controllers   *
-	************************************/
-	
-	Pirate getPirate(Player player) {
-		return players[player.ordinal()];
-	}
-	
-	
 	
 }

@@ -13,11 +13,8 @@ public class TriggerCellController {
 	
 	private IBoundary boundary;
 	
-	private GameController gameController;
-	
-	public TriggerCellController(IBoundary boudary, GameController gameController) {
+	public TriggerCellController(IBoundary boudary) {
 		this.boundary = boudary;
-		this.gameController = gameController;
 	}
 	
 	private void triggerChestCell(Chest chest) {

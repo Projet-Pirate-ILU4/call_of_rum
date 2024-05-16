@@ -1,8 +1,8 @@
-package fr.call_of_rum.controller;
+package fr.call_of_rum.controller.accessible;
 
 import fr.call_of_rum.util.Player;
 
-public interface IMoveController {
+public interface MoveController {
 	
 	void movePlayer(Player player, int cellNumber);
 	

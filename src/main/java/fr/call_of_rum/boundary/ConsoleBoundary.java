@@ -5,7 +5,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-import fr.call_of_rum.controller.IMoveController;
+import fr.call_of_rum.controller.accessible.MoveController;
 import fr.call_of_rum.util.Player;
 
 public class ConsoleBoundary implements IBoundary {
@@ -21,9 +21,9 @@ public class ConsoleBoundary implements IBoundary {
 		this.scan = new Scanner(System.in);
 	}
 	
-	private IMoveController moveController;
+	private MoveController moveController;
 	
-	public void setMoveController(IMoveController moveContorller) {
+	public void setMoveController(MoveController moveContorller) {
 		this.moveController = moveContorller;
 	}
 	
