@@ -16,13 +16,13 @@ import fr.call_of_rum.model.stubs.ItemStub;
 
 public class InventoryTest {
 	
-	private Inventory inv;
+	private Inventory<Item> inv;
 	private Item item1;
 	private Item item2;
 
 	@Before
 	public void setUp() throws Exception {
-		inv = new Inventory(3);
+		inv = new Inventory<>(3);
 		item1 = new ItemStub();
 		item2 = new ItemStub();
 	}

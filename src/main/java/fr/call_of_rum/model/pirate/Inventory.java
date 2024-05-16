@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import fr.call_of_rum.model.item.Item;
 
-public class Inventory {
+public class Inventory<T extends Item> {
 	
 	private int maxCapacity;
 	private Item[] items;
@@ -35,25 +35,34 @@ public class Inventory {
 		return findFirst(null);
 	}
 	
-	public void add(Item item) {
+	public boolean isFull() {
+		return getFirstFreeSlot().isEmpty();
+	}
+	
+	public void add(T item) {
 		Optional<Integer> freeSlot = getFirstFreeSlot();
 		if (freeSlot.isEmpty())
 			throw new NoFreeSlotException();
 		items[freeSlot.get()] = item;
 	}
 	
-	public void insert(Item item, int index) {
+	public void insert(T item, int index) {
 		items[index] = item;
 	}
 	
-	public void remove(Item item) {
+	public void remove(int index) {
+		items[index] = null;
+	}
+	
+	public void remove(T item) {
 		Optional<Integer> itemSlot = findFirst(item);
 		if (itemSlot.isEmpty()) return;
 		items[itemSlot.get()] = null;
 	}
 	
-	public Item get(int index) {
-		return items[index];
+	@SuppressWarnings("unchecked")
+	public T get(int index) {
+		return (T) items[index];
 	}
 	
 	public boolean contains(Item item) {
