@@ -4,7 +4,12 @@
  */
 package fr.call_of_rum.boundary.dialog;
 
+
 import fr.call_of_rum.util.CellType;
+import fr.call_of_rum.util.ItemType;
+import fr.call_of_rum.util.Player;
+
+import java.util.List;
 
 /**
  *
@@ -12,8 +17,36 @@ import fr.call_of_rum.util.CellType;
  */
 public interface IDialog {
 	
-    CellType askCellType(int numCell);
+    CellType[] getCellsType();
+
+
+    // donne le prix de l'item
+    int getPrice(ItemType itemType);
+
+    int getSizeInventaireAvailable(Player player);
     
+    int checkfound(Player player);
+
+           
     void endTurn();
-    
+
+    // renvoie un tableau de 4 item qui seront afficher dans le market
+    ItemType[] getItemMarket();
+
+
+    void buy(Player player, List<ItemType> itemTypesSelect);
+
+    String getNameItem(ItemType itemType);
+
+    String getDescribe(ItemType itemType);
+
+	void useItem(int itemIndex);
+
+
+	void throwItem(int itemIndex);
+
+
+    String getDescribe2(int itemIndex);
+
+    void print(String s);
 }

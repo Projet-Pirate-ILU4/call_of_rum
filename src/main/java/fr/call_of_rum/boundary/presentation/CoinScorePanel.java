@@ -17,12 +17,15 @@ public class CoinScorePanel extends javax.swing.JPanel {
         initComponents();
     }
     
-    public void setScore(int value){
+
+    public void addScore(int value){
         int s= Integer.parseInt(score.getText());
         s+=value;
         score.setText(""+s);
     }
-
+public void setScore(int value){
+        score.setText(""+value);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,7 +55,7 @@ public class CoinScorePanel extends javax.swing.JPanel {
                         .addGap(0, 0, 0)
                         .addComponent(score))
                     .addComponent(jLabel1))
-                .addContainerGap(305, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -62,11 +65,11 @@ public class CoinScorePanel extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(score))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(130, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(coinPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

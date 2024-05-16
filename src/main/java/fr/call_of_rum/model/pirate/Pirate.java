@@ -15,7 +15,7 @@ public class Pirate {
 	private Inventory inventory = new Inventory(3);
 	private IntoxicationGauge intoxicationGauge = new IntoxicationGauge();
 	private Board board;
-	
+		
 	
 	public Pirate(String name, int coins, int maxHealthPoints) {
 		this.name = name;
