@@ -22,8 +22,7 @@ public class Board {
 	}
 	
 	public Cell getCell(int cellNumber) {
-		if (cellNumber < 0 && boardSize <= cellNumber) return null;
-		return cells[cellNumber];
+		return cells[cellNumber % boardSize];
 	}
 	
 	@ShortcutMethod
@@ -48,13 +47,8 @@ public class Board {
 		pirateLocations.put(pirate, 0);
 	}
 	
-	private boolean isCellNumberValid(int cellNumber) {
-		return 0 <= cellNumber && cellNumber < boardSize;
-	}
-	
 	public void movePirateTo(Pirate pirate, int cellNumber) {
-		if (!isCellNumberValid(cellNumber)) return;
-		pirateLocations.replace(pirate, cellNumber);
+		pirateLocations.replace(pirate, cellNumber % boardSize);
 	}
 	
 	@ShortcutMethod

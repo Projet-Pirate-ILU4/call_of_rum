@@ -8,9 +8,9 @@ public interface IGraphicInterface {
 	
 	void giveTurn(Player player);
 	
-	void showChest(int coinAmount, String itemNamespace);
+	boolean chestFound(int coinAmount, String itemNamespace);
 	
-	void showOpenedChest(int coinAmount, Optional<String> itemNamespace);
+	boolean openedChestFound(int coinAmount, Optional<String> itemNamespace);
 	
 	void showExplosion();
 	

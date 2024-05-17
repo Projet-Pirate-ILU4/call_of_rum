@@ -4,16 +4,17 @@ import java.util.List;
 
 import fr.call_of_rum.boundary.ConsoleBoundary;
 import fr.call_of_rum.controller.BuyController;
-import fr.call_of_rum.controller.DiceController;
 import fr.call_of_rum.controller.GameController;
 import fr.call_of_rum.controller.MoveController;
+import fr.call_of_rum.controller.TakeItemController;
 import fr.call_of_rum.controller.TriggerCellController;
 import fr.call_of_rum.controller.accessible.ActionController;
 import fr.call_of_rum.controller.accessible.ActionControllerImpl;
 import fr.call_of_rum.controller.accessible.BoardController;
 import fr.call_of_rum.controller.accessible.BoardControllerImpl;
-import fr.call_of_rum.controller.accessible.PlayerItemController;
-import fr.call_of_rum.controller.accessible.PlayerItemControllerImpl;
+import fr.call_of_rum.controller.accessible.DiceControllerImpl;
+import fr.call_of_rum.controller.accessible.PlayerController;
+import fr.call_of_rum.controller.accessible.PlayerControllerImpl;
 import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.board.BoardFactory;
 import fr.call_of_rum.model.item.ItemRegistry;
@@ -70,17 +71,21 @@ public class Main {
     	board.addPirate(pirate2);
     	
     	// controller initialization
-    	DiceController diceController = new DiceController();
+    	DiceControllerImpl diceController = new DiceControllerImpl();
     	GameController gameController = new GameController(boundary, diceController, board, pirate1, pirate2);
-    	TriggerCellController triggerCellController = new TriggerCellController(boundary);
+    	TakeItemController takeItemController = new TakeItemController();
+    	TriggerCellController triggerCellController = new TriggerCellController(boundary, takeItemController);
     	MoveController moveController = new MoveController(diceController, triggerCellController, board);
-    	BuyController buyController = new BuyController(market);
+    	BuyController buyController = new BuyController(takeItemController, market);
     	ActionController actionController = new ActionControllerImpl(gameController, buyController, moveController);
-    	PlayerItemController playerItemController = new PlayerItemControllerImpl(gameController);
+    	PlayerController playerController = new PlayerControllerImpl(gameController);
+    	BoardController boardController = new BoardControllerImpl(gameController, board);
     	
     	// wiring IBoundary and IFunctionalKernel
     	boundary.setActionController(actionController);
-    	boundary.setPlayerInventoryController(playerItemController);
+    	boundary.setPlayerController(playerController);
+    	boundary.setDiceController(diceController);
+    	boundary.setBoardController(boardController);
     	
     	// launch
     	gameController.start();

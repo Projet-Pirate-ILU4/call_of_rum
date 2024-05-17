@@ -1,13 +1,14 @@
-package fr.call_of_rum.controller;
+package fr.call_of_rum.controller.accessible;
 
 import java.util.Random;
 
-public class DiceController {
+public class DiceControllerImpl implements DiceController {
 	
 	private static final Random RNG = new Random();
 	
 	private int diceResult;
 	
+	@Override
 	public int getDiceResult() {
 		return diceResult;
 	}

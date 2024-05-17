@@ -44,13 +44,13 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	}
 	
 	@Override
-	public void chestFound(int coinAmount, String itemNamespace) {
-		graphicInterface.showChest(coinAmount, itemNamespace);
+	public boolean chestFound(int coinAmount, String itemNamespace) {
+		return graphicInterface.chestFound(coinAmount, itemNamespace);
 	}
 
 	@Override
-	public void openedChestFound(int coinAmount, Optional<String> itemNamespace) {
-		graphicInterface.showOpenedChest(coinAmount, itemNamespace);
+	public boolean openedChestFound(int coinAmount, Optional<String> itemNamespace) {
+		return graphicInterface.openedChestFound(coinAmount, itemNamespace);
 	}
 
 	@Override

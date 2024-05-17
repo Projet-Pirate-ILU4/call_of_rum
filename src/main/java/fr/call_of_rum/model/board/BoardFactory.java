@@ -79,7 +79,11 @@ public class BoardFactory {
 	
 	public Board build(ItemRegistry itemRegistry) {
 		Cell[] cells = new Cell[numberOfCells];
-		for (int i = 0; i < numberOfCells; i++) {
+		// first and last cells are normal cells
+		cells[0] = new Land(0);
+		cells[numberOfCells-1] = new Land(29);
+		// the other are ranomly generated
+		for (int i = 1; i < numberOfCells - 1; i++) {
 			cells[i] = generateCell(i, itemRegistry);
 		}
 		int merchant = merchantPossibleCells[RNG.nextInt(merchantPossibleCells.length)];

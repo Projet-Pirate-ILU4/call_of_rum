@@ -15,9 +15,9 @@ public interface IBoundary {
 	
 	void tookShortcut();
 	
-	void chestFound(int coinAmount, String itemNamespace);
+	boolean chestFound(int coinAmount, String itemNamespace);
 	
-	void openedChestFound(int coinAmount, Optional<String> itemNamespace);
+	boolean openedChestFound(int coinAmount, Optional<String> itemNamespace);
 	
 	void gameEnded(Player winner);
 	

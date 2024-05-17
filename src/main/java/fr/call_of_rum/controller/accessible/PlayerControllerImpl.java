@@ -6,13 +6,14 @@ import fr.call_of_rum.model.item.weapon.Weapon;
 import fr.call_of_rum.model.pirate.Inventory;
 import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.util.ItemType;
+import fr.call_of_rum.util.Player;
 import fr.call_of_rum.util.WeaponType;
 
-public class PlayerItemControllerImpl implements PlayerItemController {
+public class PlayerControllerImpl implements PlayerController {
 	
 	private GameController gameController;
 	
-	public PlayerItemControllerImpl(GameController gameController) {
+	public PlayerControllerImpl(GameController gameController) {
 		this.gameController = gameController;
 	}
 
@@ -31,6 +32,24 @@ public class PlayerItemControllerImpl implements PlayerItemController {
 		Item item = inventory.get(itemIndex);
 		if (item == null) return null;
 		return ItemType.valueOf(item.getNamespace());
+	}
+
+	@Override
+	public int getHealth(Player player) {
+		Pirate pirate = gameController.getPirate(player);
+		return pirate.getHealthPoints();
+	}
+
+	@Override
+	public int getMaxHealth(Player player) {
+		Pirate pirate = gameController.getPirate(player);
+		return pirate.getMaxHealth();
+	}
+
+	@Override
+	public float getIntoxicationLevel(Player player) {
+		Pirate pirate = gameController.getPirate(player);
+		return pirate.getIntoxicationGauge().getLevel();
 	}
 
 }

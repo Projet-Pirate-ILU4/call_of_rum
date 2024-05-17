@@ -5,7 +5,7 @@ import fr.call_of_rum.util.ArtefactType;
 
 public class Clover extends Item {
 
-	private static final String NAMESPACE = ArtefactType.CLOVER.toString();
+	private static final String NAMESPACE = ArtefactType.CLOVER.toString().toLowerCase();
 	
 	public Clover() {
 		super(NAMESPACE);

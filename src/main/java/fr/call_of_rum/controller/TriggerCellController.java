@@ -13,13 +13,23 @@ public class TriggerCellController {
 	
 	private IBoundary boundary;
 	
-	public TriggerCellController(IBoundary boudary) {
+	private TakeItemController takeItemController;
+	
+	public TriggerCellController(IBoundary boudary, TakeItemController takeItemController) {
 		this.boundary = boudary;
+		this.takeItemController = takeItemController;
 	}
 	
-	private void triggerChestCell(Chest chest) {
-		boundary.chestFound(chest.getCoins(), chest.getItem().getNamespace());
+	private void triggerChestCell(Chest chest, Pirate pirate) {
+		int chestCoins = chest.getCoins();
 		chest.setOpened(true);
+		pirate.setCoins(pirate.getCoins() + chestCoins);
+		chest.setCoins(0);
+		boolean tookItem = boundary.chestFound(chestCoins, chest.getItem().getNamespace());
+		if (tookItem) {
+			takeItemController.takeItem(pirate, chest.getItem());
+			chest.setItem(null);
+		}
 	}
 	
 	private void triggerOpenedChestCell(Chest chest) {
@@ -48,7 +58,7 @@ public class TriggerCellController {
 		CellType cellType = cell.getType();
 		switch (cellType) {
 		case CHEST:
-			triggerChestCell((Chest) cell);
+			triggerChestCell((Chest) cell, pirate);
 			break;
 		case OPENED_CHEST:
 			triggerOpenedChestCell((Chest) cell);

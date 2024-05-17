@@ -4,7 +4,7 @@ import fr.call_of_rum.util.WeaponType;
 
 public class Saber extends Weapon {
 	
-	private static final String NAMESPACE = WeaponType.SABER.toString();
+	private static final String NAMESPACE = WeaponType.SABER.toString().toLowerCase();
 	
 	private static final float FIGHT_BONUS = 0.2f;
 	private static final int DAMAGES = 4;
