@@ -49,6 +49,11 @@ public class ActionControllerImpl implements ActionController {
 	}
 
 	@Override
+	public void takeItem(int itemIndex) {
+		// TODO implements
+	}
+
+	@Override
 	public void dropItem(int itemIndex) {
 		Pirate pirate = gameController.getPirate();
 		Item item = pirate.getInventory().get(itemIndex);

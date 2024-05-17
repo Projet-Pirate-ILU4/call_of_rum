@@ -1,5 +1,6 @@
 package fr.call_of_rum.boundary;
 
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -9,6 +10,7 @@ import fr.call_of_rum.controller.accessible.ActionController;
 import fr.call_of_rum.controller.accessible.BoardController;
 import fr.call_of_rum.controller.accessible.DiceController;
 import fr.call_of_rum.controller.accessible.PlayerController;
+import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 
 public class ConsoleBoundary implements IBoundary {
@@ -56,28 +58,106 @@ public class ConsoleBoundary implements IBoundary {
 		this.boardController = boardController;
 	}
 	
+	private void showItemMenu(boolean hasUse) {
+		if (hasUse) {
+			System.out.println("=== Item Menu ===");
+			System.out.println("1. examine");
+			System.out.println("2. drop");
+			System.out.println("0. exit");
+		} else {
+			System.out.println("=== Item Menu ===");
+			System.out.println("1. examine");
+			System.out.println("2. use");
+			System.out.println("3. drop");
+			System.out.println("0. exit");
+		}
+	}
+	
+	private void openItemMenu(ItemType itemType) {
+		boolean hasUse = itemType == ItemType.CLOVER || itemType == ItemType.BANDANA || itemType == ItemType.GUNPOWDER;
+		boolean exit = false;
+		while (!exit) {
+			showItemMenu(hasUse);
+			int choice = getUserChoice();
+			switch (choice) {
+				case 1:
+					System.out.println("Not implemented");
+					break;
+				case 2:
+					System.out.println("Not implemented");
+					break;
+				case 3:
+					System.out.println("Not implemented");
+					break;
+				case 0:
+					exit = true;
+					break;
+				default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+			}
+		}
+	}
+	
+	private void showInventoryMenu() {
+		System.out.println("=== Inventory Menu ===");
+		System.out.println("1. " + playerController.getItemType(0));
+		System.out.println("2. " + playerController.getItemType(1));
+		System.out.println("3. " + playerController.getItemType(1));
+		System.out.println("0. Exit");
+		System.out.print("Enter your choice: ");
+    }
+	
 	private void openInventoryMenu() {
 		for (int i = 0; i < 3; i++) {
 			System.out.println(playerController.getItemType(i));
 		}
 		
 		boolean exit = false;
-		System.out.println("enter");
-		int choice = getUserChoice();
-		System.out.println(choice);
+		while (!exit) {
+			showInventoryMenu();
+			int choice = getUserChoice();
+			switch (choice) {
+				case 1:
+					openItemMenu(playerController.getItemType(0));
+					break;
+				case 2:
+					openItemMenu(playerController.getItemType(1));
+					break;
+				case 3:
+					openItemMenu(playerController.getItemType(2));
+					break;
+				case 0:
+					exit = true;
+					break;
+				default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+			}
+		}
 	}
+	
+	private boolean hasMoved = false;
 
     private void showMainMenu() {
-        System.out.println("=== Main Menu ===");
-        System.out.println("1. move");
-        System.out.println("2. go to merchant");
-        System.out.println("3. inventory");
-        System.out.println("0. Exit");
-        System.out.print("Enter your choice: ");
+    	if (hasMoved) {
+            System.out.println("=== Main Menu ===");
+            System.out.println("1. inventory");
+            System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
+    	} else {
+            System.out.println("=== Main Menu ===");
+            System.out.println("1. move");
+            System.out.println("2. go to merchant");
+            System.out.println("3. inventory");
+            System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
+    	}
     }
 	
 	@Override
 	public void giveTurn(Player player) {
+		hasMoved = false;
 		currentPlayer = player;
 		System.out.println(String.format(bundle.getString("your_turn"), player));
 		boolean exit = false;
@@ -87,18 +167,34 @@ public class ConsoleBoundary implements IBoundary {
             int choice = getUserChoice();
             switch (choice) {
                 case 1:
+                	if (hasMoved) {
+                		openInventoryMenu();
+                		break;
+                	}
                     int diceResult = diceController.getDiceResult();
                     System.out.println(String.format(bundle.getString("moved"),
                     		diceResult,
                     		(boardController.getPirateCellNumber(player) + diceResult) % 30
                     		));
                     actionController.move();
+                    hasMoved = true;
                     break;
                 case 2:
-                    openInventoryMenu();
+                	if (hasMoved) {
+                        System.out.println("Invalid choice. Please try again.");
+                        break;
+                	}
+                	// TODO implements go to merchant
+                	System.out.println("Not implemented");
                     break;
+                case 3:
+                	if (hasMoved) {
+                        System.out.println("Invalid choice. Please try again.");
+                        break;
+                	}
+                    openInventoryMenu();
+                	break;
                 case 0:
-                    System.out.println("Exiting the application.");
                     exit = true;
                     break;
                 default:

@@ -9,6 +9,7 @@ import fr.call_of_rum.util.Player;
 public class BoardControllerImpl implements BoardController {
 	
 	private GameController gameController;
+	
 	private Board board;
 	
 	public BoardControllerImpl(GameController gameController, Board board) {

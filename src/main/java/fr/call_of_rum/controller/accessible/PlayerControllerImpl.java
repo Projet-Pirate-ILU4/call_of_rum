@@ -31,7 +31,7 @@ public class PlayerControllerImpl implements PlayerController {
 		Inventory<Item> inventory = pirate.getInventory();
 		Item item = inventory.get(itemIndex);
 		if (item == null) return null;
-		return ItemType.valueOf(item.getNamespace());
+		return ItemType.valueOf(item.getNamespace().toUpperCase());
 	}
 
 	@Override
