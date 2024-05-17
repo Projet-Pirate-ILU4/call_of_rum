@@ -5,7 +5,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-import fr.call_of_rum.controller.accessible.MoveController;
+import fr.call_of_rum.controller.accessible.ActionController;
+import fr.call_of_rum.controller.accessible.PlayerItemController;
 import fr.call_of_rum.util.Player;
 
 public class ConsoleBoundary implements IBoundary {
@@ -17,28 +18,74 @@ public class ConsoleBoundary implements IBoundary {
 	private ResourceBundle bundle = ResourceBundle.getBundle(LANGUAGE_BASE_FILENAME, LOCALE);
 	private Scanner scan;
 	
+	private ActionController actionController;
+	private PlayerItemController playerItemController;
+	
 	public ConsoleBoundary() {
 		this.scan = new Scanner(System.in);
 	}
+
+    private int getUserChoice() {
+        int choice = -1;
+        if (scan.hasNextInt()) {
+            choice = scan.nextInt();
+        }
+        scan.nextLine(); // consume the newline character
+        return choice;
+    }
 	
-	private MoveController moveController;
-	
-	public void setMoveController(MoveController moveContorller) {
-		this.moveController = moveContorller;
+	public void setActionController(ActionController actionController) {
+		this.actionController = actionController;
 	}
 	
-	private int i = 0;
+	public void setPlayerInventoryController(PlayerItemController playerItemController) {
+		this.playerItemController = playerItemController;
+	}
+	
+	private void openInventoryMenu() {
+		for (int i = 0; i < 3; i++) {
+			System.out.println(playerItemController.getItemType(i));
+		}
+		
+		boolean exit = false;
+		System.out.println("enter");
+		int choice = getUserChoice();
+		System.out.println(choice);
+	}
+
+    private void showMainMenu() {
+        System.out.println("=== Main Menu ===");
+        System.out.println("1. move");
+        System.out.println("2. inventory");
+        System.out.println("0. Exit");
+        System.out.print("Enter your choice: ");
+    }
 	
 	@Override
 	public void giveTurn(Player player) {
 		System.out.println(String.format(bundle.getString("your_turn"), player));
-		String input;
-		do {
-			input = scan.next();
-		} while(!input.equals("q"));
-		System.out.println("move 4");
-		moveController.movePlayer(player, ++i);
-	}
+		boolean exit = false;
+
+        while (!exit) {
+            showMainMenu();
+            int choice = getUserChoice();
+            switch (choice) {
+                case 1:
+                    actionController.move();
+                    break;
+                case 2:
+                    openInventoryMenu();
+                    break;
+                case 0:
+                    System.out.println("Exiting the application.");
+                    exit = true;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+            }
+        }
+    }
 	
 	private void takeChestItem(String itemNamespace) {
 		System.out.println(bundle.getString("loot_chest_question"));

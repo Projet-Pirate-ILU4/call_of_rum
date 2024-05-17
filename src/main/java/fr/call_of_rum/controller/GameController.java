@@ -9,40 +9,52 @@ public class GameController {
 	
 	private IBoundary boundary;
 	
+	private DiceController rollDiceController;
+	
 	private Board board;
 	private int numberOfPlayers;
-	private Pirate[] players = new Pirate[2];
+	private Pirate[] pirates = new Pirate[2];
 	private int currentPlayer = 0;
 	
-	public GameController(IBoundary boundary, Board board, Pirate player1, Pirate player2) {
+	public GameController(IBoundary boundary, DiceController rollDiceController, Board board, Pirate player1, Pirate player2) {
 		this.boundary = boundary;
+		this.rollDiceController = rollDiceController;
 		this.board = board;
 		this.numberOfPlayers = Player.values().length;
-		players[0] = player1;
-		players[1] = player2;
+		pirates[0] = player1;
+		pirates[1] = player2;
 	}
 	
 	private Player getWinner() {
-		if (players[0].getHealthPoints() == 0) return Player.BILL_JAMBE_DE_BOIS;
-		if (players[1].getHealthPoints() == 0) return Player.JACK_LE_BORGNE;
-		if (players[0].getCoins() > players[1].getCoins()) return Player.JACK_LE_BORGNE;
-		if (players[1].getCoins() > players[0].getCoins()) return Player.BILL_JAMBE_DE_BOIS;
+		if (pirates[0].getHealthPoints() == 0) return Player.BILL_JAMBE_DE_BOIS;
+		if (pirates[1].getHealthPoints() == 0) return Player.JACK_LE_BORGNE;
+		if (pirates[0].getCoins() > pirates[1].getCoins()) return Player.JACK_LE_BORGNE;
+		if (pirates[1].getCoins() > pirates[0].getCoins()) return Player.BILL_JAMBE_DE_BOIS;
 		return null;
 	}
 	
 	private boolean isGameFinished() {
-		return  players[0].getHealthPoints() == 0 ||
-				players[1].getHealthPoints() == 0 ||
-				board.getCell(players[0]).getNum() == board.getBoardSize() - 1 ||
-				board.getCell(players[1]).getNum() == board.getBoardSize() - 1;
+		return  pirates[0].getHealthPoints() == 0 ||
+				pirates[1].getHealthPoints() == 0 ||
+				board.getCell(pirates[0]).getNum() == board.getBoardSize() - 1 ||
+				board.getCell(pirates[1]).getNum() == board.getBoardSize() - 1;
 	}
 	
 	public void start() {
 		while (!isGameFinished()) {
+			rollDiceController.rollDices();
 			boundary.giveTurn(Player.values()[currentPlayer]);
 			currentPlayer = (currentPlayer + 1) % numberOfPlayers;
 		}
 		boundary.gameEnded(getWinner());
+	}
+	
+	/************************************
+	*   Methods for other Controllers   *
+	************************************/
+	
+	public Pirate getPirate() {
+		return pirates[currentPlayer];
 	}
 	
 }

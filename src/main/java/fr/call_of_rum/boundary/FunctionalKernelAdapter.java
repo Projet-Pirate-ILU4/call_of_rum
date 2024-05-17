@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import fr.call_of_rum.controller.accessible.ActionController;
 import fr.call_of_rum.controller.accessible.BoardController;
-import fr.call_of_rum.controller.accessible.MoveController;
 import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.Player;
 
@@ -65,15 +64,10 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	*****************************/
 	
 	private BoardController boardController;
-	private MoveController moveController;
 	private ActionController actionController;
 	
 	public void setBoardController(BoardController boardController) {
 		this.boardController = boardController;
-	}
-	
-	public void setMoveController(MoveController moveController) {
-		this.moveController = moveController;
 	}
 	
 	public void setActionController(ActionController actionController) {
