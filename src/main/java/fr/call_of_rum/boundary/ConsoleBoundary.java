@@ -1,6 +1,5 @@
 package fr.call_of_rum.boundary;
 
-import java.util.Arrays;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -58,8 +57,10 @@ public class ConsoleBoundary implements IBoundary {
 		this.boardController = boardController;
 	}
 	
-	private void showItemMenu(boolean hasUse) {
-		if (hasUse) {
+	// TODO refactor for generic question
+	
+	private void showItemMenu(boolean isArtefact) {
+		if (isArtefact) {
 			System.out.println("=== Item Menu ===");
 			System.out.println("1. examine");
 			System.out.println("2. drop");
@@ -73,21 +74,32 @@ public class ConsoleBoundary implements IBoundary {
 		}
 	}
 	
-	private void openItemMenu(ItemType itemType) {
-		boolean hasUse = itemType == ItemType.CLOVER || itemType == ItemType.BANDANA || itemType == ItemType.GUNPOWDER;
+	private void openItemMenu(int itemIndex) {
+		ItemType itemType = playerController.getItemType(itemIndex);
+		boolean isArtefact = itemType == ItemType.CLOVER || itemType == ItemType.BANDANA || itemType == ItemType.GUNPOWDER;
 		boolean exit = false;
 		while (!exit) {
-			showItemMenu(hasUse);
+			showItemMenu(isArtefact);
 			int choice = getUserChoice();
 			switch (choice) {
 				case 1:
-					System.out.println("Not implemented");
+					String itemNamespace = itemType.toString().toLowerCase();
+					System.out.print(itemNamespace);
+					System.out.print(": ");
+					System.out.println(bundle.getString(itemNamespace + "_description"));
 					break;
 				case 2:
-					System.out.println("Not implemented");
+					if (isArtefact) {
+						System.out.println("dropped the item");
+						actionController.dropItem(itemIndex);
+					} else {
+						// TODO implements use
+					}
 					break;
 				case 3:
-					System.out.println("Not implemented");
+					if (isArtefact) break;
+					System.out.println("dropped the item");
+					actionController.dropItem(itemIndex);
 					break;
 				case 0:
 					exit = true;
@@ -119,13 +131,16 @@ public class ConsoleBoundary implements IBoundary {
 			int choice = getUserChoice();
 			switch (choice) {
 				case 1:
-					openItemMenu(playerController.getItemType(0));
+					if (playerController.getItemType(0) == null) break;
+					openItemMenu(0);
 					break;
 				case 2:
-					openItemMenu(playerController.getItemType(1));
+					if (playerController.getItemType(1) == null) break;
+					openItemMenu(1);
 					break;
 				case 3:
-					openItemMenu(playerController.getItemType(2));
+					if (playerController.getItemType(2) == null) break;
+					openItemMenu(2);
 					break;
 				case 0:
 					exit = true;
@@ -149,7 +164,8 @@ public class ConsoleBoundary implements IBoundary {
             System.out.println("=== Main Menu ===");
             System.out.println("1. move");
             System.out.println("2. go to merchant");
-            System.out.println("3. inventory");
+            System.out.println("3. inspect cell");
+            System.out.println("4. inventory");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
     	}
@@ -181,13 +197,20 @@ public class ConsoleBoundary implements IBoundary {
                     break;
                 case 2:
                 	if (hasMoved) {
-                        System.out.println("Invalid choice. Please try again.");
+                        // TODO implements inspect cell
                         break;
                 	}
                 	// TODO implements go to merchant
                 	System.out.println("Not implemented");
                     break;
                 case 3:
+                	if (hasMoved) {
+                        System.out.println("Invalid choice. Please try again.");
+                        break;
+                	}
+                	// TODO implements inspect cell
+                	break;
+                case 4:
                 	if (hasMoved) {
                         System.out.println("Invalid choice. Please try again.");
                         break;

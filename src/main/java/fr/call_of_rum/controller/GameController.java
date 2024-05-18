@@ -45,7 +45,6 @@ public class GameController {
 		while (!isGameFinished()) {
 			rollDiceController.rollDices();
 			boundary.giveTurn(Player.values()[currentPlayer]);
-			System.out.println(Player.values()[currentPlayer] + " location is " + board.getCell(getPirate()).getNum() + " and size-1 is " + (board.getBoardSize() - 1));
 			currentPlayer = (currentPlayer + 1) % numberOfPlayers;
 		}
 		boundary.gameEnded(getWinner());
