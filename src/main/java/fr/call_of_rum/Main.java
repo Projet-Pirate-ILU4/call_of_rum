@@ -65,7 +65,8 @@ public class Main {
     	
     	// model initialization
     	@SuppressWarnings("unchecked")
-		Board board = BoardFactory.getDefaultBoard(new ItemRegistry().registerItems(Clover.class, Rum.class, Saber.class));
+    	ItemRegistry itemRegistry = new ItemRegistry().registerItems(Clover::new, Rum::new, Saber::new);
+		Board board = BoardFactory.getDefaultBoard(itemRegistry);
     	Market market = new Market(List.of());
     	Pirate pirate1 = new Pirate("Jack Le Borgne", 0, 10);
     	Pirate pirate2 = new Pirate("Bill Jambe De Bois", 0, 10);

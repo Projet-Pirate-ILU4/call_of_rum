@@ -7,7 +7,6 @@ import fr.call_of_rum.model.pirate.Inventory;
 import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
-import fr.call_of_rum.util.WeaponType;
 
 public class PlayerControllerImpl implements PlayerController {
 	
@@ -18,11 +17,11 @@ public class PlayerControllerImpl implements PlayerController {
 	}
 
 	@Override
-	public WeaponType getEquippedWeapon() {
+	public ItemType getEquippedWeapon() {
 		Pirate pirate = gameController.getPirate();
 		Weapon weapon = pirate.getEquippedWeapon();
 		if (weapon == null) return null;
-		return WeaponType.valueOf(weapon.getNamespace());
+		return weapon.getType();
 	}
 
 	@Override
@@ -31,7 +30,7 @@ public class PlayerControllerImpl implements PlayerController {
 		Inventory<Item> inventory = pirate.getInventory();
 		Item item = inventory.get(itemIndex);
 		if (item == null) return null;
-		return ItemType.valueOf(item.getNamespace().toUpperCase());
+		return item.getType();
 	}
 
 	@Override

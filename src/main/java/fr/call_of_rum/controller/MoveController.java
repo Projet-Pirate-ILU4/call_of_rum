@@ -32,7 +32,7 @@ public class MoveController {
 		chest.setOpened(true);
 		pirate.setCoins(pirate.getCoins() + chestCoins);
 		chest.setCoins(0);
-		boolean tookItem = boundary.chestFound(chestCoins, chest.getItem().getNamespace());
+		boolean tookItem = boundary.chestFound(chestCoins, chest.getItem().getType().toString().toLowerCase());
 		if (tookItem) {
 			takeItemController.takeItem(pirate, chest.getItem());
 			chest.setItem(null);
@@ -41,7 +41,7 @@ public class MoveController {
 	
 	private void triggerOpenedChestCell(Chest chest) {
 		Item chestItem = chest.getItem();
-		Optional<String> itemNamespace = chestItem == null ? Optional.empty() : Optional.of(chestItem.getNamespace());
+		Optional<String> itemNamespace = chestItem == null ? Optional.empty() : Optional.of(chestItem.getType().toString().toLowerCase());
 		boundary.openedChestFound(chest.getCoins(), itemNamespace);
 		
 	}
