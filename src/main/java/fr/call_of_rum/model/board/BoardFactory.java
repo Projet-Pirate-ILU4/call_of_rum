@@ -1,6 +1,8 @@
 package fr.call_of_rum.model.board;
 
+import java.util.List;
 import java.util.Random;
+import java.util.function.Supplier;
 
 import fr.call_of_rum.model.board.cells.Cell;
 import fr.call_of_rum.model.board.cells.Chest;
@@ -58,7 +60,8 @@ public class BoardFactory {
 		Item item = null;
 		if (itemRegistry.getSize() > 0) {
 			int randomItemIndex = RNG.nextInt(itemRegistry.getSize());
-			item = itemRegistry.getInstance(randomItemIndex);
+			List<Supplier<Item>> registeredItems = itemRegistry.getRegisteredItemView();
+			item = registeredItems.get(randomItemIndex).get();
 		}
 		return new Chest(num, goldAmount, item);
 	}

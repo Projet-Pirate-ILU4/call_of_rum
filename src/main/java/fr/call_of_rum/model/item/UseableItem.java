@@ -1,12 +1,14 @@
 package fr.call_of_rum.model.item;
 
+import fr.call_of_rum.util.ItemType;
+
 public abstract class UseableItem extends Item {
 
 	private int price;
 
 
-	protected UseableItem(String namespace) {
-		super(namespace);
+	protected UseableItem(ItemType itemType) {
+		super(itemType);
 	}
 
 	public abstract void use();

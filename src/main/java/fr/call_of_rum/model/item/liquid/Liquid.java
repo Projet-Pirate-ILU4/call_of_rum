@@ -2,14 +2,15 @@ package fr.call_of_rum.model.item.liquid;
 
 import fr.call_of_rum.model.item.UseableItem;
 import fr.call_of_rum.model.pirate.IntoxicationGauge;
+import fr.call_of_rum.util.ItemType;
 
 public abstract class Liquid extends UseableItem {
 	
 	protected int recovery;
 	protected float intoxication;
 	
-	protected Liquid(String namespace, int recovery, float intoxication) {
-		super(namespace);
+	protected Liquid(ItemType itemType, int recovery, float intoxication) {
+		super(itemType);
 		this.recovery = recovery;
 		this.intoxication = intoxication;
 	}

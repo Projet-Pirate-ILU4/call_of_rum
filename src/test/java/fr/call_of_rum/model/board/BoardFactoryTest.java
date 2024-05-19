@@ -16,7 +16,7 @@ public class BoardFactoryTest {
 		BoardFactory factory = BoardFactory.getFactory();
 		factory.setSpecialCaseOdds(1.0f);
 		factory.setChestOdds(1.0f);
-		Board board = factory.build(new ItemRegistry().registerItem(Rum.class));
+		Board board = factory.build(new ItemRegistry().registerItem(Rum::new));
 		for (int i = 0; i < board.getBoardSize(); i++) {
 			assertEquals(Chest.class, board.getCell(i).getClass());
 			Chest chest = (Chest) board.getCell(i);
