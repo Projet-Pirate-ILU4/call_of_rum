@@ -24,10 +24,6 @@ import fr.call_of_rum.model.market.Market;
 import fr.call_of_rum.model.pirate.Pirate;
 
 public class Main {
-   
-    public String getGreeting() {
-         return "Hello World, this is Main!";
-    }
     
     public static void main(String[] args) {
     	/*// boundary initialization
@@ -67,7 +63,7 @@ public class Main {
     	@SuppressWarnings("unchecked")
     	ItemRegistry itemRegistry = new ItemRegistry().registerItems(Clover::new, Rum::new, Saber::new);
 		Board board = BoardFactory.getDefaultBoard(itemRegistry);
-    	Market market = new Market(List.of());
+    	Market market = new Market();
     	Pirate pirate1 = new Pirate("Jack Le Borgne", 0, 10);
     	Pirate pirate2 = new Pirate("Bill Jambe De Bois", 0, 10);
     	board.addPirate(pirate1);

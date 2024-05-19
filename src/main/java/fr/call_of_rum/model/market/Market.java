@@ -1,24 +1,29 @@
 package fr.call_of_rum.model.market;
 
-import java.util.Collection;
-
-import fr.call_of_rum.model.item.UseableItem;
-import fr.call_of_rum.model.pirate.Inventory;
+import fr.call_of_rum.model.item.Item;
 
 public class Market {
+
+	private ItemStock[] items;
 	
-	private static final int NUMBER_OF_ITEMS = 4;
-	
-	private Inventory<UseableItem> inventory = new Inventory<>(NUMBER_OF_ITEMS);
-	
-	public Market(Collection<UseableItem> items) {
-		for (UseableItem item : items) {
-			items.add(item);
-		}
+	public Market(ItemStock... items) {
+		this.items = items;
 	}
 	
-	public UseableItem getItem(int itemIndex) {
-		return inventory.get(itemIndex);
+	public ItemStock[] getItemsForSale() {
+		return items;
+	}
+	
+	public int getNumberOfItems() {
+		return items.length;
+	}
+	
+	public Item getItem(int itemIndex) {
+		return items[itemIndex].getItem();
+	}
+	
+	public int getPrice(int itemIndex) {
+		return items[itemIndex].getPrice();
 	}
 	
 }

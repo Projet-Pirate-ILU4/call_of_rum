@@ -1,4 +1,4 @@
-package fr.call_of_rum.model.pirate;
+package fr.call_of_rum.model.inventory;
 
 public class NoFreeSlotException extends RuntimeException {
 
