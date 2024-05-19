@@ -1,6 +1,7 @@
 package fr.call_of_rum.model.pirate;
 
 import fr.call_of_rum.model.board.Board;
+import fr.call_of_rum.model.inventory.Inventory;
 import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.model.item.liquid.Liquid;
 import fr.call_of_rum.model.item.weapon.Weapon;

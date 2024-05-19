@@ -4,10 +4,10 @@ import java.util.List;
 
 import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.board.cells.Cell;
+import fr.call_of_rum.model.inventory.Inventory;
 import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.model.item.liquid.Liquid;
 import fr.call_of_rum.model.item.weapon.Weapon;
-import fr.call_of_rum.model.pirate.Inventory;
 import fr.call_of_rum.model.pirate.Pirate;
 
 public class TakeItemController {

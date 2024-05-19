@@ -1,9 +1,9 @@
 package fr.call_of_rum.controller.accessible;
 
 import fr.call_of_rum.controller.GameController;
+import fr.call_of_rum.model.inventory.Inventory;
 import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.model.item.weapon.Weapon;
-import fr.call_of_rum.model.pirate.Inventory;
 import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;

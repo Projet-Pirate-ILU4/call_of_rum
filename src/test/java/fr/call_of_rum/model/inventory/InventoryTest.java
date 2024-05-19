@@ -1,4 +1,4 @@
-package fr.call_of_rum.model.player;
+package fr.call_of_rum.model.inventory;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -10,8 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.call_of_rum.model.item.Item;
-import fr.call_of_rum.model.pirate.Inventory;
-import fr.call_of_rum.model.pirate.NoFreeSlotException;
 import fr.call_of_rum.model.stubs.ItemStub;
 
 public class InventoryTest {
