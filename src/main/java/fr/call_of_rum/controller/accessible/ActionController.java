@@ -8,6 +8,8 @@ public interface ActionController {
 	
 	void equipWeapon(int itemIndex);
 	
+	void pickUpItem(int itemIndex);
+	
 	void dropItem(int itemIndex);
 	
 	void move();

@@ -3,6 +3,7 @@ package fr.call_of_rum.controller.accessible;
 import fr.call_of_rum.controller.BuyController;
 import fr.call_of_rum.controller.GameController;
 import fr.call_of_rum.controller.MoveController;
+import fr.call_of_rum.controller.TakeItemController;
 import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.model.item.liquid.Liquid;
 import fr.call_of_rum.model.item.weapon.Weapon;
@@ -12,11 +13,13 @@ public class ActionControllerImpl implements ActionController {
 	
 	private GameController gameController;
 	private BuyController buyController;
+	private TakeItemController takeItemController;
 	private MoveController moveController;
 	
-	public ActionControllerImpl(GameController gameController, BuyController buyController, MoveController moveController) {
+	public ActionControllerImpl(GameController gameController, BuyController buyController, TakeItemController takeItemController, MoveController moveController) {
 		this.gameController = gameController;
 		this.buyController = buyController;
+		this.takeItemController = takeItemController;
 		this.moveController = moveController;
 	}
 	
@@ -46,6 +49,12 @@ public class ActionControllerImpl implements ActionController {
 				pirate.getInventory().add(equippedWeapon);
 			}
 		}
+	}
+
+	@Override
+	public void pickUpItem(int itemIndex) {
+		Pirate pirate = gameController.getPirate();
+		takeItemController.pickUpItem(pirate, itemIndex);
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import fr.call_of_rum.controller.accessible.ActionController;
 import fr.call_of_rum.controller.accessible.BoardController;
 import fr.call_of_rum.util.CellType;
+import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 
 public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
@@ -77,6 +78,11 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	@Override
 	public CellType askCellType(int numCell) {
 		return boardController.getCellType(numCell);
+	}
+
+	@Override
+	public ItemType[] getDroppedItems() {
+		return boardController.getDroppedItems();
 	}
 
 }
