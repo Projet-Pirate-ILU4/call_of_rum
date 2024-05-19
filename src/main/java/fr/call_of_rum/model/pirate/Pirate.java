@@ -5,10 +5,11 @@ import fr.call_of_rum.model.inventory.Inventory;
 import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.model.item.liquid.Liquid;
 import fr.call_of_rum.model.item.weapon.Weapon;
+import fr.call_of_rum.util.Player;
 
 public class Pirate {
 	
-	private String name;
+	private Player player;
 	private int coins;
 	private int healthPoints;
 	private int maxHealthPoints;
@@ -18,15 +19,15 @@ public class Pirate {
 	private Board board;
 		
 	
-	public Pirate(String name, int coins, int maxHealthPoints) {
-		this.name = name;
+	public Pirate(Player player, int coins, int maxHealthPoints) {
+		this.player = player;
 		this.coins = coins;
 		this.maxHealthPoints = maxHealthPoints;
 		this.healthPoints = maxHealthPoints;
 	}
 	
-	public String getName() {
-		return name;
+	public Player getPlayer() {
+		return player;
 	}
 	
 	public int getCoins() {
@@ -87,19 +88,19 @@ public class Pirate {
 	public boolean equals(Object other) {
 		if (other != null && other.getClass() == this.getClass()) {
 			Pirate otherPirate = (Pirate) other;
-			return this.name.equals(otherPirate.name);
+			return this.player == otherPirate.player;
 		}
 		return false;
 	}
 	
 	@Override
 	public int hashCode() {
-		return name.hashCode();
+		return player.hashCode();
 	}
 	
 	@Override
 	public String toString() {
-		return name;
+		return player.toString().toLowerCase().replace('_', ' ');
 	}
 	
 }

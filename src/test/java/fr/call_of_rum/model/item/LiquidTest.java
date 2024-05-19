@@ -8,6 +8,7 @@ import org.junit.Test;
 import fr.call_of_rum.model.item.liquid.Liquid;
 import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.model.stubs.LiquidStub;
+import fr.call_of_rum.util.Player;
 
 public class LiquidTest {
 	
@@ -16,7 +17,7 @@ public class LiquidTest {
 
 	@Before
 	public void setUp() throws Exception {
-		pirate = new Pirate("pirate", 0, 6);
+		pirate = new Pirate(Player.BILL_JAMBE_DE_BOIS, 0, 6);
 		liquid = new LiquidStub(2, 0.2f);
 		pirate.setHealthPoints(3);
 	}

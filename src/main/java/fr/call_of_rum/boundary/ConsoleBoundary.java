@@ -160,7 +160,7 @@ public class ConsoleBoundary implements IBoundary {
 			lookCellOption
 		);
 	
-	private boolean hasMoved = false;
+	private boolean hasMoved;
 	
 	// use of supplier to ensure no side-effects
 	// possibility for an option to alter the options proposed
@@ -170,6 +170,7 @@ public class ConsoleBoundary implements IBoundary {
 	
 	@Override
 	public void giveTurn(Player player) {
+		hasMoved = false;
 		currentPlayer = player;
 		System.out.println(String.format(bundle.getString("your_turn"), player));
 		askQuestion("Turn Menu", turnOptionsSupplier);
