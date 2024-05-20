@@ -4,7 +4,7 @@ NDOYE Assane - Chef de Projet et Responsable Tests Fonctionnels
 
 RICHARD Jérémy - Responsable Développement Noyau
 
-JOSEPH Wilken McJ - Responsable Spécifications
+JOSEPH Wilkens McJ - Responsable Spécifications
 
 IVANOVA Alina - Responsable Modélisation
 
