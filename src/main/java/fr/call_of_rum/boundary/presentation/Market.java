@@ -28,8 +28,8 @@ public class Market extends javax.swing.JDialog {
     /**
      * Creates new form Market
      */
-    public Market(Frame parent, Player player, IDialog dialog) {
-        super(parent);
+    public Market(Frame parent,boolean modal ,Player player, IDialog dialog) {
+        super(parent,modal);
         this.player = player;
         this.dialog = dialog;
         focus = new Hashtable<>();
@@ -307,7 +307,7 @@ public class Market extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(() -> new Market(new JFrame(), Player.JACK_LE_BORGNE, new IDialog() {
+        java.awt.EventQueue.invokeLater(() -> new Market(new JFrame(),true, Player.JACK_LE_BORGNE, new IDialog() {
             @Override
             public CellType[] getCellsType() {
                 CellType[] cellsType = new CellType[30];

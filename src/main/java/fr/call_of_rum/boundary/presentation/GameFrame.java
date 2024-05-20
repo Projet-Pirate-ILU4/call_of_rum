@@ -227,7 +227,7 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_endTurnSecondPlayerActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        java.awt.EventQueue.invokeLater(() -> new Market(new JFrame(), Player.JACK_LE_BORGNE, dialog).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Market(this,true, Player.JACK_LE_BORGNE, dialog).setVisible(true));
     }//GEN-LAST:event_jLabel1MouseClicked
     
     public void enableFirstPlayer() {
