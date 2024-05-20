@@ -1,14 +1,15 @@
 package fr.call_of_rum.model.item;
 
 import fr.call_of_rum.model.pirate.Pirate;
+import fr.call_of_rum.util.ItemType;
 
 public abstract class Item {
 	
 	protected Pirate owner;
-	private String namespace;
+	private ItemType itemType;
 	
-	protected Item(String namespace) {
-		this.namespace = namespace;
+	protected Item(ItemType itemType) {
+		this.itemType = itemType;
 	}
 	
 	public Pirate getOwner() {
@@ -19,8 +20,8 @@ public abstract class Item {
 		this.owner = newOwner;
 	}
 	
-	public String getNamespace() {
-		return namespace;
+	public ItemType getType() {
+		return itemType;
 	}
 	
 	public void drop() {
@@ -31,7 +32,7 @@ public abstract class Item {
 	
 	@Override
 	public String toString() {
-		return namespace;
+		return itemType.toString();
 	}
 	
 }

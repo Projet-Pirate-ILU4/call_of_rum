@@ -1,6 +1,8 @@
 package fr.call_of_rum.model.board;
 
+import java.util.List;
 import java.util.Random;
+import java.util.function.Supplier;
 
 import fr.call_of_rum.model.board.cells.Cell;
 import fr.call_of_rum.model.board.cells.Chest;
@@ -58,7 +60,8 @@ public class BoardFactory {
 		Item item = null;
 		if (itemRegistry.getSize() > 0) {
 			int randomItemIndex = RNG.nextInt(itemRegistry.getSize());
-			item = itemRegistry.getInstance(randomItemIndex);
+			List<Supplier<Item>> registeredItems = itemRegistry.getRegisteredItemView();
+			item = registeredItems.get(randomItemIndex).get();
 		}
 		return new Chest(num, goldAmount, item);
 	}
@@ -79,7 +82,11 @@ public class BoardFactory {
 	
 	public Board build(ItemRegistry itemRegistry) {
 		Cell[] cells = new Cell[numberOfCells];
-		for (int i = 0; i < numberOfCells; i++) {
+		// first and last cells are normal cells
+		cells[0] = new Land(0);
+		cells[numberOfCells-1] = new Land(29);
+		// the other are ranomly generated
+		for (int i = 1; i < numberOfCells - 1; i++) {
 			cells[i] = generateCell(i, itemRegistry);
 		}
 		int merchant = merchantPossibleCells[RNG.nextInt(merchantPossibleCells.length)];

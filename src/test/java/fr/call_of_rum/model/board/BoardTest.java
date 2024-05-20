@@ -27,18 +27,19 @@ public class BoardTest {
 
 	@Test
 	public void movePirateTest() {
-		int previousLocation;
 		// test move pirate to cell number
 		board.movePirateTo(pirate, 4);
-		assertEquals(4, board.getCell(pirate).getNum());
+		assertEquals(4, board.getPirateLocation(pirate));
+		
 		// test edge case with big values
-		previousLocation = board.getPirateLocation(pirate);
-		board.movePirateTo(pirate, 10000);
-		assertEquals(previousLocation, board.getPirateLocation(pirate));
+		board.movePirateTo(pirate, (board.getBoardSize() * 10));
+		assertEquals(0, board.getPirateLocation(pirate));
+		
 		// test edge case with no movement
-		previousLocation = board.getPirateLocation(pirate);
+		int previousLocation = board.getPirateLocation(pirate);
 		board.movePirateTo(pirate, board.getPirateLocation(pirate));
 		assertEquals(previousLocation, board.getPirateLocation(pirate));
+		
 		// test move pirate to pirate
 		board.movePirateTo(pirate, otherPirate);
 		assertEquals(board.getPirateLocation(pirate), board.getPirateLocation(otherPirate));

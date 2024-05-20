@@ -6,8 +6,8 @@ import java.util.ResourceBundle;
 
 import fr.call_of_rum.controller.accessible.ActionController;
 import fr.call_of_rum.controller.accessible.BoardController;
-import fr.call_of_rum.controller.accessible.MoveController;
 import fr.call_of_rum.util.CellType;
+import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 
 public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
@@ -45,13 +45,13 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	}
 	
 	@Override
-	public void chestFound(int coinAmount, String itemNamespace) {
-		graphicInterface.showChest(coinAmount, itemNamespace);
+	public boolean chestFound(int coinAmount, String itemNamespace) {
+		return graphicInterface.chestFound(coinAmount, itemNamespace);
 	}
 
 	@Override
-	public void openedChestFound(int coinAmount, Optional<String> itemNamespace) {
-		graphicInterface.showOpenedChest(coinAmount, itemNamespace);
+	public boolean openedChestFound(int coinAmount, Optional<String> itemNamespace) {
+		return graphicInterface.openedChestFound(coinAmount, itemNamespace);
 	}
 
 	@Override
@@ -65,15 +65,10 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	*****************************/
 	
 	private BoardController boardController;
-	private MoveController moveController;
 	private ActionController actionController;
 	
 	public void setBoardController(BoardController boardController) {
 		this.boardController = boardController;
-	}
-	
-	public void setMoveController(MoveController moveController) {
-		this.moveController = moveController;
 	}
 	
 	public void setActionController(ActionController actionController) {
@@ -83,6 +78,11 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	@Override
 	public CellType askCellType(int numCell) {
 		return boardController.getCellType(numCell);
+	}
+
+	@Override
+	public ItemType[] getDroppedItems() {
+		return boardController.getDroppedItems();
 	}
 
 }

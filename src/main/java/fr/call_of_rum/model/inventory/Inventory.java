@@ -1,4 +1,4 @@
-package fr.call_of_rum.model.pirate;
+package fr.call_of_rum.model.inventory;
 
 import java.util.Optional;
 import java.util.function.Predicate;
