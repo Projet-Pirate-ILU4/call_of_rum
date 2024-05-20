@@ -54,8 +54,6 @@ public class ConsoleBoundary implements IBoundary {
 	
 	private static record Option(String name, Runnable procedure, boolean isEnding) {}
 	
-	// TODO push and make so text is dynamic (inventory not being up-to-date when dropping)
-	
 	private void askQuestion(String title, Supplier<List<Option>> optionsSupplier) {
 		int choice;
 		do {
@@ -79,7 +77,8 @@ public class ConsoleBoundary implements IBoundary {
 	
 	// use of supplier to ensure no side-effects
 	private final IntFunction<List<Option>> itemOptionsFunction = i -> {
-		ItemType t = playerController.getItemType(i);
+		ItemType[] itemTypes = playerController.getInventoryItems(currentPlayer);
+		ItemType t = itemTypes[i];
 		List<Option> options = new ArrayList<>();
 		options.add(new Option("examine", () -> {
 			String namespace = t.toString().toLowerCase();
@@ -99,13 +98,12 @@ public class ConsoleBoundary implements IBoundary {
 	// use of supplier to ensure that the presented inventory is up-to-date
 	private final Supplier<List<Option>> inventoryOptionsSupplier = () -> {
 		List<Option> options = new ArrayList<>();
-		ItemType itemType;
+		ItemType[] itemTypes = playerController.getInventoryItems(currentPlayer);
 		
 		for (int i = 0; i < 3; i++) {
-			itemType = playerController.getItemType(i);
-			if (itemType != null) {
+			if (itemTypes[i] != null) {
 				final int index = i;
-				options.add(new Option(itemType.toString(), () -> 
+				options.add(new Option(itemTypes[i].toString(), () -> 
 					askQuestion("Item Menu", () -> itemOptionsFunction.apply(index))
 				, false));
 			}
@@ -116,7 +114,8 @@ public class ConsoleBoundary implements IBoundary {
 	
 	private final Supplier<List<Option>> cellOptionsSupplier = () -> {
 		List<Option> options = new ArrayList<>();
-		ItemType[] droppedItems = boardController.getDroppedItems();
+		int currentPlayerCell = boardController.getPirateCellNumber(currentPlayer);
+		ItemType[] droppedItems = boardController.getDroppedItems(currentPlayerCell);
 		ItemType itemType;
 		
 		for (int i = 0; i < droppedItems.length; i++) {
@@ -164,9 +163,9 @@ public class ConsoleBoundary implements IBoundary {
 	
 	// use of supplier to ensure no side-effects
 	// possibility for an option to alter the options proposed
-	private final Supplier<List<Option>> turnOptionsSupplier = () -> {
-		return hasMoved ? movedTurnOptions : notMovedTurnOptions;
-	};
+	private final Supplier<List<Option>> turnOptionsSupplier = () -> 
+		hasMoved ? movedTurnOptions : notMovedTurnOptions
+	;
 	
 	@Override
 	public void giveTurn(Player player) {
