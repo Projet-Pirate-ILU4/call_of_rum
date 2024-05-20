@@ -8,14 +8,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.call_of_rum.model.stubs.ItemStub;
+import fr.call_of_rum.util.ItemType;
 
 public class MarketTest {
 
 	private static final int ITEM1_PRICE = 50;
-	private static final ItemStock ITEM1 = new ItemStock(ItemStub::new, ITEM1_PRICE);
+	private static final ItemStock ITEM1 = new ItemStock(ItemStub::new, ItemType.CLOVER, ITEM1_PRICE);
 	
 	private static final int ITEM2_PRICE = 100;
-	private static final ItemStock ITEM2 = new ItemStock(ItemStub::new, ITEM2_PRICE);
+	private static final ItemStock ITEM2 = new ItemStock(ItemStub::new, ItemType.CLOVER, ITEM2_PRICE);
 	
 	private Market market;
 	
