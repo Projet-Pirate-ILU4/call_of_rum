@@ -3,7 +3,6 @@ package fr.call_of_rum.controller;
 import java.util.Optional;
 
 import fr.call_of_rum.boundary.IBoundary;
-import fr.call_of_rum.controller.accessible.DiceControllerImpl;
 import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.board.cells.Cell;
 import fr.call_of_rum.model.board.cells.Chest;
@@ -15,16 +14,20 @@ public class MoveController {
 	
 	private IBoundary boundary;
 	
-	private DiceControllerImpl diceController;
-	private TakeItemController takeItemController;
+	private DiceController diceController;
+	private PlayerController playerController;
 	
 	private Board board;
+	private Pirate pirate1;
+	private Pirate pirate2;
 	
-	public MoveController(IBoundary boundary, DiceControllerImpl diceController, TakeItemController takeItemController, Board board) {
+	public MoveController(IBoundary boundary, DiceController diceController, PlayerController playerController, Board board, Pirate pirate1, Pirate pirate2) {
 		this.boundary = boundary;
 		this.diceController = diceController;
-		this.takeItemController = takeItemController;
+		this.playerController = playerController;
 		this.board = board;
+		this.pirate1 = pirate1;
+		this.pirate2 = pirate2;
 	}
 	
 	private void triggerChestCell(Chest chest, Pirate pirate) {
@@ -34,7 +37,7 @@ public class MoveController {
 		chest.setCoins(0);
 		boolean tookItem = boundary.chestFound(chestCoins, chest.getItem().getType().toString().toLowerCase());
 		if (tookItem) {
-			takeItemController.takeItem(pirate, chest.getItem());
+			playerController.takeItem(pirate, chest.getItem());
 			chest.setItem(null);
 		}
 	}
@@ -52,8 +55,8 @@ public class MoveController {
 	}
 	
 	private void triggerShortcut(Pirate pirate) {
-		// TODO implements for the neareast pirate
-		pirate.getBoard().movePirateTo(pirate, 9);
+		Pirate otherPirate = pirate.equals(pirate1) ? pirate2 : pirate1;
+		board.movePirateTo(pirate, otherPirate);
 		boundary.tookShortcut();
 	}
 	

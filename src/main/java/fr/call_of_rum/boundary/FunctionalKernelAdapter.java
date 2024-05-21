@@ -4,8 +4,8 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import fr.call_of_rum.controller.accessible.ActionController;
-import fr.call_of_rum.controller.accessible.BoardController;
+import fr.call_of_rum.controller.accessible.IActionController;
+import fr.call_of_rum.controller.accessible.IBoardController;
 import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
@@ -64,14 +64,14 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	*    Requests (downcalls)    *
 	*****************************/
 	
-	private BoardController boardController;
-	private ActionController actionController;
+	private IBoardController boardController;
+	private IActionController actionController;
 	
-	public void setBoardController(BoardController boardController) {
+	public void setBoardController(IBoardController boardController) {
 		this.boardController = boardController;
 	}
 	
-	public void setActionController(ActionController actionController) {
+	public void setActionController(IActionController actionController) {
 		this.actionController = actionController;
 	}
 

@@ -1,37 +1,36 @@
-package fr.call_of_rum.controller.accessible;
+package fr.call_of_rum.controller;
 
-import fr.call_of_rum.controller.BuyController;
-import fr.call_of_rum.controller.GameController;
-import fr.call_of_rum.controller.MoveController;
-import fr.call_of_rum.controller.TakeItemController;
+import fr.call_of_rum.controller.accessible.IActionController;
 import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.model.item.liquid.Liquid;
 import fr.call_of_rum.model.item.weapon.Weapon;
 import fr.call_of_rum.model.pirate.Pirate;
 
-public class ActionControllerImpl implements ActionController {
+public class ActionController implements IActionController {
 	
-	private GameController gameController;
-	private BuyController buyController;
-	private TakeItemController takeItemController;
+	private MarketController marketController;
 	private MoveController moveController;
+	private BoardController boardController;
 	
-	public ActionControllerImpl(GameController gameController, BuyController buyController, TakeItemController takeItemController, MoveController moveController) {
-		this.gameController = gameController;
-		this.buyController = buyController;
-		this.takeItemController = takeItemController;
+	private Pirate pirate;
+	
+	public ActionController(MarketController marketController, MoveController moveController, BoardController boardController) {
+		this.marketController = marketController;
 		this.moveController = moveController;
+		this.boardController = boardController;
+	}
+	
+	public void setCurrentPirate(Pirate pirate) {
+		this.pirate = pirate;
 	}
 	
 	@Override
 	public void buyItem(int itemIndex) {
-		Pirate pirate = gameController.getPirate();
-		buyController.buy(pirate, itemIndex);
+		marketController.buy(pirate, itemIndex);
 	}
 
 	@Override
 	public void drink(int itemIndex) {
-		Pirate pirate = gameController.getPirate();
 		Item item = pirate.getInventory().get(itemIndex);
 		if (item instanceof Liquid liquid) {
 			pirate.drink(liquid);
@@ -40,7 +39,6 @@ public class ActionControllerImpl implements ActionController {
 
 	@Override
 	public void equipWeapon(int itemIndex) {
-		Pirate pirate = gameController.getPirate();
 		Item item = pirate.getInventory().get(itemIndex);
 		if (item instanceof Weapon weapon) {
 			Weapon equippedWeapon = pirate.getEquippedWeapon();
@@ -53,20 +51,17 @@ public class ActionControllerImpl implements ActionController {
 
 	@Override
 	public void pickUpItem(int itemIndex) {
-		Pirate pirate = gameController.getPirate();
-		takeItemController.pickUpItem(pirate, itemIndex);
+		boardController.pickUpItem(pirate, itemIndex);
 	}
 
 	@Override
 	public void dropItem(int itemIndex) {
-		Pirate pirate = gameController.getPirate();
 		Item item = pirate.getInventory().get(itemIndex);
 		item.drop();
 	}
 
 	@Override
 	public void move() {
-		Pirate pirate = gameController.getPirate();
 		moveController.movePirate(pirate);
 	}
 
