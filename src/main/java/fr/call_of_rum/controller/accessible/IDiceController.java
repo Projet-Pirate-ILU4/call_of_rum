@@ -1,6 +1,6 @@
 package fr.call_of_rum.controller.accessible;
 
-public interface DiceController {
+public interface IDiceController {
 	
 	int getDiceResult();
 	

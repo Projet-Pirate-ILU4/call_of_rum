@@ -1,7 +1,6 @@
 package fr.call_of_rum.controller;
 
 import fr.call_of_rum.boundary.IBoundary;
-import fr.call_of_rum.controller.accessible.DiceControllerImpl;
 import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.util.Player;
@@ -10,15 +9,17 @@ public class GameController {
 	
 	private IBoundary boundary;
 	
-	private DiceControllerImpl rollDiceController;
+	private ActionController actionController;
+	private DiceController rollDiceController;
 	
 	private Board board;
 	private int numberOfPlayers;
 	private Pirate[] pirates = new Pirate[2];
 	private int currentPlayer = 0;
 	
-	public GameController(IBoundary boundary, DiceControllerImpl rollDiceController, Board board, Pirate player1, Pirate player2) {
+	public GameController(IBoundary boundary, ActionController actionController, DiceController rollDiceController, Board board, Pirate player1, Pirate player2) {
 		this.boundary = boundary;
+		this.actionController = actionController;
 		this.rollDiceController = rollDiceController;
 		this.board = board;
 		this.numberOfPlayers = Player.values().length;
@@ -44,23 +45,11 @@ public class GameController {
 	public void start() {
 		while (!isGameFinished()) {
 			rollDiceController.rollDices();
+			actionController.setCurrentPirate(pirates[currentPlayer]);
 			boundary.giveTurn(Player.values()[currentPlayer]);
 			currentPlayer = (currentPlayer + 1) % numberOfPlayers;
 		}
 		boundary.gameEnded(getWinner());
-	}
-	
-	/************************************
-	*   Methods for other Controllers   *
-	************************************/
-	
-	public Pirate getPirate() {
-		return pirates[currentPlayer];
-	}
-	
-	public Pirate getPirate(Player player) {
-		if (player == null) return null;
-		return pirates[player.ordinal()];
 	}
 	
 }

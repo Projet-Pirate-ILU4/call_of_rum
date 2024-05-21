@@ -1,8 +1,10 @@
-package fr.call_of_rum.controller.accessible;
+package fr.call_of_rum.controller;
 
 import java.util.Random;
 
-public class DiceControllerImpl implements DiceController {
+import fr.call_of_rum.controller.accessible.IDiceController;
+
+public class DiceController implements IDiceController {
 	
 	private static final Random RNG = new Random();
 	
