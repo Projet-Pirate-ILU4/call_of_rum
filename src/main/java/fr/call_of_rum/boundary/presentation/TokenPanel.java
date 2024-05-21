@@ -4,7 +4,9 @@
  */
 package fr.call_of_rum.boundary.presentation;
 
+import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
@@ -20,6 +22,7 @@ public class TokenPanel extends javax.swing.JPanel {
     private int posX;
     private int posY;
     private boolean isMovable=false;
+    private CellPanel position;
     
     public void setBoardPanel(BoardPanel boardPanel) {
         this.boardPanel = boardPanel;
@@ -27,6 +30,13 @@ public class TokenPanel extends javax.swing.JPanel {
     public void setPlayer(Player player) {
         this.player = player;
         putImageToken();
+    }
+    public CellPanel getPosition(){
+        return position;
+    }
+    
+    public void setPosition(CellPanel position){
+        this.position=position;
     }
     /**
      * Creates new form PiecePanel
@@ -76,7 +86,6 @@ public class TokenPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        System.out.println(boardPanel.getisToken1Movable());
         if (player.equals(Player.BILL_JAMBE_DE_BOIS) && boardPanel.getisToken1Movable()){
             System.out.println("On a cliqué sur le pion 1");
             //boardPanel.setToken1AsClicked();
@@ -101,19 +110,18 @@ public class TokenPanel extends javax.swing.JPanel {
             int depX = evt.getX() - posX;
             int depY = evt.getY() - posY;
             int newX=getX()+depX;
-            int newY=getY()+depY;
-            /*System.out.println("newX>boardPanel.getX()+boardPanel.getWidth()"+(newX>boardPanel.getX()+boardPanel.getWidth()));
-            System.out.println("(newX<boardPanel.getX())"+(newX<boardPanel.getX()));
-            System.out.println("(newY<boardPanel.getY())"+(newY<boardPanel.getY()));
-            System.out.println("(newY>boardPanel.getY()+boardPanel.getHeight())"+(newY>boardPanel.getY()+boardPanel.getHeight()));
-            */            
-            if ((newX>boardPanel.getX()+boardPanel.getWidth()) 
+            int newY=getY()+depY;        
+            if ((newX>(boardPanel.getX()+boardPanel.getWidth())) 
                     ||(newX<boardPanel.getX()) 
-                    //||(newY<boardPanel.getY())
-                      ||(newY>boardPanel.getY()+boardPanel.getHeight())){
-                this.setLocation(posX, posY);       
+                    ||(newY<0)
+                    ||(newY>boardPanel.getHeight())){
+                this.setLocation(posX, posY);
             }else{
-                this.setLocation(getX()+depX, getY()+depY);
+                this.setLocation(newX, newY);
+                Component cell=boardPanel.getComponentAt(newX-newX%100, newY-newY%100);
+                if (cell instanceof CellPanel){
+                    position=boardPanel.getCellsPanel()[(((CellPanel)cell).getNum())-1]; //On récupère la position du pion. 
+                }
             }
             repaint();
         }

@@ -4,10 +4,15 @@
  */
 package fr.call_of_rum.boundary.presentation;
 
+import fr.call_of_rum.boundary.dialog.Dialog;
+import fr.call_of_rum.boundary.dialog.IDialog;
+import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.util.CellType;
+import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.util.List;
 import javax.swing.ImageIcon;
 
 /**
@@ -44,6 +49,7 @@ public class BoardPanel extends javax.swing.JLayeredPane {
     public boolean getisToken2Movable() {
         return isToken2Movable;
     }
+   
     /**
      * Creates new form BoardPanel
      */
@@ -84,7 +90,19 @@ public class BoardPanel extends javax.swing.JLayeredPane {
         cellsPanel[27]=cellPanel28;
         cellsPanel[28]=cellPanel29;
         cellsPanel[29]=cellPanel30;
+        this.moveToFront(tokenPanelPlayer1);
+        this.moveToFront(tokenPanelPlayer2);
     }
+    
+    public CellPanel[] getCellsPanel(){
+        return cellsPanel;
+    }
+    
+    public void initCells(IDialog iDialog){
+        for (int i=0;i<30;i++){
+            cellsPanel[i].initDroppedItems(iDialog);
+        }
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -159,9 +177,12 @@ public class BoardPanel extends javax.swing.JLayeredPane {
         tokenPanelPlayer1 = new fr.call_of_rum.boundary.presentation.TokenPanel();
         tokenPanelPlayer1.setBoardPanel(this);
         tokenPanelPlayer1.setPlayer(Player.BILL_JAMBE_DE_BOIS);
+        tokenPanelPlayer1.setPosition(cellPanel1);
+        ;
         tokenPanelPlayer2 = new fr.call_of_rum.boundary.presentation.TokenPanel();
         tokenPanelPlayer2.setBoardPanel(this);
         tokenPanelPlayer2.setPlayer(Player.JACK_LE_BORGNE);
+        tokenPanelPlayer2.setPosition(cellPanel1);
 
         setMinimumSize(new java.awt.Dimension(600, 500));
 
@@ -381,6 +402,9 @@ public class BoardPanel extends javax.swing.JLayeredPane {
                 .addComponent(cellPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(backgroundLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        tokenPanelPlayer1.getAccessibleContext().setAccessibleParent(cellPanel1);
+        tokenPanelPlayer2.getAccessibleContext().setAccessibleParent(cellPanel1);
     }// </editor-fold>//GEN-END:initComponents
 
     public void setCellsType(CellType[] cellsType) {
@@ -391,6 +415,15 @@ public class BoardPanel extends javax.swing.JLayeredPane {
 
     public void chestOpened(int numCell){
         cellsPanel[numCell].setType(CellType.OPENED_CHEST);
+    }
+    
+    public void notifyDrop(ItemType itemType){
+        if (isToken1Movable){
+            this.tokenPanelPlayer1.getPosition().notifyDrop(itemType);
+        }
+        if (isToken2Movable){
+            this.tokenPanelPlayer2.getPosition().notifyDrop(itemType);
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

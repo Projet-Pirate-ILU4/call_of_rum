@@ -4,8 +4,7 @@
  */
 package fr.call_of_rum.boundary.presentation;
 
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
@@ -15,6 +14,9 @@ import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 
 import java.util.List;
+
+import static fr.call_of_rum.util.ItemType.*;
+import static fr.call_of_rum.util.ItemType.LICIDITY_STONE;
 
 /**
  *
@@ -59,9 +61,11 @@ public class GameFrame extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         boardPanel1 = new fr.call_of_rum.boundary.presentation.BoardPanel();
         boardPanel1.setCellsType(dialog.getCellsType());
+        boardPanel1.initCells(dialog);
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         dicePanel1 = new fr.call_of_rum.boundary.presentation.DicePanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,26 +154,38 @@ public class GameFrame extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/market.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(dicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(171, 171, 171))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(boardPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(171, 171, 171))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1)
+                            .addComponent(boardPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(dicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boardPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -210,6 +226,10 @@ public class GameFrame extends javax.swing.JFrame {
         }
         endTurnSecondPlayer.setEnabled(false);
     }//GEN-LAST:event_endTurnSecondPlayerActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        java.awt.EventQueue.invokeLater(() -> new Market(this,true, Player.JACK_LE_BORGNE, dialog).setVisible(true));
+    }//GEN-LAST:event_jLabel1MouseClicked
     
     public void enableFirstPlayer() {
         endTurnFirstPlayer.setEnabled(true);
@@ -260,25 +280,27 @@ public class GameFrame extends javax.swing.JFrame {
 				public void endTurn() {
 				}
 				@Override
-				public int getPrice(ItemType itemType) {
-					// TODO Auto-generated method stub
-					return 0;
-				}
+                public int getPrice(ItemType itemType) {
+                    return 75;
+                }
 				@Override
 				public int getSizeInventaireAvailable(Player player) {
 					// TODO Auto-generated method stub
-					return 0;
+					return 4;
 				}
 				@Override
-				public int checkfound(Player player) {
-					// TODO Auto-generated method stub
-					return 0;
-				}
+                public int checkfound(Player player) {
+                    return 1000;
+                }
 				@Override
-				public ItemType[] getItemMarket() {
-					// TODO Auto-generated method stub
-					return null;
-				}
+                public ItemType[] getItemMarket() {
+                    ItemType[] itemTypes = new ItemType[4];
+                    itemTypes[0] = CLOVER;
+                    itemTypes[1] = BANDANA;
+                    itemTypes[2] = GUNPOWDER;
+                    itemTypes[3] = LICIDITY_STONE;
+                    return  itemTypes;
+                }
 
                 @Override
                 public void buy(Player player, List<ItemType> itemTypesSelect) {
@@ -287,13 +309,11 @@ public class GameFrame extends javax.swing.JFrame {
 
                 @Override
                 public String getNameItem(ItemType itemType) {
-                    return null;
+                    return  itemType.toString();
                 }
-
                 @Override
                 public String getDescribe(ItemType itemType) {
-
-                    return null;
+                    return "Lorem ipsum dolor sit amet, consectetur adipiscing elit,";
                 }
 
                 @Override
@@ -315,6 +335,17 @@ public class GameFrame extends javax.swing.JFrame {
                 public void print(String s) {
 
                 }
+                
+                @Override
+                public ItemType[] getDroppedItems(int cellIndex){
+                    ItemType[] itemTypes = new ItemType[0];
+                    return itemTypes;
+                }
+        
+                @Override
+                public int getNumberOfDroppedItems(int cellIndex){
+                    return -1;
+                }
 
             }).setVisible(true);
         });
@@ -325,6 +356,7 @@ public class GameFrame extends javax.swing.JFrame {
     private fr.call_of_rum.boundary.presentation.DicePanel dicePanel1;
     private javax.swing.JButton endTurnFirstPlayer;
     private javax.swing.JButton endTurnSecondPlayer;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
