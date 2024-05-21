@@ -1,9 +1,9 @@
-package fr.call_of_rum.scenario;
+package fr.call_of_rum.scenario.gui;
 
 import fr.call_of_rum.model.board.BoardFactory;
 import fr.call_of_rum.model.item.liquid.Rum;
 
-public class ChestScenario extends TUIScenario {
+public class ChestScenario extends GUIScenario {
 	
 	public ChestScenario() {
 		super();

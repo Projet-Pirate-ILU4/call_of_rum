@@ -1,4 +1,4 @@
-package fr.call_of_rum.scenario;
+package fr.call_of_rum.scenario.tui;
 
 import fr.call_of_rum.model.board.BoardFactory;
 import fr.call_of_rum.model.item.Item;
