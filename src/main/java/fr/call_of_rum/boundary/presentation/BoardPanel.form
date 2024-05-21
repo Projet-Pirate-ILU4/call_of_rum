@@ -413,13 +413,28 @@
       </Properties>
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.TokenPanel" name="tokenPanelPlayer1">
+      <Properties>
+        <Property name="boardPanel" type="fr.call_of_rum.boundary.presentation.BoardPanel" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="default"/>
+        </Property>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="cellPanel1"/>
+        </Property>
+      </AccessibilityProperties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.TokenPanel();&#xd;&#xa;tokenPanelPlayer1.setBoardPanel(this);&#xd;&#xa;tokenPanelPlayer1.setPlayer(Player.BILL_JAMBE_DE_BOIS);"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.TokenPanel();&#xd;&#xa;tokenPanelPlayer1.setBoardPanel(this);&#xd;&#xa;tokenPanelPlayer1.setPlayer(Player.BILL_JAMBE_DE_BOIS);&#xd;&#xa;tokenPanelPlayer1.setPosition(cellPanel1);&#xd;&#xa;"/>
       </AuxValues>
     </Component>
     <Component class="fr.call_of_rum.boundary.presentation.TokenPanel" name="tokenPanelPlayer2">
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="cellPanel1"/>
+        </Property>
+      </AccessibilityProperties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.TokenPanel();&#xd;&#xa;tokenPanelPlayer2.setBoardPanel(this);&#xd;&#xa;tokenPanelPlayer2.setPlayer(Player.JACK_LE_BORGNE);"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.TokenPanel();&#xd;&#xa;tokenPanelPlayer2.setBoardPanel(this);&#xd;&#xa;tokenPanelPlayer2.setPlayer(Player.JACK_LE_BORGNE);&#xd;&#xa;tokenPanelPlayer2.setPosition(cellPanel1);"/>
       </AuxValues>
     </Component>
   </SubComponents>

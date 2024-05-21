@@ -61,6 +61,7 @@ public class GameFrame extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         boardPanel1 = new fr.call_of_rum.boundary.presentation.BoardPanel();
         boardPanel1.setCellsType(dialog.getCellsType());
+        boardPanel1.initCells(dialog);
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         dicePanel1 = new fr.call_of_rum.boundary.presentation.DicePanel();
@@ -333,6 +334,17 @@ public class GameFrame extends javax.swing.JFrame {
                 @Override
                 public void print(String s) {
 
+                }
+                
+                @Override
+                public ItemType[] getDroppedItems(int cellIndex){
+                    ItemType[] itemTypes = new ItemType[0];
+                    return itemTypes;
+                }
+        
+                @Override
+                public int getNumberOfDroppedItems(int cellIndex){
+                    return -1;
                 }
 
             }).setVisible(true);

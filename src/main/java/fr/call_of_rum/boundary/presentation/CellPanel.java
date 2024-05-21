@@ -4,10 +4,18 @@
  */
 package fr.call_of_rum.boundary.presentation;
 
+import fr.call_of_rum.boundary.dialog.IDialog;
 import fr.call_of_rum.util.CellType;
+import fr.call_of_rum.util.ItemType;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Image;
+import java.util.List;
 import java.awt.image.BufferedImage;
+import java.util.ListIterator;
+import java.util.Random;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 
 /**
  *
@@ -17,6 +25,11 @@ public class CellPanel extends javax.swing.JPanel {
 
     private CellType cellType;
     private boolean arrival=false;
+    private int num;
+    private ItemType[] itemDropped;
+    private List<ItemDrop> droppedItems;
+    private static final Random RNG = new Random();
+    private IDialog dialog; 
     /**
      * Creates new form CellPanel
      */
@@ -34,12 +47,18 @@ public class CellPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         numLabel = new javax.swing.JLabel();
+        itemDroppedPanel = new javax.swing.JPanel();
         imageLabel = new javax.swing.JLabel();
 
         setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setMinimumSize(new java.awt.Dimension(100, 100));
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(100, 100));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                formMouseReleased(evt);
+            }
+        });
         setLayout(null);
 
         numLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -50,13 +69,40 @@ public class CellPanel extends javax.swing.JPanel {
         add(numLabel);
         numLabel.setBounds(70, 10, 20, 20);
 
+        itemDroppedPanel.setMinimumSize(new java.awt.Dimension(100, 100));
+        itemDroppedPanel.setOpaque(false);
+
+        javax.swing.GroupLayout itemDroppedPanelLayout = new javax.swing.GroupLayout(itemDroppedPanel);
+        itemDroppedPanel.setLayout(itemDroppedPanelLayout);
+        itemDroppedPanelLayout.setHorizontalGroup(
+            itemDroppedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        itemDroppedPanelLayout.setVerticalGroup(
+            itemDroppedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        add(itemDroppedPanel);
+        itemDroppedPanel.setBounds(0, 0, 100, 100);
+
         imageLabel.setPreferredSize(new java.awt.Dimension(100, 100));
         add(imageLabel);
         imageLabel.setBounds(0, 0, 100, 100);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
+        // TODO add your handling code here:
+        System.out.println(num);
+    }//GEN-LAST:event_formMouseReleased
+
     public void setNum(int num){
+        this.num=num;
         numLabel.setText(String.valueOf(num));
+    }
+    
+    public int getNum(){
+        return num;
     }
     
     public void setType(CellType type){
@@ -78,8 +124,66 @@ public class CellPanel extends javax.swing.JPanel {
         imageLabel.setIcon(typeIcon);
     }
     
+    /**
+     * Add component in a random location in container
+     * @author Mateo LAFORGE
+     * @param container Container in which to add the component
+     * @param component JComponent to add to container
+     */
+    public void addComponentRandom(Container container, JComponent component) {
+        Dimension componentDimension = component.getPreferredSize();
+        int componentWidth = componentDimension.width;
+        int componentHeight = componentDimension.height;
+        int containerWidth = container.getWidth();
+        int containerHeight = container.getHeight();
+        
+        int minx = componentWidth;
+        int miny = componentHeight;
+        int maxx = containerWidth - componentWidth;
+        int maxy = containerHeight - componentHeight;
+        
+        int x = RNG.nextInt(minx, maxx);
+        int y = RNG.nextInt(miny, maxy);
+        
+        component.setBounds(x, y, componentWidth, componentHeight);
+        
+        container.add(component);
+        container.revalidate();
+        container.repaint();
+    }
+    
+    // ajoute tout les ItemDrop à la case (attention, ajout sans vérification de duplicat)
+    private void addAllItemDrop() {
+        ItemType[] droppedItems = dialog.getDroppedItems(this.num);
+        for (int i = 0; i<droppedItems.length; i++) {
+            addComponentRandom(itemDroppedPanel, new ItemDrop(dialog, droppedItems[i], i));
+        }
+    }
+
+    // apellée au moment de la construction
+    public void initDroppedItems(IDialog dialog) {
+        this.dialog = dialog;
+        addAllItemDrop();
+    }
+
+    // apellée au moment où un drop intervient (par l'inventaire)
+    public void notifyDrop(ItemType item) {
+        int numberOfDroppedItems = dialog.getNumberOfDroppedItems(this.num);
+        // numberOfDroppedItems ici est l'indice du nouvel objet
+        addComponentRandom(itemDroppedPanel, new ItemDrop(dialog, item, numberOfDroppedItems));
+    }
+
+    // apellée au moment où un pick up intervient (par un ItemDrop)
+    public void pickUpItem() {
+        // update presque-innévitable, donc on vas préférer tout reconstruire
+        // destruction des ItemDrop précédents:
+        itemDroppedPanel.removeAll();
+        addAllItemDrop();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imageLabel;
+    private javax.swing.JPanel itemDroppedPanel;
     private javax.swing.JLabel numLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import fr.call_of_rum.boundary.IFunctionalKernel;
 import fr.call_of_rum.boundary.IGraphicInterface;
+import fr.call_of_rum.boundary.presentation.BoardPanel;
 import fr.call_of_rum.boundary.presentation.GameFrame;
 import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.ItemType;
@@ -167,6 +168,17 @@ public class Dialog implements IDialog, IGraphicInterface {
 	public void close() {
 		presentation.dispose();
 	}
+        
+        @Override
+        public ItemType[] getDroppedItems(int cellIndex){
+            ItemType[] itemTypes = new ItemType[0];
+            return itemTypes;
+        }
+        
+        @Override
+        public int getNumberOfDroppedItems(int cellIndex){
+            return -1;
+        }
 
 
 }

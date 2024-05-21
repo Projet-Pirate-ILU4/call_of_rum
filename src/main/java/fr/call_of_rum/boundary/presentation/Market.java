@@ -203,9 +203,9 @@ public class Market extends javax.swing.JDialog {
         toogle(graphicsCard4);
     }//GEN-LAST:event_graphicsCard4MouseClicked
 
-    private void graphicsCard1MouseClicked() {//GEN-FIRST:event_graphicsCard5MouseClicked
+    private void graphicsCard1MouseClicked() {                                           
         toogle(graphicsCard1);
-    }//GEN-LAST:event_graphicsCard1MouseClicked
+    }                                          
 
 
     private void focusItem(GraphicsCard graphicsCard){
@@ -379,6 +379,17 @@ public class Market extends javax.swing.JDialog {
             @Override
             public void print(String s) {
 
+            }
+            
+            @Override
+            public ItemType[] getDroppedItems(int cellIndex){
+                ItemType[] itemTypes = new ItemType[0];
+                return itemTypes;
+            }
+        
+            @Override
+            public int getNumberOfDroppedItems(int cellIndex){
+                return -1;
             }
 
             public String getDescribe(ItemType itemType) {

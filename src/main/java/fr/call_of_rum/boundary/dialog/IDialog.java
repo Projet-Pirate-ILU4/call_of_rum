@@ -49,4 +49,8 @@ public interface IDialog {
     String getDescribe2(int itemIndex);
 
     void print(String s);
+    
+    ItemType[] getDroppedItems(int cellIndex);
+    
+    int getNumberOfDroppedItems(int cellIndex);
 }
