@@ -81,8 +81,43 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	}
 
 	@Override
-	public ItemType[] getDroppedItems() {
-		return boardController.getDroppedItems();
+	public ItemType[] getDroppedItems(int numCell) {
+		return boardController.getDroppedItems(numCell);
+	}
+	
+	@Override
+	public int getNumberOfDroppedItems(int numCell) {
+		return boardController.getNumberOfDroppedItems(numCell);
+	}
+
+	@Override
+	public void buyItem(int itemIndex) {
+		actionController.buyItem(itemIndex);
+	}
+
+	@Override
+	public void drink(int itemIndex) {
+		actionController.drink(itemIndex);
+	}
+
+	@Override
+	public void equipWeapon(int itemIndex) {
+		actionController.equipWeapon(itemIndex);
+	}
+
+	@Override
+	public void pickUpItem(int itemIndex) {
+		actionController.pickUpItem(itemIndex);
+	}
+
+	@Override
+	public void dropItem(int itemIndex) {
+		actionController.dropItem(itemIndex);
+	}
+
+	@Override
+	public void move() {
+		actionController.move();
 	}
 
 }

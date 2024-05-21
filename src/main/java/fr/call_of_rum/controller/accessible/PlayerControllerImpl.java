@@ -17,23 +17,6 @@ public class PlayerControllerImpl implements PlayerController {
 	}
 
 	@Override
-	public ItemType getEquippedWeapon() {
-		Pirate pirate = gameController.getPirate();
-		Weapon weapon = pirate.getEquippedWeapon();
-		if (weapon == null) return null;
-		return weapon.getType();
-	}
-
-	@Override
-	public ItemType getItemType(int itemIndex) {
-		Pirate pirate = gameController.getPirate();
-		Inventory<Item> inventory = pirate.getInventory();
-		Item item = inventory.get(itemIndex);
-		if (item == null) return null;
-		return item.getType();
-	}
-
-	@Override
 	public int getHealth(Player player) {
 		Pirate pirate = gameController.getPirate(player);
 		return pirate.getHealthPoints();
@@ -49,6 +32,31 @@ public class PlayerControllerImpl implements PlayerController {
 	public float getIntoxicationLevel(Player player) {
 		Pirate pirate = gameController.getPirate(player);
 		return pirate.getIntoxicationGauge().getLevel();
+	}
+
+	@Override
+	public int getCoins(Player player) {
+		Pirate pirate = gameController.getPirate(player);
+		return pirate.getCoins();
+	}
+
+	@Override
+	public ItemType[] getInventoryItems(Player player) {
+		Pirate pirate = gameController.getPirate(player);
+		Inventory<Item> inventory = pirate.getInventory();
+		ItemType[] itemTypes = new ItemType[3];
+		for (int i = 0; i<3; i++) {
+			Item item = inventory.get(i);
+			itemTypes[i] = item == null ? null : item.getType();
+		}
+		return itemTypes;
+	}
+
+	@Override
+	public ItemType getEquippedWeapon(Player player) {
+		Pirate pirate = gameController.getPirate(player);
+		Weapon weapon = pirate.getEquippedWeapon();
+		return weapon == null ? null : weapon.getType();
 	}
 
 }

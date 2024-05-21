@@ -8,7 +8,9 @@ public interface BoardController {
 	
 	CellType getCellType(int cellNumber);
 	
-	ItemType[] getDroppedItems();
+	ItemType[] getDroppedItems(int cellNumber);
+	
+	int getNumberOfDroppedItems(int cellNumber);
 	
 	int getPirateCellNumber(Player player);
 	

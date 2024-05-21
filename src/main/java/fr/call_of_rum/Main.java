@@ -1,7 +1,5 @@
 package fr.call_of_rum;
 
-import java.util.List;
-
 import fr.call_of_rum.boundary.ConsoleBoundary;
 import fr.call_of_rum.controller.BuyController;
 import fr.call_of_rum.controller.GameController;
@@ -22,6 +20,7 @@ import fr.call_of_rum.model.item.liquid.Rum;
 import fr.call_of_rum.model.item.weapon.Saber;
 import fr.call_of_rum.model.market.Market;
 import fr.call_of_rum.model.pirate.Pirate;
+import fr.call_of_rum.util.Player;
 
 public class Main {
     
@@ -64,8 +63,8 @@ public class Main {
     	ItemRegistry itemRegistry = new ItemRegistry().registerItems(Clover::new, Rum::new, Saber::new);
 		Board board = BoardFactory.getDefaultBoard(itemRegistry);
     	Market market = new Market();
-    	Pirate pirate1 = new Pirate("Jack Le Borgne", 0, 10);
-    	Pirate pirate2 = new Pirate("Bill Jambe De Bois", 0, 10);
+    	Pirate pirate1 = new Pirate(Player.JACK_LE_BORGNE, 0, 10);
+    	Pirate pirate2 = new Pirate(Player.BILL_JAMBE_DE_BOIS, 0, 10);
     	board.addPirate(pirate1);
     	board.addPirate(pirate2);
     	

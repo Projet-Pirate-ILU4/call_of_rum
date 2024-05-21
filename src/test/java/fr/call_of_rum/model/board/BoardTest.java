@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import fr.call_of_rum.model.item.ItemRegistry;
 import fr.call_of_rum.model.pirate.Pirate;
+import fr.call_of_rum.util.Player;
 
 public class BoardTest {
 	
@@ -18,8 +19,8 @@ public class BoardTest {
 
 	@Before
 	public void setUp() throws Exception {
-		pirate = new Pirate("pirate", 0, 5);
-		otherPirate = new Pirate("other pirate", 0, 5);
+		pirate = new Pirate(Player.BILL_JAMBE_DE_BOIS, 0, 5);
+		otherPirate = new Pirate(Player.JACK_LE_BORGNE, 0, 5);
 		board = BoardFactory.getDefaultBoard(new ItemRegistry() /* empty registry */);
 		board.addPirate(pirate);
 		board.addPirate(otherPirate);

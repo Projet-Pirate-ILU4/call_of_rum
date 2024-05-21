@@ -28,16 +28,22 @@ public class BoardControllerImpl implements BoardController {
 	}
 
 	@Override
-	public ItemType[] getDroppedItems() {
-		Pirate pirate = gameController.getPirate();
-		Cell pirateCell = board.getCell(pirate);
-		List<Item> droppedItems = pirateCell.getDroppedItems();
+	public ItemType[] getDroppedItems(int cellNumber) {
+		Cell cell = board.getCell(cellNumber);
+		List<Item> droppedItems = cell.getDroppedItems();
 		int numberOfItems = droppedItems.size();
 		ItemType[] droppedItemTypes = new ItemType[numberOfItems];
 		for (int i = 0; i < numberOfItems; i++) {
 			droppedItemTypes[i] = droppedItems.get(i).getType();
 		}
 		return droppedItemTypes;
+	}
+
+	@Override
+	public int getNumberOfDroppedItems(int cellNumber) {
+		Cell cell = board.getCell(cellNumber);
+		List<Item> droppedItems = cell.getDroppedItems();
+		return droppedItems.size();
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.board.BoardFactory;
 import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.model.stubs.ItemStub;
+import fr.call_of_rum.util.Player;
 
 public class ItemTest {
 	
@@ -21,7 +22,7 @@ public class ItemTest {
 
 	@Before
 	public void setUpBeforeClass() throws Exception {
-		pirate = new Pirate("pirate", 0, 5);
+		pirate = new Pirate(Player.BILL_JAMBE_DE_BOIS, 0, 5);
 		item = new ItemStub();
 		board = BoardFactory.getDefaultBoard(new ItemRegistry() /* empty registry */);
 		pirate.give(item);

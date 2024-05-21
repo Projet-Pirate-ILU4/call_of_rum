@@ -10,6 +10,20 @@ public interface IFunctionalKernel {
 
     CellType askCellType(int numCell);
     
-    ItemType[] getDroppedItems();
+    ItemType[] getDroppedItems(int numCell);
+    
+    int getNumberOfDroppedItems(int numCell);
+    
+    void buyItem(int itemIndex);
 	
+	void drink(int itemIndex);
+	
+	void equipWeapon(int itemIndex);
+	
+	void pickUpItem(int itemIndex);
+	
+	void dropItem(int itemIndex);
+	
+	void move();
+    
 }

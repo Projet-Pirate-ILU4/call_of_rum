@@ -5,14 +5,16 @@ import fr.call_of_rum.util.Player;
 
 public interface PlayerController {
 	
-	ItemType getEquippedWeapon();
-	
-	ItemType getItemType(int itemIndex);
-	
 	int getHealth(Player player);
 	
 	int getMaxHealth(Player player);
 	
 	float getIntoxicationLevel(Player player);
+	
+	int getCoins(Player player);
+	
+	ItemType[] getInventoryItems(Player player);
+	
+	ItemType getEquippedWeapon(Player player);
 	
 }
