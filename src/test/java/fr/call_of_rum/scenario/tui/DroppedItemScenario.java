@@ -11,7 +11,7 @@ public class DroppedItemScenario extends TUIScenario {
 		super.board = BoardFactory.getDefaultBoard(super.itemRegistry);
 		Item item = new ItemStub();
 		super.player1.give(item);
-		super.board.addPirate(player1);
+		super.player1.setBoard(super.board);
 		item.drop();
 	}
 	

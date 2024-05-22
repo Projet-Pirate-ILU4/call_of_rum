@@ -17,6 +17,6 @@ public interface IPlayerController {
 	
 	ItemType getEquippedWeapon(Player player);
 	
-	int getPirateLocation(Player player);
+	int getLocation(Player player);
 	
 }
