@@ -1,7 +1,6 @@
 package fr.call_of_rum.controller;
 
 import fr.call_of_rum.controller.accessible.IPlayerController;
-import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.inventory.Inventory;
 import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.model.item.liquid.Liquid;
@@ -95,10 +94,9 @@ public class PlayerController implements IPlayerController {
 	}
 
 	@Override
-	public int getPirateLocation(Player player) {
+	public int getLocation(Player player) {
 		Pirate pirate = getPirate(player);
-		Board board = pirate.getBoard();
-		return board.getPirateLocation(pirate);
+		return pirate.getLocation();
 	}
 
 }

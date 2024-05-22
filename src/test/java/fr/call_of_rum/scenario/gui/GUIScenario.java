@@ -25,8 +25,8 @@ public abstract class GUIScenario extends Scenario {
 	
 	@Override
 	public void start() {
-		board.addPirate(player1);
-		board.addPirate(player2);
+		player1.setBoard(board);
+		player2.setBoard(board);
 		
 		diceController = new DiceController();
 		playerController = new PlayerController(player1, player2);

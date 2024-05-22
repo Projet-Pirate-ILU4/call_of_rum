@@ -114,7 +114,7 @@ public class ConsoleBoundary implements IBoundary {
 	
 	private final Supplier<List<Option>> cellOptionsSupplier = () -> {
 		List<Option> options = new ArrayList<>();
-		int currentPlayerCell = playerController.getPirateLocation(currentPlayer);
+		int currentPlayerCell = playerController.getLocation(currentPlayer);
 		ItemType[] droppedItems = boardController.getDroppedItems(currentPlayerCell);
 		ItemType itemType;
 		
@@ -140,7 +140,7 @@ public class ConsoleBoundary implements IBoundary {
 	private final List<Option> notMovedTurnOptions = List.of(
 			new Option("move", () -> {
 				int diceResult = diceController.getDiceResult();
-				System.out.println(String.format(bundle.getString("moved"), diceResult, (playerController.getPirateLocation(currentPlayer) + diceResult) % 30));
+				System.out.println(String.format(bundle.getString("moved"), diceResult, (playerController.getLocation(currentPlayer) + diceResult) % 30));
 				actionController.move();
 				hasMoved = true;
 				}, false),

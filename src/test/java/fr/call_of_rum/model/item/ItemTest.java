@@ -26,7 +26,7 @@ public class ItemTest {
 		item = new ItemStub();
 		board = BoardFactory.getDefaultBoard(new ItemRegistry() /* empty registry */);
 		pirate.give(item);
-		board.addPirate(pirate);
+		pirate.setBoard(board);
 	}
 
 	@Test

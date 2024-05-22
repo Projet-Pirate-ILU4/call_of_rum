@@ -61,8 +61,8 @@ public class Main {
     	Market market = new Market();
     	Pirate pirate1 = new Pirate(Player.JACK_LE_BORGNE, 0, 10);
     	Pirate pirate2 = new Pirate(Player.BILL_JAMBE_DE_BOIS, 0, 10);
-    	board.addPirate(pirate1);
-    	board.addPirate(pirate2);
+    	pirate1.setBoard(board);
+    	pirate2.setBoard(board);
     	
     	// controller initialization
     	DiceController diceController = new DiceController();
