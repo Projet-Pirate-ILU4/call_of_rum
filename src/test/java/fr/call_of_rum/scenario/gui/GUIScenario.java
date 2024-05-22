@@ -13,7 +13,7 @@ import fr.call_of_rum.scenario.Scenario;
 
 public abstract class GUIScenario extends Scenario {
 	
-	private FunctionalKernelAdapter boundary = new FunctionalKernelAdapter();
+	private FunctionalKernelAdapter boundary;
 
 	private ActionController actionController;
 	private BoardController boardController;
@@ -25,16 +25,18 @@ public abstract class GUIScenario extends Scenario {
 	
 	@Override
 	public void start() {
+		if (boundary == null) boundary = new FunctionalKernelAdapter();
+		
 		player1.setBoard(board);
 		player2.setBoard(board);
 		
-		diceController = new DiceController();
-		playerController = new PlayerController(player1, player2);
-		boardController = new BoardController(board, playerController);
-		marketController = new MarketController(market, playerController);
-		moveController = new MoveController(boundary, diceController, playerController, board, player1, player2);
-		actionController = new ActionController(marketController, moveController, boardController);
-		gameController = new GameController(boundary, actionController, diceController, board, player1, player2);
+		if (diceController == null) diceController = new DiceController(super.rng);
+		if (playerController == null) playerController = new PlayerController(player1, player2);
+		if (boardController == null) boardController = new BoardController(board, playerController);
+		if (marketController == null) marketController = new MarketController(market, playerController);
+		if (moveController == null) moveController = new MoveController(rng, boundary, diceController, playerController, board, player1, player2);
+		if (actionController == null) actionController = new ActionController(marketController, moveController, boardController);
+		if (gameController == null) gameController = new GameController(boundary, actionController, diceController, board, player1, player2);
 
 		boundary.setActionController(actionController);
 		boundary.setBoardController(boardController);

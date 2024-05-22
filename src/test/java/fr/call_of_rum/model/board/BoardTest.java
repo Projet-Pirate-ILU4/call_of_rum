@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Random;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +23,7 @@ public class BoardTest {
 	public void setUp() throws Exception {
 		pirate = new Pirate(Player.BILL_JAMBE_DE_BOIS, 0, 5);
 		otherPirate = new Pirate(Player.JACK_LE_BORGNE, 0, 5);
-		board = BoardFactory.getDefaultBoard(new ItemRegistry() /* empty registry */);
+		board = BoardFactory.getDefaultBoard(new ItemRegistry() /* empty registry */, new Random());
 		pirate.setBoard(board);
 		otherPirate.setBoard(board);
 	}

@@ -1,5 +1,7 @@
 package fr.call_of_rum;
 
+import java.util.Random;
+
 import fr.call_of_rum.boundary.ConsoleBoundary;
 import fr.call_of_rum.controller.ActionController;
 import fr.call_of_rum.controller.BoardController;
@@ -50,6 +52,7 @@ public class Main {
     	
     	// launch
     	gameController.start();*/
+    	Random rng = new Random();
     	
     	// boundary initialization
     	ConsoleBoundary boundary = new ConsoleBoundary();
@@ -57,7 +60,7 @@ public class Main {
     	// model initialization
     	@SuppressWarnings("unchecked")
     	ItemRegistry itemRegistry = new ItemRegistry().registerItems(Clover::new, Rum::new, Saber::new);
-		Board board = BoardFactory.getDefaultBoard(itemRegistry);
+		Board board = BoardFactory.getDefaultBoard(itemRegistry, rng);
     	Market market = new Market();
     	Pirate pirate1 = new Pirate(Player.JACK_LE_BORGNE, 0, 10);
     	Pirate pirate2 = new Pirate(Player.BILL_JAMBE_DE_BOIS, 0, 10);
@@ -65,11 +68,11 @@ public class Main {
     	pirate2.setBoard(board);
     	
     	// controller initialization
-    	DiceController diceController = new DiceController();
+    	DiceController diceController = new DiceController(rng);
 		PlayerController playerController = new PlayerController(pirate1, pirate2);
 		BoardController boardController = new BoardController(board, playerController);
 		MarketController marketController = new MarketController(market, playerController);
-		MoveController moveController = new MoveController(boundary, diceController, playerController, board, pirate1, pirate2);
+		MoveController moveController = new MoveController(rng, boundary, diceController, playerController, board, pirate1, pirate2);
 		ActionController actionController = new ActionController(marketController, moveController, boardController);
 		GameController gameController = new GameController(boundary, actionController, diceController, board, pirate1, pirate2);
     	

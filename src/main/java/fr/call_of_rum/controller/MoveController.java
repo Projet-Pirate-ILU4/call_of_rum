@@ -1,6 +1,7 @@
 package fr.call_of_rum.controller;
 
 import java.util.Optional;
+import java.util.random.RandomGenerator;
 
 import fr.call_of_rum.boundary.IBoundary;
 import fr.call_of_rum.model.board.Board;
@@ -12,6 +13,8 @@ import fr.call_of_rum.util.CellType;
 
 public class MoveController {
 	
+	private RandomGenerator rng;
+	
 	private IBoundary boundary;
 	
 	private DiceController diceController;
@@ -21,7 +24,8 @@ public class MoveController {
 	private Pirate pirate1;
 	private Pirate pirate2;
 	
-	public MoveController(IBoundary boundary, DiceController diceController, PlayerController playerController, Board board, Pirate pirate1, Pirate pirate2) {
+	public MoveController(RandomGenerator rng, IBoundary boundary, DiceController diceController, PlayerController playerController, Board board, Pirate pirate1, Pirate pirate2) {
+		this.rng = rng;
 		this.boundary = boundary;
 		this.diceController = diceController;
 		this.playerController = playerController;
@@ -84,6 +88,10 @@ public class MoveController {
 			break;
 		default:
 			break;
+		}
+		Pirate otherPirate = pirate.equals(pirate1) ? pirate2 : pirate1;
+		if (pirate.getLocation() == otherPirate.getLocation()) {
+			// TODO implements Duels
 		}
 	}
 	

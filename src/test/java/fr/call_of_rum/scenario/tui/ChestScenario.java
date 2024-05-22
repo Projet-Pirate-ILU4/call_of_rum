@@ -11,7 +11,7 @@ public class ChestScenario extends TUIScenario {
 		super.board = BoardFactory.getFactory()
 				.setSpecialCaseOdds(1.0f)
 				.setChestOdds(1.0f)
-				.build(super.itemRegistry);
+				.build(super.itemRegistry, super.rng);
 	}
 	
 	public static void main(String[] args) {
