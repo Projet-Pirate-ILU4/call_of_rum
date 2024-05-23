@@ -222,6 +222,13 @@ public class ConsoleBoundary implements IBoundary {
 	}
 	
 	@Override
+	public void duel(Player winner) {
+		System.out.println(String.format(bundle.getString("duel"), winner.toString()));
+		System.out.println(String.format(bundle.getString("show_health"), playerController.getHealth(currentPlayer), playerController.getMaxHealth(currentPlayer)));
+		System.out.println(String.format(bundle.getString("show_score"), playerController.getCoins(currentPlayer)));
+	}
+	
+	@Override
 	public void gameEnded(Player winner) {
 		System.out.printf(bundle.getString("game_ended"), winner);
 	}

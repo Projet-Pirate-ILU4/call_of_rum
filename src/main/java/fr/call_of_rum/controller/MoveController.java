@@ -8,6 +8,9 @@ import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.board.cells.Cell;
 import fr.call_of_rum.model.board.cells.Chest;
 import fr.call_of_rum.model.item.Item;
+import fr.call_of_rum.model.item.artefact.Bandana;
+import fr.call_of_rum.model.item.artefact.Gunpowder;
+import fr.call_of_rum.model.item.weapon.Weapon;
 import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.util.CellType;
 
@@ -68,6 +71,67 @@ public class MoveController {
 		// TODO implements
 	}
 	
+	private static final Item GUNPOWDER = new Gunpowder();
+	
+	private float getPirateFightBonus(Pirate pirate) {
+		float fightBonus = 0.0f;
+		Weapon equippedWeapon = pirate.getEquippedWeapon();
+		if (equippedWeapon != null)
+			fightBonus += equippedWeapon.getFightBonus();
+		if (pirate.getInventory().contains(GUNPOWDER))
+			fightBonus *= 1.5;
+		return fightBonus;
+	}
+	
+	private static final float DEFAULT_STEALING_POTENTIAL = 0.2f;
+	private static final Item BANDANA = new Bandana();
+	
+	private void steal(Pirate winner, Pirate loser) {
+		Weapon equippedWeapon = winner.getEquippedWeapon();
+		float stealingPotential = DEFAULT_STEALING_POTENTIAL;
+		if (equippedWeapon != null)
+			stealingPotential = equippedWeapon.getStealingPotential();
+		if (winner.getInventory().contains(BANDANA))
+			stealingPotential *= 1.5;
+		int amountStealed = (int) (stealingPotential * loser.getCoins());
+		winner.setCoins(winner.getCoins() + amountStealed);
+		loser.setCoins(loser.getCoins() - amountStealed);
+	}
+	
+	private static final int DEFAULT_DAMAGES = 1;
+	
+	private void harm(Pirate winner, Pirate loser) {
+		Weapon equippedWeapon = winner.getEquippedWeapon();
+		int damages = DEFAULT_DAMAGES;
+		if (equippedWeapon != null)
+			damages = equippedWeapon.getDamages();
+		loser.setHealthPoints(loser.getHealthPoints() - damages);
+	}
+	
+	private boolean isWinner(Pirate pirate, Pirate otherPirate) {
+		double result = rng.nextDouble();
+		float pirateBonus = getPirateFightBonus(pirate);
+		float otherPirateBonus = getPirateFightBonus(otherPirate);
+		pirateBonus -= otherPirateBonus;
+		double threshold = 0.5 + pirateBonus;
+		return result < threshold;
+	}
+	
+	private void triggerDuel() {
+		Pirate winner;
+		Pirate loser;
+		if (this.isWinner(pirate1, pirate2)) {
+            winner = pirate1;
+            loser = pirate2;
+        } else {
+            winner = pirate2;
+            loser = pirate1;
+        }
+		this.steal(winner, loser);
+		this.harm(winner, loser);
+		boundary.duel(winner.getPlayer());
+	}
+	
 	public void triggerCell(Cell cell, Pirate pirate) {
 		CellType cellType = cell.getType();
 		switch (cellType) {
@@ -89,9 +153,8 @@ public class MoveController {
 		default:
 			break;
 		}
-		Pirate otherPirate = pirate.equals(pirate1) ? pirate2 : pirate1;
-		if (pirate.getLocation() == otherPirate.getLocation()) {
-			// TODO implements Duels
+		if (pirate1.getLocation() == pirate2.getLocation()) {
+			triggerDuel();
 		}
 	}
 	

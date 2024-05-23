@@ -28,16 +28,16 @@ public class GameController {
 	}
 	
 	private Player getWinner() {
-		if (pirates[0].getHealthPoints() == 0) return Player.BILL_JAMBE_DE_BOIS;
-		if (pirates[1].getHealthPoints() == 0) return Player.JACK_LE_BORGNE;
+		if (pirates[0].getHealthPoints() <= 0) return Player.BILL_JAMBE_DE_BOIS;
+		if (pirates[1].getHealthPoints() <= 0) return Player.JACK_LE_BORGNE;
 		if (pirates[0].getCoins() > pirates[1].getCoins()) return Player.JACK_LE_BORGNE;
 		if (pirates[1].getCoins() > pirates[0].getCoins()) return Player.BILL_JAMBE_DE_BOIS;
 		return null;
 	}
 	
 	private boolean isGameFinished() {
-		return  pirates[0].getHealthPoints() == 0 ||
-				pirates[1].getHealthPoints() == 0 ||
+		return  pirates[0].getHealthPoints() <= 0 ||
+				pirates[1].getHealthPoints() <= 0 ||
 				board.getCell(pirates[0]).getNum() == board.getBoardSize() - 1 ||
 				board.getCell(pirates[1]).getNum() == board.getBoardSize() - 1;
 	}

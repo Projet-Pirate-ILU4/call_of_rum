@@ -16,6 +16,10 @@ public interface IGraphicInterface {
 	
 	void showShortcut();
 	
+	void showDuel(Player winner);
+	
+	void updateScores();
+	
 	void printMessage(String msg);
 	
 	void clearMessages();
