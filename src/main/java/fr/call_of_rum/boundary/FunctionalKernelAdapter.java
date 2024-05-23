@@ -4,8 +4,8 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import fr.call_of_rum.controller.accessible.ActionController;
-import fr.call_of_rum.controller.accessible.BoardController;
+import fr.call_of_rum.controller.accessible.IActionController;
+import fr.call_of_rum.controller.accessible.IBoardController;
 import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
@@ -53,6 +53,12 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	public boolean openedChestFound(int coinAmount, Optional<String> itemNamespace) {
 		return graphicInterface.openedChestFound(coinAmount, itemNamespace);
 	}
+	
+	@Override
+	public void duel(Player winner) {
+		graphicInterface.showDuel(winner);
+		graphicInterface.updateScores();
+	}
 
 	@Override
 	public void gameEnded(Player winner) {
@@ -64,14 +70,14 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	*    Requests (downcalls)    *
 	*****************************/
 	
-	private BoardController boardController;
-	private ActionController actionController;
+	private IBoardController boardController;
+	private IActionController actionController;
 	
-	public void setBoardController(BoardController boardController) {
+	public void setBoardController(IBoardController boardController) {
 		this.boardController = boardController;
 	}
 	
-	public void setActionController(ActionController actionController) {
+	public void setActionController(IActionController actionController) {
 		this.actionController = actionController;
 	}
 
@@ -91,33 +97,33 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	}
 
 	@Override
-	public void buyItem(int itemIndex) {
-		actionController.buyItem(itemIndex);
+	public boolean buyItem(int itemIndex) {
+		return actionController.buyItem(itemIndex);
 	}
 
 	@Override
-	public void drink(int itemIndex) {
-		actionController.drink(itemIndex);
+	public boolean drink(int itemIndex) {
+		return actionController.drink(itemIndex);
 	}
 
 	@Override
-	public void equipWeapon(int itemIndex) {
-		actionController.equipWeapon(itemIndex);
+	public boolean equipWeapon(int itemIndex) {
+		return actionController.equipWeapon(itemIndex);
 	}
 
 	@Override
-	public void pickUpItem(int itemIndex) {
-		actionController.pickUpItem(itemIndex);
+	public boolean pickUpItem(int itemIndex) {
+		return actionController.pickUpItem(itemIndex);
 	}
 
 	@Override
-	public void dropItem(int itemIndex) {
-		actionController.dropItem(itemIndex);
+	public boolean dropItem(int itemIndex) {
+		return actionController.dropItem(itemIndex);
 	}
 
 	@Override
-	public void move() {
-		actionController.move();
+	public boolean move() {
+		return actionController.move();
 	}
 
 }

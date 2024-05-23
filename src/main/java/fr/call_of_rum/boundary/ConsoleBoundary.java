@@ -9,10 +9,10 @@ import java.util.Scanner;
 import java.util.function.IntFunction;
 import java.util.function.Supplier;
 
-import fr.call_of_rum.controller.accessible.ActionController;
-import fr.call_of_rum.controller.accessible.BoardController;
-import fr.call_of_rum.controller.accessible.DiceController;
-import fr.call_of_rum.controller.accessible.PlayerController;
+import fr.call_of_rum.controller.accessible.IActionController;
+import fr.call_of_rum.controller.accessible.IBoardController;
+import fr.call_of_rum.controller.accessible.IDiceController;
+import fr.call_of_rum.controller.accessible.IPlayerController;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 
@@ -27,28 +27,28 @@ public class ConsoleBoundary implements IBoundary {
 	private Scanner scan;
 	private Player currentPlayer;
 	
-	private ActionController actionController;
-	private PlayerController playerController;
-	private DiceController diceController;
-	private BoardController boardController;
+	private IActionController actionController;
+	private IPlayerController playerController;
+	private IDiceController diceController;
+	private IBoardController boardController;
 	
 	public ConsoleBoundary() {
 		this.scan = new Scanner(System.in);
 	}
 	
-	public void setActionController(ActionController actionController) {
+	public void setActionController(IActionController actionController) {
 		this.actionController = actionController;
 	}
 	
-	public void setPlayerController(PlayerController playerController) {
+	public void setPlayerController(IPlayerController playerController) {
 		this.playerController = playerController;
 	}
 	
-	public void setDiceController(DiceController diceController) {
+	public void setDiceController(IDiceController diceController) {
 		this.diceController = diceController;
 	}
 	
-	public void setBoardController(BoardController boardController) {
+	public void setBoardController(IBoardController boardController) {
 		this.boardController = boardController;
 	}
 	
@@ -114,7 +114,7 @@ public class ConsoleBoundary implements IBoundary {
 	
 	private final Supplier<List<Option>> cellOptionsSupplier = () -> {
 		List<Option> options = new ArrayList<>();
-		int currentPlayerCell = boardController.getPirateCellNumber(currentPlayer);
+		int currentPlayerCell = playerController.getLocation(currentPlayer);
 		ItemType[] droppedItems = boardController.getDroppedItems(currentPlayerCell);
 		ItemType itemType;
 		
@@ -140,7 +140,7 @@ public class ConsoleBoundary implements IBoundary {
 	private final List<Option> notMovedTurnOptions = List.of(
 			new Option("move", () -> {
 				int diceResult = diceController.getDiceResult();
-				System.out.println(String.format(bundle.getString("moved"), diceResult, (boardController.getPirateCellNumber(currentPlayer) + diceResult) % 30));
+				System.out.println(String.format(bundle.getString("moved"), diceResult, (playerController.getLocation(currentPlayer) + diceResult) % 30));
 				actionController.move();
 				hasMoved = true;
 				}, false),
@@ -219,6 +219,13 @@ public class ConsoleBoundary implements IBoundary {
 	@Override
 	public void tookShortcut() {
 		System.out.println(bundle.getString("took_shortcut"));
+	}
+	
+	@Override
+	public void duel(Player winner) {
+		System.out.println(String.format(bundle.getString("duel"), winner.toString()));
+		System.out.println(String.format(bundle.getString("show_health"), playerController.getHealth(currentPlayer), playerController.getMaxHealth(currentPlayer)));
+		System.out.println(String.format(bundle.getString("show_score"), playerController.getCoins(currentPlayer)));
 	}
 	
 	@Override

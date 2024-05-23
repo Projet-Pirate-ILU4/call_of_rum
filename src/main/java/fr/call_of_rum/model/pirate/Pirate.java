@@ -17,7 +17,7 @@ public class Pirate {
 	private Inventory<Item> inventory = new Inventory<>(3);
 	private IntoxicationGauge intoxicationGauge = new IntoxicationGauge();
 	private Board board;
-		
+	private int location = 0;
 	
 	public Pirate(Player player, int coins, int maxHealthPoints) {
 		this.player = player;
@@ -82,6 +82,14 @@ public class Pirate {
 	
 	public void setBoard(Board newBoard) {
 		board = newBoard;
+	}
+	
+	public int getLocation() {
+		return location;
+	}
+	
+	public void setLocation(int location) {
+		this.location = location;
 	}
 	
 	@Override

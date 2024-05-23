@@ -1,8 +1,5 @@
 package fr.call_of_rum.model.board;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import fr.call_of_rum.model.board.cells.Cell;
 import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.util.ShortcutMethod;
@@ -12,8 +9,6 @@ public class Board {
 	private Cell[] cells;
 	private int boardSize;
 	private int merchant;
-
-	private Map<Pirate, Integer> pirateLocations = new HashMap<>();
 	
 	Board(Cell[] cells, int boardSize, int merchantIndex) {
 		this.cells = cells;
@@ -27,7 +22,7 @@ public class Board {
 	
 	@ShortcutMethod
 	public Cell getCell(Pirate pirate) {
-		return getCell(getPirateLocation(pirate));
+		return getCell(pirate.getLocation());
 	}
 	
 	public int getBoardSize() {
@@ -38,28 +33,19 @@ public class Board {
 		return merchant;
 	}
 	
-	public int getPirateLocation(Pirate pirate) {
-		return pirateLocations.get(pirate);
-	}
-	
-	public void addPirate(Pirate pirate) {
-		pirate.setBoard(this);
-		pirateLocations.put(pirate, 0);
-	}
-	
 	public void movePirateTo(Pirate pirate, int cellNumber) {
-		pirateLocations.replace(pirate, cellNumber % boardSize);
+		pirate.setLocation(cellNumber % boardSize);
 	}
 	
 	@ShortcutMethod
 	public void movePirateTo(Pirate pirate, Pirate otherPirate) {
-		pirateLocations.replace(pirate, getPirateLocation(otherPirate));
+		this.movePirateTo(pirate, otherPirate.getLocation());
 	}
 	
 	@ShortcutMethod
 	public void movePirateToMerchant(Pirate pirate) {
-		if (!canMoveToMerchant(getPirateLocation(pirate))) return;
-		pirateLocations.replace(pirate, merchant);
+		if (!canMoveToMerchant(pirate.getLocation())) return;
+		pirate.setLocation(merchant);
 	}
 
 	public boolean canMoveToMerchant(int cellNumber) {
@@ -68,12 +54,12 @@ public class Board {
 	
 	@ShortcutMethod
 	public boolean canMoveToMerchant(Pirate pirate) {
-		return canMoveToMerchant(getPirateLocation(pirate));
+		return canMoveToMerchant(pirate.getLocation());
 	}
 	
 	@ShortcutMethod
 	public boolean isPirateOnMerchant(Pirate pirate) {
-		return getPirateLocation(pirate) == merchant;
+		return pirate.getLocation() == merchant;
 	}
 	
 	@Override

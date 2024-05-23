@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Random;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,29 +23,29 @@ public class BoardTest {
 	public void setUp() throws Exception {
 		pirate = new Pirate(Player.BILL_JAMBE_DE_BOIS, 0, 5);
 		otherPirate = new Pirate(Player.JACK_LE_BORGNE, 0, 5);
-		board = BoardFactory.getDefaultBoard(new ItemRegistry() /* empty registry */);
-		board.addPirate(pirate);
-		board.addPirate(otherPirate);
+		board = BoardFactory.getDefaultBoard(new ItemRegistry() /* empty registry */, new Random());
+		pirate.setBoard(board);
+		otherPirate.setBoard(board);
 	}
 
 	@Test
 	public void movePirateTest() {
 		// test move pirate to cell number
 		board.movePirateTo(pirate, 4);
-		assertEquals(4, board.getPirateLocation(pirate));
+		assertEquals(4, pirate.getLocation());
 		
 		// test edge case with big values
 		board.movePirateTo(pirate, (board.getBoardSize() * 10));
-		assertEquals(0, board.getPirateLocation(pirate));
+		assertEquals(0, pirate.getLocation());
 		
 		// test edge case with no movement
-		int previousLocation = board.getPirateLocation(pirate);
-		board.movePirateTo(pirate, board.getPirateLocation(pirate));
-		assertEquals(previousLocation, board.getPirateLocation(pirate));
+		int previousLocation = pirate.getLocation();
+		board.movePirateTo(pirate, pirate.getLocation());
+		assertEquals(previousLocation, pirate.getLocation());
 		
 		// test move pirate to pirate
 		board.movePirateTo(pirate, otherPirate);
-		assertEquals(board.getPirateLocation(pirate), board.getPirateLocation(otherPirate));
+		assertEquals(pirate.getLocation(), otherPirate.getLocation());
 	}
 	
 	private void moveUntilNotInZone() {
@@ -64,10 +66,10 @@ public class BoardTest {
 	public void movePirateToMerchantTest() {
 		moveUntilNotInZone();
 		int previousLocation;
-		previousLocation = board.getPirateLocation(pirate);
+		previousLocation = pirate.getLocation();
 		board.movePirateToMerchant(pirate);
 		// pirate didn't moved because he's not in the correct area
-		assertEquals(previousLocation, board.getPirateLocation(pirate));
+		assertEquals(previousLocation, pirate.getLocation());
 		moveUntilInZone();
 		// now the pirate should be in the area
 		assertFalse(board.isPirateOnMerchant(pirate));

@@ -3,7 +3,7 @@ package fr.call_of_rum.controller.accessible;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 
-public interface PlayerController {
+public interface IPlayerController {
 	
 	int getHealth(Player player);
 	
@@ -16,5 +16,7 @@ public interface PlayerController {
 	ItemType[] getInventoryItems(Player player);
 	
 	ItemType getEquippedWeapon(Player player);
+	
+	int getLocation(Player player);
 	
 }

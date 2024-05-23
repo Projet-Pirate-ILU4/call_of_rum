@@ -19,6 +19,8 @@ public interface IBoundary {
 	
 	boolean openedChestFound(int coinAmount, Optional<String> itemNamespace);
 	
+	void duel(Player winner);
+	
 	void gameEnded(Player winner);
 	
 }

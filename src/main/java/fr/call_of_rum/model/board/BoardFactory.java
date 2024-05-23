@@ -1,8 +1,8 @@
 package fr.call_of_rum.model.board;
 
 import java.util.List;
-import java.util.Random;
 import java.util.function.Supplier;
+import java.util.random.RandomGenerator;
 
 import fr.call_of_rum.model.board.cells.Cell;
 import fr.call_of_rum.model.board.cells.Chest;
@@ -14,8 +14,6 @@ import fr.call_of_rum.model.item.ItemRegistry;
 
 public class BoardFactory {
 	
-	private static final Random RNG = new Random();
-	
 	private int numberOfCells = 30;
 	private int[] merchantPossibleCells = new int[] {15};
 	private float specialCaseOdds = 0.3f;
@@ -26,8 +24,8 @@ public class BoardFactory {
 		return new BoardFactory();
 	}
 	
-	public static Board getDefaultBoard(ItemRegistry itemRegistry) {
-		return new BoardFactory().build(itemRegistry);
+	public static Board getDefaultBoard(ItemRegistry itemRegistry, RandomGenerator rng) {
+		return new BoardFactory().build(itemRegistry, rng);
 	}
 	
 	public BoardFactory setNumberOfCells(int numberOfCells) {
@@ -55,41 +53,41 @@ public class BoardFactory {
 		return this;
 	}
 	
-	private Chest generateChest(int num, ItemRegistry itemRegistry) {
-		int goldAmount = RNG.nextInt(chestGoldBounds[0], chestGoldBounds[1]);
+	private Chest generateChest(int num, ItemRegistry itemRegistry, RandomGenerator rng) {
+		int goldAmount = rng.nextInt(chestGoldBounds[0], chestGoldBounds[1]);
 		Item item = null;
 		if (itemRegistry.getSize() > 0) {
-			int randomItemIndex = RNG.nextInt(itemRegistry.getSize());
+			int randomItemIndex = rng.nextInt(itemRegistry.getSize());
 			List<Supplier<Item>> registeredItems = itemRegistry.getRegisteredItemView();
 			item = registeredItems.get(randomItemIndex).get();
 		}
 		return new Chest(num, goldAmount, item);
 	}
 	
-	private Trap pickTrap(int num) {
+	private Trap pickTrap(int num, RandomGenerator rng) {
 		TrapType[] trapTypes = TrapType.values();
-		TrapType trapType = trapTypes[RNG.nextInt(trapTypes.length)];
+		TrapType trapType = trapTypes[rng.nextInt(trapTypes.length)];
 		return new Trap(num, trapType);
 	}
 	
-	private Cell generateCell(int num, ItemRegistry itemRegistry) {
-		if (RNG.nextFloat() >= specialCaseOdds) return new Land(num);
+	private Cell generateCell(int num, ItemRegistry itemRegistry, RandomGenerator rng) {
+		if (rng.nextFloat() >= specialCaseOdds) return new Land(num);
 		
-		if (RNG.nextFloat() < chestOdds) return generateChest(num, itemRegistry);
+		if (rng.nextFloat() < chestOdds) return generateChest(num, itemRegistry, rng);
 		
-		return pickTrap(num);
+		return pickTrap(num, rng);
 	}
 	
-	public Board build(ItemRegistry itemRegistry) {
+	public Board build(ItemRegistry itemRegistry, RandomGenerator rng) {
 		Cell[] cells = new Cell[numberOfCells];
 		// first and last cells are normal cells
 		cells[0] = new Land(0);
 		cells[numberOfCells-1] = new Land(29);
 		// the other are ranomly generated
 		for (int i = 1; i < numberOfCells - 1; i++) {
-			cells[i] = generateCell(i, itemRegistry);
+			cells[i] = generateCell(i, itemRegistry, rng);
 		}
-		int merchant = merchantPossibleCells[RNG.nextInt(merchantPossibleCells.length)];
+		int merchant = merchantPossibleCells[rng.nextInt(merchantPossibleCells.length)];
 		return new Board(cells, numberOfCells, merchant);
 	}
 	
