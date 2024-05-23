@@ -410,6 +410,10 @@ public class Market extends javax.swing.JDialog {
             public String getDescribe(ItemType itemType) {
                 return "Lorem ipsum dolor sit amet, consectetur adipiscing elit,";
             }
+            
+            public void pickUpItem(int itemIndex){
+                return;
+            }
         }).setVisible(true));
     }
 

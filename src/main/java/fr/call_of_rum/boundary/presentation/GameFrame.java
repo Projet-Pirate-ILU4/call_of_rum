@@ -58,9 +58,9 @@ public class GameFrame extends javax.swing.JFrame {
         endTurnFirstPlayer = new javax.swing.JButton();
         playerPanel3 = new fr.call_of_rum.boundary.presentation.PlayerPanel();
         jPanel4 = new javax.swing.JPanel();
-        boardPanel1 = new fr.call_of_rum.boundary.presentation.BoardPanel();
-        boardPanel1.setCellsType(dialog.getCellsType());
-        boardPanel1.initCells(dialog);
+        boardPanel = new fr.call_of_rum.boundary.presentation.BoardPanel();
+        boardPanel.initCells(dialog);
+        boardPanel.setCellsType(dialog.getCellsType());
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         dicePanel1 = new fr.call_of_rum.boundary.presentation.DicePanel();
@@ -175,7 +175,7 @@ public class GameFrame extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1)
-                            .addComponent(boardPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(boardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
@@ -186,7 +186,7 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(dicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(boardPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -216,6 +216,8 @@ public class GameFrame extends javax.swing.JFrame {
             this.notifyAll();
         }
         endTurnFirstPlayer.setEnabled(false);
+        boardPanel.setToken1Movable(false);
+        boardPanel.setToken2Movable(true);
     }//GEN-LAST:event_endTurnFirstPlayerActionPerformed
 
     private void endTurnSecondPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endTurnSecondPlayerActionPerformed
@@ -223,7 +225,8 @@ public class GameFrame extends javax.swing.JFrame {
             dialog.endTurn();
             this.notifyAll();
         }
-        endTurnSecondPlayer.setEnabled(false);
+        boardPanel.setToken1Movable(true);
+        boardPanel.setToken2Movable(false);
     }//GEN-LAST:event_endTurnSecondPlayerActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -232,10 +235,14 @@ public class GameFrame extends javax.swing.JFrame {
     
     public void enableFirstPlayer() {
         endTurnFirstPlayer.setEnabled(true);
+        boardPanel.setToken1Movable(true);
+        boardPanel.setToken2Movable(false);
     }
     
     public void enableSecondPlayer() {
     	endTurnSecondPlayer.setEnabled(true);
+        boardPanel.setToken1Movable(false);
+        boardPanel.setToken2Movable(true);
     }
     
 	public void printMessage(String msg) {
@@ -345,13 +352,18 @@ public class GameFrame extends javax.swing.JFrame {
                 public int getNumberOfDroppedItems(int cellIndex){
                     return -1;
                 }
+                
+                @Override
+                public void pickUpItem(int itemIndex){
+                    return ;
+                }
 
             }).setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private fr.call_of_rum.boundary.presentation.BoardPanel boardPanel1;
+    private fr.call_of_rum.boundary.presentation.BoardPanel boardPanel;
     private fr.call_of_rum.boundary.presentation.DicePanel dicePanel1;
     private javax.swing.JButton endTurnFirstPlayer;
     private javax.swing.JButton endTurnSecondPlayer;

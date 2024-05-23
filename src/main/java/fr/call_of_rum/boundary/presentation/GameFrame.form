@@ -190,7 +190,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="jScrollPane1" max="32767" attributes="0"/>
-                                      <Component id="boardPanel1" max="32767" attributes="0"/>
+                                      <Component id="boardPanel" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
@@ -207,7 +207,7 @@
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="boardPanel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="boardPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="118" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -216,9 +216,9 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="fr.call_of_rum.boundary.presentation.BoardPanel" name="boardPanel1">
+                <Component class="fr.call_of_rum.boundary.presentation.BoardPanel" name="boardPanel">
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.BoardPanel();&#xd;&#xa;boardPanel1.setCellsType(dialog.getCellsType());&#xd;&#xa;boardPanel1.initCells(dialog);"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fr.call_of_rum.boundary.presentation.BoardPanel();&#xd;&#xa;boardPanel.initCells(dialog);&#xd;&#xa;boardPanel.setCellsType(dialog.getCellsType());"/>
                   </AuxValues>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane1">

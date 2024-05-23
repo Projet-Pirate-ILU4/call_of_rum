@@ -189,6 +189,10 @@ public class Dialog implements IDialog, IGraphicInterface {
         public int getNumberOfDroppedItems(int cellIndex){
             return -1;
         }
+        @Override
+        public void pickUpItem(int itemIndex){
+            return;
+        }
 
 
 }

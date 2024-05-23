@@ -12,7 +12,6 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.util.List;
 import java.awt.image.BufferedImage;
-import java.util.ListIterator;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -21,7 +20,7 @@ import javax.swing.JComponent;
  *
  * @author Solène
  */
-public class CellPanel extends javax.swing.JPanel {
+public class CellPanel extends javax.swing.JLayeredPane {
 
     private CellType cellType;
     private boolean arrival=false;
@@ -35,6 +34,7 @@ public class CellPanel extends javax.swing.JPanel {
      */
     public CellPanel() {
         initComponents();
+        this.moveToFront(itemDroppedPanel);
     }
 
     /**
@@ -52,14 +52,12 @@ public class CellPanel extends javax.swing.JPanel {
 
         setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setMinimumSize(new java.awt.Dimension(100, 100));
-        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(100, 100));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 formMouseReleased(evt);
             }
         });
-        setLayout(null);
 
         numLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         numLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -109,7 +107,7 @@ public class CellPanel extends javax.swing.JPanel {
         cellType=type;
         putImage();
     }
-    // TODO change images
+
     public void putImage(){
         BufferedImage typeImage = ImageLoader.loadImage("presentation/cell/"+cellType.toString().toLowerCase()+".png");
         Image scaledTypeImage;
@@ -154,9 +152,9 @@ public class CellPanel extends javax.swing.JPanel {
     
     // ajoute tout les ItemDrop à la case (attention, ajout sans vérification de duplicat)
     private void addAllItemDrop() {
-        ItemType[] droppedItems = dialog.getDroppedItems(this.num);
+        ItemType[] droppedItems = dialog.getDroppedItems(this.num-1);
         for (int i = 0; i<droppedItems.length; i++) {
-            addComponentRandom(itemDroppedPanel, new ItemDrop(dialog, droppedItems[i], i));
+            addComponentRandom(this.itemDroppedPanel, new ItemDrop(dialog, droppedItems[i], i, this));
         }
     }
 
@@ -170,14 +168,15 @@ public class CellPanel extends javax.swing.JPanel {
     public void notifyDrop(ItemType item) {
         int numberOfDroppedItems = dialog.getNumberOfDroppedItems(this.num);
         // numberOfDroppedItems ici est l'indice du nouvel objet
-        addComponentRandom(itemDroppedPanel, new ItemDrop(dialog, item, numberOfDroppedItems));
+        addComponentRandom(this.itemDroppedPanel, new ItemDrop(dialog, item, numberOfDroppedItems, this));
     }
 
     // apellée au moment où un pick up intervient (par un ItemDrop)
     public void pickUpItem() {
         // update presque-innévitable, donc on vas préférer tout reconstruire
         // destruction des ItemDrop précédents:
-        itemDroppedPanel.removeAll();
+        this.itemDroppedPanel.removeAll();
+        this.moveToFront(itemDroppedPanel);
         addAllItemDrop();
     }
     

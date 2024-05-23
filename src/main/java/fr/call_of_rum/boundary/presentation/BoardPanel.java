@@ -24,22 +24,13 @@ public class BoardPanel extends javax.swing.JLayeredPane {
     private CellPanel[] cellsPanel;
     private boolean isToken1Movable = true;
     private boolean isToken2Movable = false;
-    /*private boolean isToken1Clicked = false;
-    //private boolean isToken2Clicked = false;
     
-    public void setToken1AsClicked() {
-        isToken1Clicked = true;
+    public void setToken1Movable(boolean choice) {
+        isToken1Movable = choice;
     }
     
-    public void setToken2AsClicked() {
-        isToken2Clicked = true;
-    }*/
-    public void setToken1asMovable() {
-        isToken1Movable = true;
-    }
-    
-    public void setToken2asMovable() {
-        isToken2Movable = true;
+    public void setToken2Movable(boolean choice) {
+        isToken2Movable = choice;
     }
     
     public boolean getisToken1Movable() {
@@ -90,8 +81,8 @@ public class BoardPanel extends javax.swing.JLayeredPane {
         cellsPanel[27]=cellPanel28;
         cellsPanel[28]=cellPanel29;
         cellsPanel[29]=cellPanel30;
-        this.moveToFront(tokenPanelPlayer1);
         this.moveToFront(tokenPanelPlayer2);
+        this.moveToFront(tokenPanelPlayer1);
     }
     
     public CellPanel[] getCellsPanel(){
@@ -419,9 +410,11 @@ public class BoardPanel extends javax.swing.JLayeredPane {
     
     public void notifyDrop(ItemType itemType){
         if (isToken1Movable){
+            this.moveToBack(tokenPanelPlayer1);
             this.tokenPanelPlayer1.getPosition().notifyDrop(itemType);
         }
         if (isToken2Movable){
+            this.moveToBack(tokenPanelPlayer2);
             this.tokenPanelPlayer2.getPosition().notifyDrop(itemType);
         }
     }

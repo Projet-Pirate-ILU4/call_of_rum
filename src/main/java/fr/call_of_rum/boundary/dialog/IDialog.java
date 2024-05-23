@@ -53,4 +53,6 @@ public interface IDialog {
     ItemType[] getDroppedItems(int cellIndex);
     
     int getNumberOfDroppedItems(int cellIndex);
+    
+    public void pickUpItem(int itemIndex);
 }
