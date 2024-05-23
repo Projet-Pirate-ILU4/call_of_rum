@@ -8,6 +8,7 @@ import fr.call_of_rum.boundary.IFunctionalKernel;
 import fr.call_of_rum.boundary.IGraphicInterface;
 import fr.call_of_rum.boundary.presentation.BoardPanel;
 import fr.call_of_rum.boundary.presentation.GameFrame;
+import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
@@ -60,6 +61,7 @@ public class Dialog implements IDialog, IGraphicInterface {
 	public int checkfound(Player player) {
 		return 200;
 	}
+	
 
 	private boolean isTurnEnded;
 
