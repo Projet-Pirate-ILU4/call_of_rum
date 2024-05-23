@@ -71,18 +71,6 @@ public class MoveController {
 		// TODO implements
 	}
 	
-	private static final Item GUNPOWDER = new Gunpowder();
-	
-	private float getPirateFightBonus(Pirate pirate) {
-		float fightBonus = 0.0f;
-		Weapon equippedWeapon = pirate.getEquippedWeapon();
-		if (equippedWeapon != null)
-			fightBonus += equippedWeapon.getFightBonus();
-		if (pirate.getInventory().contains(GUNPOWDER))
-			fightBonus *= 1.5;
-		return fightBonus;
-	}
-	
 	private static final float DEFAULT_STEALING_POTENTIAL = 0.2f;
 	private static final Item BANDANA = new Bandana();
 	
@@ -108,13 +96,48 @@ public class MoveController {
 		loser.setHealthPoints(loser.getHealthPoints() - damages);
 	}
 	
+	private static final Item GUNPOWDER = new Gunpowder();
+	
+	private double getPirateFightBonus(Pirate pirate) {
+		double fightBonus = 1.0; // start with even chances
+		
+		Weapon equippedWeapon = pirate.getEquippedWeapon();
+		if (equippedWeapon != null)
+			fightBonus += equippedWeapon.getFightBonus();
+		
+		if (pirate.getInventory().contains(GUNPOWDER))
+			fightBonus = 1.5 * fightBonus;
+		
+		return fightBonus;
+	}
+	
+	private static final double EPSILON = 0.0001;
+	
 	private boolean isWinner(Pirate pirate, Pirate otherPirate) {
-		double result = rng.nextDouble();
-		float pirateBonus = getPirateFightBonus(pirate);
-		float otherPirateBonus = getPirateFightBonus(otherPirate);
-		pirateBonus -= otherPirateBonus;
-		double threshold = 0.5 + pirateBonus;
-		return result < threshold;
+		// getting pirates intoxications
+		double pirateIntoxication = pirate.getIntoxicationGauge().getLevel();
+		double otherPirateIntoxication = otherPirate.getIntoxicationGauge().getLevel();
+		
+		// calculation of pirate chance bonuses
+		double pirateBonus = getPirateFightBonus(pirate);
+		double otherPirateBonus = getPirateFightBonus(otherPirate);
+		
+		// reducing chances by intoxication
+		// EPSILON is used to avoid division by zero
+		double pirateChance = pirateBonus * Math.max(1-pirateIntoxication, EPSILON);
+		double otherPirateChance = otherPirateBonus * Math.max(1-otherPirateIntoxication, EPSILON);
+		
+		System.out.println(pirateChance + ", " + otherPirateChance);
+		
+		// relative chance: the chance of pirate to win against otherPirate
+		double relativeChance = pirateChance / otherPirateChance;
+		
+		// calculation of the pirate winning chance knowing the relative chance
+		double pirateWinChance = relativeChance/(1+relativeChance);
+	    
+	    System.out.println("pirateWinChance: " + pirateWinChance);
+		
+		return rng.nextDouble() < pirateWinChance;
 	}
 	
 	private void triggerDuel() {
