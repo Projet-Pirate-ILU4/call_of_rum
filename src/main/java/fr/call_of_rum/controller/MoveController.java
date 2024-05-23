@@ -10,6 +10,7 @@ import fr.call_of_rum.model.board.cells.Chest;
 import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.model.item.artefact.Bandana;
 import fr.call_of_rum.model.item.artefact.Gunpowder;
+import fr.call_of_rum.model.item.artefact.LucidityStone;
 import fr.call_of_rum.model.item.weapon.Weapon;
 import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.util.CellType;
@@ -111,12 +112,18 @@ public class MoveController {
 		return fightBonus;
 	}
 	
+	private static final Item LUCIDITY_STONE = new LucidityStone();
+	
 	private static final double EPSILON = 0.0001;
 	
 	private boolean isWinner(Pirate pirate, Pirate otherPirate) {
 		// getting pirates intoxications
 		double pirateIntoxication = pirate.getIntoxicationGauge().getLevel();
 		double otherPirateIntoxication = otherPirate.getIntoxicationGauge().getLevel();
+		
+		// ignore intoxication effects if pirate have a lucidity stone
+		if (pirate.getInventory().contains(LUCIDITY_STONE)) pirateIntoxication = 0.0;
+		if (otherPirate.getInventory().contains(LUCIDITY_STONE)) otherPirateIntoxication = 0.0;
 		
 		// calculation of pirate chance bonuses
 		double pirateBonus = getPirateFightBonus(pirate);
@@ -127,15 +134,11 @@ public class MoveController {
 		double pirateChance = pirateBonus * Math.max(1-pirateIntoxication, EPSILON);
 		double otherPirateChance = otherPirateBonus * Math.max(1-otherPirateIntoxication, EPSILON);
 		
-		System.out.println(pirateChance + ", " + otherPirateChance);
-		
 		// relative chance: the chance of pirate to win against otherPirate
 		double relativeChance = pirateChance / otherPirateChance;
 		
 		// calculation of the pirate winning chance knowing the relative chance
 		double pirateWinChance = relativeChance/(1+relativeChance);
-	    
-	    System.out.println("pirateWinChance: " + pirateWinChance);
 		
 		return rng.nextDouble() < pirateWinChance;
 	}
