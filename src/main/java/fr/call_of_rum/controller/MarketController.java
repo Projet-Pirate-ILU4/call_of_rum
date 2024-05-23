@@ -33,15 +33,17 @@ public class MarketController implements IMarketController {
 		return market.getPrice(itemIndex);
 	}
 	
-	public void buy(Pirate pirate, int itemIndex) {
+	public boolean buy(Pirate pirate, int itemIndex) {
         int price = market.getPrice(itemIndex);
         
         int savings = pirate.getCoins();
         if (savings >= price) {
     		Item boughtItem = market.getItem(itemIndex);
-    		playerController.takeItem(pirate, boughtItem);
-        	pirate.setCoins(savings - price);
+    		boolean itemTook = playerController.takeItem(pirate, boughtItem);
+        	if (itemTook) pirate.setCoins(savings - price);
+        	return itemTook;
         }
+        return false;
 	}
 
 }

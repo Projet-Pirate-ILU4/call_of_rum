@@ -11,7 +11,8 @@ public class ActionController implements IActionController {
 	private MarketController marketController;
 	private MoveController moveController;
 	private BoardController boardController;
-	
+
+	private boolean canMove = false;
 	private Pirate pirate;
 	
 	public ActionController(MarketController marketController, MoveController moveController, BoardController boardController) {
@@ -21,24 +22,27 @@ public class ActionController implements IActionController {
 	}
 	
 	public void setCurrentPirate(Pirate pirate) {
+		this.canMove = true;
 		this.pirate = pirate;
 	}
 	
 	@Override
-	public void buyItem(int itemIndex) {
-		marketController.buy(pirate, itemIndex);
+	public boolean buyItem(int itemIndex) {
+		return marketController.buy(pirate, itemIndex);
 	}
 
 	@Override
-	public void drink(int itemIndex) {
+	public boolean drink(int itemIndex) {
 		Item item = pirate.getInventory().get(itemIndex);
 		if (item instanceof Liquid liquid) {
 			pirate.drink(liquid);
+			return true;
 		}
+		return false;
 	}
 
 	@Override
-	public void equipWeapon(int itemIndex) {
+	public boolean equipWeapon(int itemIndex) {
 		Item item = pirate.getInventory().get(itemIndex);
 		if (item instanceof Weapon weapon) {
 			Weapon equippedWeapon = pirate.getEquippedWeapon();
@@ -46,23 +50,31 @@ public class ActionController implements IActionController {
 			if (equippedWeapon != null) {
 				pirate.getInventory().add(equippedWeapon);
 			}
+			return true;
 		}
+		return false;
 	}
 
 	@Override
-	public void pickUpItem(int itemIndex) {
-		boardController.pickUpItem(pirate, itemIndex);
+	public boolean pickUpItem(int itemIndex) {
+		return boardController.pickUpItem(pirate, itemIndex);
 	}
 
 	@Override
-	public void dropItem(int itemIndex) {
+	public boolean dropItem(int itemIndex) {
 		Item item = pirate.getInventory().get(itemIndex);
+		if (item == null) return false;
 		item.drop();
+		return true;
 	}
-
+	
 	@Override
-	public void move() {
-		moveController.movePirate(pirate);
+	public boolean move() {
+		if (canMove) {
+			moveController.movePirate(pirate);
+			this.canMove = false;
+		}
+		return canMove;
 	}
 
 }

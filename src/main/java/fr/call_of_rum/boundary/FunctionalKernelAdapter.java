@@ -53,6 +53,12 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	public boolean openedChestFound(int coinAmount, Optional<String> itemNamespace) {
 		return graphicInterface.openedChestFound(coinAmount, itemNamespace);
 	}
+	
+	@Override
+	public void duel(Player winner) {
+		graphicInterface.showDuel(winner);
+		graphicInterface.updateScores();
+	}
 
 	@Override
 	public void gameEnded(Player winner) {
@@ -91,33 +97,33 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	}
 
 	@Override
-	public void buyItem(int itemIndex) {
-		actionController.buyItem(itemIndex);
+	public boolean buyItem(int itemIndex) {
+		return actionController.buyItem(itemIndex);
 	}
 
 	@Override
-	public void drink(int itemIndex) {
-		actionController.drink(itemIndex);
+	public boolean drink(int itemIndex) {
+		return actionController.drink(itemIndex);
 	}
 
 	@Override
-	public void equipWeapon(int itemIndex) {
-		actionController.equipWeapon(itemIndex);
+	public boolean equipWeapon(int itemIndex) {
+		return actionController.equipWeapon(itemIndex);
 	}
 
 	@Override
-	public void pickUpItem(int itemIndex) {
-		actionController.pickUpItem(itemIndex);
+	public boolean pickUpItem(int itemIndex) {
+		return actionController.pickUpItem(itemIndex);
 	}
 
 	@Override
-	public void dropItem(int itemIndex) {
-		actionController.dropItem(itemIndex);
+	public boolean dropItem(int itemIndex) {
+		return actionController.dropItem(itemIndex);
 	}
 
 	@Override
-	public void move() {
-		actionController.move();
+	public boolean move() {
+		return actionController.move();
 	}
 
 }

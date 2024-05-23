@@ -2,16 +2,16 @@ package fr.call_of_rum.controller.accessible;
 
 public interface IActionController {
 	
-	void buyItem(int itemIndex);
+	boolean buyItem(int itemIndex);
 	
-	void drink(int itemIndex);
+	boolean drink(int itemIndex);
 	
-	void equipWeapon(int itemIndex);
+	boolean equipWeapon(int itemIndex);
 	
-	void pickUpItem(int itemIndex);
+	boolean pickUpItem(int itemIndex);
 	
-	void dropItem(int itemIndex);
+	boolean dropItem(int itemIndex);
 	
-	void move();
+	boolean move();
 	
 }

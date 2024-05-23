@@ -45,11 +45,11 @@ public class BoardController implements IBoardController {
 		return droppedItems.size();
 	}
 	
-	public void pickUpItem(Pirate pirate, int itemIndex) {
+	public boolean pickUpItem(Pirate pirate, int itemIndex) {
 		Cell cell = board.getCell(pirate);
 		List<Item> droppedItems = cell.getDroppedItems();
 		Item pickedItem = droppedItems.remove(itemIndex);
-		playerController.takeItem(pirate, pickedItem);
+		return playerController.takeItem(pirate, pickedItem);
 	}
 
 }
