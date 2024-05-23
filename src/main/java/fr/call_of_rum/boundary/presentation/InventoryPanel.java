@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import fr.call_of_rum.boundary.dialog.Dialog;
 import fr.call_of_rum.boundary.dialog.IDialog;
+import fr.call_of_rum.util.ItemType;
 
 /**
  *
@@ -124,28 +125,43 @@ public class InventoryPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
+    private IDialog dialog;
     public void setDialog(IDialog dialog) {
 		this.dialog = dialog;
     }
     
-    private IDialog dialog;
+    public ItemType[] inventory = new ItemType[3];
 
+    public ItemType[] setInventory(ItemType item, int position) {
+    	if (inventory[position] == null) {
+    		inventory[position] = item;
+    	}
+    	return inventory;
+    }
+    
+    
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-    	int itemIndex = 0;
-        popUpItem(itemIndex);
+        if (inventory[0] != null) {
+            int itemIndex = inventory[0].ordinal();
+            popUpItem(itemIndex,0);
+        }
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-    	int itemIndex = 0;
-    	popUpItem(itemIndex);
+        if (inventory[1] != null) {
+            int itemIndex = inventory[1].ordinal();
+            popUpItem(itemIndex,1);
+        }
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
-    	int itemIndex = 0;
-    	popUpItem(itemIndex);
+        if (inventory[2] != null) {
+            int itemIndex = inventory[2].ordinal();
+            popUpItem(itemIndex,2);
+        }
     }//GEN-LAST:event_jPanel3MouseClicked
 
-void popUpItem(int itemIndex){
+void popUpItem(int itemIndex, int inventoryIndex){
     String message = "";
        
         message += "Que voulez-vous faire avec cet objet ?";
@@ -154,10 +170,12 @@ void popUpItem(int itemIndex){
         switch (choice) {
             case JOptionPane.YES_OPTION:
             	dialog.useItem(itemIndex);
+            	inventory[inventoryIndex] = null;
                 System.out.println("L'objet a été utilisé");
                 break;
             case JOptionPane.NO_OPTION:
             	dialog.throwItem(itemIndex);
+            	inventory[inventoryIndex] = null;
                 System.out.println("L'objet a été jeté");
                 break;
             case JOptionPane.CANCEL_OPTION:
