@@ -12,7 +12,7 @@ public enum ItemType {
     CLOVER,
     BANDANA,
     GUNPOWDER,
-    LICIDITY_STONE,
+    LUCIDITY_STONE,
     RUM,
     HEALTH_POTION,
     SABER,

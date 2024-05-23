@@ -5,6 +5,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import fr.call_of_rum.boundary.dialog.IDialog;
 import fr.call_of_rum.util.ItemType;
+import fr.call_of_rum.util.Player;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class InventoryPanel extends javax.swing.JPanel {
 
@@ -124,6 +128,10 @@ public class InventoryPanel extends javax.swing.JPanel {
         this.dialog = dialog;
     }
 
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     public void setInventory(ItemType item) {
         for (int position = 0; position < inventory.length; position++) {
             if (inventory[position] == null) {
@@ -138,13 +146,17 @@ public class InventoryPanel extends javax.swing.JPanel {
 
     private void updateImage(int position) {
         if (inventory[position] != null) {
-            String imagePath = "/main/ressources/presentation/" + inventory[position].toString().toLowerCase() + ".png";
-            ImageIcon icon = ImageLoader.loadIcon(imagePath);
-            imageLabels[position].setIcon(icon);
+            BufferedImage image = ImageLoader.loadImage("presentation/"+inventory[position].toString().toLowerCase()+".png");
+            Image scaledTypeImage;
+            scaledTypeImage = image.getScaledInstance(imageLabels[position].getWidth(), imageLabels[position].getHeight(), Image.SCALE_SMOOTH);
+
+            ImageIcon typeIcon = new ImageIcon(scaledTypeImage);
+            imageLabels[position].setIcon(typeIcon);
         } else {
             imageLabels[position].setIcon(null);
         }
     }
+
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         if (inventory[0] != null) {
@@ -175,13 +187,13 @@ public class InventoryPanel extends javax.swing.JPanel {
             int choice = JOptionPane.showOptionDialog(null, message, "Actions sur l'objet", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[3]);
             switch (choice) {
                 case JOptionPane.YES_OPTION:
-                	dialog.useItem(itemIndex);
+                	dialog.useItem(itemIndex,player);
                 	inventory[inventoryIndex] = null;
                 	updateImage(inventoryIndex);
                     System.out.println("L'objet a été utilisé");
                     break;
                 case JOptionPane.NO_OPTION:
-                	dialog.throwItem(itemIndex);
+                	dialog.throwItem(itemIndex,player);
                 	inventory[inventoryIndex] = null;
                 	updateImage(inventoryIndex);
                     System.out.println("L'objet a été jeté");
@@ -197,7 +209,8 @@ public class InventoryPanel extends javax.swing.JPanel {
             }
     }
 
-    private javax.swing.JLabel jLabel1;<>
+    private Player player;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
