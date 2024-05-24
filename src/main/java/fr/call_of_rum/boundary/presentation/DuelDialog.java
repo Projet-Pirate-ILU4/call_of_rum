@@ -142,7 +142,7 @@ public class DuelDialog extends javax.swing.JDialog {
     });
 
     private void printWinner() {
-        descriptionLabel.setText(player.toString().replace('_',' '));
+        descriptionLabel.setText(player.toString().replace('_',' ')+ " a gagné le duel !!!!!");
         setImage(player);
         timer1.stop();
         timer2.start();
