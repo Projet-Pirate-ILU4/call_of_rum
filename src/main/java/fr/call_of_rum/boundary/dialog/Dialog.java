@@ -268,9 +268,8 @@ public class Dialog implements IDialog, IGraphicInterface {
 		isTurnEnded = false;
 	}
 
-	@Override
 	public Player getPlayer2() {
-		return Player.BILL_JAMBE_DE_BOIS;
+		return Player.JACK_LE_BORGNE;
 	}
 
 	@Override
@@ -278,4 +277,8 @@ public class Dialog implements IDialog, IGraphicInterface {
 		return Player.BILL_JAMBE_DE_BOIS;
 	}
 
+	@Override
+	public Player getDuelWinner() {
+		return null;
+	}
 }

@@ -51,6 +51,8 @@ public class GameFrame extends Presentation {
         playerPanel3.setPlayer(player1);
         playerPanel2.setPlayer(player2);
         getContentPane().setBackground(Color.WHITE);
+        endTurnFirstPlayerActionPerformed(null);
+
     }
 
     /**
@@ -231,7 +233,7 @@ public class GameFrame extends Presentation {
             this.notifyAll();
         }
         endTurnFirstPlayer.setEnabled(false);
-        playerPanel2.setBorder(BorderFactory.createLineBorder(Color.RED));
+        playerPanel2.setBorder(BorderFactory.createLineBorder(Color.red));
         boardPanel.setToken1Movable(false);
         boardPanel.setToken2Movable(true);
     }//GEN-LAST:event_endTurnFirstPlayerActionPerformed
@@ -243,7 +245,7 @@ public class GameFrame extends Presentation {
         }
         endTurnSecondPlayer.setEnabled(false);
         boardPanel.setToken1Movable(true);
-        playerPanel3.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        playerPanel3.setBorder(BorderFactory.createLineBorder(Color.blue));
         boardPanel.setToken2Movable(false);
     }//GEN-LAST:event_endTurnSecondPlayerActionPerformed
 

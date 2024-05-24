@@ -33,7 +33,7 @@ public class BombeDialog extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("BOMM !!`");
+        setTitle("BOMM !!");
 
         jLabel1.setText("Vous êtes tomber sur une bombe");
 

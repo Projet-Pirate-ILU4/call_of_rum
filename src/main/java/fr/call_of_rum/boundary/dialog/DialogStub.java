@@ -140,12 +140,17 @@ public class DialogStub implements IDialog {
 	}
 
 	public Player getPlayer2() {
-		return Player.BILL_JAMBE_DE_BOIS;
+		return Player.JACK_LE_BORGNE;
 	}
 
 	@Override
 	public Player getPlayer1() {
 		return Player.BILL_JAMBE_DE_BOIS;
+	}
+
+	@Override
+	public Player getDuelWinner() {
+		return Player.JACK_LE_BORGNE;
 	}
 
 }
