@@ -2,7 +2,9 @@ package fr.call_of_rum.boundary.dialog;
 
 import java.awt.EventQueue;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import fr.call_of_rum.boundary.IFunctionalKernel;
 import fr.call_of_rum.boundary.IGraphicInterface;
@@ -220,13 +222,32 @@ public class Dialog implements IDialog, IGraphicInterface {
 	}
 
 	@Override
+	public boolean isLiquid(ItemType itemType) {
+		return itemType == ItemType.HEALTH_POTION || itemType == ItemType.RUM;
+	}
+
+	@Override
+	public boolean isWeapon(ItemType itemType) {
+		return itemType == ItemType.DAGGER ||
+				itemType == ItemType.FLINTLOCK_PISTOL ||
+				itemType == ItemType.MUSKET ||
+				itemType == ItemType.SABER;
+	}
+	
+	private static final String LANGUAGE_BASE_FILENAME = "messages";
+	private static final Locale LOCALE = Locale.FRENCH;
+	
+	// language bundle
+	private ResourceBundle bundle = ResourceBundle.getBundle(LANGUAGE_BASE_FILENAME, LOCALE);
+
+	@Override
 	public String getItemName(ItemType itemType) {
-		return itemType.toString();
+		return bundle.getString(itemType.toString().toLowerCase());
 	}
 
 	@Override
 	public String getItemDescription(ItemType itemType) {
-		return "Lorem ipsum dolor sit amet, consectetur adipiscing elit,";
+		return bundle.getString(itemType.toString().toLowerCase() + "_description");
 	}
 	
 	@Override

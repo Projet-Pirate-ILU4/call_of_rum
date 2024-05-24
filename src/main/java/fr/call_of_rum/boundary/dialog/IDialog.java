@@ -67,6 +67,10 @@ public interface IDialog {
 	String getItemDescription(ItemType itemType);
 	
 	// ### SPECIAL REQUESTS ###
+	boolean isLiquid(ItemType itemType);
+	
+	boolean isWeapon(ItemType itemType);
+	
 	void print(String s);
 	
 	void endTurn();

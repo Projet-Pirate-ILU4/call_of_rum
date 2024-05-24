@@ -107,6 +107,19 @@ public class DialogStub implements IDialog {
 	}
 
 	@Override
+	public boolean isLiquid(ItemType itemType) {
+		return itemType == ItemType.HEALTH_POTION || itemType == ItemType.RUM;
+	}
+
+	@Override
+	public boolean isWeapon(ItemType itemType) {
+		return itemType == ItemType.DAGGER ||
+				itemType == ItemType.FLINTLOCK_PISTOL ||
+				itemType == ItemType.MUSKET ||
+				itemType == ItemType.SABER;
+	}
+
+	@Override
 	public String getItemName(ItemType itemType) {
 		return itemType.toString();
 	}
