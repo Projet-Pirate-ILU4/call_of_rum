@@ -273,7 +273,7 @@ public class Market extends javax.swing.JDialog {
     public void toogle(GraphicsCard graphicsCard) {
         if (focus.get(graphicsCard)) {
             unFocusitem(graphicsCard);
-        } else {
+        } else if (score < dialog.getPrice(graphicsCard.getItemType()) && size == 0) {
             focusItem(graphicsCard);
         }
         System.out.println("\nContenu de la HashMap :");

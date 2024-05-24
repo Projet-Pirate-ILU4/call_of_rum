@@ -5,7 +5,10 @@
 package fr.call_of_rum.boundary.presentation;
 
 import fr.call_of_rum.boundary.dialog.Dialog;
+import fr.call_of_rum.boundary.dialog.IDialog;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import javax.swing.JFrame;
 
@@ -18,6 +21,13 @@ public class DicePanel extends javax.swing.JPanel {
     /**
      * Creates new form DicePanel
      */
+
+    private IDialog dialog;
+
+    public void setDialog(IDialog dialog) {
+        this.dialog = dialog;
+    }
+
     public DicePanel() {
         initComponents();
     }
@@ -119,6 +129,7 @@ public class DicePanel extends javax.swing.JPanel {
         jButton1.setEnabled(false);
         animDice(dice1);
         animDice(dice2);
+        setValue(dialog.throwDice());
         jButton1.setEnabled(true);
 
     }
@@ -135,6 +146,28 @@ public class DicePanel extends javax.swing.JPanel {
         Thread t = new Thread(myThread);
         t.start();
     }
+
+    void setValue(int number) {
+        if (number < 2 || number > 12) {
+            throw new IllegalArgumentException("Le nombre doit être entre 2 et 12");
+        }
+        Random random = new Random();
+
+        int die1 = random.nextInt(6) + 1;
+        int die2 = number - die1;
+
+        // Si die2 est hors des limites (1 à 6), ajustez les valeurs
+        while (die2 < 1 || die2 > 6) {
+            die1 = random.nextInt(6) + 1;
+            die2 = number - die1;
+        }
+
+        dice1.setFaceValue(die1);
+        dice2.setFaceValue(die2);
+
+    }
+
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("Dice Faces");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -146,7 +179,6 @@ public class DicePanel extends javax.swing.JPanel {
     private fr.call_of_rum.boundary.presentation.Dice dice1;
     private fr.call_of_rum.boundary.presentation.Dice dice2;
     private javax.swing.JButton jButton1;
-    private Dialog dialog;
 
     // End of variables declaration//GEN-END:variables
 }

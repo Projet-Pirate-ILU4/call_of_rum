@@ -63,4 +63,7 @@ public interface IDialog {
     ItemType getWeapon(Player player);
 
     float getIntoxication(Player player);
+
+
+    int throwDice();
 }
