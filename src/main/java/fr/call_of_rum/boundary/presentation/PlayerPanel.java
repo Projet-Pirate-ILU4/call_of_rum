@@ -43,7 +43,7 @@ public class PlayerPanel extends javax.swing.JPanel {
     }
 
     public void update(){
-        coinScorePanel1.setScore(dialog.checkfound(player));
+        coinScorePanel1.setScore(dialog.checkfunds(player));
         lifeBarPanel1.updateLife(dialog.getPlayerHealth(player));
         inventoryPanel2.setInventories(dialog.getInventory(player));
         weaponChoicePanel1.setWeapon(dialog.getWeapon(player));

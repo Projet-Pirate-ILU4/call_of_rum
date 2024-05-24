@@ -5,19 +5,21 @@
 package fr.call_of_rum.boundary.presentation;
 
 
-import fr.call_of_rum.util.CellType;
+import fr.call_of_rum.boundary.dialog.DialogStub;
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+
+import fr.call_of_rum.boundary.dialog.IDialog;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
-import fr.call_of_rum.boundary.dialog.IDialog;
-
-import java.awt.*;
-import javax.swing.*;
-
-import java.awt.event.MouseEvent;
-import java.util.*;
-import java.util.List;
-
-import static fr.call_of_rum.util.ItemType.*;
 
 /**
  *
@@ -33,10 +35,10 @@ public class Market extends javax.swing.JDialog {
         this.player = player;
         this.dialog = dialog;
         focus = new HashMap<>();
-        this.size = dialog.getSizeInventaireAvailable(player);
-        itemTypesSelect = new ArrayList<>();
-        score = dialog.checkfound(player);
-        itemTypes = dialog.getItemMarket();
+        this.size = dialog.getNumberOfFreeSlots();
+        itemsSelected = new ArrayList<>();
+        score = dialog.checkfunds(player);
+        itemTypes = dialog.getMarketItems();
 
         initComponents();
 
@@ -44,6 +46,12 @@ public class Market extends javax.swing.JDialog {
         focus.put(graphicsCard2, false);
         focus.put(graphicsCard3, false);
         focus.put(graphicsCard4, false);
+        
+        graphicsCardsIndex = new HashMap<>();
+        graphicsCardsIndex.put(graphicsCard1, 0);
+        graphicsCardsIndex.put(graphicsCard2, 1);
+        graphicsCardsIndex.put(graphicsCard3, 2);
+        graphicsCardsIndex.put(graphicsCard4, 3);
         
         graphicsCard4.setDialog(dialog);
         graphicsCard3.setDialog(dialog);
@@ -107,11 +115,11 @@ public class Market extends javax.swing.JDialog {
 
         jLabel2.setText("Market");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(270, 30, 40, 17);
+        jLabel2.setBounds(270, 30, 37, 16);
 
         jLabel3.setText("Bienvenue dans le marché");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(70, 160, 155, 25);
+        jLabel3.setBounds(70, 160, 138, 25);
 
         coinScorePanel1.setOpaque(false);
         getContentPane().add(coinScorePanel1);
@@ -197,10 +205,9 @@ public class Market extends javax.swing.JDialog {
     private void graphicsCard1MouseClicked(MouseEvent evt) {
         toogle(graphicsCard1);
     }                                          
-
-
+    
     private void focusItem(GraphicsCard graphicsCard){
-        int prix = dialog.getPrice(graphicsCard.getItemType());
+        int prix = dialog.getPrice(graphicsCardsIndex.get(graphicsCard));
         graphicsCard.setEnabled(false);
         if (score > prix && size >0) {
             graphicsCard.setBorder(BorderFactory.createLineBorder(Color.BLUE));
@@ -208,7 +215,7 @@ public class Market extends javax.swing.JDialog {
             System.out.println(score);
             score = score - prix;
             System.out.println(score);
-            itemTypesSelect.add(graphicsCard.getItemType());
+            itemsSelected.add(graphicsCardsIndex.get(graphicsCard));
             focus.put(graphicsCard,!focus.get(graphicsCard));
             updateMarket();
             inventoryPanel1.setInventory(graphicsCard.getItemType());
@@ -218,8 +225,8 @@ public class Market extends javax.swing.JDialog {
     private void unFocusitem(GraphicsCard graphicsCard){
         graphicsCard.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         size ++;
-        score += dialog.getPrice(graphicsCard.getItemType());
-        itemTypesSelect.remove(graphicsCard.getItemType());
+        score += dialog.getPrice(graphicsCardsIndex.get(graphicsCard));
+        itemsSelected.remove(graphicsCardsIndex.get(graphicsCard));
         focus.put(graphicsCard,!focus.get(graphicsCard));
         inventoryPanel1.removeItem(graphicsCard.getItemType());
         updateMarket();
@@ -241,39 +248,39 @@ public class Market extends javax.swing.JDialog {
             }
 
             // Si la carte est désactivée et le score est inférieur au prix de la carte et la taille de l'inventaire est vide, l'activer
-            if (!card.isEnabled() && (score < dialog.getPrice(card.getItemType()) && size == 0)) {
+            if (!card.isEnabled() && (score < dialog.getPrice(graphicsCardsIndex.get(card)) && size == 0)) {
                 card.setEnabled(true);
             }
             // Sinon, si la carte est activée et le score est supérieur ou égal au prix de la carte et la taille de l'inventaire n'est pas vide, la désactiver
-            else if (card.isEnabled() && (score >= dialog.getPrice(card.getItemType()) ||  size > 0)) {
+            else if (card.isEnabled() && (score >= dialog.getPrice(graphicsCardsIndex.get(card)) ||  size > 0)) {
                 card.setEnabled(false);
             }
         }
     }
 
     private void valider() {
-        if (!itemTypesSelect.isEmpty()) {
-            dialog.buy(player, itemTypesSelect);
+        if (!itemsSelected.isEmpty()) {
+        	itemsSelected.forEach(i -> dialog.buy(i));
             dialog.print(player.toString() + " a acheté :");
             for (Map.Entry<GraphicsCard, Boolean> entry : focus.entrySet()) {
                 GraphicsCard card = entry.getKey();
                 boolean isFocused = entry.getValue();
                 if (isFocused) {
-                    dialog.print(card.getItemType() + " pour " + dialog.getPrice(card.getItemType()) + " $");
+                    dialog.print(card.getItemType() + " pour " + dialog.getPrice(graphicsCardsIndex.get(card)) + " $");
                 }
             }
         } else {
             dialog.print(player.toString() + " n'a rien acheté.");
         }
         dispose();
-        System.out.println(itemTypesSelect);
+        System.out.println(itemsSelected);
     }
 
 
     public void toogle(GraphicsCard graphicsCard) {
         if (focus.get(graphicsCard)) {
             unFocusitem(graphicsCard);
-        } else if (score < dialog.getPrice(graphicsCard.getItemType()) && size == 0) {
+        } else if (score < dialog.getPrice(graphicsCardsIndex.get(graphicsCard)) && size == 0) {
             focusItem(graphicsCard);
         }
         System.out.println("\nContenu de la HashMap :");
@@ -297,9 +304,8 @@ public class Market extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(Market.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        IDialog dialog1 = new fr.call_of_rum.boundary.dialog.Dialog();
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(() -> new Market(new JFrame(),true, Player.JACK_LE_BORGNE, dialog1).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Market(new JFrame(),true, Player.JACK_LE_BORGNE, new DialogStub()).setVisible(true));
     }
 
 
@@ -307,7 +313,8 @@ public class Market extends javax.swing.JDialog {
     private final Player player;
     private final IDialog dialog;
     private final ItemType[] itemTypes;
-    private final List<ItemType> itemTypesSelect;
+    private final List<Integer> itemsSelected;
+    private HashMap<GraphicsCard, Integer> graphicsCardsIndex;
     private int score ;
     private int size;
 

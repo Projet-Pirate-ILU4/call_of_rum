@@ -77,10 +77,11 @@ public class Main {
 		GameController gameController = new GameController(boundary, actionController, diceController, board, pirate1, pirate2);
     	
     	// wiring IBoundary and IFunctionalKernel
-    	boundary.setActionController(actionController);
-    	boundary.setPlayerController(playerController);
-    	boundary.setDiceController(diceController);
-    	boundary.setBoardController(boardController);
+    	boundary.subscribeActionController(actionController);
+    	boundary.subscribeBoardController(boardController);
+    	boundary.subscribeDiceController(diceController);
+    	boundary.subscribeMarketController(marketController);
+    	boundary.subscribePlayerController(playerController);
     	
     	// launch
     	gameController.start();

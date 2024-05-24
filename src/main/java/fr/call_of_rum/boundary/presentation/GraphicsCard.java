@@ -19,6 +19,7 @@ public class GraphicsCard extends javax.swing.JPanel {
     private ItemType imageName;
     private  IDialog dialog;
     private boolean clickable = true;
+    private int marketPrice;
 
 
 
@@ -28,11 +29,15 @@ public class GraphicsCard extends javax.swing.JPanel {
     
     public void setImage(ItemType item){
         this.imageName=item;
-        designImage(dialog.getPrice(item),dialog.getNameItem(item),dialog.getDescribe(item));
+        designImage(marketPrice,dialog.getItemName(item),dialog.getItemDescription(item));
     }
     
     public void setDialog(IDialog dialog){
         this.dialog = dialog;
+    }
+    
+    public void setMarketPrice(int marketPrice) {
+    	this.marketPrice = marketPrice;
     }
 
     public ItemType getItemType() {

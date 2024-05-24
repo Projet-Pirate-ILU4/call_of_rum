@@ -12,6 +12,7 @@ import java.util.function.Supplier;
 import fr.call_of_rum.controller.accessible.IActionController;
 import fr.call_of_rum.controller.accessible.IBoardController;
 import fr.call_of_rum.controller.accessible.IDiceController;
+import fr.call_of_rum.controller.accessible.IMarketController;
 import fr.call_of_rum.controller.accessible.IPlayerController;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
@@ -28,28 +29,37 @@ public class ConsoleBoundary implements IBoundary {
 	private Player currentPlayer;
 	
 	private IActionController actionController;
-	private IPlayerController playerController;
-	private IDiceController diceController;
 	private IBoardController boardController;
+	private IDiceController diceController;
+	private IPlayerController playerController;
 	
 	public ConsoleBoundary() {
 		this.scan = new Scanner(System.in);
 	}
 	
-	public void setActionController(IActionController actionController) {
+	@Override
+	public void subscribeActionController(IActionController actionController) {
 		this.actionController = actionController;
 	}
-	
-	public void setPlayerController(IPlayerController playerController) {
-		this.playerController = playerController;
+
+	@Override
+	public void subscribeBoardController(IBoardController boardController) {
+		this.boardController = boardController;
 	}
-	
-	public void setDiceController(IDiceController diceController) {
+
+	@Override
+	public void subscribeDiceController(IDiceController diceController) {
 		this.diceController = diceController;
 	}
 	
-	public void setBoardController(IBoardController boardController) {
-		this.boardController = boardController;
+	@Override
+	public void subscribeMarketController(IMarketController marketController) {
+		// do nothing because ConsoleBoundary does not implements market
+	}
+
+	@Override
+	public void subscribePlayerController(IPlayerController playerController) {
+		this.playerController = playerController;
 	}
 	
 	private static record Option(String name, Runnable procedure, boolean isEnding) {}

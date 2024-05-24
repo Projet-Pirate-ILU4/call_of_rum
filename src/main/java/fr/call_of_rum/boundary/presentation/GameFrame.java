@@ -4,25 +4,25 @@
  */
 package fr.call_of_rum.boundary.presentation;
 
-import javax.swing.*;
+import java.awt.Color;
+import java.util.Optional;
+
+import javax.swing.BorderFactory;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
+import fr.call_of_rum.boundary.dialog.DialogStub;
 import fr.call_of_rum.boundary.dialog.IDialog;
-import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
-
-import java.awt.*;
-import java.util.List;
-
-import static fr.call_of_rum.util.ItemType.*;
 
 /**
  *
  * @author loferga
  */
-public class GameFrame extends javax.swing.JFrame {
+public class GameFrame extends Presentation {
 	
 	private IDialog dialog;
 
@@ -248,28 +248,6 @@ public class GameFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new Market(this,true, Player.JACK_LE_BORGNE, dialog).setVisible(true));
     }//GEN-LAST:event_jLabel1MouseClicked
     
-    public void enableFirstPlayer() {
-        endTurnFirstPlayer.setEnabled(true);
-        boardPanel.setToken1Movable(true);
-        boardPanel.setToken2Movable(false);
-        playerPanel2.setBorder(BorderFactory.createLineBorder(null));
-    }
-    
-    public void enableSecondPlayer() {
-    	endTurnSecondPlayer.setEnabled(true);
-        boardPanel.setToken1Movable(false);
-        boardPanel.setToken2Movable(true);
-        playerPanel3.setBorder(BorderFactory.createLineBorder(null));
-    }
-    
-	public void printMessage(String msg) {
-		// TODO implements
-	}
-	
-	public void clearMessages() {
-		// TODO implements
-	}
-    
     /**
      * @param args the command line arguments
      */
@@ -290,117 +268,7 @@ public class GameFrame extends javax.swing.JFrame {
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new GameFrame(new IDialog() {
-				@Override
-				public CellType[] getCellsType() {
-					CellType[] cellsType = new CellType[30];
-                                        for (int i = 0; i < 30; i++) {
-                                            cellsType[i] = CellType.NORMAL;
-                                        }
-                                        return cellsType;
-				}
-				@Override
-				public void endTurn() {
-				}
-				@Override
-                public int getPrice(ItemType itemType) {
-                    return 75;
-                }
-				@Override
-				public int getSizeInventaireAvailable(Player player) {
-					// TODO Auto-generated method stub
-					return 4;
-				}
-				@Override
-                public int checkfound(Player player) {
-                    return 1000;
-                }
-				@Override
-                public ItemType[] getItemMarket() {
-                    ItemType[] itemTypes = new ItemType[4];
-                    itemTypes[0] = CLOVER;
-                    itemTypes[1] = BANDANA;
-                    itemTypes[2] = GUNPOWDER;
-                    itemTypes[3] = LUCIDITY_STONE;
-                    return  itemTypes;
-                }
-
-                @Override
-                public void buy(Player player, List<ItemType> itemTypesSelect) {
-
-                }
-
-                @Override
-                public String getNameItem(ItemType itemType) {
-                    return  itemType.toString();
-                }
-                @Override
-                public String getDescribe(ItemType itemType) {
-                    return "Lorem ipsum dolor sit amet, consectetur adipiscing elit,";
-                }
-
-                @Override
-                public void useItem(int itemIndex, Player player) {
-
-                }
-
-                @Override
-                public void throwItem(ItemType itemIndex, Player player) {
-
-                }
-
-                @Override
-                public String getDescribe2(int itemIndex) {
-                    return null;
-                }
-
-                @Override
-                public void print(String s) {
-
-                }
-                
-                @Override
-                public ItemType[] getDroppedItems(int cellIndex){
-                    ItemType[] itemTypes = new ItemType[0];
-                    return itemTypes;
-                }
-
-                @Override
-                public ItemType[] getInventory(Player player) {
-                    return new ItemType[0];
-                }
-
-                @Override
-                public int getNumberOfDroppedItems(int cellIndex){
-                    return -1;
-                }
-                
-                @Override
-                public void pickUpItem(int itemIndex){
-                    return ;
-                }
-
-                @Override
-                public int getPlayerHealth(Player player) {
-                    return 0;
-                }
-
-                @Override
-                public ItemType getWeapon(Player player) {
-                    return null;
-                }
-
-                @Override
-                public float getIntoxication(Player player) {
-                    return 0;
-                }
-
-                @Override
-                public int throwDice() {
-                    return 9;
-                }
-
-            }).setVisible(true);
+            new GameFrame(new DialogStub()).setVisible(true);
         });
     }
 
@@ -421,4 +289,79 @@ public class GameFrame extends javax.swing.JFrame {
     private fr.call_of_rum.boundary.presentation.PlayerPanel playerPanel2;
     private fr.call_of_rum.boundary.presentation.PlayerPanel playerPanel3;
     // End of variables declaration//GEN-END:variables
+    
+    @Override
+    public void enableFirstPlayer() {
+        endTurnFirstPlayer.setEnabled(true);
+        boardPanel.setToken1Movable(true);
+        boardPanel.setToken2Movable(false);
+    }
+
+    @Override
+    public void enableSecondPlayer() {
+    	endTurnSecondPlayer.setEnabled(true);
+        boardPanel.setToken1Movable(false);
+        boardPanel.setToken2Movable(true);
+    }
+
+	@Override
+	public boolean chestFound(int coinAmount, ItemType itemType) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean openedChestFound(int coinAmount, Optional<ItemType> optionalItemType) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void showExplosion() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showShortcut() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showDuel(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void printMessage(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateScores() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clearMessages() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyDrop(ItemType itemType) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyPickUp(ItemType itemType) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

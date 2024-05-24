@@ -38,8 +38,11 @@ public abstract class GUIScenario extends Scenario {
 		if (actionController == null) actionController = new ActionController(marketController, moveController, boardController);
 		if (gameController == null) gameController = new GameController(boundary, actionController, diceController, board, player1, player2);
 
-		boundary.setActionController(actionController);
-		boundary.setBoardController(boardController);
+		boundary.subscribeActionController(actionController);
+		boundary.subscribeBoardController(boardController);
+		boundary.subscribeDiceController(diceController);
+		boundary.subscribeMarketController(marketController);
+		boundary.subscribePlayerController(playerController);
 		Dialog dialog = new Dialog(boundary);
 		boundary.setGraphicInterface(dialog);
 		

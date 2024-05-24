@@ -208,19 +208,19 @@ public class InventoryPanel extends javax.swing.JPanel {
             int choice = JOptionPane.showOptionDialog(null, message, "Actions sur l'objet", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[3]);
             switch (choice) {
                 case JOptionPane.YES_OPTION:
-                	dialog.useItem(inventory[inventoryIndex].ordinal(),player);
+                	//dialog.useItem(inventory[inventoryIndex].ordinal(),player);
                 	inventory[inventoryIndex] = null;
                 	updateImage(inventoryIndex);
                     System.out.println("L'objet a été utilisé");
                     break;
                 case JOptionPane.NO_OPTION:
-                	dialog.throwItem(inventory[inventoryIndex],player);
+                	dialog.dropItem(player, inventoryIndex);
                 	inventory[inventoryIndex] = null;
                 	updateImage(inventoryIndex);
                     System.out.println("L'objet a été jeté");
                     break;
                 case JOptionPane.CANCEL_OPTION:
-                	String description = dialog.getDescribe(inventory[inventoryIndex]);
+                	String description = dialog.getItemDescription(inventory[inventoryIndex]);
                     JOptionPane.showMessageDialog(null, description, "Description de l'objet", JOptionPane.INFORMATION_MESSAGE);
                     System.out.println("Vous examinez l'objet");
                     break;

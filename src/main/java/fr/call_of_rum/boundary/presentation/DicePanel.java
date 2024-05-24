@@ -118,10 +118,9 @@ public class DicePanel extends javax.swing.JPanel {
     }
     public void throwDice(){
         jButton1.setEnabled(false);
-        int []values = setValue(dialog.throwDice());
+        int []values = setValue(dialog.getDicesResult());
         animDice(dice1,values[0]);
         animDice(dice2,values[1]);
-
         jButton1.setEnabled(true);
 
     }
