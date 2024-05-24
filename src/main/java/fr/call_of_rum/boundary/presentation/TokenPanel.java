@@ -44,6 +44,10 @@ public class TokenPanel extends javax.swing.JPanel {
     public void setIsMovable(boolean choice){
         this.isMovable=choice;
     }
+    
+    public void setDialog(IDialog dialog){
+        this.dialog=dialog;
+    }
     /**
      * Creates new form PiecePanel
      */

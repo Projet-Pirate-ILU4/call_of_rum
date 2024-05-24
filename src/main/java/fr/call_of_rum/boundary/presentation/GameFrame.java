@@ -77,7 +77,7 @@ public class GameFrame extends Presentation {
         playerPanel3 = new fr.call_of_rum.boundary.presentation.PlayerPanel();
         jPanel4 = new javax.swing.JPanel();
         boardPanel = new fr.call_of_rum.boundary.presentation.BoardPanel();
-        boardPanel.initCells(dialog);
+        boardPanel.initBoard(dialog);
         boardPanel.setCellsType(dialog.getCellsType());
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();

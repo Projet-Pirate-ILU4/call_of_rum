@@ -89,11 +89,13 @@ public class BoardPanel extends javax.swing.JLayeredPane {
         return cellsPanel;
     }
     
-    public void initCells(IDialog iDialog){
+    public void initBoard(IDialog dialog){
         for (int i=0;i<30;i++){
-            cellsPanel[i].initDroppedItems(iDialog);
+            cellsPanel[i].initDroppedItems(dialog);
         }
-    } 
+        tokenPanelPlayer1.setDialog(dialog);
+        tokenPanelPlayer2.setDialog(dialog);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
