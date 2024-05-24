@@ -78,7 +78,10 @@ public class DialogStub implements IDialog {
 
 	@Override
 	public ItemType[] getInventory(Player player) {
-		return new ItemType[] {ItemType.RUM, null, null};
+		if (player.equals(Player.JACK_LE_BORGNE)) {
+			return new ItemType[] {ItemType.RUM, null, null};
+		}
+		return new ItemType[] {ItemType.LUCIDITY_STONE, ItemType.GUNPOWDER, null};
 	}
 
 	@Override
@@ -88,11 +91,17 @@ public class DialogStub implements IDialog {
 
 	@Override
 	public int getPlayerMaxHealth(Player player) {
+		if (player.equals(Player.JACK_LE_BORGNE)) {
+			return 15;
+		}
 		return 10;
 	}
 
 	@Override
 	public ItemType getWeapon(Player player) {
+		if (player.equals(Player.JACK_LE_BORGNE)) {
+			return ItemType.MUSKET;
+		}
 		return ItemType.DAGGER;
 	}
 
@@ -151,6 +160,11 @@ public class DialogStub implements IDialog {
 	@Override
 	public Player getDuelWinner() {
 		return Player.JACK_LE_BORGNE;
+	}
+
+	@Override
+	public void trowDice() {
+
 	}
 
 }

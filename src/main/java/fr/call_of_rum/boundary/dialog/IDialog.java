@@ -80,4 +80,6 @@ public interface IDialog {
 	Player getPlayer1();
 
 	Player getDuelWinner();
+
+    void trowDice();
 }

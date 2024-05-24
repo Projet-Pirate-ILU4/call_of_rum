@@ -51,7 +51,10 @@ public class GameFrame extends Presentation {
         playerPanel3.setPlayer(player1);
         playerPanel2.setPlayer(player2);
         getContentPane().setBackground(Color.WHITE);
-        endTurnFirstPlayerActionPerformed(null);
+        playerPanel2.update();
+        playerPanel3.update();
+        endTurnSecondPlayerActionPerformed(null);
+        endTurnFirstPlayer.setEnabled(true);
 
     }
 
@@ -218,7 +221,8 @@ public class GameFrame extends Presentation {
             dialog.endTurn();
             this.notifyAll();
         }
-        endTurnFirstPlayer.setEnabled(false);
+        enableSecondPlayer();
+        endTurnFirstPlayer.setEnabled(true);
         playerPanel2.setBorder(BorderFactory.createLineBorder(Color.red));
         boardPanel.setToken1Movable(false);
         boardPanel.setToken2Movable(true);
@@ -229,6 +233,7 @@ public class GameFrame extends Presentation {
             dialog.endTurn();
             this.notifyAll();
         }
+        enableFirstPlayer();
         endTurnSecondPlayer.setEnabled(false);
         boardPanel.setToken1Movable(true);
         playerPanel3.setBorder(BorderFactory.createLineBorder(Color.blue));
@@ -282,6 +287,7 @@ public class GameFrame extends Presentation {
     
     @Override
     public void enableFirstPlayer() {
+        playerPanel2.setBorder(BorderFactory.createLineBorder(null));
         endTurnFirstPlayer.setEnabled(true);
         boardPanel.setToken1Movable(true);
         boardPanel.setToken2Movable(false);
@@ -289,6 +295,7 @@ public class GameFrame extends Presentation {
 
     @Override
     public void enableSecondPlayer() {
+        playerPanel3.setBorder(BorderFactory.createLineBorder(null));
     	endTurnSecondPlayer.setEnabled(true);
         boardPanel.setToken1Movable(false);
         boardPanel.setToken2Movable(true);

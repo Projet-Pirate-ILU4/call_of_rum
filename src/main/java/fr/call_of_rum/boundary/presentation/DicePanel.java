@@ -121,6 +121,7 @@ public class DicePanel extends javax.swing.JPanel {
     
     public void throwDice(){
         jButton1.setEnabled(false);
+        dialog.trowDice();
         int value = dialog.getDicesResult();
         int maxFirst = value > 6 ? 7 : value;
         int first = RNG.nextInt(1, maxFirst+1); // result of the first dice

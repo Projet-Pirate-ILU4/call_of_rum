@@ -281,4 +281,9 @@ public class Dialog implements IDialog, IGraphicInterface {
 	public Player getDuelWinner() {
 		return null;
 	}
+
+	@Override
+	public void trowDice() {
+
+	}
 }
