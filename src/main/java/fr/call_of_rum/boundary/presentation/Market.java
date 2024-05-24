@@ -280,8 +280,10 @@ public class Market extends javax.swing.JDialog {
     public void toogle(GraphicsCard graphicsCard) {
         if (focus.get(graphicsCard)) {
             unFocusitem(graphicsCard);
-        } else if (score < dialog.getPrice(graphicsCardsIndex.get(graphicsCard)) && size == 0) {
-            focusItem(graphicsCard);
+        } else if (score >= dialog.getPrice(graphicsCardsIndex.get(graphicsCard))) {
+            if (size > 0) {
+                focusItem(graphicsCard);
+            }
         }
         System.out.println("\nContenu de la HashMap :");
         for (Map.Entry<GraphicsCard, Boolean> focus : focus.entrySet()) {
