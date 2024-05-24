@@ -70,5 +70,8 @@ public interface IDialog {
 	void print(String s);
 	
 	void endTurn();
-	
+
+    Player getPlayer2();
+
+	Player getPlayer1();
 }

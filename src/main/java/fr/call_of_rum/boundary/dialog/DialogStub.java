@@ -126,4 +126,13 @@ public class DialogStub implements IDialog {
 		// do nothing
 	}
 
+	public Player getPlayer2() {
+		return Player.BILL_JAMBE_DE_BOIS;
+	}
+
+	@Override
+	public Player getPlayer1() {
+		return Player.BILL_JAMBE_DE_BOIS;
+	}
+
 }

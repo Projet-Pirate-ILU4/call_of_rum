@@ -25,11 +25,11 @@ import fr.call_of_rum.util.Player;
 public class GameFrame extends Presentation {
 	
 	private IDialog dialog;
+    private Player player1 = Player.BILL_JAMBE_DE_BOIS;
 
-    private Player player1 = Player.JACK_LE_BORGNE;
+    private Player player2 = Player.JACK_LE_BORGNE;
 
-    private Player player2 = Player.BILL_JAMBE_DE_BOIS;
-	
+
     /**
      * Creates new form GameFrame
      * @param dialog
@@ -42,6 +42,8 @@ public class GameFrame extends Presentation {
 			e.printStackTrace();
 		}
         initComponents();
+        player1 = dialog.getPlayer1();
+        player2 = dialog.getPlayer2();
         playerPanel2.setDialog(dialog);
         playerPanel3.setDialog(dialog);
         dicePanel1.setDialog(dialog);
