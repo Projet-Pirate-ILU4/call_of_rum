@@ -154,7 +154,6 @@ public class InventoryPanel extends javax.swing.JPanel {
             }
         }
     }
-
     
 
     private void updateImage(int position) {

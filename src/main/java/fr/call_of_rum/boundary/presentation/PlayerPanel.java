@@ -165,6 +165,14 @@ public class PlayerPanel extends javax.swing.JPanel {
             ImageIcon typeIcon = new ImageIcon(scaledTypeImage);
             jLabel4.setIcon(typeIcon);
         }
+    
+    public void updateScore() {
+    	this.coinScorePanel1.setScore(dialog.checkfunds(player));
+    }
+    
+    public void notifyPickUp(ItemType itemType) {
+    	inventoryPanel2.setInventory(itemType);
+    }
 
 
     public static void main(String[] args) {

@@ -136,12 +136,20 @@ public class Dialog implements IDialog, IGraphicInterface {
 	 @Override
 	public boolean dropItem(Player player, int itemIndex) {
 		if (player != currentPlayer) return false;
-		return functionalKernelAdapter.dropItem(itemIndex);
+		boolean succeded = functionalKernelAdapter.dropItem(itemIndex);
+		if (succeded) {
+			presentation.notifyDrop(this.getInventory(player)[itemIndex]);
+		}
+		return succeded;
 	}
 	
 	 @Override
 	public boolean pickUpItem(int itemIndex) {
-		return functionalKernelAdapter.pickUpItem(itemIndex);
+		boolean succeded = functionalKernelAdapter.pickUpItem(itemIndex);
+		if (succeded) {
+			presentation.notifyPickUp(this.getInventory(currentPlayer)[itemIndex]);
+		}
+		return succeded;
 	}
 
 	@Override

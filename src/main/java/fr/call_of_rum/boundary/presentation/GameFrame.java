@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.util.Optional;
 
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -308,14 +309,22 @@ public class GameFrame extends Presentation {
 
 	@Override
 	public boolean chestFound(int coinAmount, ItemType itemType) {
-		// TODO Auto-generated method stub
-		return false;
+		ChestDialog chestDialog = new ChestDialog(this, itemType, coinAmount);
+		int returnStatus = chestDialog.getReturnStatus();
+		return returnStatus == ChestDialog.RET_OK;
 	}
 
 	@Override
 	public boolean openedChestFound(int coinAmount, Optional<ItemType> optionalItemType) {
-		// TODO Auto-generated method stub
-		return false;
+		if (optionalItemType.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "il n'y a rien dans le coffre");
+			return false;
+		}
+		else {
+			ChestDialog chestDialog = new ChestDialog(this, optionalItemType.get(), coinAmount);
+			int returnStatus = chestDialog.getReturnStatus();
+			return returnStatus == ChestDialog.RET_OK;
+		}
 	}
 
 	@Override
@@ -338,32 +347,29 @@ public class GameFrame extends Presentation {
 
 	@Override
 	public void printMessage(String message) {
-		// TODO Auto-generated method stub
-		
+		jTextArea1.append(message + "\n");
 	}
 
 	@Override
 	public void updateScores() {
-		// TODO Auto-generated method stub
-		
+		playerPanel2.updateScore();
+		playerPanel3.updateScore();
 	}
 
 	@Override
 	public void clearMessages() {
-		// TODO Auto-generated method stub
-		
+		jTextArea1.setText("");
 	}
 
 	@Override
 	public void notifyDrop(ItemType itemType) {
-		// TODO Auto-generated method stub
-		
+		boardPanel.notifyDrop(itemType);
 	}
 
 	@Override
 	public void notifyPickUp(ItemType itemType) {
-		// TODO Auto-generated method stub
-		
+		PlayerPanel playerPanel = endTurnFirstPlayer.isEnabled() ? playerPanel2 : playerPanel3;
+		playerPanel.notifyPickUp(itemType);
 	}
 	
 }

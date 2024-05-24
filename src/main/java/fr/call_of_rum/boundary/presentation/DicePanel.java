@@ -116,11 +116,17 @@ public class DicePanel extends javax.swing.JPanel {
             Thread.currentThread().interrupt();
         }
     }
+    
+    private static final Random RNG = new Random();
+    
     public void throwDice(){
         jButton1.setEnabled(false);
-        int []values = setValue(dialog.getDicesResult());
-        animDice(dice1,values[0]);
-        animDice(dice2,values[1]);
+        int value = dialog.getDicesResult();
+        int maxFirst = value > 6 ? 7 : value;
+        int first = RNG.nextInt(1, maxFirst+1); // result of the first dice
+        int second = value - first; // result of the second dice
+        animDice(dice1,first);
+        animDice(dice2,second);
         jButton1.setEnabled(true);
 
     }
