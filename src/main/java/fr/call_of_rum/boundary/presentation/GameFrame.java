@@ -24,6 +24,10 @@ import static fr.call_of_rum.util.ItemType.*;
 public class GameFrame extends javax.swing.JFrame {
 	
 	private IDialog dialog;
+
+    private Player player1 = Player.JACK_LE_BORGNE;
+
+    private Player player2 = Player.BILL_JAMBE_DE_BOIS;
 	
     /**
      * Creates new form GameFrame
@@ -37,6 +41,11 @@ public class GameFrame extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
         initComponents();
+        playerPanel2.setDialog(dialog);
+        playerPanel3.setDialog(dialog);
+        dicePanel1.setDialog(dialog);
+        playerPanel3.setPlayer(player1);
+        playerPanel2.setPlayer(player2);
     }
 
     /**
@@ -328,7 +337,7 @@ public class GameFrame extends javax.swing.JFrame {
                 }
 
                 @Override
-                public void throwItem(int itemIndex, Player player) {
+                public void throwItem(ItemType itemIndex, Player player) {
 
                 }
 
@@ -347,7 +356,12 @@ public class GameFrame extends javax.swing.JFrame {
                     ItemType[] itemTypes = new ItemType[0];
                     return itemTypes;
                 }
-        
+
+                @Override
+                public ItemType[] getInventory(Player player) {
+                    return new ItemType[0];
+                }
+
                 @Override
                 public int getNumberOfDroppedItems(int cellIndex){
                     return -1;
@@ -356,6 +370,26 @@ public class GameFrame extends javax.swing.JFrame {
                 @Override
                 public void pickUpItem(int itemIndex){
                     return ;
+                }
+
+                @Override
+                public int getPlayerHealth(Player player) {
+                    return 0;
+                }
+
+                @Override
+                public ItemType getWeapon(Player player) {
+                    return null;
+                }
+
+                @Override
+                public float getIntoxication(Player player) {
+                    return 0;
+                }
+
+                @Override
+                public int throwDice() {
+                    return 0;
                 }
 
             }).setVisible(true);
