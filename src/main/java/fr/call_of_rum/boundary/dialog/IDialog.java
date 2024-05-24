@@ -78,4 +78,6 @@ public interface IDialog {
     Player getPlayer2();
 
 	Player getPlayer1();
+
+	Player getDuelWinner();
 }
