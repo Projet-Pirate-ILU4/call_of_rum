@@ -9,11 +9,13 @@ import fr.call_of_rum.model.board.cells.Cell;
 import fr.call_of_rum.model.board.cells.Chest;
 import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.model.item.artefact.Bandana;
+import fr.call_of_rum.model.item.artefact.Clover;
 import fr.call_of_rum.model.item.artefact.Gunpowder;
 import fr.call_of_rum.model.item.artefact.LucidityStone;
 import fr.call_of_rum.model.item.weapon.Weapon;
 import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.util.CellType;
+import fr.call_of_rum.util.ItemType;
 
 public class MoveController {
 	
@@ -38,12 +40,17 @@ public class MoveController {
 		this.pirate2 = pirate2;
 	}
 	
+	private static final Item CLOVER = new Clover();
+	
 	private void triggerChestCell(Chest chest, Pirate pirate) {
-		int chestCoins = chest.getCoins();
 		chest.setOpened(true);
+		int chestCoins = chest.getCoins();
+		if (pirate.getInventory().contains(CLOVER)) {
+			chestCoins = (int) (1.5 * chestCoins);
+		}
 		pirate.setCoins(pirate.getCoins() + chestCoins);
 		chest.setCoins(0);
-		boolean tookItem = boundary.chestFound(chestCoins, chest.getItem().getType().toString().toLowerCase());
+		boolean tookItem = boundary.chestFound(chestCoins, chest.getItem().getType());
 		if (tookItem) {
 			playerController.takeItem(pirate, chest.getItem());
 			chest.setItem(null);
@@ -52,8 +59,8 @@ public class MoveController {
 	
 	private void triggerOpenedChestCell(Chest chest) {
 		Item chestItem = chest.getItem();
-		Optional<String> itemNamespace = chestItem == null ? Optional.empty() : Optional.of(chestItem.getType().toString().toLowerCase());
-		boundary.openedChestFound(chest.getCoins(), itemNamespace);
+		Optional<ItemType> itemType = chestItem == null ? Optional.empty() : Optional.of(chestItem.getType());
+		boundary.openedChestFound(chest.getCoins(), itemType);
 		
 	}
 	

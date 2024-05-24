@@ -113,13 +113,13 @@ public class Dialog implements IDialog, IGraphicInterface {
 	}
 
 	@Override
-	public boolean chestFound(int coinAmount, String itemNamespace) {
+	public boolean chestFound(int coinAmount, ItemType itemType) {
 		// TODO implements
 		return false;
 	}
 
 	@Override
-	public boolean openedChestFound(int coinAmount, Optional<String> itemNamespace) {
+	public boolean openedChestFound(int coinAmount, Optional<ItemType> optionalItemType) {
 		// TODO implements
 		return false;
 	}

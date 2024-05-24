@@ -35,4 +35,18 @@ public abstract class Item {
 		return itemType.toString();
 	}
 	
+	@Override
+	public boolean equals(Object object) {
+		if (object != null && this.getClass() == object.getClass()) {
+			Item other = (Item) object;
+			return this.itemType == other.itemType;
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return itemType.hashCode();
+	}
+	
 }
