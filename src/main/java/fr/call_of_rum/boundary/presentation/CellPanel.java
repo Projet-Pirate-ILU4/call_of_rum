@@ -7,6 +7,7 @@ package fr.call_of_rum.boundary.presentation;
 import fr.call_of_rum.boundary.dialog.IDialog;
 import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.ItemType;
+import fr.call_of_rum.util.Player;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -52,12 +53,6 @@ public class CellPanel extends javax.swing.JLayeredPane {
 
         setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setMinimumSize(new java.awt.Dimension(100, 100));
-        setPreferredSize(new java.awt.Dimension(100, 100));
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                formMouseReleased(evt);
-            }
-        });
 
         numLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         numLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -88,11 +83,6 @@ public class CellPanel extends javax.swing.JLayeredPane {
         add(imageLabel);
         imageLabel.setBounds(0, 0, 100, 100);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
-        // TODO add your handling code here:
-        System.out.println(num);
-    }//GEN-LAST:event_formMouseReleased
 
     public void setNum(int num){
         this.num=num;
@@ -172,11 +162,12 @@ public class CellPanel extends javax.swing.JLayeredPane {
     }
 
     // apellée au moment où un pick up intervient (par un ItemDrop)
-    public void pickUpItem() {
+    public void pickUpItem(int index) {
         // update presque-innévitable, donc on vas préférer tout reconstruire
         // destruction des ItemDrop précédents:
         this.itemDroppedPanel.removeAll();
         this.moveToFront(itemDroppedPanel);
+        dialog.pickUpItem(index);
         addAllItemDrop();
     }
     

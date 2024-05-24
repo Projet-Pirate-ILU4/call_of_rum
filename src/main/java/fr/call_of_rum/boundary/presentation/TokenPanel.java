@@ -4,6 +4,7 @@
  */
 package fr.call_of_rum.boundary.presentation;
 
+import fr.call_of_rum.boundary.dialog.IDialog;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 import java.awt.Component;
@@ -23,6 +24,7 @@ public class TokenPanel extends javax.swing.JPanel {
     private int posY;
     private boolean isMovable=false;
     private CellPanel position;
+    private IDialog dialog;
     
     public void setBoardPanel(BoardPanel boardPanel) {
         this.boardPanel = boardPanel;
@@ -37,6 +39,10 @@ public class TokenPanel extends javax.swing.JPanel {
     
     public void setPosition(CellPanel position){
         this.position=position;
+    }
+    
+    public void setIsMovable(boolean choice){
+        this.isMovable=choice;
     }
     /**
      * Creates new form PiecePanel
@@ -87,22 +93,15 @@ public class TokenPanel extends javax.swing.JPanel {
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         if (player.equals(Player.BILL_JAMBE_DE_BOIS) && boardPanel.getisToken1Movable()){
-            System.out.println("On a cliqué sur le pion 1");
-            //boardPanel.setToken1AsClicked();
             posX=evt.getX();
             posY=evt.getY();
             isMovable=true;
         }
         if (player.equals(Player.JACK_LE_BORGNE) && boardPanel.getisToken2Movable()){
-            System.out.println("On a cliqué sur le pion 2");
-            //boardPanel.setToken2AsClicked();
             posX=evt.getX();
             posY=evt.getY();
             isMovable=true;
         }
-        /*System.out.println("boardPanel.getX() "+boardPanel.getX()+" boardPanel.getY() "+boardPanel.getY());
-        System.out.println("boardPanel.getX()+boardPanel.getWidth "+(boardPanel.getX()+boardPanel.getWidth())+" boardPanel.getY()+boardänel.getHeight "+(boardPanel.getY()+boardPanel.getHeight()));
-        */
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
@@ -117,10 +116,13 @@ public class TokenPanel extends javax.swing.JPanel {
                     ||(newY>boardPanel.getHeight())){
                 this.setLocation(posX, posY);
             }else{
-                this.setLocation(newX, newY);
                 Component cell=boardPanel.getComponentAt(newX-newX%100, newY-newY%100);
                 if (cell instanceof CellPanel){
-                    position=boardPanel.getCellsPanel()[(((CellPanel)cell).getNum())-1]; //On récupère la position du pion. 
+                    if (dialog.getDicesResult() == ((CellPanel) cell).getNum()-1){
+                        this.setLocation(newX, newY);
+                        position=boardPanel.getCellsPanel()[(((CellPanel)cell).getNum())-1]; //On récupère la position du pion. 
+                        dialog.move();
+                    }
                 }
             }
             repaint();
