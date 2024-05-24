@@ -13,6 +13,7 @@ import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 
+import java.awt.*;
 import java.util.List;
 
 import static fr.call_of_rum.util.ItemType.*;
@@ -46,6 +47,7 @@ public class GameFrame extends javax.swing.JFrame {
         dicePanel1.setDialog(dialog);
         playerPanel3.setPlayer(player1);
         playerPanel2.setPlayer(player2);
+        getContentPane().setBackground(Color.WHITE);
     }
 
     /**
@@ -76,6 +78,7 @@ public class GameFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1330, 853));
 
         endTurnSecondPlayer.setText("End Turn");
         endTurnSecondPlayer.setEnabled(false);
@@ -225,6 +228,7 @@ public class GameFrame extends javax.swing.JFrame {
             this.notifyAll();
         }
         endTurnFirstPlayer.setEnabled(false);
+        playerPanel2.setBorder(BorderFactory.createLineBorder(Color.RED));
         boardPanel.setToken1Movable(false);
         boardPanel.setToken2Movable(true);
     }//GEN-LAST:event_endTurnFirstPlayerActionPerformed
@@ -234,7 +238,9 @@ public class GameFrame extends javax.swing.JFrame {
             dialog.endTurn();
             this.notifyAll();
         }
+        endTurnSecondPlayer.setEnabled(false);
         boardPanel.setToken1Movable(true);
+        playerPanel3.setBorder(BorderFactory.createLineBorder(Color.BLUE));
         boardPanel.setToken2Movable(false);
     }//GEN-LAST:event_endTurnSecondPlayerActionPerformed
 
@@ -246,12 +252,14 @@ public class GameFrame extends javax.swing.JFrame {
         endTurnFirstPlayer.setEnabled(true);
         boardPanel.setToken1Movable(true);
         boardPanel.setToken2Movable(false);
+        playerPanel2.setBorder(BorderFactory.createLineBorder(null));
     }
     
     public void enableSecondPlayer() {
     	endTurnSecondPlayer.setEnabled(true);
         boardPanel.setToken1Movable(false);
         boardPanel.setToken2Movable(true);
+        playerPanel3.setBorder(BorderFactory.createLineBorder(null));
     }
     
 	public void printMessage(String msg) {
@@ -389,7 +397,7 @@ public class GameFrame extends javax.swing.JFrame {
 
                 @Override
                 public int throwDice() {
-                    return 0;
+                    return 9;
                 }
 
             }).setVisible(true);

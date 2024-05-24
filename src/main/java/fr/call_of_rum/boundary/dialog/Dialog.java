@@ -220,5 +220,10 @@ public class Dialog implements IDialog, IGraphicInterface {
 		return 0.5f;
 	}
 
+	@Override
+	public int throwDice() {
+		return 9;
+	}
+
 
 }
