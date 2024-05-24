@@ -41,19 +41,19 @@ public class DuelDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        descriptionLabel = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
+        imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Duel");
 
-        jLabel1.setText("C'est l'heure du DUELLLLLLLLLLLL !!!");
+        descriptionLabel.setText("C'est l'heure du DUELLLLLLLLLLLL !!!");
 
-        jLabel2.setText("Duel");
+        titleLabel.setText("Duel");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/duel.png"))); // NOI18N
-        jLabel3.setText("jLabel3");
+        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/duel.png"))); // NOI18N
+        imageLabel.setText("jLabel3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,24 +63,24 @@ public class DuelDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(176, 176, 176)
-                        .addComponent(jLabel2))
+                        .addComponent(titleLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(86, 86, 86)
-                        .addComponent(jLabel1)))
+                        .addComponent(descriptionLabel)))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel2)
+                .addComponent(titleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(descriptionLabel)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(imageLabel)
                 .addContainerGap(73, Short.MAX_VALUE))
         );
 
@@ -132,9 +132,9 @@ public class DuelDialog extends javax.swing.JDialog {
     public void setImage(Player player) {
         BufferedImage image = ImageLoader.loadImage("presentation/"+player.toString().toLowerCase()+"_joueur.png");
         Image scaledTypeImage;
-        scaledTypeImage = image.getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(), Image.SCALE_SMOOTH);
+        scaledTypeImage = image.getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon typeIcon = new ImageIcon(scaledTypeImage);
-        jLabel3.setIcon(typeIcon);
+        imageLabel.setIcon(typeIcon);
     }
 
     javax.swing.Timer timer1 = new javax.swing.Timer(2000,(e)->{
@@ -142,7 +142,7 @@ public class DuelDialog extends javax.swing.JDialog {
     });
 
     private void printWinner() {
-        jLabel1.setText(player.toString().replace('_',' '));
+        descriptionLabel.setText(player.toString().replace('_',' '));
         setImage(player);
         timer1.stop();
         timer2.start();
@@ -152,8 +152,8 @@ public class DuelDialog extends javax.swing.JDialog {
         dispose();
     });
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JLabel imageLabel;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
