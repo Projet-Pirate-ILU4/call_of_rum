@@ -43,7 +43,7 @@ public interface IDialog {
 	void useItem(int itemIndex, Player player);
 
 
-	void throwItem(int itemIndex, Player player);
+	void throwItem(ItemType itemIndex, Player player);
 
 
     String getDescribe2(int itemIndex);
@@ -51,8 +51,16 @@ public interface IDialog {
     void print(String s);
     
     ItemType[] getDroppedItems(int cellIndex);
+    ItemType[] getInventory(Player player);
+
     
     int getNumberOfDroppedItems(int cellIndex);
     
     public void pickUpItem(int itemIndex);
+
+    int getPlayerHealth(Player player);
+
+    ItemType getWeapon(Player player);
+
+    float getIntoxication(Player player);
 }

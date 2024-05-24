@@ -26,7 +26,11 @@ public class Dialog implements IDialog, IGraphicInterface {
 		this.functionalKernelAdapter = functionalKernelAdapter;
 		this.presentation = new GameFrame(this);
 	}
-	
+
+	public Dialog() {
+
+	}
+
 	public void initDialog() {
 		EventQueue.invokeLater(() -> this.presentation.setVisible(true));
 	}
@@ -130,7 +134,7 @@ public class Dialog implements IDialog, IGraphicInterface {
 	}
 	
 	 @Override
-	public void throwItem(int itemIndex, Player player) {
+	public void throwItem(ItemType itemIndex, Player player) {
 		// TODO implements
 	}
 
@@ -138,6 +142,7 @@ public class Dialog implements IDialog, IGraphicInterface {
 	public String getDescribe2(int itemIndex) {
 		return null;
 	}
+
 
 	@Override
 	public void print(String s) {
@@ -184,8 +189,14 @@ public class Dialog implements IDialog, IGraphicInterface {
             ItemType[] itemTypes = new ItemType[0];
             return itemTypes;
         }
-        
-        @Override
+
+	@Override
+	public ItemType[] getInventory(Player player) {
+		ItemType[] itemTypes = {RUM, LUCIDITY_STONE, HEALTH_POTION};
+		return itemTypes;
+	}
+
+	@Override
         public int getNumberOfDroppedItems(int cellIndex){
             return -1;
         }
@@ -193,6 +204,21 @@ public class Dialog implements IDialog, IGraphicInterface {
         public void pickUpItem(int itemIndex){
             return;
         }
+
+	@Override
+	public int getPlayerHealth(Player player) {
+		return 10;
+	}
+
+	@Override
+	public ItemType getWeapon(Player player) {
+		return MUSKET;
+	}
+
+	@Override
+	public float getIntoxication(Player player) {
+		return 0.5f;
+	}
 
 
 }

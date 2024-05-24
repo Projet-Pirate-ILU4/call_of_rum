@@ -42,7 +42,7 @@ public class GraphicsCard extends javax.swing.JPanel {
     private void designImage(int value, String nameValue, String descriptionValue){
         BufferedImage image = ImageLoader.loadImage("presentation/"+imageName.toString().toLowerCase()+".png");
         Image scaledTypeImage;
-        scaledTypeImage = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        scaledTypeImage = image.getScaledInstance(imageContainer.getWidth(), imageContainer.getHeight(), Image.SCALE_SMOOTH);
         imageContainer.setLocation(0, getWidth()/2);
         price.setText(""+value);
         nameLabel.setText(nameValue);

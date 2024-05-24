@@ -4,7 +4,14 @@
  */
 package fr.call_of_rum.boundary.presentation;
 
+import fr.call_of_rum.boundary.dialog.Dialog;
+import fr.call_of_rum.boundary.dialog.IDialog;
+import fr.call_of_rum.util.ItemType;
+import fr.call_of_rum.util.Player;
+
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -15,6 +22,34 @@ public class PlayerPanel extends javax.swing.JPanel {
     /**
      * Creates new form PlayerPanel
      */
+
+    private Player player;
+
+    private IDialog dialog;
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setDialog(IDialog dialog) {
+        this.dialog = dialog;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+        setImage(player);
+        jLabel1.setText(player.toString().replace('_',' '));
+        inventoryPanel2.setDialog(dialog);
+    }
+
+    public void update(){
+        coinScorePanel1.setScore(dialog.checkfound(player));
+        lifeBarPanel1.updateLife(dialog.getPlayerHealth(player));
+        inventoryPanel2.setInventories(dialog.getInventory(player));
+        weaponChoicePanel1.setWeapon(dialog.getWeapon(player));
+        intoxicationGaugePanel1.setLevel(dialog.getIntoxication(player));
+    }
+
     public PlayerPanel() {
         initComponents();
     }
@@ -36,6 +71,7 @@ public class PlayerPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         inventoryPanel2 = new fr.call_of_rum.boundary.presentation.InventoryPanel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         jLabel1.setText("Nom Joueur ");
 
@@ -50,9 +86,12 @@ public class PlayerPanel extends javax.swing.JPanel {
             .addGap(0, 557, Short.MAX_VALUE)
         );
 
-        jLabel2.setText("Barrre de vie");
+        jLabel2.setText("Life Bar");
 
         jLabel3.setText("Alcoolemie");
+
+        jLabel4.setPreferredSize(new java.awt.Dimension(100, 100));
+        jLabel4.setSize(new java.awt.Dimension(100, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -66,38 +105,40 @@ public class PlayerPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(intoxicationGaugePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
-                            .addComponent(coinScorePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(weaponChoicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(inventoryPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                            .addComponent(lifeBarPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(coinScorePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inventoryPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lifeBarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addContainerGap(87, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel1)
-                        .addGap(43, 43, 43)
-                        .addComponent(coinScorePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(weaponChoicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(inventoryPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(lifeBarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(intoxicationGaugePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(intoxicationGaugePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(coinScorePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(weaponChoicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(inventoryPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lifeBarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)))
                 .addComponent(jLabel3))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -110,16 +151,31 @@ public class PlayerPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private fr.call_of_rum.boundary.presentation.LifeBarPanel lifeBarPanel1;
     private fr.call_of_rum.boundary.presentation.WeaponChoicePanel weaponChoicePanel1;
     // End of variables declaration//GEN-END:variables
 
-   
+
+
+    public void setImage(Player player) {
+            BufferedImage image = ImageLoader.loadImage("presentation/"+player.toString().toLowerCase()+"_joueur.png");
+            Image scaledTypeImage;
+            scaledTypeImage = image.getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_SMOOTH);
+            ImageIcon typeIcon = new ImageIcon(scaledTypeImage);
+            jLabel4.setIcon(typeIcon);
+        }
+
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("player panel");
         frame.setSize(600, 400); // Taille de la fenêtre
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new PlayerPanel());
+        PlayerPanel playerPanel = new PlayerPanel();
+        playerPanel.setDialog(new Dialog());
+        playerPanel.setPlayer(Player.JACK_LE_BORGNE);
+        frame.add(playerPanel);
+        playerPanel.update();
         frame.setVisible(true);
     }
 }
