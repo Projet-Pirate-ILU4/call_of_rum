@@ -16,8 +16,8 @@ public abstract class Scenario {
 	protected ItemRegistry itemRegistry = new ItemRegistry();
 	protected Board board = BoardFactory.getDefaultBoard(itemRegistry, rng);
 	protected Market market = new Market();
-	protected Pirate player2 = new Pirate(Player.BILL_JAMBE_DE_BOIS, 0, 10);
-	protected Pirate player1 = new Pirate(Player.JACK_LE_BORGNE, 0, 10);
+	protected Pirate player1 = new Pirate(Player.BILL_JAMBE_DE_BOIS, 0, 10);
+	protected Pirate player2 = new Pirate(Player.JACK_LE_BORGNE, 0, 10);
 	
 	public abstract void start();
 	

@@ -46,13 +46,13 @@ public class GameFrame extends Presentation {
         player1 = dialog.getPlayer1();
         player2 = dialog.getPlayer2();
         playerPanel2.setDialog(dialog);
-        playerPanel3.setDialog(dialog);
+        playerPanel1.setDialog(dialog);
         dicePanel1.setDialog(dialog);
-        playerPanel3.setPlayer(player1);
+        playerPanel1.setPlayer(player1);
         playerPanel2.setPlayer(player2);
         getContentPane().setBackground(Color.WHITE);
         playerPanel2.update();
-        playerPanel3.update();
+        playerPanel1.update();
         endTurnSecondPlayerActionPerformed(null);
         endTurnFirstPlayer.setEnabled(true);
 
@@ -68,21 +68,21 @@ public class GameFrame extends Presentation {
     private void initComponents() {
 
         jSplitPane1 = new javax.swing.JSplitPane();
-        jPanel1 = new javax.swing.JPanel();
+        rightPanel = new javax.swing.JPanel();
         endTurnSecondPlayer = new javax.swing.JButton();
         playerPanel2 = new fr.call_of_rum.boundary.presentation.PlayerPanel();
         jSplitPane2 = new javax.swing.JSplitPane();
-        jPanel3 = new javax.swing.JPanel();
+        leftPanel = new javax.swing.JPanel();
         endTurnFirstPlayer = new javax.swing.JButton();
-        playerPanel3 = new fr.call_of_rum.boundary.presentation.PlayerPanel();
-        jPanel4 = new javax.swing.JPanel();
+        playerPanel1 = new fr.call_of_rum.boundary.presentation.PlayerPanel();
+        centerPanel = new javax.swing.JPanel();
         boardPanel = new fr.call_of_rum.boundary.presentation.BoardPanel();
         boardPanel.initBoard(dialog);
         boardPanel.setCellsType(dialog.getCellsType());
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        descriptionArea = new javax.swing.JTextArea();
         dicePanel1 = new fr.call_of_rum.boundary.presentation.DicePanel();
-        jLabel1 = new javax.swing.JLabel();
+        marketLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1330, 853));
@@ -95,23 +95,23 @@ public class GameFrame extends Presentation {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
+        rightPanel.setLayout(rightPanelLayout);
+        rightPanelLayout.setHorizontalGroup(
+            rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rightPanelLayout.createSequentialGroup()
+                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(rightPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(playerPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(rightPanelLayout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addComponent(endTurnSecondPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        rightPanelLayout.setVerticalGroup(
+            rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(playerPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
@@ -119,7 +119,7 @@ public class GameFrame extends Presentation {
                 .addGap(41, 41, 41))
         );
 
-        jSplitPane1.setRightComponent(jPanel1);
+        jSplitPane1.setRightComponent(rightPanel);
 
         endTurnFirstPlayer.setText("End Turn");
         endTurnFirstPlayer.setEnabled(false);
@@ -129,68 +129,68 @@ public class GameFrame extends Presentation {
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
+        leftPanel.setLayout(leftPanelLayout);
+        leftPanelLayout.setHorizontalGroup(
+            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftPanelLayout.createSequentialGroup()
+                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(leftPanelLayout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(playerPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(playerPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(leftPanelLayout.createSequentialGroup()
                         .addGap(110, 110, 110)
                         .addComponent(endTurnFirstPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        leftPanelLayout.setVerticalGroup(
+            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(playerPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(playerPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(endTurnFirstPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
 
-        jSplitPane2.setLeftComponent(jPanel3);
+        jSplitPane2.setLeftComponent(leftPanel);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        descriptionArea.setColumns(20);
+        descriptionArea.setRows(5);
+        jScrollPane1.setViewportView(descriptionArea);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/market.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        marketLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/market.png"))); // NOI18N
+        marketLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                marketLabelMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout centerPanelLayout = new javax.swing.GroupLayout(centerPanel);
+        centerPanel.setLayout(centerPanelLayout);
+        centerPanelLayout.setHorizontalGroup(
+            centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(centerPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, centerPanelLayout.createSequentialGroup()
+                        .addComponent(marketLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(dicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(171, 171, 171))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(centerPanelLayout.createSequentialGroup()
+                        .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1)
                             .addComponent(boardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        centerPanelLayout.setVerticalGroup(
+            centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(centerPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(marketLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -198,7 +198,7 @@ public class GameFrame extends Presentation {
                 .addContainerGap())
         );
 
-        jSplitPane2.setRightComponent(jPanel4);
+        jSplitPane2.setRightComponent(centerPanel);
 
         jSplitPane1.setLeftComponent(jSplitPane2);
 
@@ -236,13 +236,13 @@ public class GameFrame extends Presentation {
         enableFirstPlayer();
         endTurnSecondPlayer.setEnabled(false);
         boardPanel.setToken1Movable(true);
-        playerPanel3.setBorder(BorderFactory.createLineBorder(Color.blue));
+        playerPanel1.setBorder(BorderFactory.createLineBorder(Color.blue));
         boardPanel.setToken2Movable(false);
     }//GEN-LAST:event_endTurnSecondPlayerActionPerformed
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void marketLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_marketLabelMouseClicked
         java.awt.EventQueue.invokeLater(() -> new Market(this,true, Player.JACK_LE_BORGNE, dialog).setVisible(true));
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_marketLabelMouseClicked
     
     /**
      * @param args the command line arguments
@@ -270,19 +270,19 @@ public class GameFrame extends Presentation {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private fr.call_of_rum.boundary.presentation.BoardPanel boardPanel;
+    private javax.swing.JPanel centerPanel;
+    private javax.swing.JTextArea descriptionArea;
     private fr.call_of_rum.boundary.presentation.DicePanel dicePanel1;
     private javax.swing.JButton endTurnFirstPlayer;
     private javax.swing.JButton endTurnSecondPlayer;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JPanel leftPanel;
+    private javax.swing.JLabel marketLabel;
+    private fr.call_of_rum.boundary.presentation.PlayerPanel playerPanel1;
     private fr.call_of_rum.boundary.presentation.PlayerPanel playerPanel2;
-    private fr.call_of_rum.boundary.presentation.PlayerPanel playerPanel3;
+    private javax.swing.JPanel rightPanel;
     // End of variables declaration//GEN-END:variables
     
     @Override
@@ -295,7 +295,7 @@ public class GameFrame extends Presentation {
 
     @Override
     public void enableSecondPlayer() {
-        playerPanel3.setBorder(BorderFactory.createLineBorder(null));
+        playerPanel1.setBorder(BorderFactory.createLineBorder(null));
     	endTurnSecondPlayer.setEnabled(true);
         boardPanel.setToken1Movable(false);
         boardPanel.setToken2Movable(true);
@@ -341,18 +341,18 @@ public class GameFrame extends Presentation {
 
 	@Override
 	public void printMessage(String message) {
-		jTextArea1.append(message + "\n");
+		descriptionArea.append(message + "\n");
 	}
 
 	@Override
 	public void updateScores() {
 		playerPanel2.updateScore();
-		playerPanel3.updateScore();
+		playerPanel1.updateScore();
 	}
 
 	@Override
 	public void clearMessages() {
-		jTextArea1.setText("");
+		descriptionArea.setText("");
 	}
 
 	@Override
@@ -362,7 +362,7 @@ public class GameFrame extends Presentation {
 
 	@Override
 	public void notifyPickUp(ItemType itemType) {
-		PlayerPanel playerPanel = endTurnFirstPlayer.isEnabled() ? playerPanel2 : playerPanel3;
+		PlayerPanel playerPanel = endTurnFirstPlayer.isEnabled() ? playerPanel2 : playerPanel1;
 		playerPanel.notifyPickUp(itemType);
 	}
 	

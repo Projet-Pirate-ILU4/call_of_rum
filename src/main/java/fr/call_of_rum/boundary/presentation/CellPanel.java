@@ -8,6 +8,7 @@ import fr.call_of_rum.boundary.dialog.IDialog;
 import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -96,6 +97,10 @@ public class CellPanel extends javax.swing.JLayeredPane {
     public void setType(CellType type){
         cellType=type;
         putImage();
+    }
+    
+    public void setNumColor(Color color){
+        numLabel.setForeground(color);
     }
 
     public void putImage(){
