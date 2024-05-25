@@ -156,10 +156,12 @@ public class DicePanel extends javax.swing.JPanel {
             dice1.setFaceValue(valueFace1);
             dice2.setFaceValue(valueFace2);
             tour = 0;
-            throwDiceButton.setEnabled(true);
         }
     }
 
+    public void setThrowButton(boolean bool) {
+        throwDiceButton.setEnabled(bool);
+    }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Dice Faces");

@@ -289,6 +289,7 @@ public class GameFrame extends Presentation {
     public void enableFirstPlayer() {
         playerPanel2.setBorder(BorderFactory.createLineBorder(null));
         endTurnFirstPlayer.setEnabled(true);
+        dicePanel1.setThrowButton(true);
         boardPanel.setToken1Movable(true);
         boardPanel.setToken2Movable(false);
     }
@@ -297,6 +298,7 @@ public class GameFrame extends Presentation {
     public void enableSecondPlayer() {
         playerPanel1.setBorder(BorderFactory.createLineBorder(null));
     	endTurnSecondPlayer.setEnabled(true);
+        dicePanel1.setThrowButton(true);
         boardPanel.setToken1Movable(false);
         boardPanel.setToken2Movable(true);
     }
