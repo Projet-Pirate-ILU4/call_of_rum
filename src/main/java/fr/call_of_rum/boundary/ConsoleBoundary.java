@@ -139,7 +139,7 @@ public class ConsoleBoundary implements IBoundary {
 	
 	private final List<Option> notMovedTurnOptions = List.of(
 			new Option("move", () -> {
-				int diceResult = diceController.getDiceResult();
+				int diceResult = diceController.getDicesResult();
 				System.out.println(String.format(bundle.getString("moved"), diceResult, (playerController.getLocation(currentPlayer) + diceResult) % 30));
 				actionController.move();
 				hasMoved = true;

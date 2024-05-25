@@ -13,8 +13,8 @@ import org.junit.Test;
 import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.board.BoardFactory;
 import fr.call_of_rum.model.pirate.Pirate;
-import fr.call_of_rum.model.stubs.ItemStub;
 import fr.call_of_rum.util.Player;
+import util.stub.ItemStub;
 
 public class ItemTest {
 	

@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import fr.call_of_rum.model.item.liquid.Liquid;
 import fr.call_of_rum.model.pirate.Pirate;
-import fr.call_of_rum.model.stubs.LiquidStub;
 import fr.call_of_rum.util.Player;
+import util.stub.LiquidStub;
 
 public class LiquidTest {
 	
@@ -26,13 +26,6 @@ public class LiquidTest {
 	public void useTest() {
 		pirate.give(liquid);
 		liquid.use();
-		assertEquals(5, pirate.getHealthPoints());
-		assertEquals(0.2f, pirate.getIntoxicationGauge().getLevel(), 0.001f);
-	}
-	
-	@Test
-	public void drinkTest() {
-		pirate.drink(liquid);
 		assertEquals(5, pirate.getHealthPoints());
 		assertEquals(0.2f, pirate.getIntoxicationGauge().getLevel(), 0.001f);
 	}

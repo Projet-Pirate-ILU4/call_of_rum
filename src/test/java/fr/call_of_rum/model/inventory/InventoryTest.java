@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.call_of_rum.model.item.Item;
-import fr.call_of_rum.model.stubs.ItemStub;
+import util.stub.ItemStub;
 
 public class InventoryTest {
 	

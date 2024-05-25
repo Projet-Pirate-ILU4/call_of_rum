@@ -193,7 +193,7 @@ public class MoveController {
 	
 	public void movePirate(Pirate pirate) {
 		int pirateLocation = pirate.getLocation();
-		int newLocation = pirateLocation + diceController.getDiceResult();
+		int newLocation = pirateLocation + diceController.getDicesResult();
 		board.movePirateTo(pirate, newLocation);
 		this.triggerCell(board.getCell(newLocation), pirate);
 	}
