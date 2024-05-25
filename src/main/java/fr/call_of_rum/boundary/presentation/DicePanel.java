@@ -63,7 +63,7 @@ public class DicePanel extends javax.swing.JPanel {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jButton1.setText("Lancer dès");
+        jButton1.setText("Lancer dés");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked();
@@ -144,26 +144,6 @@ public class DicePanel extends javax.swing.JPanel {
         Thread t = new Thread(myThread);
         t.start();
     }
-    int [] setValue(int number) {
-        int[] dies = new int[2];
-        if (number < 2 || number > 12) {
-            throw new IllegalArgumentException("Le nombre doit être entre 2 et 12");
-        }
-        Random random = new Random();
-
-        dies[0] = random.nextInt(6) + 1;
-        dies[1] = number - dies[0];
-
-        // Si die2 est hors des limites (1 à 6), ajustez les valeurs
-        while (dies[1] < 1 || dies[1] > 6) {
-            dies[0] = random.nextInt(6) + 1;
-            dies[1] = number - dies[0];
-        }
-
-        return dies;
-
-    }
-
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Dice Faces");
