@@ -15,6 +15,7 @@ import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.model.item.ItemRegistry;
 import fr.call_of_rum.model.item.liquid.Liquid;
 import fr.call_of_rum.model.item.weapon.Weapon;
+import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 import util.stub.ItemStub;
 import util.stub.LiquidStub;
@@ -44,7 +45,7 @@ public class PirateTest {
 		assertEquals(MAX_HEALTH, pirate.getMaxHealth());
 		assertEquals(MAX_HEALTH, pirate.getHealthPoints());
 		assertEquals(STARTING_COINS, pirate.getCoins());
-		Weapon weapon = new WeaponStub();
+		Weapon weapon = new WeaponStub(ItemType.DAGGER, 0.0f, 0, 0.0f);
 		pirate.equipWeapon(weapon);
 		assertEquals(weapon, pirate.getEquippedWeapon());
 		assertEquals(0.0f, pirate.getIntoxicationGauge().getLevel(), DELTA);

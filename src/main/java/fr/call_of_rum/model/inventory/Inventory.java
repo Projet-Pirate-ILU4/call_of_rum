@@ -1,11 +1,15 @@
 package fr.call_of_rum.model.inventory;
 
 import java.util.Optional;
+import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 import fr.call_of_rum.model.item.Item;
+import fr.call_of_rum.util.ItemType;
 
 public class Inventory<T extends Item> {
+	
+	private static final BiPredicate<Optional<Item>, Predicate<Item>> ON_NON_NULL = (i, p) -> i.isPresent() && p.test(i.get());
 	
 	private int maxCapacity;
 	private Item[] items;
@@ -17,14 +21,10 @@ public class Inventory<T extends Item> {
 			items[i] = null;
 	}
 	
-	private Optional<Integer> findFirst(Item item) {
-		Predicate<Item> criteria;
-		Item current;
+	private Optional<Integer> findFirst(Predicate<Optional<Item>> prediacate) {
 		int i = 0;
 		while (i < maxCapacity) {
-			current = items[i];
-			criteria = current == null || item == null ? it -> it == item : it -> it.equals(item);
-			if (criteria.test(current))
+			if (prediacate.test(Optional.ofNullable(items[i])))
 				return Optional.of(i);
 			i++;
 		}
@@ -32,7 +32,7 @@ public class Inventory<T extends Item> {
 	}
 	
 	private Optional<Integer> getFirstFreeSlot() {
-		return findFirst(null);
+		return findFirst(Optional::isEmpty);
 	}
 	
 	public boolean isFull() {
@@ -55,7 +55,7 @@ public class Inventory<T extends Item> {
 	}
 	
 	public void remove(T item) {
-		Optional<Integer> itemSlot = findFirst(item);
+		Optional<Integer> itemSlot = findFirst(opti -> ON_NON_NULL.test(opti, i -> i.equals(item)));
 		if (itemSlot.isEmpty()) return;
 		items[itemSlot.get()] = null;
 	}
@@ -66,7 +66,11 @@ public class Inventory<T extends Item> {
 	}
 	
 	public boolean contains(Item item) {
-		return findFirst(item).isPresent();
+		return findFirst(opti -> ON_NON_NULL.test(opti, i -> i.equals(item))).isPresent();
+	}
+	
+	public boolean contains(ItemType itemType) {
+		return findFirst(opti -> ON_NON_NULL.test(opti, i -> i.getType().equals(itemType))).isPresent();
 	}
 	
 	private static final String BLANK_ITEM = "___";

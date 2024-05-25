@@ -33,6 +33,7 @@ public abstract class Weapon extends UseableItem {
 	public void use() {
 		if (owner == null) return;
 		Weapon previouslyEquippedWeapon = owner.getEquippedWeapon();
+		owner.getInventory().remove(this);
 		if (previouslyEquippedWeapon != null)
 			owner.getInventory().add(previouslyEquippedWeapon);
 		owner.equipWeapon(this);

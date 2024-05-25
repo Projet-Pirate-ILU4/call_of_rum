@@ -54,9 +54,9 @@ public class InventoryTest {
 	
 	@Test
 	public void containsTest() {
-		assertFalse(inv.contains(item1));
+		assertFalse(inv.contains(item1.getType()));
 		inv.add(item1);
-		assertTrue(inv.contains(item1));
+		assertTrue(inv.contains(item1.getType()));
 	}
 
 }

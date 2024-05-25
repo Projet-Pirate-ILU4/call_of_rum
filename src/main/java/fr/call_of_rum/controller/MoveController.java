@@ -8,10 +8,6 @@ import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.board.cells.Cell;
 import fr.call_of_rum.model.board.cells.Chest;
 import fr.call_of_rum.model.item.Item;
-import fr.call_of_rum.model.item.artefact.Bandana;
-import fr.call_of_rum.model.item.artefact.Clover;
-import fr.call_of_rum.model.item.artefact.Gunpowder;
-import fr.call_of_rum.model.item.artefact.LucidityStone;
 import fr.call_of_rum.model.item.weapon.Weapon;
 import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.util.CellType;
@@ -40,12 +36,10 @@ public class MoveController {
 		this.pirate2 = pirate2;
 	}
 	
-	private static final Item CLOVER = new Clover();
-	
 	private void triggerChestCell(Chest chest, Pirate pirate) {
 		chest.setOpened(true);
 		int chestCoins = chest.getCoins();
-		if (pirate.getInventory().contains(CLOVER)) {
+		if (pirate.getInventory().contains(ItemType.CLOVER)) {
 			chestCoins = (int) (1.5 * chestCoins);
 		}
 		pirate.setCoins(pirate.getCoins() + chestCoins);
@@ -80,14 +74,13 @@ public class MoveController {
 	}
 	
 	private static final float DEFAULT_STEALING_POTENTIAL = 0.2f;
-	private static final Item BANDANA = new Bandana();
 	
 	private void steal(Pirate winner, Pirate loser) {
 		Weapon equippedWeapon = winner.getEquippedWeapon();
 		float stealingPotential = DEFAULT_STEALING_POTENTIAL;
 		if (equippedWeapon != null)
 			stealingPotential = equippedWeapon.getStealingPotential();
-		if (winner.getInventory().contains(BANDANA))
+		if (winner.getInventory().contains(ItemType.BANDANA))
 			stealingPotential *= 1.5;
 		int amountStealed = (int) (stealingPotential * loser.getCoins());
 		winner.setCoins(winner.getCoins() + amountStealed);
@@ -104,8 +97,6 @@ public class MoveController {
 		loser.setHealthPoints(loser.getHealthPoints() - damages);
 	}
 	
-	private static final Item GUNPOWDER = new Gunpowder();
-	
 	private double getPirateFightBonus(Pirate pirate) {
 		double fightBonus = 1.0; // start with even chances
 		
@@ -113,13 +104,11 @@ public class MoveController {
 		if (equippedWeapon != null)
 			fightBonus += equippedWeapon.getFightBonus();
 		
-		if (pirate.getInventory().contains(GUNPOWDER))
+		if (pirate.getInventory().contains(ItemType.GUNPOWDER))
 			fightBonus = 1.5 * fightBonus;
 		
 		return fightBonus;
 	}
-	
-	private static final Item LUCIDITY_STONE = new LucidityStone();
 	
 	private static final double EPSILON = 0.0001;
 	
@@ -129,8 +118,8 @@ public class MoveController {
 		double otherPirateIntoxication = otherPirate.getIntoxicationGauge().getLevel();
 		
 		// ignore intoxication effects if pirate have a lucidity stone
-		if (pirate.getInventory().contains(LUCIDITY_STONE)) pirateIntoxication = 0.0;
-		if (otherPirate.getInventory().contains(LUCIDITY_STONE)) otherPirateIntoxication = 0.0;
+		if (pirate.getInventory().contains(ItemType.LUCIDITY_STONE)) pirateIntoxication = 0.0;
+		if (otherPirate.getInventory().contains(ItemType.LUCIDITY_STONE)) otherPirateIntoxication = 0.0;
 		
 		// calculation of pirate chance bonuses
 		double pirateBonus = getPirateFightBonus(pirate);

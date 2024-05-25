@@ -5,8 +5,8 @@ import fr.call_of_rum.util.ItemType;
 
 public class WeaponStub extends Weapon {
 
-	public WeaponStub() {
-		super(ItemType.SABER, 0.2f, 3, 0.2f);
+	public WeaponStub(ItemType itemType, float fightBonus, int damages, float stealingPotential) {
+		super(itemType, fightBonus, damages, stealingPotential);
 	}
 
 }
