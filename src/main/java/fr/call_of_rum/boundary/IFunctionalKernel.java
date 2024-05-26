@@ -43,6 +43,10 @@ public interface IFunctionalKernel {
 	
 	float getIntoxication(Player player);
 	
+	int getFirstDiceResult();
+	
+	int getSecondDiceResult();
+	
 	int getDicesResult();
     
 }

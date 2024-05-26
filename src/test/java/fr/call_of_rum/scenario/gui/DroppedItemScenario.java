@@ -2,7 +2,7 @@ package fr.call_of_rum.scenario.gui;
 
 import fr.call_of_rum.model.board.BoardFactory;
 import fr.call_of_rum.model.item.Item;
-import fr.call_of_rum.model.stubs.ItemStub;
+import util.stub.ItemStub;
 import java.util.Random;
 import java.util.random.RandomGenerator;
 

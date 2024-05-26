@@ -62,12 +62,6 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 		graphicInterface.showDuel(winner);
 		graphicInterface.updateScores();
 	}
-	
-	@Override
-	public void duel(Player winner) {
-		graphicInterface.showDuel(winner);
-		graphicInterface.updateScores();
-	}
 
 	@Override
 	public void gameEnded(Player winner) {
@@ -196,8 +190,18 @@ public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {
 	}
 
 	@Override
+	public int getFirstDiceResult() {
+		return diceController.getFirstDiceResult();
+	}
+
+	@Override
+	public int getSecondDiceResult() {
+		return diceController.getSecondDiceResult();
+	}
+
+	@Override
 	public int getDicesResult() {
-		return diceController.getDiceResult();
+		return diceController.getDicesResult();
 	}
 
 }
