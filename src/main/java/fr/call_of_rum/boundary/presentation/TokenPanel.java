@@ -5,13 +5,11 @@
 package fr.call_of_rum.boundary.presentation;
 
 import fr.call_of_rum.boundary.dialog.IDialog;
-import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import static java.lang.Math.abs;
 import javax.swing.ImageIcon;
 
 /**
@@ -24,7 +22,6 @@ public class TokenPanel extends javax.swing.JPanel {
     private Player player;
     private int posX;
     private int posY;
-    private boolean isMovable=false;
     private CellPanel position;
     private IDialog dialog;
     private int newX;
@@ -44,10 +41,6 @@ public class TokenPanel extends javax.swing.JPanel {
     
     public void setPosition(CellPanel position){
         this.position=position;
-    }
-    
-    public void setIsMovable(boolean choice){
-        this.isMovable=choice;
     }
     
     public void setDialog(IDialog dialog){
@@ -104,22 +97,14 @@ public class TokenPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        if (player.equals(Player.BILL_JAMBE_DE_BOIS) && boardPanel.getisToken1Movable()){
+        if (this.isEnabled()){
             posX=evt.getX();
             posY=evt.getY();
-            setIsMovable(true);
-            System.out.println("On change la position initiale du pion1");
-        }
-        if (player.equals(Player.JACK_LE_BORGNE) && boardPanel.getisToken2Movable()){
-            posX=evt.getX();
-            posY=evt.getY();
-            setIsMovable(true);
-            System.out.println("On change la position initiale du pion2");
         }
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        if (isMovable){
+        if (this.isEnabled()){
             if (wrongPosition!=null){
                 wrongPosition.setNumColor(Color.white);
                 repaint();
@@ -132,7 +117,7 @@ public class TokenPanel extends javax.swing.JPanel {
                     ||(newX<boardPanel.getX()) 
                     ||(newY<0)
                     ||(newY>boardPanel.getHeight())){
-                this.setLocation(posX, posY);
+                this.setLocation(position.getX(), position.getY());
             }else{
                 this.setLocation(newX, newY);
             }
@@ -141,18 +126,20 @@ public class TokenPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_formMouseDragged
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
-        Component initialCell = boardPanel.getComponentAt(posX-posX%100, posY-posY%100); 
-        Component arrivalCell=boardPanel.getComponentAt(newX-newX%100, newY-newY%100);
-        if (arrivalCell instanceof CellPanel){
-            if (dialog.getDicesResult()+((CellPanel) initialCell).getNum() == ((CellPanel) arrivalCell).getNum()){
-                position=boardPanel.getCellsPanel()[(((CellPanel)arrivalCell).getNum())-1]; //On récupère la position du pion. 
-                dialog.move();
-                setIsMovable(false);
-            }else{
-                wrongPosition=((CellPanel) arrivalCell);
-                ((CellPanel) arrivalCell).setNumColor(Color.red);
+        if (this.isEnabled()){
+            Component initialCell = boardPanel.getComponentAt(position.getX(), position.getY());
+            Component arrivalCell=boardPanel.getComponentAt(newX-newX%100, newY-newY%100);
+            if (arrivalCell instanceof CellPanel){
+                if ((dialog.getDicesResult()+((CellPanel) initialCell).getNum())%30 == ((CellPanel) arrivalCell).getNum()){
+                    position=boardPanel.getCellsPanel()[(((CellPanel)arrivalCell).getNum())-1]; //On récupère la position du pion. 
+                    dialog.move();
+                    this.setEnabled(false);
+                }else{
+                    wrongPosition=((CellPanel) arrivalCell);
+                    ((CellPanel) arrivalCell).setNumColor(Color.red);
+                    this.setLocation(position.getX(), position.getY());
+                }
                 repaint();
-                this.setLocation(posX, posY);
             }
         }
     }//GEN-LAST:event_formMouseReleased

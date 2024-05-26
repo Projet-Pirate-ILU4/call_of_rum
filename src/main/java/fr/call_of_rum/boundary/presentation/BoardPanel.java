@@ -4,15 +4,12 @@
  */
 package fr.call_of_rum.boundary.presentation;
 
-import fr.call_of_rum.boundary.dialog.Dialog;
 import fr.call_of_rum.boundary.dialog.IDialog;
-import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.util.List;
 import javax.swing.ImageIcon;
 
 /**
@@ -27,10 +24,12 @@ public class BoardPanel extends javax.swing.JLayeredPane {
     
     public void setToken1Movable(boolean choice) {
         isToken1Movable = choice;
+        tokenPanelPlayer1.setEnabled(choice);
     }
     
     public void setToken2Movable(boolean choice) {
         isToken2Movable = choice;
+        tokenPanelPlayer2.setEnabled(choice);
     }
     
     public boolean getisToken1Movable() {
@@ -460,9 +459,6 @@ public class BoardPanel extends javax.swing.JLayeredPane {
                     .addComponent(cellPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(499, 499, 499))
         );
-
-        tokenPanelPlayer1.getAccessibleContext().setAccessibleParent(cellPanel1);
-        tokenPanelPlayer2.getAccessibleContext().setAccessibleParent(cellPanel1);
     }// </editor-fold>//GEN-END:initComponents
 
     public void setCellsType(CellType[] cellsType) {
