@@ -111,6 +111,16 @@ public class DialogStub implements IDialog {
 	}
 
 	@Override
+	public int getFirstDiceResult() {
+		return 2;
+	}
+
+	@Override
+	public int getSecondDiceResult() {
+		return 4;
+	}
+
+	@Override
 	public int getDicesResult() {
 		return 6;
 	}
@@ -160,11 +170,6 @@ public class DialogStub implements IDialog {
 	@Override
 	public Player getDuelWinner() {
 		return Player.JACK_LE_BORGNE;
-	}
-
-	@Override
-	public void trowDice() {
-
 	}
 
 }

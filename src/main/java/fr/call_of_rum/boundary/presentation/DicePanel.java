@@ -4,11 +4,13 @@
  */
 package fr.call_of_rum.boundary.presentation;
 
+import java.util.Random;
+
+import javax.swing.JFrame;
+import javax.swing.Timer;
+
 import fr.call_of_rum.boundary.dialog.DialogStub;
 import fr.call_of_rum.boundary.dialog.IDialog;
-
-import javax.swing.*;
-import java.util.Random;
 
 /**
  *
@@ -23,7 +25,6 @@ public class DicePanel extends javax.swing.JPanel {
     private int valueFace1;
     private int valueFace2;
 
-    private int tour;
     private IDialog dialog;
 
     public void setDialog(IDialog dialog) {
@@ -44,7 +45,7 @@ public class DicePanel extends javax.swing.JPanel {
 
         dice1 = new fr.call_of_rum.boundary.presentation.Dice();
         dice2 = new fr.call_of_rum.boundary.presentation.Dice();
-        throwDiceButton = new javax.swing.JButton();
+        throwDicesButton = new javax.swing.JButton();
 
         javax.swing.GroupLayout dice1Layout = new javax.swing.GroupLayout(dice1);
         dice1.setLayout(dice1Layout);
@@ -68,13 +69,12 @@ public class DicePanel extends javax.swing.JPanel {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        throwDiceButton.setText("Lancer dés");
-        throwDiceButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                throwDiceButton1MouseClicked();
+        throwDicesButton.setText("Lancer dès");
+        throwDicesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                throwDicesButtonActionPerformed(evt);
             }
         });
-        throwDiceButton.addActionListener(this::throwDiceButton1ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -88,7 +88,7 @@ public class DicePanel extends javax.swing.JPanel {
                 .addContainerGap(12, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(throwDiceButton)
+                .addComponent(throwDicesButton)
                 .addGap(69, 69, 69))
         );
         layout.setVerticalGroup(
@@ -99,68 +99,49 @@ public class DicePanel extends javax.swing.JPanel {
                     .addComponent(dice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dice2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(throwDiceButton)
+                .addComponent(throwDicesButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void throwDiceButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_throwDiceButton1ActionPerformed
-    }//GEN-LAST:event_throwDiceButton1ActionPerformed
-
-    private void throwDiceButton1MouseClicked() {//GEN-FIRST:event_throwDiceButton1MouseClicked
-        if (throwDiceButton.isEnabled()) {
-            throwDice();
-        }
-    }//GEN-LAST:event_throwDiceButton1MouseClicked
+    private void throwDicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_throwDicesButtonActionPerformed
+        throwDices();
+    }//GEN-LAST:event_throwDicesButtonActionPerformed
+    
     public static int generateRandomNumber() {
-        Random rand = new Random();
-        return rand.nextInt(6) + 1; // Génère un nombre entre 0 et 5, on ajoute 1 pour obtenir un nombre entre 1 et 6
-    }
-    public static void wait(int milliseconds) {
-        try {
-            Thread.sleep(milliseconds);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        return RNG.nextInt(6) + 1; // Génère un nombre entre 0 et 5, on ajoute 1 pour obtenir un nombre entre 1 et 6
     }
     
     private static final Random RNG = new Random();
     
-    public void throwDice(){
-        throwDiceButton.setEnabled(false);
-        dialog.trowDice();
-        int value = dialog.getDicesResult();
-
-        int maxFirst = value > 6 ? 7 : value;
-        do {
-            valueFace1 = RNG.nextInt(1, maxFirst + 1); // result of the first dice
-            valueFace2 = value - valueFace1; // result of the second dice
-        } while (valueFace2 == 0);
-        System.out.println("dice 1 :" +valueFace1+"dice 1 :"+valueFace2);
+    public void throwDices(){
+        throwDicesButton.setEnabled(false);
+        valueFace1 = dialog.getFirstDiceResult();
+        valueFace2 = dialog.getSecondDiceResult();
         timer.start();
     }
-    private
+    
+    private final Timer timer = new Timer(100, e -> 
+        setRandomFace()
+    );
 
-    Timer timer = new Timer(100, (e) -> {
-        setRandomFace();
-    });
-
+    private int dicesRolledCount = 0;
+    
     private void setRandomFace() {
-        timer.stop();
-        tour++;
-        if (tour < 6) {
-            dice1.setFaceValue(generateRandomNumber());
-            dice2.setFaceValue(generateRandomNumber());
-            timer.start();
-        } else {
+    	dicesRolledCount++;
+        if (dicesRolledCount > 6) {
             dice1.setFaceValue(valueFace1);
             dice2.setFaceValue(valueFace2);
-            tour = 0;
+            timer.stop();
+            dicesRolledCount = 0;
+        } else {
+            dice1.setFaceValue(generateRandomNumber());
+            dice2.setFaceValue(generateRandomNumber());
         }
     }
 
     public void setThrowButton(boolean bool) {
-        throwDiceButton.setEnabled(bool);
+        throwDicesButton.setEnabled(bool);
     }
 
     public static void main(String[] args) {
@@ -175,7 +156,6 @@ public class DicePanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private fr.call_of_rum.boundary.presentation.Dice dice1;
     private fr.call_of_rum.boundary.presentation.Dice dice2;
-    private javax.swing.JButton throwDiceButton;
-
+    private javax.swing.JButton throwDicesButton;
     // End of variables declaration//GEN-END:variables
 }

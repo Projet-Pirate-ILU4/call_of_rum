@@ -225,6 +225,16 @@ public class Dialog implements IDialog, IGraphicInterface {
 	}
 
 	@Override
+	public int getFirstDiceResult() {
+		return functionalKernelAdapter.getFirstDiceResult();
+	}
+
+	@Override
+	public int getSecondDiceResult() {
+		return functionalKernelAdapter.getSecondDiceResult();
+	}
+
+	@Override
 	public int getDicesResult() {
 		return functionalKernelAdapter.getDicesResult();
 	}
@@ -281,9 +291,5 @@ public class Dialog implements IDialog, IGraphicInterface {
 	public Player getDuelWinner() {
 		return null;
 	}
-
-	@Override
-	public void trowDice() {
-
-	}
+	
 }

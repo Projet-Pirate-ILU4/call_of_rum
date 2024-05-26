@@ -59,6 +59,10 @@ public interface IDialog {
 	float getIntoxication(Player player);
 	
 	// # dice
+	int getFirstDiceResult();
+	
+	int getSecondDiceResult();
+	
 	int getDicesResult();
 	
 	// # items String resolution
@@ -80,6 +84,5 @@ public interface IDialog {
 	Player getPlayer1();
 
 	Player getDuelWinner();
-
-    void trowDice();
+	
 }
