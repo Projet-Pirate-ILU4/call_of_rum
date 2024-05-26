@@ -7,6 +7,7 @@ import java.util.random.RandomGenerator;
 import fr.call_of_rum.model.board.cells.Cell;
 import fr.call_of_rum.model.board.cells.Chest;
 import fr.call_of_rum.model.board.cells.Land;
+import fr.call_of_rum.model.board.cells.Store;
 import fr.call_of_rum.model.board.cells.Trap;
 import fr.call_of_rum.model.board.cells.TrapType;
 import fr.call_of_rum.model.item.Item;
@@ -84,10 +85,14 @@ public class BoardFactory {
 		cells[0] = new Land(0);
 		cells[numberOfCells-1] = new Land(29);
 		// the other are ranomly generated
-		for (int i = 1; i < numberOfCells - 1; i++) {
-			cells[i] = generateCell(i, itemRegistry, rng);
-		}
 		int merchant = merchantPossibleCells[rng.nextInt(merchantPossibleCells.length)];
+		for (int i = 1; i < numberOfCells - 1; i++) {
+			if (i == merchant) {
+				cells[i] = new Store(merchant);
+			} else {
+				cells[i] = generateCell(i, itemRegistry, rng);
+			}
+		}
 		return new Board(cells, numberOfCells, merchant);
 	}
 	

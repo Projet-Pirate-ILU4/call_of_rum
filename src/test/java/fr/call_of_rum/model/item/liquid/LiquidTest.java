@@ -1,11 +1,10 @@
-package fr.call_of_rum.model.item;
+package fr.call_of_rum.model.item.liquid;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.call_of_rum.model.item.liquid.Liquid;
 import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.util.Player;
 import util.stub.LiquidStub;

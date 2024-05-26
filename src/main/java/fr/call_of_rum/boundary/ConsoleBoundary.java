@@ -139,7 +139,7 @@ public class ConsoleBoundary implements IBoundary {
 	
 	private final List<Option> notMovedTurnOptions = List.of(
 			new Option("move", () -> {
-				int diceResult = diceController.getDiceResult();
+				int diceResult = diceController.getDicesResult();
 				System.out.println(String.format(bundle.getString("moved"), diceResult, (playerController.getLocation(currentPlayer) + diceResult) % 30));
 				actionController.move();
 				hasMoved = true;
@@ -176,38 +176,35 @@ public class ConsoleBoundary implements IBoundary {
 		System.out.println();
     }
 	
-	private boolean takeChestItemQuestion(String itemNamespace) {
+	private boolean takeChestItemQuestion(ItemType itemType) {
 		System.out.println(bundle.getString("loot_chest_question"));
 		System.out.print("[y/n]");
 		String input;
 		input = scan.nextLine();
 		if (input.equalsIgnoreCase("y")) {
-			System.out.println(String.format(bundle.getString("took_item"), bundle.getString(itemNamespace)));
+			System.out.println(String.format(bundle.getString("took_item"), bundle.getString(itemType.toString().toLowerCase())));
 			return true;
 		}
 		return false;
 	}
 	
 	@Override
-	public boolean chestFound(int coinAmount, String itemNamespace) {
+	public boolean chestFound(int coinAmount, ItemType itemNamespace) {
 		System.out.println(bundle.getString("chest_found"));
-		System.out.println(String.format(bundle.getString("chest_prompt"), coinAmount, itemNamespace));
+		System.out.println(String.format(bundle.getString("chest_prompt"), coinAmount, itemNamespace.toString()));
 		return takeChestItemQuestion(itemNamespace);
 	}
 
 	@Override
-	public boolean openedChestFound(int coinAmount, Optional<String> itemNamespace) {
+	public boolean openedChestFound(int coinAmount, Optional<ItemType> optionalItemType) {
 		System.out.println(bundle.getString("opened_chest_found"));
-		String namespace;
-		if (itemNamespace.isEmpty()) {
-			namespace = "no_item";
+		if (optionalItemType.isPresent()) {
+			System.out.println(String.format(bundle.getString("chest_prompt"), coinAmount, bundle.getString(optionalItemType.get().toString().toLowerCase())));
+			return takeChestItemQuestion(optionalItemType.get());
 		} else {
-			namespace = itemNamespace.get();
+			System.out.println(String.format(bundle.getString("chest_prompt"), coinAmount, bundle.getString("no_item")));
+			return false;
 		}
-		System.out.println(String.format(bundle.getString("chest_prompt"), coinAmount, bundle.getString(namespace)));
-		if (!itemNamespace.isEmpty())
-			return takeChestItemQuestion(namespace);
-		return false;
 	}
 
 	@Override

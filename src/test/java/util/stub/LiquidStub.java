@@ -1,4 +1,4 @@
-package fr.call_of_rum.model.stubs;
+package util.stub;
 
 import fr.call_of_rum.model.item.liquid.Liquid;
 import fr.call_of_rum.util.ItemType;

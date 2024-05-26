@@ -16,7 +16,6 @@ import fr.call_of_rum.util.Player;
 import java.util.List;
 
 import static fr.call_of_rum.util.ItemType.*;
-import static fr.call_of_rum.util.ItemType.LICIDITY_STONE;
 
 /**
  *
@@ -298,7 +297,7 @@ public class GameFrame extends javax.swing.JFrame {
                     itemTypes[0] = CLOVER;
                     itemTypes[1] = BANDANA;
                     itemTypes[2] = GUNPOWDER;
-                    itemTypes[3] = LICIDITY_STONE;
+                    itemTypes[3] = LUCIDITY_STONE;
                     return  itemTypes;
                 }
 
@@ -317,12 +316,12 @@ public class GameFrame extends javax.swing.JFrame {
                 }
 
                 @Override
-                public void useItem(int itemIndex) {
+                public void useItem(int itemIndex, Player player) {
 
                 }
 
                 @Override
-                public void throwItem(int itemIndex) {
+                public void throwItem(int itemIndex, Player player) {
 
                 }
 

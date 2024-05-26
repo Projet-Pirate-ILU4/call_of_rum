@@ -40,10 +40,10 @@ public interface IDialog {
 
     String getDescribe(ItemType itemType);
 
-	void useItem(int itemIndex);
+	void useItem(int itemIndex, Player player);
 
 
-	void throwItem(int itemIndex);
+	void throwItem(int itemIndex, Player player);
 
 
     String getDescribe2(int itemIndex);

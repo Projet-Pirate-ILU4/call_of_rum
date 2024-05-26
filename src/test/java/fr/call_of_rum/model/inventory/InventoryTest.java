@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.call_of_rum.model.item.Item;
-import fr.call_of_rum.model.stubs.ItemStub;
+import util.stub.ItemStub;
 
 public class InventoryTest {
 	
@@ -54,9 +54,9 @@ public class InventoryTest {
 	
 	@Test
 	public void containsTest() {
-		assertFalse(inv.contains(item1));
+		assertFalse(inv.contains(item1.getType()));
 		inv.add(item1);
-		assertTrue(inv.contains(item1));
+		assertTrue(inv.contains(item1.getType()));
 	}
 
 }

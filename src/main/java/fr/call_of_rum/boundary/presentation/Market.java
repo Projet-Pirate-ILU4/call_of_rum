@@ -13,11 +13,11 @@ import fr.call_of_rum.boundary.dialog.IDialog;
 import java.awt.*;
 import javax.swing.*;
 
+import java.awt.event.MouseEvent;
 import java.util.*;
 import java.util.List;
 
 import static fr.call_of_rum.util.ItemType.*;
-import static fr.call_of_rum.util.ItemType.LICIDITY_STONE;
 
 /**
  *
@@ -32,7 +32,7 @@ public class Market extends javax.swing.JDialog {
         super(parent,modal);
         this.player = player;
         this.dialog = dialog;
-        focus = new Hashtable<>();
+        focus = new HashMap<>();
         this.size = dialog.getSizeInventaireAvailable(player);
         itemTypesSelect = new ArrayList<>();
         score = dialog.checkfound(player);
@@ -55,7 +55,9 @@ public class Market extends javax.swing.JDialog {
         graphicsCard3.setImage(itemTypes[2]);
         graphicsCard4.setImage(itemTypes[3]);
 
+        inventoryPanel1.setDialog(dialog);
         updateMarket();
+        inventoryPanel1.setInventory(RUM);
     }
 
     /**
@@ -75,18 +77,23 @@ public class Market extends javax.swing.JDialog {
         graphicsCard3 = new fr.call_of_rum.boundary.presentation.GraphicsCard();
         graphicsCard4 = new fr.call_of_rum.boundary.presentation.GraphicsCard();
         graphicsCard1 = new fr.call_of_rum.boundary.presentation.GraphicsCard();
+        inventoryPanel1 = new fr.call_of_rum.boundary.presentation.InventoryPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText("Valider");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked();
+                jButton1MouseClicked(evt);
             }
         });
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(Objects.requireNonNull(getClass().getResource("/presentation/market.png")))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/market.png"))); // NOI18N
 
         jLabel2.setText("Market");
 
@@ -96,7 +103,7 @@ public class Market extends javax.swing.JDialog {
         graphicsCard2.setEnabled(false);
         graphicsCard2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                graphicsCard2MouseClicked();
+                graphicsCard2MouseClicked(evt);
             }
         });
 
@@ -104,7 +111,7 @@ public class Market extends javax.swing.JDialog {
         graphicsCard3.setMinimumSize(new java.awt.Dimension(400, 400));
         graphicsCard3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                graphicsCard3MouseClicked();
+                graphicsCard3MouseClicked(evt);
             }
         });
 
@@ -112,7 +119,7 @@ public class Market extends javax.swing.JDialog {
         graphicsCard4.setPreferredSize(new java.awt.Dimension(400, 400));
         graphicsCard4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                graphicsCard4MouseClicked();
+                graphicsCard4MouseClicked(evt);
             }
         });
 
@@ -120,7 +127,7 @@ public class Market extends javax.swing.JDialog {
         graphicsCard1.setEnabled(false);
         graphicsCard1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                graphicsCard1MouseClicked();
+                graphicsCard1MouseClicked(evt);
             }
         });
 
@@ -137,35 +144,43 @@ public class Market extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
-                        .addGap(204, 204, 204)
-                        .addComponent(coinScorePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(graphicsCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(graphicsCard3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(graphicsCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(graphicsCard4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80))
+                            .addComponent(inventoryPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(coinScorePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(graphicsCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(graphicsCard3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(graphicsCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(graphicsCard4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(coinScorePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inventoryPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(coinScorePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(jLabel2)
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(jLabel1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(graphicsCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(graphicsCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -185,25 +200,25 @@ public class Market extends javax.swing.JDialog {
         valider();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton1MouseClicked() {//GEN-FIRST:event_jButton1MouseClicked
+    private void jButton1MouseClicked(MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         valider();
     }//GEN-LAST:event_jButton1MouseClicked
 
 
-    private void graphicsCard3MouseClicked() {//GEN-FIRST:event_graphicsCard3MouseClicked
+    private void graphicsCard3MouseClicked(MouseEvent evt) {//GEN-FIRST:event_graphicsCard3MouseClicked
         toogle(graphicsCard3);
 
     }//GEN-LAST:event_graphicsCard3MouseClicked
 
-    private void graphicsCard2MouseClicked() {//GEN-FIRST:event_graphicsCard2MouseClicked
+    private void graphicsCard2MouseClicked(MouseEvent evt) {//GEN-FIRST:event_graphicsCard2MouseClicked
         toogle(graphicsCard2);
     }//GEN-LAST:event_graphicsCard2MouseClicked
 
-    private void graphicsCard4MouseClicked() {//GEN-FIRST:event_graphicsCard4MouseClicked
+    private void graphicsCard4MouseClicked(MouseEvent evt) {//GEN-FIRST:event_graphicsCard4MouseClicked
         toogle(graphicsCard4);
     }//GEN-LAST:event_graphicsCard4MouseClicked
 
-    private void graphicsCard1MouseClicked() {                                           
+    private void graphicsCard1MouseClicked(MouseEvent evt) {
         toogle(graphicsCard1);
     }                                          
 
@@ -342,7 +357,7 @@ public class Market extends javax.swing.JDialog {
                 itemTypes[0] = CLOVER;
                 itemTypes[1] = BANDANA;
                 itemTypes[2] = GUNPOWDER;
-                itemTypes[3] = LICIDITY_STONE;
+                itemTypes[3] = LUCIDITY_STONE;
                 return  itemTypes;
             }
 
@@ -362,12 +377,12 @@ public class Market extends javax.swing.JDialog {
             }
 
             @Override
-            public void useItem(int itemIndex) {
+            public void useItem(int itemIndex, Player player) {
 
             }
 
             @Override
-            public void throwItem(int itemIndex) {
+            public void throwItem(int itemIndex, Player player) {
 
             }
 
@@ -399,7 +414,7 @@ public class Market extends javax.swing.JDialog {
     }
 
 
-    private final Hashtable<GraphicsCard,Boolean> focus;
+    private final HashMap<GraphicsCard,Boolean> focus;
     private final Player player;
     private final IDialog dialog;
     private final ItemType[] itemTypes;
@@ -413,6 +428,7 @@ public class Market extends javax.swing.JDialog {
     private fr.call_of_rum.boundary.presentation.GraphicsCard graphicsCard2;
     private fr.call_of_rum.boundary.presentation.GraphicsCard graphicsCard3;
     private fr.call_of_rum.boundary.presentation.GraphicsCard graphicsCard4;
+    private fr.call_of_rum.boundary.presentation.InventoryPanel inventoryPanel1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

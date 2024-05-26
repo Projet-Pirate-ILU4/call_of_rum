@@ -2,6 +2,7 @@ package fr.call_of_rum.boundary;
 
 import java.util.Optional;
 
+import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 
 /**
@@ -15,9 +16,11 @@ public interface IBoundary {
 	
 	void tookShortcut();
 	
-	boolean chestFound(int coinAmount, String itemNamespace);
+	boolean chestFound(int coinAmount, ItemType itemNamespace);
 	
-	boolean openedChestFound(int coinAmount, Optional<String> itemNamespace);
+	boolean openedChestFound(int coinAmount, Optional<ItemType> itemNamespace);
+	
+	void duel(Player winner);
 	
 	void duel(Player winner);
 	

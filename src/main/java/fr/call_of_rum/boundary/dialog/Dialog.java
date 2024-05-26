@@ -6,9 +6,7 @@ import java.util.Optional;
 
 import fr.call_of_rum.boundary.IFunctionalKernel;
 import fr.call_of_rum.boundary.IGraphicInterface;
-import fr.call_of_rum.boundary.presentation.BoardPanel;
 import fr.call_of_rum.boundary.presentation.GameFrame;
-import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
@@ -95,7 +93,7 @@ public class Dialog implements IDialog, IGraphicInterface {
 		itemTypes[0] = CLOVER;
 		itemTypes[1] = BANDANA;
 		itemTypes[2] = GUNPOWDER;
-		itemTypes[3] = LICIDITY_STONE;
+		itemTypes[3] = LUCIDITY_STONE;
 		return  itemTypes;
 	}
 
@@ -115,24 +113,24 @@ public class Dialog implements IDialog, IGraphicInterface {
 	}
 
 	@Override
-	public boolean chestFound(int coinAmount, String itemNamespace) {
+	public boolean chestFound(int coinAmount, ItemType itemType) {
 		// TODO implements
 		return false;
 	}
 
 	@Override
-	public boolean openedChestFound(int coinAmount, Optional<String> itemNamespace) {
+	public boolean openedChestFound(int coinAmount, Optional<ItemType> optionalItemType) {
 		// TODO implements
 		return false;
 	}
 	
 	@Override
-	public void useItem(int itemIndex) {
+	public void useItem(int itemIndex, Player player) {
 		// TODO implements
 	}
 	
 	 @Override
-	public void throwItem(int itemIndex) {
+	public void throwItem(int itemIndex, Player player) {
 		// TODO implements
 	}
 
@@ -155,7 +153,17 @@ public class Dialog implements IDialog, IGraphicInterface {
 	public void showShortcut() {
 		// TODO implements
 	}
-	
+
+	@Override
+	public void showDuel(Player winner) {
+
+	}
+
+	@Override
+	public void updateScores() {
+
+	}
+
 	@Override
 	public void printMessage(String msg) {
 		presentation.printMessage(msg);

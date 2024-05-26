@@ -8,12 +8,12 @@ package fr.call_of_rum.boundary.presentation;
  *
  * @author assanendoye
  */
-public class BombeDialogue extends javax.swing.JDialog {
+public class BombeDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form TrapDialogue
      */
-    public BombeDialogue(java.awt.Frame parent, boolean modal) {
+    public BombeDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         timer.start();
@@ -33,13 +33,14 @@ public class BombeDialogue extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("BOMM !!`");
 
         jLabel1.setText("Vous êtes tomber sur une bombe");
 
         jLabel2.setText("Bombe");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/bombe.png"))); // NOI18N
-        jLabel3.setText("");
+        jLabel3.setText("jLabel3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,20 +91,21 @@ public class BombeDialogue extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BombeDialogue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BombeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BombeDialogue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BombeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BombeDialogue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BombeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BombeDialogue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BombeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                BombeDialogue dialog = new BombeDialogue(new javax.swing.JFrame(), true);
+                BombeDialog dialog = new BombeDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

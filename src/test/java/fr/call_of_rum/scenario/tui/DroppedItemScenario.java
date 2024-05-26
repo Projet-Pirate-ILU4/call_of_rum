@@ -3,7 +3,7 @@ package fr.call_of_rum.scenario.tui;
 import fr.call_of_rum.model.board.BoardFactory;
 import fr.call_of_rum.model.item.Item;
 import fr.call_of_rum.model.item.liquid.Rum;
-import fr.call_of_rum.model.stubs.ItemStub;
+import util.stub.ItemStub;
 
 public class DroppedItemScenario extends TUIScenario {
 	

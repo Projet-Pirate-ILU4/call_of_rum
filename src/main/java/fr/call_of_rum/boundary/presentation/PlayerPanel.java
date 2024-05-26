@@ -114,6 +114,7 @@ public class PlayerPanel extends javax.swing.JPanel {
     private fr.call_of_rum.boundary.presentation.WeaponChoicePanel weaponChoicePanel1;
     // End of variables declaration//GEN-END:variables
 
+   
     public static void main(String[] args) {
         JFrame frame = new JFrame("player panel");
         frame.setSize(600, 400); // Taille de la fenêtre

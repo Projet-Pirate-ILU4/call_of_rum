@@ -20,8 +20,4 @@ public class Trap extends Cell {
 		return CellType.valueOf(trapType.toString());
 	}
 	
-	@Override
-	public String toString() {
-		return trapType.toString() + super.getNum();
-	}
 }

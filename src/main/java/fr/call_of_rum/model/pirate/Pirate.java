@@ -106,9 +106,4 @@ public class Pirate {
 		return player.hashCode();
 	}
 	
-	@Override
-	public String toString() {
-		return player.toString().toLowerCase().replace('_', ' ');
-	}
-	
 }

@@ -8,21 +8,31 @@ public class DiceController implements IDiceController {
 	
 	private RandomGenerator rng;
 	
-	private int diceResult;
+	private int firstDiceResult;
+	private int secondDiceResult;
 	
 	public DiceController(RandomGenerator rng) {
 		this.rng = rng;
 	}
 	
 	@Override
-	public int getDiceResult() {
-		return diceResult;
+	public int getFirstDiceResult() {
+		return firstDiceResult;
+	}
+	
+	@Override
+	public int getSecondDiceResult() {
+		return secondDiceResult;
+	}
+	
+	@Override
+	public int getDicesResult() {
+		return firstDiceResult + secondDiceResult;
 	}
 	
 	public void rollDices() {
-		int firstDiceResult = rng.nextInt(6) + 1;
-		int secondDiceResult = rng.nextInt(6) + 1;
-		diceResult = firstDiceResult + secondDiceResult;
+		firstDiceResult = rng.nextInt(6) + 1;
+		secondDiceResult = rng.nextInt(6) + 1;
 	}
 
 }
