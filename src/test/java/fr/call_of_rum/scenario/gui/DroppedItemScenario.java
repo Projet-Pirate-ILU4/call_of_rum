@@ -17,7 +17,7 @@ public class DroppedItemScenario extends GUIScenario {
 		Item item2 = new ItemStub();
 		super.player1.give(item1);
 		super.player1.give(item2);
-		super.board.movePirateTo(player1, 10);
+		//super.board.movePirateTo(player1, 10);
 		//item1.drop();
 		//super.board.movePirateTo(player1, 24);
 		//item2.drop();

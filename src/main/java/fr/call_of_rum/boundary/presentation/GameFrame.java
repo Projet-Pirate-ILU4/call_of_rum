@@ -226,6 +226,7 @@ public class GameFrame extends Presentation {
         playerPanel2.setBorder(BorderFactory.createLineBorder(Color.red));
         boardPanel.setToken1Movable(false);
         boardPanel.setToken2Movable(true);
+        boardPanel.setToken1Enabled(false);
     }//GEN-LAST:event_endTurnFirstPlayerActionPerformed
 
     private void endTurnSecondPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endTurnSecondPlayerActionPerformed
@@ -235,9 +236,10 @@ public class GameFrame extends Presentation {
         }
         enableFirstPlayer();
         endTurnSecondPlayer.setEnabled(false);
-        boardPanel.setToken1Movable(true);
         playerPanel1.setBorder(BorderFactory.createLineBorder(Color.blue));
+        boardPanel.setToken1Movable(true);
         boardPanel.setToken2Movable(false);
+        boardPanel.setToken2Enabled(false);
     }//GEN-LAST:event_endTurnSecondPlayerActionPerformed
 
     private void marketLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_marketLabelMouseClicked
@@ -367,5 +369,10 @@ public class GameFrame extends Presentation {
 		PlayerPanel playerPanel = endTurnFirstPlayer.isEnabled() ? playerPanel2 : playerPanel1;
 		playerPanel.notifyPickUp(itemType);
 	}
+        
+        @Override 
+        public void notifyDicesThrown(boolean choice){
+            boardPanel.setDiceThrown(choice);
+        }
 	
 }

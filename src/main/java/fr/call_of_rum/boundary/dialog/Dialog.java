@@ -239,6 +239,11 @@ public class Dialog implements IDialog, IGraphicInterface {
 		return functionalKernelAdapter.getDicesResult();
 	}
 
+        @Override
+        public void notifyDicesThrown(boolean choice){
+            presentation.notifyDicesThrown(choice);
+        }
+        
 	@Override
 	public boolean isLiquid(ItemType itemType) {
 		return itemType == ItemType.HEALTH_POTION || itemType == ItemType.RUM;

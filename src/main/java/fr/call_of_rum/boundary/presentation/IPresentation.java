@@ -33,5 +33,7 @@ public interface IPresentation {
 	void notifyDrop(ItemType itemType);
 	
 	void notifyPickUp(ItemType itemType);
+        
+        void notifyDicesThrown(boolean choice);
 	
 }

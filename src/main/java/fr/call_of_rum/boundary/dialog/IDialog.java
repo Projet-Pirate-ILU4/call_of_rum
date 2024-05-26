@@ -62,6 +62,8 @@ public interface IDialog {
 	int getFirstDiceResult();
 	
 	int getSecondDiceResult();
+        
+        void notifyDicesThrown(boolean choice);
 	
 	int getDicesResult();
 	

@@ -120,6 +120,11 @@ public class DialogStub implements IDialog {
 		return 4;
 	}
 
+        @Override
+        public void notifyDicesThrown(boolean choice){
+            
+        }
+        
 	@Override
 	public int getDicesResult() {
 		return 6;

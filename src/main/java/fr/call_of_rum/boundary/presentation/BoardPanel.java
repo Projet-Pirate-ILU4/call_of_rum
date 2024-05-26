@@ -21,15 +21,14 @@ public class BoardPanel extends javax.swing.JLayeredPane {
     private CellPanel[] cellsPanel;
     private boolean isToken1Movable = false;
     private boolean isToken2Movable = false;
+    private boolean isDiceThrown;
     
     public void setToken1Movable(boolean choice) {
-        isToken1Movable = choice;
-        tokenPanelPlayer1.setEnabled(choice);
+        this.isToken1Movable = choice;
     }
     
     public void setToken2Movable(boolean choice) {
-        isToken2Movable = choice;
-        tokenPanelPlayer2.setEnabled(choice);
+        this.isToken2Movable = choice;
     }
     
     public boolean getisToken1Movable() {
@@ -38,6 +37,28 @@ public class BoardPanel extends javax.swing.JLayeredPane {
     
     public boolean getisToken2Movable() {
         return isToken2Movable;
+    }
+    
+    public void setDiceThrown(boolean choice){
+        this.isDiceThrown=choice;
+        if (isToken1Movable){
+            tokenPanelPlayer1.setIsDiceThrown(choice);
+        }
+        if (isToken2Movable){
+            tokenPanelPlayer2.setIsDiceThrown(choice);
+        }
+    }
+    
+    public void setToken1Enabled(boolean choice){
+        tokenPanelPlayer1.setEnabled(choice);
+    }
+    
+    public void setToken2Enabled(boolean choice){
+        tokenPanelPlayer2.setEnabled(choice);
+    }
+    
+    public boolean getDiceThrown(){
+        return isDiceThrown;
     }
    
     /**
@@ -82,6 +103,8 @@ public class BoardPanel extends javax.swing.JLayeredPane {
         cellsPanel[29]=cellPanel30;
         this.moveToFront(tokenPanelPlayer2);
         this.moveToFront(tokenPanelPlayer1);
+        tokenPanelPlayer1.setEnabled(false);
+        tokenPanelPlayer2.setEnabled(false);
     }
     
     public CellPanel[] getCellsPanel(){

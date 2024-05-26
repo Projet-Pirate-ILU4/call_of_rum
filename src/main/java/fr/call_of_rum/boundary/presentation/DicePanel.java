@@ -106,6 +106,7 @@ public class DicePanel extends javax.swing.JPanel {
 
     private void throwDicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_throwDicesButtonActionPerformed
         throwDices();
+        dialog.notifyDicesThrown(true);
     }//GEN-LAST:event_throwDicesButtonActionPerformed
     
     public static int generateRandomNumber() {

@@ -27,6 +27,8 @@ public class TokenPanel extends javax.swing.JPanel {
     private int newX;
     private int newY;
     private CellPanel wrongPosition=null;
+    private boolean isDiceThrown;
+    private int result;
     
     public void setBoardPanel(BoardPanel boardPanel) {
         this.boardPanel = boardPanel;
@@ -46,6 +48,13 @@ public class TokenPanel extends javax.swing.JPanel {
     public void setDialog(IDialog dialog){
         this.dialog=dialog;
     }
+    
+    public void setIsDiceThrown(boolean choice){
+        this.isDiceThrown=choice;
+        result=(dialog.getDicesResult()+position.getNum())%30;
+        this.setEnabled(choice);
+    }
+    
     /**
      * Creates new form PiecePanel
      */
@@ -98,6 +107,7 @@ public class TokenPanel extends javax.swing.JPanel {
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         if (this.isEnabled()){
+            System.out.println(isDiceThrown);
             posX=evt.getX();
             posY=evt.getY();
         }
@@ -130,10 +140,10 @@ public class TokenPanel extends javax.swing.JPanel {
             Component initialCell = boardPanel.getComponentAt(position.getX(), position.getY());
             Component arrivalCell=boardPanel.getComponentAt(newX-newX%100, newY-newY%100);
             if (arrivalCell instanceof CellPanel){
-                if ((dialog.getDicesResult()+((CellPanel) initialCell).getNum())%30 == ((CellPanel) arrivalCell).getNum()){
+                if (((CellPanel) arrivalCell).getNum() == result){
                     position=boardPanel.getCellsPanel()[(((CellPanel)arrivalCell).getNum())-1]; //On récupère la position du pion. 
                     dialog.move();
-                    this.setEnabled(false);
+                    this.isDiceThrown=false;
                 }else{
                     wrongPosition=((CellPanel) arrivalCell);
                     ((CellPanel) arrivalCell).setNumColor(Color.red);
