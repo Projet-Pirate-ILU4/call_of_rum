@@ -1,5 +1,6 @@
 package fr.call_of_rum.model.inventory;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
@@ -67,6 +68,10 @@ public class Inventory<T extends Item> {
 	
 	public boolean contains(ItemType itemType) {
 		return findFirst(opti -> ON_NON_NULL.test(opti, i -> i.getType().equals(itemType))).isPresent();
+	}
+
+	public boolean isEmpty() {
+		return items == null || Arrays.stream(items).allMatch(element -> element == null);
 	}
 	
 }
