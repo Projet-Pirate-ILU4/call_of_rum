@@ -1,5 +1,6 @@
 package fr.call_of_rum.model.item.weapon;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
@@ -15,6 +16,12 @@ import util.stub.WeaponStub;
 
 public class WeaponTest {
 	
+	private static final double DELTA = 0.000001;
+	
+	private static final float FIGHT_BONUS = 0.2f;
+	private static final int DAMAGES = 2;
+	private static final float STEALING_POTENTIAL = 0.3f;
+	
 	private Pirate pirate;
 	private Weapon weapon1;
 	private Weapon weapon2;
@@ -22,10 +29,17 @@ public class WeaponTest {
 	@Before
 	public void setUp() throws Exception {
 		pirate = new Pirate(Player.BILL_JAMBE_DE_BOIS, 0, 10);
-		weapon1 = new WeaponStub(ItemType.FLINTLOCK_PISTOL, 0.0f, 0, 0.0f);
-		weapon2 = new WeaponStub(ItemType.SABER, 0.0f, 0, 0.0f);
+		weapon1 = new WeaponStub(ItemType.FLINTLOCK_PISTOL, FIGHT_BONUS, DAMAGES, STEALING_POTENTIAL);
+		weapon2 = new WeaponStub(ItemType.SABER, FIGHT_BONUS, DAMAGES, STEALING_POTENTIAL);
 		pirate.give(weapon1);
 		pirate.give(weapon2);
+	}
+	
+	@Test
+	public void validAttributesTest() {
+		assertEquals(FIGHT_BONUS, weapon1.getFightBonus(), DELTA);
+		assertEquals(DAMAGES, weapon1.getDamages(), DELTA);
+		assertEquals(STEALING_POTENTIAL, weapon1.getStealingPotential(), DELTA);
 	}
 
 	@Test

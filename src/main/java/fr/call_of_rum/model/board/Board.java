@@ -62,19 +62,4 @@ public class Board {
 		return pirate.getLocation() == merchant;
 	}
 	
-	@Override
-	public String toString() {
-		StringBuilder str = new StringBuilder();
-		str.append("[");
-		int i;
-		for (i = 0; i < boardSize-1; i++) {
-			if (i == merchant) str.append('M');
-			str.append(cells[i]);
-			str.append("|");
-		}
-		str.append(cells[i]);
-		str.append("]");
-		return str.toString();
-	}
-	
 }

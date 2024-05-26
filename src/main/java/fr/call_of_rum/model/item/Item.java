@@ -30,9 +30,4 @@ public abstract class Item {
 		owner = null;
 	}
 	
-	@Override
-	public String toString() {
-		return itemType.toString();
-	}
-	
 }

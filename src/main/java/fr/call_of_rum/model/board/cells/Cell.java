@@ -26,9 +26,4 @@ public abstract class Cell {
 		return droppedItems;
 	}
 	
-	@Override
-	public String toString() {
-		return this.getClass().getSimpleName() + num;
-	}
-	
 }

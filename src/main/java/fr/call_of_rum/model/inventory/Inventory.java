@@ -50,10 +50,6 @@ public class Inventory<T extends Item> {
 		items[index] = item;
 	}
 	
-	public void remove(int index) {
-		items[index] = null;
-	}
-	
 	public void remove(T item) {
 		Optional<Integer> itemSlot = findFirst(opti -> ON_NON_NULL.test(opti, i -> i.equals(item)));
 		if (itemSlot.isEmpty()) return;
@@ -71,24 +67,6 @@ public class Inventory<T extends Item> {
 	
 	public boolean contains(ItemType itemType) {
 		return findFirst(opti -> ON_NON_NULL.test(opti, i -> i.getType().equals(itemType))).isPresent();
-	}
-	
-	private static final String BLANK_ITEM = "___";
-	
-	@Override
-	public String toString() {
-		StringBuilder str = new StringBuilder();
-		str.append("[ ");
-		int i;
-		for (i = 0; i < maxCapacity-1; i++) {
-			String element = items[i] == null ? BLANK_ITEM : items[0].toString();
-			str.append(element);
-			str.append(" | ");
-		}
-		String element = items[i] == null ? BLANK_ITEM : items[i].toString();
-		str.append(element);
-		str.append(" ]");
-		return str.toString();
 	}
 	
 }
