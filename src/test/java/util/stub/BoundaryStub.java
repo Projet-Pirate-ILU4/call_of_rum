@@ -17,12 +17,13 @@ public class BoundaryStub implements IBoundary {
 	public void giveTurn(Player player) {
 	}
 
-	@Override
 	public void stepOnBomb() {
+		System.out.println("BOUMMMMMMM !!!!");
 	}
 
 	@Override
 	public void tookShortcut() {
+		System.out.println("Shorcut");
 	}
 
 	@Override
@@ -37,10 +38,12 @@ public class BoundaryStub implements IBoundary {
 
 	@Override
 	public void duel(Player winner) {
+		System.out.println("C'est l'heure du DU DU DUEL !!!!");
 	}
 
 	@Override
 	public void gameEnded(Player winner) {
+		System.out.println("C'est la fin du jeu ");
 	}
 
 	@Override
