@@ -54,10 +54,11 @@ public abstract class TUIScenario extends Scenario {
 		if (actionController == null) actionController = new ActionController(marketController, moveController, boardController);
 		if (gameController == null) gameController = new GameController(boundary, actionController, diceController, board, player1, player2);
 
-		boundary.setActionController(actionController);
-		boundary.setBoardController(boardController);
-		boundary.setDiceController(diceController);
-		boundary.setPlayerController(playerController);
+		boundary.subscribeActionController(actionController);
+		boundary.subscribeBoardController(boardController);
+		boundary.subscribeDiceController(diceController);
+		boundary.subscribeMarketController(marketController);
+		boundary.subscribePlayerController(playerController);
 		
 		gameController.start();
 	}

@@ -1,6 +1,9 @@
 package fr.call_of_rum.controller;
 
 import fr.call_of_rum.boundary.IBoundary;
+import fr.call_of_rum.controller.accessible.IBoardController;
+import fr.call_of_rum.controller.accessible.IMarketController;
+import fr.call_of_rum.controller.accessible.IPlayerController;
 import fr.call_of_rum.model.board.Board;
 import fr.call_of_rum.model.pirate.Pirate;
 import fr.call_of_rum.util.Player;

@@ -19,6 +19,9 @@ public class ItemDrop extends javax.swing.JPanel {
     private IDialog dialog;
     private int index;
     private ItemType itemType;
+    private CellPanel position;
+    private int posX;
+    private int posY;
     
     
     public void setIndex(int index){
@@ -31,19 +34,12 @@ public class ItemDrop extends javax.swing.JPanel {
     /**
      * Creates new form DropItem
      */
-    public ItemDrop(IDialog dialog, ItemType itemType, int index) {
+    public ItemDrop(IDialog dialog, ItemType itemType, int index, CellPanel position) {
         initComponents();
         this.itemType=itemType;
         this.index=index;
         this.dialog=dialog;
-        BufferedImage typeImage = ImageLoader.loadImage("presentation/"+itemType.toString().toLowerCase()+".png");
-        Image scaledTypeImage;
-        scaledTypeImage = typeImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
-        ImageIcon typeIcon = new ImageIcon(scaledTypeImage);
-        imageLabel.setIcon(typeIcon);
-    }
-    
-    public void putImage(){
+        this.position=position;
         BufferedImage typeImage = ImageLoader.loadImage("presentation/"+itemType.toString().toLowerCase()+".png");
         Image scaledTypeImage;
         scaledTypeImage = typeImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
@@ -64,6 +60,19 @@ public class ItemDrop extends javax.swing.JPanel {
 
         setMinimumSize(new java.awt.Dimension(25, 25));
         setOpaque(false);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
         imageLabel.setMinimumSize(new java.awt.Dimension(25, 25));
         imageLabel.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -83,6 +92,30 @@ public class ItemDrop extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        int depX = evt.getX() - posX;
+        int depY = evt.getY() - posY;
+        int newX=getX()+depX;
+        int newY=getY()+depY;
+        if ((newX>(position.getWidth()))
+                    ||(newY<0)
+                    ||(newX<0)
+                    ||(newY>position.getHeight())){
+                this.setLocation(posX, posY);
+            }else{
+                this.setLocation(newX, newY);
+        }
+    }//GEN-LAST:event_formMouseDragged
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        position.pickUpItem(index);
+    }//GEN-LAST:event_formMouseClicked
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        posX=evt.getX();
+        posY=evt.getY();
+    }//GEN-LAST:event_formMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

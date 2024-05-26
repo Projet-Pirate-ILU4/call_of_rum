@@ -4,19 +4,32 @@
  */
 package fr.call_of_rum.boundary.presentation;
 
+import fr.call_of_rum.boundary.dialog.DialogStub;
+import fr.call_of_rum.boundary.dialog.IDialog;
+import fr.call_of_rum.util.Player;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author assanendoye
  */
-public class BombeDialog extends javax.swing.JDialog {
+public class DuelDialog extends javax.swing.JDialog {
 
     /**
-     * Creates new form TrapDialogue
+     * Creates new form DuelDialog
      */
-    public BombeDialog(java.awt.Frame parent, boolean modal) {
+
+    private IDialog dialog;
+    private Player player;
+    public DuelDialog(java.awt.Frame parent, boolean modal, IDialog dialog) {
         super(parent, modal);
+        this.dialog = dialog;
         initComponents();
-        timer.start();
+        player = dialog.getDuelWinner();
+        timer1.start();
     }
 
     /**
@@ -28,19 +41,19 @@ public class BombeDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        descriptionLabel = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
+        imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("BOMM !!");
+        setTitle("Duel");
 
-        jLabel1.setText("Vous êtes tomber sur une bombe");
+        descriptionLabel.setText("C'est l'heure du DUELLLLLLLLLLLL !!!");
 
-        jLabel2.setText("Bombe");
+        titleLabel.setText("Duel");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/bombe.png"))); // NOI18N
-        jLabel3.setText("jLabel3");
+        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/duel.png"))); // NOI18N
+        imageLabel.setText("jLabel3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -49,25 +62,25 @@ public class BombeDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(176, 176, 176)
+                        .addComponent(titleLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(jLabel2))
+                        .addGap(73, 73, 73)
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(jLabel1)))
-                .addContainerGap(93, Short.MAX_VALUE))
+                        .addGap(86, 86, 86)
+                        .addComponent(descriptionLabel)))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel2)
+                .addGap(21, 21, 21)
+                .addComponent(titleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(descriptionLabel)
+                .addGap(18, 18, 18)
+                .addComponent(imageLabel)
                 .addContainerGap(73, Short.MAX_VALUE))
         );
 
@@ -91,21 +104,20 @@ public class BombeDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BombeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DuelDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BombeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DuelDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BombeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DuelDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BombeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DuelDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                BombeDialog dialog = new BombeDialog(new javax.swing.JFrame(), true);
+                DuelDialog dialog = new DuelDialog(new javax.swing.JFrame(), true,new DialogStub());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -116,13 +128,32 @@ public class BombeDialog extends javax.swing.JDialog {
             }
         });
     }
-    javax.swing.Timer timer = new javax.swing.Timer(2000,(e)->{
-        dispose();
+
+    public void setImage(Player player) {
+        BufferedImage image = ImageLoader.loadImage("presentation/"+player.toString().toLowerCase()+"_joueur.png");
+        Image scaledTypeImage;
+        scaledTypeImage = image.getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon typeIcon = new ImageIcon(scaledTypeImage);
+        imageLabel.setIcon(typeIcon);
+    }
+
+    javax.swing.Timer timer1 = new javax.swing.Timer(2000,(e)->{
+        printWinner();
     });
 
+    private void printWinner() {
+        descriptionLabel.setText(player.toString().replace('_',' ')+ " a gagné le duel !!!!!");
+        setImage(player);
+        timer1.stop();
+        timer2.start();
+    }
+
+    javax.swing.Timer timer2 = new javax.swing.Timer(2000,(e)->{
+        dispose();
+    });
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JLabel imageLabel;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

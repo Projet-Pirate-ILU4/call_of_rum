@@ -4,11 +4,14 @@
  */
 package fr.call_of_rum.boundary.presentation;
 
+import fr.call_of_rum.boundary.dialog.IDialog;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import static java.lang.Math.abs;
 import javax.swing.ImageIcon;
 
 /**
@@ -23,6 +26,10 @@ public class TokenPanel extends javax.swing.JPanel {
     private int posY;
     private boolean isMovable=false;
     private CellPanel position;
+    private IDialog dialog;
+    private int newX;
+    private int newY;
+    private CellPanel wrongPosition=null;
     
     public void setBoardPanel(BoardPanel boardPanel) {
         this.boardPanel = boardPanel;
@@ -37,6 +44,14 @@ public class TokenPanel extends javax.swing.JPanel {
     
     public void setPosition(CellPanel position){
         this.position=position;
+    }
+    
+    public void setIsMovable(boolean choice){
+        this.isMovable=choice;
+    }
+    
+    public void setDialog(IDialog dialog){
+        this.dialog=dialog;
     }
     /**
      * Creates new form PiecePanel
@@ -76,6 +91,9 @@ public class TokenPanel extends javax.swing.JPanel {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 formMousePressed(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                formMouseReleased(evt);
+            }
         });
         setLayout(null);
 
@@ -87,30 +105,29 @@ public class TokenPanel extends javax.swing.JPanel {
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         if (player.equals(Player.BILL_JAMBE_DE_BOIS) && boardPanel.getisToken1Movable()){
-            System.out.println("On a cliqué sur le pion 1");
-            //boardPanel.setToken1AsClicked();
             posX=evt.getX();
             posY=evt.getY();
-            isMovable=true;
+            setIsMovable(true);
+            System.out.println("On change la position initiale du pion1");
         }
         if (player.equals(Player.JACK_LE_BORGNE) && boardPanel.getisToken2Movable()){
-            System.out.println("On a cliqué sur le pion 2");
-            //boardPanel.setToken2AsClicked();
             posX=evt.getX();
             posY=evt.getY();
-            isMovable=true;
+            setIsMovable(true);
+            System.out.println("On change la position initiale du pion2");
         }
-        /*System.out.println("boardPanel.getX() "+boardPanel.getX()+" boardPanel.getY() "+boardPanel.getY());
-        System.out.println("boardPanel.getX()+boardPanel.getWidth "+(boardPanel.getX()+boardPanel.getWidth())+" boardPanel.getY()+boardänel.getHeight "+(boardPanel.getY()+boardPanel.getHeight()));
-        */
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        if (isMovable){    
+        if (isMovable){
+            if (wrongPosition!=null){
+                wrongPosition.setNumColor(Color.white);
+                repaint();
+            }
             int depX = evt.getX() - posX;
             int depY = evt.getY() - posY;
-            int newX=getX()+depX;
-            int newY=getY()+depY;        
+            newX=getX()+depX;
+            newY=getY()+depY;        
             if ((newX>(boardPanel.getX()+boardPanel.getWidth())) 
                     ||(newX<boardPanel.getX()) 
                     ||(newY<0)
@@ -118,14 +135,27 @@ public class TokenPanel extends javax.swing.JPanel {
                 this.setLocation(posX, posY);
             }else{
                 this.setLocation(newX, newY);
-                Component cell=boardPanel.getComponentAt(newX-newX%100, newY-newY%100);
-                if (cell instanceof CellPanel){
-                    position=boardPanel.getCellsPanel()[(((CellPanel)cell).getNum())-1]; //On récupère la position du pion. 
-                }
             }
             repaint();
         }
     }//GEN-LAST:event_formMouseDragged
+
+    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
+        Component initialCell = boardPanel.getComponentAt(posX-posX%100, posY-posY%100); 
+        Component arrivalCell=boardPanel.getComponentAt(newX-newX%100, newY-newY%100);
+        if (arrivalCell instanceof CellPanel){
+            if (dialog.getDicesResult()+((CellPanel) initialCell).getNum() == ((CellPanel) arrivalCell).getNum()){
+                position=boardPanel.getCellsPanel()[(((CellPanel)arrivalCell).getNum())-1]; //On récupère la position du pion. 
+                dialog.move();
+                setIsMovable(false);
+            }else{
+                wrongPosition=((CellPanel) arrivalCell);
+                ((CellPanel) arrivalCell).setNumColor(Color.red);
+                repaint();
+                this.setLocation(posX, posY);
+            }
+        }
+    }//GEN-LAST:event_formMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

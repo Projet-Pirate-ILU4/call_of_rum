@@ -9,48 +9,77 @@ import fr.call_of_rum.util.CellType;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
 
-import java.util.List;
-
 /**
  *
  * @author Solène
  */
 public interface IDialog {
 	
-    CellType[] getCellsType();
+	// ### ACTIONS ###
+	boolean buy(int itemIndex);
+	
+	boolean drink(Player player, int itemIndex);
+	
+	boolean equip(Player player, int itemIndex);
+	
+	boolean dropItem(Player player, int itemIndex);
+	
+	boolean pickUpItem(int itemIndex);
+	
+	boolean move();
+	
+	// ### INFORMATIONS ###
+	// # cells
+	CellType[] getCellsType();
+	
+	ItemType[] getDroppedItems(int cellIndex);
+	
+	int getNumberOfDroppedItems(int cellIndex);
+	
+	// # market
+	// get the items in the market
+	ItemType[] getMarketItems();
+	
+	// get the price of an item in the market
+	int getPrice(int itemIndex);
+	
+	int getNumberOfFreeSlots();
+	
+	// # player
+	int checkfunds(Player player);
+	
+	ItemType[] getInventory(Player player);
+	
+	int getPlayerHealth(Player player);
+	
+	int getPlayerMaxHealth(Player player);
+	
+	ItemType getWeapon(Player player);
+	
+	float getIntoxication(Player player);
+	
+	// # dice
+	int getDicesResult();
+	
+	// # items String resolution
+	String getItemName(ItemType itemType);
+	
+	String getItemDescription(ItemType itemType);
+	
+	// ### SPECIAL REQUESTS ###
+	boolean isLiquid(ItemType itemType);
+	
+	boolean isWeapon(ItemType itemType);
+	
+	void print(String s);
+	
+	void endTurn();
 
+    Player getPlayer2();
 
-    // donne le prix de l'item
-    int getPrice(ItemType itemType);
+	Player getPlayer1();
 
-    int getSizeInventaireAvailable(Player player);
-    
-    int checkfound(Player player);
+	Player getDuelWinner();
 
-           
-    void endTurn();
-
-    // renvoie un tableau de 4 item qui seront afficher dans le market
-    ItemType[] getItemMarket();
-
-
-    void buy(Player player, List<ItemType> itemTypesSelect);
-
-    String getNameItem(ItemType itemType);
-
-    String getDescribe(ItemType itemType);
-
-	void useItem(int itemIndex, Player player);
-
-
-	void throwItem(int itemIndex, Player player);
-
-
-    String getDescribe2(int itemIndex);
-
-    void print(String s);
-    
-    ItemType[] getDroppedItems(int cellIndex);
-    
-    int getNumberOfDroppedItems(int cellIndex);
+    void trowDice();
 }

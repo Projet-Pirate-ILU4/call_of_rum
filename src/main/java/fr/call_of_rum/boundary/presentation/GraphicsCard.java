@@ -19,6 +19,7 @@ public class GraphicsCard extends javax.swing.JPanel {
     private ItemType imageName;
     private  IDialog dialog;
     private boolean clickable = true;
+    private int marketPrice;
 
 
 
@@ -28,11 +29,15 @@ public class GraphicsCard extends javax.swing.JPanel {
     
     public void setImage(ItemType item){
         this.imageName=item;
-        designImage(dialog.getPrice(item),dialog.getNameItem(item),dialog.getDescribe(item));
+        designImage(marketPrice,dialog.getItemName(item),dialog.getItemDescription(item));
     }
     
     public void setDialog(IDialog dialog){
         this.dialog = dialog;
+    }
+    
+    public void setMarketPrice(int marketPrice) {
+    	this.marketPrice = marketPrice;
     }
 
     public ItemType getItemType() {
@@ -42,7 +47,7 @@ public class GraphicsCard extends javax.swing.JPanel {
     private void designImage(int value, String nameValue, String descriptionValue){
         BufferedImage image = ImageLoader.loadImage("presentation/"+imageName.toString().toLowerCase()+".png");
         Image scaledTypeImage;
-        scaledTypeImage = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        scaledTypeImage = image.getScaledInstance(imageContainer.getWidth(), imageContainer.getHeight(), Image.SCALE_SMOOTH);
         imageContainer.setLocation(0, getWidth()/2);
         price.setText(""+value);
         nameLabel.setText(nameValue);

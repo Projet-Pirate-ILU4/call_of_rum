@@ -93,7 +93,7 @@ public class ChestDialog extends javax.swing.JDialog {
 
         itemLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        yesButton.setText("jButton1");
+        yesButton.setText("prendre");
         yesButton.setToolTipText("");
         yesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,7 +101,7 @@ public class ChestDialog extends javax.swing.JDialog {
             }
         });
 
-        noButton.setText("jButton2");
+        noButton.setText("laisser");
         noButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 noButtonActionPerformed(evt);
@@ -128,7 +128,7 @@ public class ChestDialog extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(itemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                         .addComponent(noButton)
                         .addGap(53, 53, 53))))
         );

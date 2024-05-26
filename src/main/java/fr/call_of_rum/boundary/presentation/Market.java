@@ -5,19 +5,21 @@
 package fr.call_of_rum.boundary.presentation;
 
 
-import fr.call_of_rum.util.CellType;
+import fr.call_of_rum.boundary.dialog.DialogStub;
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+
+import fr.call_of_rum.boundary.dialog.IDialog;
 import fr.call_of_rum.util.ItemType;
 import fr.call_of_rum.util.Player;
-import fr.call_of_rum.boundary.dialog.IDialog;
-
-import java.awt.*;
-import javax.swing.*;
-
-import java.awt.event.MouseEvent;
-import java.util.*;
-import java.util.List;
-
-import static fr.call_of_rum.util.ItemType.*;
 
 /**
  *
@@ -33,10 +35,10 @@ public class Market extends javax.swing.JDialog {
         this.player = player;
         this.dialog = dialog;
         focus = new HashMap<>();
-        this.size = dialog.getSizeInventaireAvailable(player);
-        itemTypesSelect = new ArrayList<>();
-        score = dialog.checkfound(player);
-        itemTypes = dialog.getItemMarket();
+        this.size = dialog.getNumberOfFreeSlots();
+        itemsSelected = new ArrayList<>();
+        score = dialog.checkfunds(player);
+        itemTypes = dialog.getMarketItems();
 
         initComponents();
 
@@ -44,6 +46,12 @@ public class Market extends javax.swing.JDialog {
         focus.put(graphicsCard2, false);
         focus.put(graphicsCard3, false);
         focus.put(graphicsCard4, false);
+        
+        graphicsCardsIndex = new HashMap<>();
+        graphicsCardsIndex.put(graphicsCard1, 0);
+        graphicsCardsIndex.put(graphicsCard2, 1);
+        graphicsCardsIndex.put(graphicsCard3, 2);
+        graphicsCardsIndex.put(graphicsCard4, 3);
         
         graphicsCard4.setDialog(dialog);
         graphicsCard3.setDialog(dialog);
@@ -56,8 +64,9 @@ public class Market extends javax.swing.JDialog {
         graphicsCard4.setImage(itemTypes[3]);
 
         inventoryPanel1.setDialog(dialog);
+        inventoryPanel1.setActivate(false);
         updateMarket();
-        inventoryPanel1.setInventory(RUM);
+        inventoryPanel1.setInventories(dialog.getInventory(player));
     }
 
     /**
@@ -78,8 +87,13 @@ public class Market extends javax.swing.JDialog {
         graphicsCard4 = new fr.call_of_rum.boundary.presentation.GraphicsCard();
         graphicsCard1 = new fr.call_of_rum.boundary.presentation.GraphicsCard();
         inventoryPanel1 = new fr.call_of_rum.boundary.presentation.InventoryPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Market`");
+        setPreferredSize(new java.awt.Dimension(620, 650));
+        setSize(new java.awt.Dimension(620, 650));
+        getContentPane().setLayout(null);
 
         jButton1.setText("Valider");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -92,106 +106,76 @@ public class Market extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(230, 520, 162, 51);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/market.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(50, 30, 100, 100);
 
         jLabel2.setText("Market");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(270, 30, 37, 16);
 
         jLabel3.setText("Bienvenue dans le marché");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(70, 160, 138, 25);
+
+        coinScorePanel1.setOpaque(false);
+        getContentPane().add(coinScorePanel1);
+        coinScorePanel1.setBounds(480, 0, 103, 55);
 
         graphicsCard2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         graphicsCard2.setEnabled(false);
+        graphicsCard2.setOpaque(false);
         graphicsCard2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 graphicsCard2MouseClicked(evt);
             }
         });
+        getContentPane().add(graphicsCard2);
+        graphicsCard2.setBounds(310, 230, 220, 120);
 
         graphicsCard3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         graphicsCard3.setMinimumSize(new java.awt.Dimension(400, 400));
+        graphicsCard3.setOpaque(false);
         graphicsCard3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 graphicsCard3MouseClicked(evt);
             }
         });
+        getContentPane().add(graphicsCard3);
+        graphicsCard3.setBounds(310, 360, 220, 120);
 
         graphicsCard4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        graphicsCard4.setOpaque(false);
         graphicsCard4.setPreferredSize(new java.awt.Dimension(400, 400));
         graphicsCard4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 graphicsCard4MouseClicked(evt);
             }
         });
+        getContentPane().add(graphicsCard4);
+        graphicsCard4.setBounds(90, 360, 210, 120);
 
         graphicsCard1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         graphicsCard1.setEnabled(false);
+        graphicsCard1.setOpaque(false);
         graphicsCard1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 graphicsCard1MouseClicked(evt);
             }
         });
+        getContentPane().add(graphicsCard1);
+        graphicsCard1.setBounds(90, 230, 210, 120);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inventoryPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(coinScorePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(graphicsCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(graphicsCard3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(graphicsCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(graphicsCard4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(60, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(coinScorePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inventoryPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(jLabel2)
-                                .addGap(32, 32, 32)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(graphicsCard2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(graphicsCard1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(graphicsCard3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(graphicsCard4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
-        );
+        inventoryPanel1.setOpaque(false);
+        getContentPane().add(inventoryPanel1);
+        inventoryPanel1.setBounds(320, 100, 233, 92);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/background_market3.png"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 0, 620, 650);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -221,10 +205,9 @@ public class Market extends javax.swing.JDialog {
     private void graphicsCard1MouseClicked(MouseEvent evt) {
         toogle(graphicsCard1);
     }                                          
-
-
+    
     private void focusItem(GraphicsCard graphicsCard){
-        int prix = dialog.getPrice(graphicsCard.getItemType());
+        int prix = dialog.getPrice(graphicsCardsIndex.get(graphicsCard));
         graphicsCard.setEnabled(false);
         if (score > prix && size >0) {
             graphicsCard.setBorder(BorderFactory.createLineBorder(Color.BLUE));
@@ -232,18 +215,20 @@ public class Market extends javax.swing.JDialog {
             System.out.println(score);
             score = score - prix;
             System.out.println(score);
-            itemTypesSelect.add(graphicsCard.getItemType());
+            itemsSelected.add(graphicsCardsIndex.get(graphicsCard));
             focus.put(graphicsCard,!focus.get(graphicsCard));
             updateMarket();
+            inventoryPanel1.setInventory(graphicsCard.getItemType());
         }
     }
 
     private void unFocusitem(GraphicsCard graphicsCard){
         graphicsCard.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         size ++;
-        score += dialog.getPrice(graphicsCard.getItemType());
-        itemTypesSelect.remove(graphicsCard.getItemType());
+        score += dialog.getPrice(graphicsCardsIndex.get(graphicsCard));
+        itemsSelected.remove(graphicsCardsIndex.get(graphicsCard));
         focus.put(graphicsCard,!focus.get(graphicsCard));
+        inventoryPanel1.removeItem(graphicsCard.getItemType());
         updateMarket();
     }
 
@@ -252,7 +237,6 @@ public class Market extends javax.swing.JDialog {
 
     private void updateMarket() {
         coinScorePanel1.setScore(score);
-
         // Vérifier chaque carte
         for (Map.Entry<GraphicsCard, Boolean> entry : focus.entrySet()) {
             GraphicsCard card = entry.getKey();
@@ -264,40 +248,42 @@ public class Market extends javax.swing.JDialog {
             }
 
             // Si la carte est désactivée et le score est inférieur au prix de la carte et la taille de l'inventaire est vide, l'activer
-            if (!card.isEnabled() && (score < dialog.getPrice(card.getItemType()) && size == 0)) {
+            if (!card.isEnabled() && (score < dialog.getPrice(graphicsCardsIndex.get(card)) && size == 0)) {
                 card.setEnabled(true);
             }
             // Sinon, si la carte est activée et le score est supérieur ou égal au prix de la carte et la taille de l'inventaire n'est pas vide, la désactiver
-            else if (card.isEnabled() && (score >= dialog.getPrice(card.getItemType()) ||  size > 0)) {
+            else if (card.isEnabled() && (score >= dialog.getPrice(graphicsCardsIndex.get(card)) ||  size > 0)) {
                 card.setEnabled(false);
             }
         }
     }
 
     private void valider() {
-        if (!itemTypesSelect.isEmpty()) {
-            dialog.buy(player, itemTypesSelect);
+        if (!itemsSelected.isEmpty()) {
+        	itemsSelected.forEach(i -> dialog.buy(i));
             dialog.print(player.toString() + " a acheté :");
             for (Map.Entry<GraphicsCard, Boolean> entry : focus.entrySet()) {
                 GraphicsCard card = entry.getKey();
                 boolean isFocused = entry.getValue();
                 if (isFocused) {
-                    dialog.print(card.getItemType() + " pour " + dialog.getPrice(card.getItemType()) + " $");
+                    dialog.print(card.getItemType() + " pour " + dialog.getPrice(graphicsCardsIndex.get(card)) + " $");
                 }
             }
         } else {
             dialog.print(player.toString() + " n'a rien acheté.");
         }
         dispose();
-        System.out.println(itemTypesSelect);
+        System.out.println(itemsSelected);
     }
 
 
     public void toogle(GraphicsCard graphicsCard) {
         if (focus.get(graphicsCard)) {
             unFocusitem(graphicsCard);
-        } else {
-            focusItem(graphicsCard);
+        } else if (score >= dialog.getPrice(graphicsCardsIndex.get(graphicsCard))) {
+            if (size > 0) {
+                focusItem(graphicsCard);
+            }
         }
         System.out.println("\nContenu de la HashMap :");
         for (Map.Entry<GraphicsCard, Boolean> focus : focus.entrySet()) {
@@ -320,97 +306,8 @@ public class Market extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(Market.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(() -> new Market(new JFrame(),true, Player.JACK_LE_BORGNE, new IDialog() {
-            @Override
-            public CellType[] getCellsType() {
-                CellType[] cellsType = new CellType[30];
-                for (int i = 0; i < 30; i++) {
-                    cellsType[i] = CellType.NORMAL;
-                }
-                return cellsType;
-            }
-
-            @Override
-            public int getPrice(ItemType itemType) {
-                return 75;
-            }
-
-            @Override
-            public int getSizeInventaireAvailable(Player player) {
-                return 3;
-            }
-
-            @Override
-            public int checkfound(Player player) {
-                return 43434;
-            }
-
-            @Override
-            public void endTurn() {
-            }
-
-            @Override
-            public ItemType[] getItemMarket() {
-                ItemType[] itemTypes = new ItemType[4];
-                itemTypes[0] = CLOVER;
-                itemTypes[1] = BANDANA;
-                itemTypes[2] = GUNPOWDER;
-                itemTypes[3] = LUCIDITY_STONE;
-                return  itemTypes;
-            }
-
-
-            @Override
-            public void buy(Player player, List<ItemType> itemTypesSelect) {
-
-            }
-
-            @Override
-            public String getNameItem(ItemType itemType) {
-                return  itemType.toString();
-            }
-
-            public String getDescribe2(ItemType itemType) {
-                return null;
-            }
-
-            @Override
-            public void useItem(int itemIndex, Player player) {
-
-            }
-
-            @Override
-            public void throwItem(int itemIndex, Player player) {
-
-            }
-
-            @Override
-            public String getDescribe2(int itemIndex) {
-                return null;
-            }
-
-            @Override
-            public void print(String s) {
-
-            }
-            
-            @Override
-            public ItemType[] getDroppedItems(int cellIndex){
-                ItemType[] itemTypes = new ItemType[0];
-                return itemTypes;
-            }
-        
-            @Override
-            public int getNumberOfDroppedItems(int cellIndex){
-                return -1;
-            }
-
-            public String getDescribe(ItemType itemType) {
-                return "Lorem ipsum dolor sit amet, consectetur adipiscing elit,";
-            }
-        }).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Market(new JFrame(),true, Player.JACK_LE_BORGNE, new DialogStub()).setVisible(true));
     }
 
 
@@ -418,7 +315,8 @@ public class Market extends javax.swing.JDialog {
     private final Player player;
     private final IDialog dialog;
     private final ItemType[] itemTypes;
-    private final List<ItemType> itemTypesSelect;
+    private final List<Integer> itemsSelected;
+    private HashMap<GraphicsCard, Integer> graphicsCardsIndex;
     private int score ;
     private int size;
 
@@ -433,6 +331,7 @@ public class Market extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 
 

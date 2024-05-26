@@ -13,7 +13,18 @@ import java.awt.image.BufferedImage;
 public class InventoryPanel extends javax.swing.JPanel {
 
     private IDialog dialog;
-    private ItemType[] inventory = new ItemType[3];
+
+    private boolean activate = true;
+
+    public boolean isActivate() {
+        return activate;
+    }
+
+    public void setActivate(boolean activate) {
+        this.activate = activate;
+    }
+
+    private ItemType[] inventory = {null,null,null};
     private JLabel[] imageLabels = new JLabel[3];
 
     public InventoryPanel() {
@@ -72,7 +83,9 @@ public class InventoryPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(imageLabels[0], javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
         );
-
+        imageLabels[0].setOpaque(true);
+        imageLabels[1].setOpaque(true);
+        imageLabels[2].setOpaque(true);
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -141,15 +154,13 @@ public class InventoryPanel extends javax.swing.JPanel {
             }
         }
     }
-
     
 
     private void updateImage(int position) {
         if (inventory[position] != null) {
             BufferedImage image = ImageLoader.loadImage("presentation/"+inventory[position].toString().toLowerCase()+".png");
             Image scaledTypeImage;
-            scaledTypeImage = image.getScaledInstance(imageLabels[position].getWidth(), imageLabels[position].getHeight(), Image.SCALE_SMOOTH);
-
+            scaledTypeImage = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
             ImageIcon typeIcon = new ImageIcon(scaledTypeImage);
             imageLabels[position].setIcon(typeIcon);
         } else {
@@ -157,23 +168,32 @@ public class InventoryPanel extends javax.swing.JPanel {
         }
     }
 
+    public void removeItem(ItemType itemType) {
+        for (int i =  inventory.length -1; i >= 0; i--) {
+            if  (inventory[i] != null && inventory[i].equals(itemType)) {
+                inventory[i] = null;
+                updateImage(i);
+                return;
+            }
+        }
+    }
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        if (inventory[0] != null) {
+        if (isActivate() && inventory[0] != null) {
             int itemIndex = inventory[0].ordinal();
             popUpItem(itemIndex,0);
         }
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        if (inventory[1] != null) {
+        if (isActivate() && inventory[1] != null) {
             int itemIndex = inventory[1].ordinal();
             popUpItem(itemIndex,1);
         }
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
-        if (inventory[2] != null) {
+        if (isActivate() && inventory[2] != null) {
             int itemIndex = inventory[2].ordinal();
             popUpItem(itemIndex,2);
         }
@@ -187,19 +207,29 @@ public class InventoryPanel extends javax.swing.JPanel {
             int choice = JOptionPane.showOptionDialog(null, message, "Actions sur l'objet", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[3]);
             switch (choice) {
                 case JOptionPane.YES_OPTION:
-                	dialog.useItem(itemIndex,player);
-                	inventory[inventoryIndex] = null;
-                	updateImage(inventoryIndex);
-                    System.out.println("L'objet a été utilisé");
+                	ItemType item = inventory[inventoryIndex];
+                	boolean succeded = false;
+                	if (dialog.isLiquid(item)) {
+                		succeded = dialog.drink(player, inventoryIndex);
+                	} else if (dialog.isWeapon(item)) {
+                		succeded = dialog.equip(player, inventoryIndex);
+            		}
+                	if (succeded) {
+                		inventory[inventoryIndex] = null;
+                		updateImage(inventoryIndex);
+                		System.out.println("L'objet a été utilisé");
+                	} else {
+                		System.out.println("L'objet n'as pas été utilisé");
+                	}
                     break;
                 case JOptionPane.NO_OPTION:
-                	dialog.throwItem(itemIndex,player);
+                	dialog.dropItem(player, inventoryIndex);
                 	inventory[inventoryIndex] = null;
                 	updateImage(inventoryIndex);
                     System.out.println("L'objet a été jeté");
                     break;
                 case JOptionPane.CANCEL_OPTION:
-                	String description = dialog.getDescribe2(itemIndex);
+                	String description = dialog.getItemDescription(inventory[inventoryIndex]);
                     JOptionPane.showMessageDialog(null, description, "Description de l'objet", JOptionPane.INFORMATION_MESSAGE);
                     System.out.println("Vous examinez l'objet");
                     break;
@@ -214,4 +244,10 @@ public class InventoryPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+
+    public void setInventories(ItemType[] inventory) {
+        for (ItemType itemType : inventory) {
+            setInventory(itemType);
+        }
+    }
 }
