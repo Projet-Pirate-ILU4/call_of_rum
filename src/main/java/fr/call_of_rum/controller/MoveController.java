@@ -137,7 +137,6 @@ public class MoveController {
 		double pirateWinChance = relativeChance/(1+relativeChance);
 		
 		return rng.nextDouble() < pirateWinChance;
-	}
 	
 	private void triggerDuel() {
 		Pirate winner;

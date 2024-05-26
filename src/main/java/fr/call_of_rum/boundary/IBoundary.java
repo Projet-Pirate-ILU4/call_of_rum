@@ -22,6 +22,8 @@ public interface IBoundary {
 	
 	void duel(Player winner);
 	
+	void duel(Player winner);
+	
 	void gameEnded(Player winner);
 	
 }
