@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Inventory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">all Tests Coverage Results</a> &gt; <a href="index.source.html" class="el_package">fr.call_of_rum.model.inventory</a> &gt; <span class="el_source">Inventory.java</span></div><h1>Inventory.java</h1><pre class="source lang-java linenums">package fr.call_of_rum.model.inventory;
+
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
+
+import fr.call_of_rum.model.item.Item;
+import fr.call_of_rum.util.ItemType;
+
+public class Inventory&lt;T extends Item&gt; {
+	
+<span class="fc bfc" id="L13" title="All 4 branches covered.">	private static final BiPredicate&lt;Optional&lt;Item&gt;, Predicate&lt;Item&gt;&gt; ON_NON_NULL = (i, p) -&gt; i.isPresent() &amp;&amp; p.test(i.get());</span>
+	
+	private int maxCapacity;
+	private Item[] items;
+	
+<span class="fc" id="L18">	public Inventory(int maxCapacity) {</span>
+<span class="fc" id="L19">		this.maxCapacity = maxCapacity;</span>
+<span class="fc" id="L20">		items = new Item[maxCapacity];</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">		for (int i = 0; i &lt; maxCapacity; i++)</span>
+<span class="fc" id="L22">			items[i] = null;</span>
+<span class="fc" id="L23">	}</span>
+	
+	private Optional&lt;Integer&gt; findFirst(Predicate&lt;Optional&lt;Item&gt;&gt; prediacate) {
+<span class="fc" id="L26">		int i = 0;</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">		while (i &lt; maxCapacity) {</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">			if (prediacate.test(Optional.ofNullable(items[i])))</span>
+<span class="fc" id="L29">				return Optional.of(i);</span>
+<span class="fc" id="L30">			i++;</span>
+		}
+<span class="fc" id="L32">		return Optional.empty();</span>
+	}
+	
+	private Optional&lt;Integer&gt; getFirstFreeSlot() {
+<span class="fc" id="L36">		return findFirst(Optional::isEmpty);</span>
+	}
+	
+	public boolean isFull() {
+<span class="nc" id="L40">		return getFirstFreeSlot().isEmpty();</span>
+	}
+	
+	public void add(T item) {
+<span class="fc" id="L44">		Optional&lt;Integer&gt; freeSlot = getFirstFreeSlot();</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">		if (freeSlot.isEmpty())</span>
+<span class="fc" id="L46">			throw new NoFreeSlotException();</span>
+<span class="fc" id="L47">		items[freeSlot.get()] = item;</span>
+<span class="fc" id="L48">	}</span>
+	
+	public void insert(T item, int index) {
+<span class="fc" id="L51">		items[index] = item;</span>
+<span class="fc" id="L52">	}</span>
+	
+	public void remove(T item) {
+<span class="fc" id="L55">		Optional&lt;Integer&gt; itemSlot = findFirst(opti -&gt; ON_NON_NULL.test(opti, i -&gt; i.equals(item)));</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">		if (itemSlot.isEmpty()) return;</span>
+<span class="fc" id="L57">		items[itemSlot.get()] = null;</span>
+<span class="fc" id="L58">	}</span>
+	
+	@SuppressWarnings(&quot;unchecked&quot;)
+	public T get(int index) {
+<span class="fc" id="L62">		return (T) items[index];</span>
+	}
+	
+	public boolean contains(Item item) {
+<span class="fc" id="L66">		return findFirst(opti -&gt; ON_NON_NULL.test(opti, i -&gt; i.equals(item))).isPresent();</span>
+	}
+	
+	public boolean contains(ItemType itemType) {
+<span class="fc" id="L70">		return findFirst(opti -&gt; ON_NON_NULL.test(opti, i -&gt; i.getType().equals(itemType))).isPresent();</span>
+	}
+
+	public boolean isEmpty() {
+<span class="pc bpc" id="L74" title="3 of 6 branches missed.">		return items == null || Arrays.stream(items).allMatch(element -&gt; element == null);</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

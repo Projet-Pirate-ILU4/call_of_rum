@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PirateTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">all Tests Coverage Results</a> &gt; <a href="index.source.html" class="el_package">fr.call_of_rum.model.pirate</a> &gt; <span class="el_source">PirateTest.java</span></div><h1>PirateTest.java</h1><pre class="source lang-java linenums">package fr.call_of_rum.model.pirate;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Random;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import fr.call_of_rum.model.board.Board;
+import fr.call_of_rum.model.board.BoardFactory;
+import fr.call_of_rum.model.item.Item;
+import fr.call_of_rum.model.item.ItemRegistry;
+import fr.call_of_rum.model.item.liquid.Liquid;
+import fr.call_of_rum.model.item.weapon.Weapon;
+import fr.call_of_rum.util.ItemType;
+import fr.call_of_rum.util.Player;
+import util.stub.ItemStub;
+import util.stub.LiquidStub;
+import util.stub.WeaponStub;
+
+<span class="fc" id="L24">public class PirateTest {</span>
+	
+	private static final double DELTA = 0.000001;
+	
+	private static final int MAX_HEALTH = 10;
+	private static final int STARTING_COINS = 0;
+<span class="fc" id="L30">	private static final Player PLAYER = Player.BILL_JAMBE_DE_BOIS;</span>
+	
+	private Pirate pirate;
+
+	@Before
+	public void setUp() throws Exception {
+<span class="fc" id="L36">		pirate = new Pirate(PLAYER, STARTING_COINS, MAX_HEALTH);</span>
+<span class="fc" id="L37">	}</span>
+	
+	@Test
+	public void correctAttributeValuesTest() {
+<span class="fc" id="L41">		assertNull(pirate.getBoard());</span>
+<span class="fc" id="L42">		Board board = BoardFactory.getDefaultBoard(new ItemRegistry(), new Random());</span>
+<span class="fc" id="L43">		pirate.setBoard(board);</span>
+<span class="fc" id="L44">		assertEquals(board, pirate.getBoard());</span>
+<span class="fc" id="L45">		assertEquals(MAX_HEALTH, pirate.getMaxHealth());</span>
+<span class="fc" id="L46">		assertEquals(MAX_HEALTH, pirate.getHealthPoints());</span>
+<span class="fc" id="L47">		assertEquals(STARTING_COINS, pirate.getCoins());</span>
+<span class="fc" id="L48">		Weapon weapon = new WeaponStub(ItemType.DAGGER, 0.0f, 0, 0.0f);</span>
+<span class="fc" id="L49">		pirate.equipWeapon(weapon);</span>
+<span class="fc" id="L50">		assertEquals(weapon, pirate.getEquippedWeapon());</span>
+<span class="fc" id="L51">		assertEquals(0.0f, pirate.getIntoxicationGauge().getLevel(), DELTA);</span>
+<span class="fc" id="L52">		assertEquals(0, pirate.getLocation());</span>
+<span class="fc" id="L53">		assertEquals(PLAYER, pirate.getPlayer());</span>
+<span class="fc" id="L54">	}</span>
+
+	@Test
+	public void giveTest() {
+<span class="fc" id="L58">		Item item = new ItemStub();</span>
+<span class="fc" id="L59">		pirate.give(item);</span>
+<span class="fc" id="L60">		assertEquals(pirate, item.getOwner());</span>
+<span class="fc" id="L61">		assertTrue(pirate.getInventory().contains(item));</span>
+<span class="fc" id="L62">	}</span>
+	
+	@Test
+	public void drinkTest() {
+<span class="fc" id="L66">		Liquid liquid = new LiquidStub(2, 0.2f);</span>
+<span class="fc" id="L67">		pirate.setHealthPoints(MAX_HEALTH - 2);</span>
+<span class="fc" id="L68">		pirate.drink(liquid);</span>
+<span class="fc" id="L69">		assertEquals(MAX_HEALTH, pirate.getHealthPoints());</span>
+<span class="fc" id="L70">		assertEquals(0.2f, pirate.getIntoxicationGauge().getLevel(), DELTA);</span>
+<span class="fc" id="L71">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BoardTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">all Tests Coverage Results</a> &gt; <a href="index.source.html" class="el_package">fr.call_of_rum.model.board</a> &gt; <span class="el_source">BoardTest.java</span></div><h1>BoardTest.java</h1><pre class="source lang-java linenums">package fr.call_of_rum.model.board;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Random;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import fr.call_of_rum.model.item.ItemRegistry;
+import fr.call_of_rum.model.pirate.Pirate;
+import fr.call_of_rum.util.Player;
+
+<span class="fc" id="L16">public class BoardTest {</span>
+	
+	private Pirate pirate;
+	private Pirate otherPirate;
+	private Board board;
+
+	@Before
+	public void setUp() throws Exception {
+<span class="fc" id="L24">		pirate = new Pirate(Player.BILL_JAMBE_DE_BOIS, 0, 5);</span>
+<span class="fc" id="L25">		otherPirate = new Pirate(Player.JACK_LE_BORGNE, 0, 5);</span>
+<span class="fc" id="L26">		board = BoardFactory.getDefaultBoard(new ItemRegistry() /* empty registry */, new Random());</span>
+<span class="fc" id="L27">		pirate.setBoard(board);</span>
+<span class="fc" id="L28">		otherPirate.setBoard(board);</span>
+<span class="fc" id="L29">	}</span>
+
+	@Test
+	public void movePirateTest() {
+		// test move pirate to cell number
+<span class="fc" id="L34">		board.movePirateTo(pirate, 4);</span>
+<span class="fc" id="L35">		assertEquals(4, pirate.getLocation());</span>
+		
+		// test edge case with big values
+<span class="fc" id="L38">		board.movePirateTo(pirate, (board.getBoardSize() * 10));</span>
+<span class="fc" id="L39">		assertEquals(0, pirate.getLocation());</span>
+		
+		// test edge case with no movement
+<span class="fc" id="L42">		int previousLocation = pirate.getLocation();</span>
+<span class="fc" id="L43">		board.movePirateTo(pirate, pirate.getLocation());</span>
+<span class="fc" id="L44">		assertEquals(previousLocation, pirate.getLocation());</span>
+		
+		// test move pirate to pirate
+<span class="fc" id="L47">		board.movePirateTo(pirate, otherPirate);</span>
+<span class="fc" id="L48">		assertEquals(pirate.getLocation(), otherPirate.getLocation());</span>
+<span class="fc" id="L49">	}</span>
+	
+	private void moveUntilNotInZone() {
+<span class="fc" id="L52">		int i = 0;</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">		while (board.canMoveToMerchant(pirate)) {</span>
+<span class="nc" id="L54">			board.movePirateTo(pirate, i++);</span>
+		}
+<span class="fc" id="L56">	}</span>
+	
+	private void moveUntilInZone() {
+<span class="fc" id="L59">		int i = 0;</span>
+<span class="pc bpc" id="L60" title="1 of 4 branches missed.">		while (!board.canMoveToMerchant(pirate) || board.isPirateOnMerchant(pirate)) {</span>
+<span class="fc" id="L61">			board.movePirateTo(pirate, i++);</span>
+		}
+<span class="fc" id="L63">	}</span>
+	
+	@Test
+	public void movePirateToMerchantTest() {
+<span class="fc" id="L67">		moveUntilNotInZone();</span>
+		int previousLocation;
+<span class="fc" id="L69">		previousLocation = pirate.getLocation();</span>
+<span class="fc" id="L70">		board.movePirateToMerchant(pirate);</span>
+		// pirate didn't moved because he's not in the correct area
+<span class="fc" id="L72">		assertEquals(previousLocation, pirate.getLocation());</span>
+<span class="fc" id="L73">		moveUntilInZone();</span>
+		// now the pirate should be in the area
+<span class="fc" id="L75">		assertFalse(board.isPirateOnMerchant(pirate));</span>
+<span class="fc" id="L76">		board.movePirateToMerchant(pirate);</span>
+<span class="fc" id="L77">		assertTrue(board.isPirateOnMerchant(pirate));</span>
+<span class="fc" id="L78">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

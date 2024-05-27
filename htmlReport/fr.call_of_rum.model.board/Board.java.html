@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Board.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">all Tests Coverage Results</a> &gt; <a href="index.source.html" class="el_package">fr.call_of_rum.model.board</a> &gt; <span class="el_source">Board.java</span></div><h1>Board.java</h1><pre class="source lang-java linenums">package fr.call_of_rum.model.board;
+
+import fr.call_of_rum.model.board.cells.Cell;
+import fr.call_of_rum.model.pirate.Pirate;
+import fr.call_of_rum.util.ShortcutMethod;
+
+public class Board {
+
+	private Cell[] cells;
+	private int boardSize;
+	private int merchant;
+	
+<span class="fc" id="L13">	Board(Cell[] cells, int boardSize, int merchantIndex) {</span>
+<span class="fc" id="L14">		this.cells = cells;</span>
+<span class="fc" id="L15">		this.boardSize = boardSize;</span>
+<span class="fc" id="L16">		this.merchant = merchantIndex;</span>
+<span class="fc" id="L17">	}</span>
+	
+	public Cell getCell(int cellNumber) {
+<span class="fc" id="L20">		return cells[cellNumber % boardSize];</span>
+	}
+	
+	@ShortcutMethod
+	public Cell getCell(Pirate pirate) {
+<span class="fc" id="L25">		return getCell(pirate.getLocation());</span>
+	}
+	
+	public int getBoardSize() {
+<span class="fc" id="L29">		return boardSize;</span>
+	}
+	
+	public int getMerchantCellNumber() {
+<span class="fc" id="L33">		return merchant;</span>
+	}
+	
+	public void movePirateTo(Pirate pirate, int cellNumber) {
+<span class="fc" id="L37">		pirate.setLocation(cellNumber % boardSize);</span>
+<span class="fc" id="L38">	}</span>
+	
+	@ShortcutMethod
+	public void movePirateTo(Pirate pirate, Pirate otherPirate) {
+<span class="fc" id="L42">		this.movePirateTo(pirate, otherPirate.getLocation());</span>
+<span class="fc" id="L43">	}</span>
+	
+	@ShortcutMethod
+	public void movePirateToMerchant(Pirate pirate) {
+<span class="fc bfc" id="L47" title="All 2 branches covered.">		if (!canMoveToMerchant(pirate.getLocation())) return;</span>
+<span class="fc" id="L48">		pirate.setLocation(merchant);</span>
+<span class="fc" id="L49">	}</span>
+
+	public boolean canMoveToMerchant(int cellNumber) {
+<span class="pc bpc" id="L52" title="1 of 4 branches missed.">		return 7 &lt;= cellNumber &amp;&amp; cellNumber &lt;= 26;</span>
+	}
+	
+	@ShortcutMethod
+	public boolean canMoveToMerchant(Pirate pirate) {
+<span class="fc" id="L57">		return canMoveToMerchant(pirate.getLocation());</span>
+	}
+	
+	@ShortcutMethod
+	public boolean isPirateOnMerchant(Pirate pirate) {
+<span class="fc bfc" id="L62" title="All 2 branches covered.">		return pirate.getLocation() == merchant;</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
