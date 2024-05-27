@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BoundaryTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">all Tests Coverage Results</a> &gt; <a href="index.source.html" class="el_package">fr.call_of_rum.controller</a> &gt; <span class="el_source">BoundaryTest.java</span></div><h1>BoundaryTest.java</h1><pre class="source lang-java linenums">package fr.call_of_rum.controller;
+
+import fr.call_of_rum.boundary.IBoundary;
+import fr.call_of_rum.controller.accessible.*;
+import fr.call_of_rum.util.ItemType;
+import fr.call_of_rum.util.Player;
+
+import java.util.Optional;
+
+<span class="nc" id="L10">public class BoundaryTest implements IBoundary {</span>
+    @Override
+    public void subscribeActionController(IActionController actionController) {
+        
+<span class="nc" id="L14">    }</span>
+
+    @Override
+    public void subscribeBoardController(IBoardController boardController) {
+
+<span class="nc" id="L19">    }</span>
+
+    @Override
+    public void subscribeDiceController(IDiceController diceController) {
+
+<span class="nc" id="L24">    }</span>
+
+    @Override
+    public void subscribeMarketController(IMarketController marketController) {
+
+<span class="nc" id="L29">    }</span>
+
+    @Override
+    public void subscribePlayerController(IPlayerController playerController) {
+
+<span class="nc" id="L34">    }</span>
+
+    @Override
+    public void giveTurn(Player player) {
+
+<span class="nc" id="L39">    }</span>
+
+    @Override
+    public void stepOnBomb() {
+<span class="nc" id="L43">        System.out.println(&quot;BOMMMMMMM !!!!! je suis sur une bombe&quot;);</span>
+
+<span class="nc" id="L45">    }</span>
+
+    @Override
+    public void tookShortcut() {
+<span class="nc" id="L49">        System.out.println(&quot;Raccourcie !!!!! j'ai pris un raccourcie&quot;);</span>
+<span class="nc" id="L50">    }</span>
+
+    @Override
+    public boolean chestFound(int coinAmount, ItemType itemNamespace) {
+<span class="nc" id="L54">        return false;</span>
+    }
+
+    @Override
+    public boolean openedChestFound(int coinAmount, Optional&lt;ItemType&gt; itemNamespace) {
+<span class="nc" id="L59">        return false;</span>
+    }
+
+    @Override
+    public void duel(Player winner) {
+<span class="nc" id="L64">        System.out.println(&quot;C'est l'heure du DU DU DUEL !!!!&quot;);</span>
+<span class="nc" id="L65">        System.out.println(winner.toString() + &quot; a gagner le duel&quot;);</span>
+<span class="nc" id="L66">    }</span>
+
+    @Override
+    public void gameEnded(Player winner) {
+<span class="nc" id="L70">        System.out.println(&quot;C'est la fin du jeu &quot;);</span>
+<span class="nc" id="L71">        System.out.println(winner.toString() + &quot; a gagner la partie&quot;);</span>
+<span class="nc" id="L72">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

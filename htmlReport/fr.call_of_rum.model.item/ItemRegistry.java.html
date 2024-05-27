@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ItemRegistry.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">all Tests Coverage Results</a> &gt; <a href="index.source.html" class="el_package">fr.call_of_rum.model.item</a> &gt; <span class="el_source">ItemRegistry.java</span></div><h1>ItemRegistry.java</h1><pre class="source lang-java linenums">package fr.call_of_rum.model.item;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Supplier;
+
+import fr.call_of_rum.util.ShortcutMethod;
+
+public class ItemRegistry {
+	
+	private List&lt;Supplier&lt;Item&gt;&gt; registeredItems;
+	
+<span class="fc" id="L14">	public ItemRegistry() {</span>
+<span class="fc" id="L15">		this.registeredItems = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L16">	}</span>
+	
+	public ItemRegistry registerItem(Supplier&lt;Item&gt; itemSupplier) {
+<span class="fc" id="L19">		registeredItems.add(itemSupplier);</span>
+<span class="fc" id="L20">		return this;</span>
+	}
+	
+	@ShortcutMethod
+	public ItemRegistry registerItems(@SuppressWarnings(&quot;unchecked&quot;) Supplier&lt;Item&gt;... itemSuppliers) {
+<span class="nc bnc" id="L25" title="All 2 branches missed.">		for (Supplier&lt;Item&gt; itemSupplier : itemSuppliers)</span>
+<span class="nc" id="L26">			registerItem(itemSupplier);</span>
+<span class="nc" id="L27">		return this;</span>
+	}
+	
+	public int getSize() {
+<span class="fc" id="L31">		return registeredItems.size();</span>
+	}
+	
+	public void clear() {
+<span class="nc" id="L35">		registeredItems.clear();</span>
+<span class="nc" id="L36">	}</span>
+	
+	/**
+	 * This method get an &lt;a href=&quot;Collection.html#unmodview&quot;&gt;unmodifiable view&lt;/a&gt; of all registered items
+	 * @return &lt;a href=&quot;Collection.html#unmodview&quot;&gt;unmodifiable view&lt;/a&gt; of all registered items
+	 */
+	public List&lt;Supplier&lt;Item&gt;&gt; getRegisteredItemView() {
+<span class="fc" id="L43">		return Collections.unmodifiableList(registeredItems);</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DrinkTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">all Tests Coverage Results</a> &gt; <a href="index.source.html" class="el_package">fr.call_of_rum.controller</a> &gt; <span class="el_source">DrinkTest.java</span></div><h1>DrinkTest.java</h1><pre class="source lang-java linenums">package fr.call_of_rum.controller;
+
+import fr.call_of_rum.model.board.Board;
+import fr.call_of_rum.model.board.BoardFactory;
+import fr.call_of_rum.model.inventory.Inventory;
+import fr.call_of_rum.model.item.Item;
+import fr.call_of_rum.model.item.ItemRegistry;
+import fr.call_of_rum.model.item.liquid.HealthPotion;
+import fr.call_of_rum.model.item.liquid.Rum;
+import fr.call_of_rum.model.item.weapon.Dagger;
+import fr.call_of_rum.model.market.Market;
+import fr.call_of_rum.model.pirate.IntoxicationGauge;
+import fr.call_of_rum.model.pirate.Pirate;
+import fr.call_of_rum.util.Player;
+import org.junit.Before;
+import org.junit.Test;
+import util.stub.BoundaryStub;
+
+import java.util.Random;
+import java.util.random.RandomGenerator;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+<span class="fc" id="L25">public class DrinkTest {</span>
+    private Pirate player1 ;
+    private Pirate player2 ;
+
+    protected Board board;
+<span class="fc" id="L30">    private static final RandomGenerator RNG = new Random();</span>
+    private ActionController actionController;
+
+
+    @Before
+    public void setUp() {
+<span class="fc" id="L36">        board = BoardFactory.getFactory()</span>
+<span class="fc" id="L37">                .setSpecialCaseOdds(0.0f)</span>
+<span class="fc" id="L38">                .build(new ItemRegistry(), RNG);</span>
+<span class="fc" id="L39">        player1 = new Pirate(Player.BILL_JAMBE_DE_BOIS, 0, 10);</span>
+<span class="fc" id="L40">        player2 = new Pirate(Player.JACK_LE_BORGNE, 0, 10);</span>
+<span class="fc" id="L41">        initControllers();</span>
+<span class="fc" id="L42">    }</span>
+
+    private void initControllers() {
+<span class="fc" id="L45">        DiceController diceController = new DiceController(DrinkTest.RNG);</span>
+<span class="fc" id="L46">        PlayerController playerController = new PlayerController(player1, player1);</span>
+<span class="fc" id="L47">        BoardController boardController = new BoardController(board, playerController);</span>
+<span class="fc" id="L48">        BoundaryStub boundaryStub = new BoundaryStub();</span>
+<span class="fc" id="L49">        MoveController moveController = new MoveController(DrinkTest.RNG, boundaryStub, diceController, playerController, board, player1, player2);</span>
+<span class="fc" id="L50">        MarketController marketController = new MarketController(new Market(), playerController);</span>
+<span class="fc" id="L51">        actionController = new ActionController(marketController, moveController, boardController);</span>
+<span class="fc" id="L52">    }</span>
+
+    @Test
+    public void configuration1() {
+<span class="fc" id="L56">        actionController.setCurrentPirate(player1);</span>
+<span class="fc" id="L57">        Inventory&lt;Item&gt; inventory = player1.getInventory();</span>
+<span class="fc" id="L58">        assertTrue(inventory.isEmpty());</span>
+<span class="fc" id="L59">        assertFalse(actionController.drink(0));</span>
+<span class="fc" id="L60">    }</span>
+    @Test
+    public void configuration2() {
+<span class="fc" id="L63">        actionController.setCurrentPirate(player1);</span>
+<span class="fc" id="L64">        Inventory&lt;Item&gt; inventory = player1.getInventory();</span>
+<span class="fc" id="L65">        inventory.add(new Rum());</span>
+<span class="fc" id="L66">        actionController.drink(0);</span>
+<span class="fc" id="L67">        assertTrue(actionController.drink(0));</span>
+<span class="fc" id="L68">    }</span>
+
+    @Test
+    public void configuration3() {
+<span class="fc" id="L72">        actionController.setCurrentPirate(player1);</span>
+
+<span class="fc" id="L74">        Inventory&lt;Item&gt; inventory = player1.getInventory();</span>
+<span class="fc" id="L75">        inventory.add(new HealthPotion());</span>
+
+<span class="fc" id="L77">        player1.setHealthPoints(5);</span>
+<span class="fc" id="L78">        int oldHealthPoint = player1.getHealthPoints();</span>
+
+<span class="fc" id="L80">        assertTrue(actionController.drink(0));</span>
+<span class="fc" id="L81">        int newHealthPoints = player1.getHealthPoints();</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">        assertTrue(newHealthPoints &gt; oldHealthPoint);</span>
+<span class="fc" id="L83">    }</span>
+
+    @Test
+    public void configuration4() {
+<span class="fc" id="L87">        actionController.setCurrentPirate(player1);</span>
+
+<span class="fc" id="L89">        Inventory&lt;Item&gt; inventory = player1.getInventory();</span>
+<span class="fc" id="L90">        inventory.add(new Rum());</span>
+
+<span class="fc" id="L92">        IntoxicationGauge intoxicationGauge = player1.getIntoxicationGauge();</span>
+<span class="fc" id="L93">        float oldValueIntoxicationGauge = 0.0f;</span>
+<span class="fc" id="L94">        intoxicationGauge.setLevel(oldValueIntoxicationGauge);</span>
+
+<span class="fc" id="L96">        assertTrue(actionController.drink(0));</span>
+
+<span class="fc" id="L98">        float newValueIntoxicationGauge = intoxicationGauge.getLevel();</span>
+
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">        assertTrue(newValueIntoxicationGauge&gt; oldValueIntoxicationGauge);</span>
+<span class="fc" id="L101">    }</span>
+    @Test
+    public void configuration5() {
+<span class="fc" id="L104">        actionController.setCurrentPirate(player1);</span>
+<span class="fc" id="L105">        Inventory&lt;Item&gt; inventory = player1.getInventory();</span>
+<span class="fc" id="L106">        inventory.add(new Dagger());</span>
+<span class="fc" id="L107">        assertFalse(actionController.drink(0));</span>
+<span class="fc" id="L108">    }</span>
+    @Test
+    public void configuration6() {
+<span class="fc" id="L111">        actionController.setCurrentPirate(player1);</span>
+<span class="fc" id="L112">        Inventory&lt;Item&gt; inventory = player1.getInventory();</span>
+<span class="fc" id="L113">        inventory.add(new HealthPotion());</span>
+<span class="fc" id="L114">        assertTrue(actionController.drink(0));</span>
+<span class="fc" id="L115">        assertFalse(inventory.contains(new HealthPotion()));</span>
+
+<span class="fc" id="L117">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

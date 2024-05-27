@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Pirate.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">all Tests Coverage Results</a> &gt; <a href="index.source.html" class="el_package">fr.call_of_rum.model.pirate</a> &gt; <span class="el_source">Pirate.java</span></div><h1>Pirate.java</h1><pre class="source lang-java linenums">package fr.call_of_rum.model.pirate;
+
+import fr.call_of_rum.model.board.Board;
+import fr.call_of_rum.model.inventory.Inventory;
+import fr.call_of_rum.model.item.Item;
+import fr.call_of_rum.model.item.liquid.Liquid;
+import fr.call_of_rum.model.item.weapon.Weapon;
+import fr.call_of_rum.util.Player;
+
+public class Pirate {
+	
+	private Player player;
+	private int coins;
+	private int healthPoints;
+	private int maxHealthPoints;
+<span class="fc" id="L16">	private Weapon equippedWeapon = null;</span>
+<span class="fc" id="L17">	private Inventory&lt;Item&gt; inventory = new Inventory&lt;&gt;(3);</span>
+<span class="fc" id="L18">	private IntoxicationGauge intoxicationGauge = new IntoxicationGauge();</span>
+	private Board board;
+<span class="fc" id="L20">	private int location = 0;</span>
+	
+<span class="fc" id="L22">	public Pirate(Player player, int coins, int maxHealthPoints) {</span>
+<span class="fc" id="L23">		this.player = player;</span>
+<span class="fc" id="L24">		this.coins = coins;</span>
+<span class="fc" id="L25">		this.maxHealthPoints = maxHealthPoints;</span>
+<span class="fc" id="L26">		this.healthPoints = maxHealthPoints;</span>
+<span class="fc" id="L27">	}</span>
+	
+	public Player getPlayer() {
+<span class="fc" id="L30">		return player;</span>
+	}
+	
+	public int getCoins() {
+<span class="fc" id="L34">		return coins;</span>
+	}
+	
+	public void setCoins(int newAmount) {
+<span class="fc" id="L38">		this.coins = newAmount;</span>
+<span class="fc" id="L39">	}</span>
+	
+	public int getHealthPoints() {
+<span class="fc" id="L42">		return healthPoints;</span>
+	}
+	
+	public void setHealthPoints(int newHealthPointsAmount) {
+<span class="fc" id="L46">		healthPoints = newHealthPointsAmount;</span>
+<span class="fc" id="L47">	}</span>
+	
+	public int getMaxHealth() {
+<span class="fc" id="L50">		return maxHealthPoints;</span>
+	}
+	
+	public Weapon getEquippedWeapon() {
+<span class="fc" id="L54">		return equippedWeapon;</span>
+	}
+	
+	public void equipWeapon(Weapon newEquippedWeapon) {
+<span class="fc" id="L58">		equippedWeapon = newEquippedWeapon;</span>
+<span class="fc" id="L59">	}</span>
+	
+	public Inventory&lt;Item&gt; getInventory() {
+<span class="fc" id="L62">		return inventory;</span>
+	}
+	
+	public void give(Item item) {
+<span class="fc" id="L66">		item.setOwner(this);</span>
+<span class="fc" id="L67">		inventory.add(item);</span>
+<span class="fc" id="L68">	}</span>
+	
+	public void drink(Liquid liquid) {
+<span class="fc" id="L71">		liquid.setOwner(this);</span>
+<span class="fc" id="L72">		liquid.use();</span>
+<span class="fc" id="L73">	}</span>
+	
+	public IntoxicationGauge getIntoxicationGauge() {
+<span class="fc" id="L76">		return intoxicationGauge;</span>
+	}
+	
+	public Board getBoard() {
+<span class="fc" id="L80">		return board;</span>
+	}
+	
+	public void setBoard(Board newBoard) {
+<span class="fc" id="L84">		board = newBoard;</span>
+<span class="fc" id="L85">	}</span>
+	
+	public int getLocation() {
+<span class="fc" id="L88">		return location;</span>
+	}
+	
+	public void setLocation(int location) {
+<span class="fc" id="L92">		this.location = location;</span>
+<span class="fc" id="L93">	}</span>
+	
+	@Override
+	public boolean equals(Object other) {
+<span class="pc bpc" id="L97" title="2 of 4 branches missed.">		if (other != null &amp;&amp; other.getClass() == this.getClass()) {</span>
+<span class="fc" id="L98">			Pirate otherPirate = (Pirate) other;</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">			return this.player == otherPirate.player;</span>
+		}
+<span class="nc" id="L101">		return false;</span>
+	}
+	
+	@Override
+	public int hashCode() {
+<span class="nc" id="L106">		return player.hashCode();</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
