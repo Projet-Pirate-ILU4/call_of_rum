@@ -1,0 +1,110 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > IBoundary</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.boundary</a>
+</div>
+
+<h1>Coverage Summary for Class: IBoundary (fr.call_of_rum.boundary)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">IBoundary</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.call_of_rum.boundary;
+&nbsp;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;import fr.call_of_rum.controller.accessible.IActionController;
+&nbsp;import fr.call_of_rum.controller.accessible.IBoardController;
+&nbsp;import fr.call_of_rum.controller.accessible.IDiceController;
+&nbsp;import fr.call_of_rum.controller.accessible.IMarketController;
+&nbsp;import fr.call_of_rum.controller.accessible.IPlayerController;
+&nbsp;import fr.call_of_rum.util.ItemType;
+&nbsp;import fr.call_of_rum.util.Player;
+&nbsp;
+&nbsp;/**
+&nbsp; * This interface contains all functionalities that a boundary should provide.
+&nbsp; */
+&nbsp;public interface IBoundary {
+&nbsp;	
+&nbsp;	void subscribeActionController(IActionController actionController);
+&nbsp;	
+&nbsp;	void subscribeBoardController(IBoardController boardController);
+&nbsp;	
+&nbsp;	void subscribeDiceController(IDiceController diceController);
+&nbsp;	
+&nbsp;	void subscribeMarketController(IMarketController marketController);
+&nbsp;	
+&nbsp;	void subscribePlayerController(IPlayerController playerController);
+&nbsp;	
+&nbsp;	void giveTurn(Player player);
+&nbsp;	
+&nbsp;	void stepOnBomb();
+&nbsp;	
+&nbsp;	void tookShortcut();
+&nbsp;	
+&nbsp;	boolean chestFound(int coinAmount, ItemType itemNamespace);
+&nbsp;	
+&nbsp;	boolean openedChestFound(int coinAmount, Optional&lt;ItemType&gt; itemNamespace);
+&nbsp;	
+&nbsp;	void duel(Player winner);
+&nbsp;	
+&nbsp;	void gameEnded(Player winner);
+&nbsp;	
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:42</div>
+</div>
+</body>
+</html>

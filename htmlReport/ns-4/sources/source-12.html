@@ -1,0 +1,564 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Market</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.boundary.presentation</a>
+</div>
+
+<h1>Coverage Summary for Class: Market (fr.call_of_rum.boundary.presentation)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Market</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/159)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Market$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Market$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Market$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Market$4</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Market$5</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Market$6</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/26)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/171)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;/*
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+&nbsp; */
+&nbsp;package fr.call_of_rum.boundary.presentation;
+&nbsp;
+&nbsp;
+&nbsp;import fr.call_of_rum.boundary.dialog.DialogStub;
+&nbsp;import java.awt.Color;
+&nbsp;import java.awt.Frame;
+&nbsp;import java.awt.event.MouseEvent;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Map;
+&nbsp;
+&nbsp;import javax.swing.BorderFactory;
+&nbsp;import javax.swing.JFrame;
+&nbsp;
+&nbsp;import fr.call_of_rum.boundary.dialog.IDialog;
+&nbsp;import fr.call_of_rum.util.ItemType;
+&nbsp;import fr.call_of_rum.util.Player;
+&nbsp;
+&nbsp;/**
+&nbsp; *
+&nbsp; * @author assanendoye
+&nbsp; */
+&nbsp;public class Market extends javax.swing.JDialog {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates new form Market
+&nbsp;     */
+&nbsp;    public Market(Frame parent,boolean modal ,Player player, IDialog dialog) {
+<b class="nc">&nbsp;        super(parent,modal);</b>
+<b class="nc">&nbsp;        this.player = player;</b>
+<b class="nc">&nbsp;        this.dialog = dialog;</b>
+<b class="nc">&nbsp;        focus = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;        this.size = dialog.getNumberOfFreeSlots();</b>
+<b class="nc">&nbsp;        itemsSelected = new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;        score = dialog.checkfunds(player);</b>
+<b class="nc">&nbsp;        itemTypes = dialog.getMarketItems();</b>
+&nbsp;
+<b class="nc">&nbsp;        initComponents();</b>
+&nbsp;
+<b class="nc">&nbsp;        focus.put(graphicsCard1, false);</b>
+<b class="nc">&nbsp;        focus.put(graphicsCard2, false);</b>
+<b class="nc">&nbsp;        focus.put(graphicsCard3, false);</b>
+<b class="nc">&nbsp;        focus.put(graphicsCard4, false);</b>
+&nbsp;        
+<b class="nc">&nbsp;        graphicsCardsIndex = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;        graphicsCardsIndex.put(graphicsCard1, 0);</b>
+<b class="nc">&nbsp;        graphicsCardsIndex.put(graphicsCard2, 1);</b>
+<b class="nc">&nbsp;        graphicsCardsIndex.put(graphicsCard3, 2);</b>
+<b class="nc">&nbsp;        graphicsCardsIndex.put(graphicsCard4, 3);</b>
+&nbsp;        
+<b class="nc">&nbsp;        graphicsCard4.setDialog(dialog);</b>
+<b class="nc">&nbsp;        graphicsCard3.setDialog(dialog);</b>
+<b class="nc">&nbsp;        graphicsCard2.setDialog(dialog);</b>
+<b class="nc">&nbsp;        graphicsCard1.setDialog(dialog);</b>
+&nbsp;        
+<b class="nc">&nbsp;        graphicsCard1.setImage(itemTypes[0]);</b>
+<b class="nc">&nbsp;        graphicsCard2.setImage(itemTypes[1]);</b>
+<b class="nc">&nbsp;        graphicsCard3.setImage(itemTypes[2]);</b>
+<b class="nc">&nbsp;        graphicsCard4.setImage(itemTypes[3]);</b>
+&nbsp;
+<b class="nc">&nbsp;        inventoryPanel1.setDialog(dialog);</b>
+<b class="nc">&nbsp;        inventoryPanel1.setActivate(false);</b>
+<b class="nc">&nbsp;        updateMarket();</b>
+<b class="nc">&nbsp;        inventoryPanel1.setInventories(dialog.getInventory(player));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * This method is called from within the constructor to initialize the form.
+&nbsp;     * WARNING: Do NOT modify this code. The content of this method is always
+&nbsp;     * regenerated by the Form Editor.
+&nbsp;     */
+&nbsp;    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+&nbsp;    private void initComponents() {
+&nbsp;
+<b class="nc">&nbsp;        jButton1 = new javax.swing.JButton();</b>
+<b class="nc">&nbsp;        jLabel1 = new javax.swing.JLabel();</b>
+<b class="nc">&nbsp;        jLabel2 = new javax.swing.JLabel();</b>
+<b class="nc">&nbsp;        jLabel3 = new javax.swing.JLabel();</b>
+<b class="nc">&nbsp;        coinScorePanel1 = new fr.call_of_rum.boundary.presentation.CoinScorePanel();</b>
+<b class="nc">&nbsp;        graphicsCard2 = new fr.call_of_rum.boundary.presentation.GraphicsCard();</b>
+<b class="nc">&nbsp;        graphicsCard3 = new fr.call_of_rum.boundary.presentation.GraphicsCard();</b>
+<b class="nc">&nbsp;        graphicsCard4 = new fr.call_of_rum.boundary.presentation.GraphicsCard();</b>
+<b class="nc">&nbsp;        graphicsCard1 = new fr.call_of_rum.boundary.presentation.GraphicsCard();</b>
+<b class="nc">&nbsp;        inventoryPanel1 = new fr.call_of_rum.boundary.presentation.InventoryPanel();</b>
+<b class="nc">&nbsp;        jLabel4 = new javax.swing.JLabel();</b>
+&nbsp;
+<b class="nc">&nbsp;        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);</b>
+<b class="nc">&nbsp;        setTitle(&quot;Market`&quot;);</b>
+<b class="nc">&nbsp;        setPreferredSize(new java.awt.Dimension(620, 650));</b>
+<b class="nc">&nbsp;        setSize(new java.awt.Dimension(620, 650));</b>
+<b class="nc">&nbsp;        getContentPane().setLayout(null);</b>
+&nbsp;
+<b class="nc">&nbsp;        jButton1.setText(&quot;Valider&quot;);</b>
+<b class="nc">&nbsp;        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {</b>
+&nbsp;            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<b class="nc">&nbsp;                jButton1MouseClicked(evt);</b>
+&nbsp;            }
+&nbsp;        });
+<b class="nc">&nbsp;        jButton1.addActionListener(new java.awt.event.ActionListener() {</b>
+&nbsp;            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<b class="nc">&nbsp;                jButton1ActionPerformed(evt);</b>
+&nbsp;            }
+&nbsp;        });
+<b class="nc">&nbsp;        getContentPane().add(jButton1);</b>
+<b class="nc">&nbsp;        jButton1.setBounds(230, 520, 162, 51);</b>
+&nbsp;
+<b class="nc">&nbsp;        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/presentation/market.png&quot;))); // NOI18N</b>
+<b class="nc">&nbsp;        getContentPane().add(jLabel1);</b>
+<b class="nc">&nbsp;        jLabel1.setBounds(50, 30, 100, 100);</b>
+&nbsp;
+<b class="nc">&nbsp;        jLabel2.setText(&quot;Market&quot;);</b>
+<b class="nc">&nbsp;        getContentPane().add(jLabel2);</b>
+<b class="nc">&nbsp;        jLabel2.setBounds(270, 30, 37, 16);</b>
+&nbsp;
+<b class="nc">&nbsp;        jLabel3.setText(&quot;Bienvenue dans le marché&quot;);</b>
+<b class="nc">&nbsp;        getContentPane().add(jLabel3);</b>
+<b class="nc">&nbsp;        jLabel3.setBounds(70, 160, 138, 25);</b>
+&nbsp;
+<b class="nc">&nbsp;        coinScorePanel1.setOpaque(false);</b>
+<b class="nc">&nbsp;        getContentPane().add(coinScorePanel1);</b>
+<b class="nc">&nbsp;        coinScorePanel1.setBounds(480, 0, 103, 55);</b>
+&nbsp;
+<b class="nc">&nbsp;        graphicsCard2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));</b>
+<b class="nc">&nbsp;        graphicsCard2.setEnabled(false);</b>
+<b class="nc">&nbsp;        graphicsCard2.setOpaque(false);</b>
+<b class="nc">&nbsp;        graphicsCard2.addMouseListener(new java.awt.event.MouseAdapter() {</b>
+&nbsp;            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<b class="nc">&nbsp;                graphicsCard2MouseClicked(evt);</b>
+&nbsp;            }
+&nbsp;        });
+<b class="nc">&nbsp;        getContentPane().add(graphicsCard2);</b>
+<b class="nc">&nbsp;        graphicsCard2.setBounds(310, 230, 220, 120);</b>
+&nbsp;
+<b class="nc">&nbsp;        graphicsCard3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));</b>
+<b class="nc">&nbsp;        graphicsCard3.setMinimumSize(new java.awt.Dimension(400, 400));</b>
+<b class="nc">&nbsp;        graphicsCard3.setOpaque(false);</b>
+<b class="nc">&nbsp;        graphicsCard3.addMouseListener(new java.awt.event.MouseAdapter() {</b>
+&nbsp;            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<b class="nc">&nbsp;                graphicsCard3MouseClicked(evt);</b>
+&nbsp;            }
+&nbsp;        });
+<b class="nc">&nbsp;        getContentPane().add(graphicsCard3);</b>
+<b class="nc">&nbsp;        graphicsCard3.setBounds(310, 360, 220, 120);</b>
+&nbsp;
+<b class="nc">&nbsp;        graphicsCard4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));</b>
+<b class="nc">&nbsp;        graphicsCard4.setOpaque(false);</b>
+<b class="nc">&nbsp;        graphicsCard4.setPreferredSize(new java.awt.Dimension(400, 400));</b>
+<b class="nc">&nbsp;        graphicsCard4.addMouseListener(new java.awt.event.MouseAdapter() {</b>
+&nbsp;            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<b class="nc">&nbsp;                graphicsCard4MouseClicked(evt);</b>
+&nbsp;            }
+&nbsp;        });
+<b class="nc">&nbsp;        getContentPane().add(graphicsCard4);</b>
+<b class="nc">&nbsp;        graphicsCard4.setBounds(90, 360, 210, 120);</b>
+&nbsp;
+<b class="nc">&nbsp;        graphicsCard1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));</b>
+<b class="nc">&nbsp;        graphicsCard1.setEnabled(false);</b>
+<b class="nc">&nbsp;        graphicsCard1.setOpaque(false);</b>
+<b class="nc">&nbsp;        graphicsCard1.addMouseListener(new java.awt.event.MouseAdapter() {</b>
+&nbsp;            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<b class="nc">&nbsp;                graphicsCard1MouseClicked(evt);</b>
+&nbsp;            }
+&nbsp;        });
+<b class="nc">&nbsp;        getContentPane().add(graphicsCard1);</b>
+<b class="nc">&nbsp;        graphicsCard1.setBounds(90, 230, 210, 120);</b>
+&nbsp;
+<b class="nc">&nbsp;        inventoryPanel1.setOpaque(false);</b>
+<b class="nc">&nbsp;        getContentPane().add(inventoryPanel1);</b>
+<b class="nc">&nbsp;        inventoryPanel1.setBounds(320, 100, 233, 92);</b>
+&nbsp;
+<b class="nc">&nbsp;        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/presentation/background_market3.png&quot;))); // NOI18N</b>
+<b class="nc">&nbsp;        getContentPane().add(jLabel4);</b>
+<b class="nc">&nbsp;        jLabel4.setBounds(0, 0, 620, 650);</b>
+&nbsp;
+<b class="nc">&nbsp;        pack();</b>
+&nbsp;    }// &lt;/editor-fold&gt;//GEN-END:initComponents
+&nbsp;
+&nbsp;    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+<b class="nc">&nbsp;        valider();</b>
+&nbsp;    }//GEN-LAST:event_jButton1ActionPerformed
+&nbsp;
+&nbsp;    private void jButton1MouseClicked(MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+<b class="nc">&nbsp;        valider();</b>
+&nbsp;    }//GEN-LAST:event_jButton1MouseClicked
+&nbsp;
+&nbsp;
+&nbsp;    private void graphicsCard3MouseClicked(MouseEvent evt) {//GEN-FIRST:event_graphicsCard3MouseClicked
+<b class="nc">&nbsp;        toogle(graphicsCard3);</b>
+&nbsp;
+&nbsp;    }//GEN-LAST:event_graphicsCard3MouseClicked
+&nbsp;
+&nbsp;    private void graphicsCard2MouseClicked(MouseEvent evt) {//GEN-FIRST:event_graphicsCard2MouseClicked
+<b class="nc">&nbsp;        toogle(graphicsCard2);</b>
+&nbsp;    }//GEN-LAST:event_graphicsCard2MouseClicked
+&nbsp;
+&nbsp;    private void graphicsCard4MouseClicked(MouseEvent evt) {//GEN-FIRST:event_graphicsCard4MouseClicked
+<b class="nc">&nbsp;        toogle(graphicsCard4);</b>
+&nbsp;    }//GEN-LAST:event_graphicsCard4MouseClicked
+&nbsp;
+&nbsp;    private void graphicsCard1MouseClicked(MouseEvent evt) {
+<b class="nc">&nbsp;        toogle(graphicsCard1);</b>
+&nbsp;    }                                          
+&nbsp;    
+&nbsp;    private void focusItem(GraphicsCard graphicsCard){
+<b class="nc">&nbsp;        int prix = dialog.getPrice(graphicsCardsIndex.get(graphicsCard));</b>
+<b class="nc">&nbsp;        graphicsCard.setEnabled(false);</b>
+<b class="nc">&nbsp;        if (score &gt; prix &amp;&amp; size &gt;0) {</b>
+<b class="nc">&nbsp;            graphicsCard.setBorder(BorderFactory.createLineBorder(Color.BLUE));</b>
+<b class="nc">&nbsp;            size--;</b>
+<b class="nc">&nbsp;            System.out.println(score);</b>
+<b class="nc">&nbsp;            score = score - prix;</b>
+<b class="nc">&nbsp;            System.out.println(score);</b>
+<b class="nc">&nbsp;            itemsSelected.add(graphicsCardsIndex.get(graphicsCard));</b>
+<b class="nc">&nbsp;            focus.put(graphicsCard,!focus.get(graphicsCard));</b>
+<b class="nc">&nbsp;            updateMarket();</b>
+<b class="nc">&nbsp;            inventoryPanel1.setInventory(graphicsCard.getItemType());</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private void unFocusitem(GraphicsCard graphicsCard){
+<b class="nc">&nbsp;        graphicsCard.setBorder(BorderFactory.createLineBorder(Color.BLACK));</b>
+<b class="nc">&nbsp;        size ++;</b>
+<b class="nc">&nbsp;        score += dialog.getPrice(graphicsCardsIndex.get(graphicsCard));</b>
+<b class="nc">&nbsp;        itemsSelected.remove(graphicsCardsIndex.get(graphicsCard));</b>
+<b class="nc">&nbsp;        focus.put(graphicsCard,!focus.get(graphicsCard));</b>
+<b class="nc">&nbsp;        inventoryPanel1.removeItem(graphicsCard.getItemType());</b>
+<b class="nc">&nbsp;        updateMarket();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    private void updateMarket() {
+<b class="nc">&nbsp;        coinScorePanel1.setScore(score);</b>
+&nbsp;        // Vérifier chaque carte
+<b class="nc">&nbsp;        for (Map.Entry&lt;GraphicsCard, Boolean&gt; entry : focus.entrySet()) {</b>
+<b class="nc">&nbsp;            GraphicsCard card = entry.getKey();</b>
+<b class="nc">&nbsp;            boolean isFocused = entry.getValue();</b>
+&nbsp;
+&nbsp;            // Si la carte est déjà focus, passer à la suivante
+<b class="nc">&nbsp;            if (isFocused) {</b>
+<b class="nc">&nbsp;                continue;</b>
+&nbsp;            }
+&nbsp;
+&nbsp;            // Si la carte est désactivée et le score est inférieur au prix de la carte et la taille de l&#39;inventaire est vide, l&#39;activer
+<b class="nc">&nbsp;            if (!card.isEnabled() &amp;&amp; (score &lt; dialog.getPrice(graphicsCardsIndex.get(card)) &amp;&amp; size == 0)) {</b>
+<b class="nc">&nbsp;                card.setEnabled(true);</b>
+&nbsp;            }
+&nbsp;            // Sinon, si la carte est activée et le score est supérieur ou égal au prix de la carte et la taille de l&#39;inventaire n&#39;est pas vide, la désactiver
+<b class="nc">&nbsp;            else if (card.isEnabled() &amp;&amp; (score &gt;= dialog.getPrice(graphicsCardsIndex.get(card)) ||  size &gt; 0)) {</b>
+<b class="nc">&nbsp;                card.setEnabled(false);</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void valider() {
+<b class="nc">&nbsp;        if (!itemsSelected.isEmpty()) {</b>
+<b class="nc">&nbsp;        	itemsSelected.forEach(i -&gt; dialog.buy(i));</b>
+<b class="nc">&nbsp;            dialog.print(player.toString() + &quot; a acheté :&quot;);</b>
+<b class="nc">&nbsp;            for (Map.Entry&lt;GraphicsCard, Boolean&gt; entry : focus.entrySet()) {</b>
+<b class="nc">&nbsp;                GraphicsCard card = entry.getKey();</b>
+<b class="nc">&nbsp;                boolean isFocused = entry.getValue();</b>
+<b class="nc">&nbsp;                if (isFocused) {</b>
+<b class="nc">&nbsp;                    dialog.print(card.getItemType() + &quot; pour &quot; + dialog.getPrice(graphicsCardsIndex.get(card)) + &quot; $&quot;);</b>
+&nbsp;                }
+<b class="nc">&nbsp;            }</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            dialog.print(player.toString() + &quot; n&#39;a rien acheté.&quot;);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        dispose();</b>
+<b class="nc">&nbsp;        System.out.println(itemsSelected);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public void toogle(GraphicsCard graphicsCard) {
+<b class="nc">&nbsp;        if (focus.get(graphicsCard)) {</b>
+<b class="nc">&nbsp;            unFocusitem(graphicsCard);</b>
+<b class="nc">&nbsp;        } else if (score &gt;= dialog.getPrice(graphicsCardsIndex.get(graphicsCard))) {</b>
+<b class="nc">&nbsp;            if (size &gt; 0) {</b>
+<b class="nc">&nbsp;                focusItem(graphicsCard);</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        System.out.println(&quot;\nContenu de la HashMap :&quot;);</b>
+<b class="nc">&nbsp;        for (Map.Entry&lt;GraphicsCard, Boolean&gt; focus : focus.entrySet()) {</b>
+<b class="nc">&nbsp;            System.out.println(focus.getKey().getItemType() + &quot; : &quot; + focus.getValue());</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public static void main(String[] args) {
+&nbsp;        /* Set the Nimbus look and feel */
+&nbsp;        //&lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot; Look and feel setting code (optional) &quot;&gt;
+&nbsp;        try {
+<b class="nc">&nbsp;            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</b>
+<b class="nc">&nbsp;                if (&quot;Nimbus&quot;.equals(info.getName())) {</b>
+<b class="nc">&nbsp;                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                }
+&nbsp;            }
+<b class="nc">&nbsp;        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {</b>
+<b class="nc">&nbsp;            java.util.logging.Logger.getLogger(Market.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;        //&lt;/editor-fold&gt;
+&nbsp;        /* Create and display the dialog */
+<b class="nc">&nbsp;        java.awt.EventQueue.invokeLater(() -&gt; new Market(new JFrame(),true, Player.JACK_LE_BORGNE, new DialogStub()).setVisible(true));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    private final HashMap&lt;GraphicsCard,Boolean&gt; focus;
+&nbsp;    private final Player player;
+&nbsp;    private final IDialog dialog;
+&nbsp;    private final ItemType[] itemTypes;
+&nbsp;    private final List&lt;Integer&gt; itemsSelected;
+&nbsp;    private HashMap&lt;GraphicsCard, Integer&gt; graphicsCardsIndex;
+&nbsp;    private int score ;
+&nbsp;    private int size;
+&nbsp;
+&nbsp;    // Variables declaration - do not modify//GEN-BEGIN:variables
+&nbsp;    private fr.call_of_rum.boundary.presentation.CoinScorePanel coinScorePanel1;
+&nbsp;    private fr.call_of_rum.boundary.presentation.GraphicsCard graphicsCard1;
+&nbsp;    private fr.call_of_rum.boundary.presentation.GraphicsCard graphicsCard2;
+&nbsp;    private fr.call_of_rum.boundary.presentation.GraphicsCard graphicsCard3;
+&nbsp;    private fr.call_of_rum.boundary.presentation.GraphicsCard graphicsCard4;
+&nbsp;    private fr.call_of_rum.boundary.presentation.InventoryPanel inventoryPanel1;
+&nbsp;    private javax.swing.JButton jButton1;
+&nbsp;    private javax.swing.JLabel jLabel1;
+&nbsp;    private javax.swing.JLabel jLabel2;
+&nbsp;    private javax.swing.JLabel jLabel3;
+&nbsp;    private javax.swing.JLabel jLabel4;
+&nbsp;    // End of variables declaration//GEN-END:variables
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:42</div>
+</div>
+</body>
+</html>

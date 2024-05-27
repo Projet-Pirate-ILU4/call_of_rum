@@ -1,0 +1,424 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ChestDialog</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.boundary.presentation</a>
+</div>
+
+<h1>Coverage Summary for Class: ChestDialog (fr.call_of_rum.boundary.presentation)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ChestDialog</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/85)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ChestDialog$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ChestDialog$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ChestDialog$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ChestDialog$4</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ChestDialog$5</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/95)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;/*
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/OkCancelDialog.java to edit this template
+&nbsp; */
+&nbsp;package fr.call_of_rum.boundary.presentation;
+&nbsp;
+&nbsp;import com.formdev.flatlaf.FlatLightLaf;
+&nbsp;import fr.call_of_rum.util.ItemType;
+&nbsp;import java.awt.Image;
+&nbsp;import java.awt.event.ActionEvent;
+&nbsp;import java.awt.event.KeyEvent;
+&nbsp;import java.awt.image.BufferedImage;
+&nbsp;import javax.swing.AbstractAction;
+&nbsp;import javax.swing.ActionMap;
+&nbsp;import javax.swing.ImageIcon;
+&nbsp;import javax.swing.InputMap;
+&nbsp;import javax.swing.JComponent;
+&nbsp;import javax.swing.KeyStroke;
+&nbsp;import javax.swing.UIManager;
+&nbsp;
+&nbsp;/**
+&nbsp; *
+&nbsp; * @author loferga
+&nbsp; */
+&nbsp;public class ChestDialog extends javax.swing.JDialog {
+&nbsp;    
+&nbsp;    
+&nbsp;
+&nbsp;    /**
+&nbsp;     * A return status code - returned if Cancel button has been pressed
+&nbsp;     */
+&nbsp;    public static final int RET_CANCEL = 0;
+&nbsp;    /**
+&nbsp;     * A return status code - returned if OK button has been pressed
+&nbsp;     */
+&nbsp;    public static final int RET_OK = 1;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates new form ChestDialog
+&nbsp;     */
+&nbsp;    public ChestDialog(java.awt.Frame parent, ItemType displayedItem, int goldAmount) {
+<b class="nc">&nbsp;        super(parent, true);</b>
+<b class="nc">&nbsp;        initComponents();</b>
+&nbsp;
+&nbsp;        // Close the dialog when Esc is pressed
+<b class="nc">&nbsp;        String cancelName = &quot;cancel&quot;;</b>
+<b class="nc">&nbsp;        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);</b>
+<b class="nc">&nbsp;        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);</b>
+<b class="nc">&nbsp;        ActionMap actionMap = getRootPane().getActionMap();</b>
+<b class="nc">&nbsp;        actionMap.put(cancelName, new AbstractAction() {</b>
+&nbsp;            @Override
+&nbsp;            public void actionPerformed(ActionEvent e) {
+<b class="nc">&nbsp;                doClose(RET_CANCEL);</b>
+&nbsp;            }
+&nbsp;        });
+<b class="nc">&nbsp;        BufferedImage chestImage = ImageLoader.loadImage(&quot;presentation/chest_notification.png&quot;);</b>
+<b class="nc">&nbsp;        Image chestScaledImage = chestImage.getScaledInstance(chestLabel.getWidth(), chestLabel.getHeight(), Image.SCALE_SMOOTH);</b>
+<b class="nc">&nbsp;        chestLabel.setIcon(new ImageIcon(chestScaledImage));</b>
+<b class="nc">&nbsp;        BufferedImage itemImage = ImageLoader.loadImage(&quot;presentation/&quot; + displayedItem.toString().toLowerCase() + &quot;.png&quot;);</b>
+<b class="nc">&nbsp;        Image itemScaledImage = itemImage.getScaledInstance(itemLabel.getWidth(), itemLabel.getHeight(), Image.SCALE_SMOOTH);</b>
+<b class="nc">&nbsp;        itemLabel.setIcon(new ImageIcon(itemScaledImage));</b>
+<b class="nc">&nbsp;        coinsLabel.setText(String.valueOf(goldAmount));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * @return the return status of this dialog - one of RET_OK or RET_CANCEL
+&nbsp;     */
+&nbsp;    public int getReturnStatus() {
+<b class="nc">&nbsp;        return returnStatus;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * This method is called from within the constructor to initialize the form.
+&nbsp;     * WARNING: Do NOT modify this code. The content of this method is always
+&nbsp;     * regenerated by the Form Editor.
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+&nbsp;    private void initComponents() {
+&nbsp;
+<b class="nc">&nbsp;        chestLabel = new javax.swing.JLabel();</b>
+<b class="nc">&nbsp;        coinPanel1 = new fr.call_of_rum.boundary.presentation.CoinPanel();</b>
+<b class="nc">&nbsp;        coinsLabel = new javax.swing.JLabel();</b>
+<b class="nc">&nbsp;        itemLabel = new javax.swing.JLabel();</b>
+<b class="nc">&nbsp;        yesButton = new javax.swing.JButton();</b>
+<b class="nc">&nbsp;        noButton = new javax.swing.JButton();</b>
+&nbsp;
+<b class="nc">&nbsp;        addWindowListener(new java.awt.event.WindowAdapter() {</b>
+&nbsp;            public void windowClosing(java.awt.event.WindowEvent evt) {
+<b class="nc">&nbsp;                closeDialog(evt);</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        itemLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));</b>
+&nbsp;
+<b class="nc">&nbsp;        yesButton.setText(&quot;prendre&quot;);</b>
+<b class="nc">&nbsp;        yesButton.setToolTipText(&quot;&quot;);</b>
+<b class="nc">&nbsp;        yesButton.addActionListener(new java.awt.event.ActionListener() {</b>
+&nbsp;            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<b class="nc">&nbsp;                yesButtonActionPerformed(evt);</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        noButton.setText(&quot;laisser&quot;);</b>
+<b class="nc">&nbsp;        noButton.addActionListener(new java.awt.event.ActionListener() {</b>
+&nbsp;            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<b class="nc">&nbsp;                noButtonActionPerformed(evt);</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</b>
+<b class="nc">&nbsp;        getContentPane().setLayout(layout);</b>
+<b class="nc">&nbsp;        layout.setHorizontalGroup(</b>
+<b class="nc">&nbsp;            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(133, 133, 133)</b>
+<b class="nc">&nbsp;                .addComponent(coinPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</b>
+<b class="nc">&nbsp;                .addComponent(coinsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addContainerGap()</b>
+<b class="nc">&nbsp;                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</b>
+<b class="nc">&nbsp;                    .addComponent(yesButton)</b>
+<b class="nc">&nbsp;                    .addComponent(chestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))</b>
+<b class="nc">&nbsp;                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;                    .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</b>
+<b class="nc">&nbsp;                        .addComponent(itemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))</b>
+<b class="nc">&nbsp;                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                        .addComponent(noButton)</b>
+<b class="nc">&nbsp;                        .addGap(53, 53, 53))))</b>
+&nbsp;        );
+<b class="nc">&nbsp;        layout.setVerticalGroup(</b>
+<b class="nc">&nbsp;            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addContainerGap()</b>
+<b class="nc">&nbsp;                .addComponent(chestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</b>
+<b class="nc">&nbsp;                    .addComponent(yesButton)</b>
+<b class="nc">&nbsp;                    .addComponent(noButton))</b>
+<b class="nc">&nbsp;                .addGap(25, 25, 25))</b>
+<b class="nc">&nbsp;            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addContainerGap(64, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addComponent(itemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                .addGap(49, 49, 49)</b>
+<b class="nc">&nbsp;                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</b>
+<b class="nc">&nbsp;                    .addComponent(coinPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                    .addComponent(coinsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))</b>
+<b class="nc">&nbsp;                .addGap(117, 117, 117))</b>
+&nbsp;        );
+&nbsp;
+<b class="nc">&nbsp;        pack();</b>
+&nbsp;    }// &lt;/editor-fold&gt;//GEN-END:initComponents
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Closes the dialog
+&nbsp;     */
+&nbsp;    private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
+<b class="nc">&nbsp;        doClose(RET_CANCEL);</b>
+&nbsp;    }//GEN-LAST:event_closeDialog
+&nbsp;
+&nbsp;    private void yesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesButtonActionPerformed
+<b class="nc">&nbsp;        doClose(RET_OK);</b>
+&nbsp;    }//GEN-LAST:event_yesButtonActionPerformed
+&nbsp;
+&nbsp;    private void noButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noButtonActionPerformed
+<b class="nc">&nbsp;        doClose(RET_CANCEL);</b>
+&nbsp;    }//GEN-LAST:event_noButtonActionPerformed
+&nbsp;    
+&nbsp;    private void doClose(int retStatus) {
+<b class="nc">&nbsp;        returnStatus = retStatus;</b>
+<b class="nc">&nbsp;        setVisible(false);</b>
+<b class="nc">&nbsp;        dispose();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * @param args the command line arguments
+&nbsp;     */
+&nbsp;    public static void main(String args[]) {
+&nbsp;        /* Set the Nimbus look and feel */
+&nbsp;        //&lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot; Look and feel setting code (optional) &quot;&gt;
+&nbsp;        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+&nbsp;         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+&nbsp;         */
+&nbsp;        try {
+<b class="nc">&nbsp;            UIManager.setLookAndFeel(new FlatLightLaf());</b>
+<b class="nc">&nbsp;        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</b>
+<b class="nc">&nbsp;            java.util.logging.Logger.getLogger(ChestDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;        //&lt;/editor-fold&gt;
+&nbsp;
+&nbsp;        /* Create and display the dialog */
+<b class="nc">&nbsp;        java.awt.EventQueue.invokeLater(() -&gt; {</b>
+<b class="nc">&nbsp;            ChestDialog dialog = new ChestDialog(new javax.swing.JFrame(), ItemType.CLOVER, 54);</b>
+<b class="nc">&nbsp;            dialog.addWindowListener(new java.awt.event.WindowAdapter() {</b>
+&nbsp;                @Override
+&nbsp;                public void windowClosing(java.awt.event.WindowEvent e) {
+<b class="nc">&nbsp;                    System.exit(0);</b>
+&nbsp;                }
+&nbsp;            });
+<b class="nc">&nbsp;            dialog.setVisible(true);</b>
+&nbsp;        });
+&nbsp;    }
+&nbsp;
+&nbsp;    // Variables declaration - do not modify//GEN-BEGIN:variables
+&nbsp;    private javax.swing.JLabel chestLabel;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CoinPanel coinPanel1;
+&nbsp;    private javax.swing.JLabel coinsLabel;
+&nbsp;    private javax.swing.JLabel itemLabel;
+&nbsp;    private javax.swing.JButton noButton;
+&nbsp;    private javax.swing.JButton yesButton;
+&nbsp;    // End of variables declaration//GEN-END:variables
+&nbsp;
+<b class="nc">&nbsp;    private int returnStatus = RET_CANCEL;</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:42</div>
+</div>
+</body>
+</html>

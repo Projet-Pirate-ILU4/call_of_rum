@@ -1,0 +1,213 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Pirate</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.model.pirate</a>
+</div>
+
+<h1>Coverage Summary for Class: Pirate (fr.call_of_rum.model.pirate)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Pirate</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94,7%
+  </span>
+  <span class="absValue">
+    (18/19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93,8%
+  </span>
+  <span class="absValue">
+    (30/32)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.call_of_rum.model.pirate;
+&nbsp;
+&nbsp;import fr.call_of_rum.model.board.Board;
+&nbsp;import fr.call_of_rum.model.inventory.Inventory;
+&nbsp;import fr.call_of_rum.model.item.Item;
+&nbsp;import fr.call_of_rum.model.item.liquid.Liquid;
+&nbsp;import fr.call_of_rum.model.item.weapon.Weapon;
+&nbsp;import fr.call_of_rum.util.Player;
+&nbsp;
+&nbsp;public class Pirate {
+&nbsp;	
+&nbsp;	private Player player;
+&nbsp;	private int coins;
+&nbsp;	private int healthPoints;
+&nbsp;	private int maxHealthPoints;
+<b class="fc">&nbsp;	private Weapon equippedWeapon = null;</b>
+<b class="fc">&nbsp;	private Inventory&lt;Item&gt; inventory = new Inventory&lt;&gt;(3);</b>
+<b class="fc">&nbsp;	private IntoxicationGauge intoxicationGauge = new IntoxicationGauge();</b>
+&nbsp;	private Board board;
+<b class="fc">&nbsp;	private int location = 0;</b>
+&nbsp;	
+<b class="fc">&nbsp;	public Pirate(Player player, int coins, int maxHealthPoints) {</b>
+<b class="fc">&nbsp;		this.player = player;</b>
+<b class="fc">&nbsp;		this.coins = coins;</b>
+<b class="fc">&nbsp;		this.maxHealthPoints = maxHealthPoints;</b>
+<b class="fc">&nbsp;		this.healthPoints = maxHealthPoints;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public Player getPlayer() {
+<b class="fc">&nbsp;		return player;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public int getCoins() {
+<b class="fc">&nbsp;		return coins;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public void setCoins(int newAmount) {
+<b class="fc">&nbsp;		this.coins = newAmount;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public int getHealthPoints() {
+<b class="fc">&nbsp;		return healthPoints;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public void setHealthPoints(int newHealthPointsAmount) {
+<b class="fc">&nbsp;		healthPoints = newHealthPointsAmount;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public int getMaxHealth() {
+<b class="fc">&nbsp;		return maxHealthPoints;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public Weapon getEquippedWeapon() {
+<b class="fc">&nbsp;		return equippedWeapon;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public void equipWeapon(Weapon newEquippedWeapon) {
+<b class="fc">&nbsp;		equippedWeapon = newEquippedWeapon;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public Inventory&lt;Item&gt; getInventory() {
+<b class="fc">&nbsp;		return inventory;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public void give(Item item) {
+<b class="fc">&nbsp;		item.setOwner(this);</b>
+<b class="fc">&nbsp;		inventory.add(item);</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public void drink(Liquid liquid) {
+<b class="fc">&nbsp;		liquid.setOwner(this);</b>
+<b class="fc">&nbsp;		liquid.use();</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public IntoxicationGauge getIntoxicationGauge() {
+<b class="fc">&nbsp;		return intoxicationGauge;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public Board getBoard() {
+<b class="fc">&nbsp;		return board;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public void setBoard(Board newBoard) {
+<b class="fc">&nbsp;		board = newBoard;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public int getLocation() {
+<b class="fc">&nbsp;		return location;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public void setLocation(int location) {
+<b class="fc">&nbsp;		this.location = location;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	@Override
+&nbsp;	public boolean equals(Object other) {
+<b class="fc">&nbsp;		if (other != null &amp;&amp; other.getClass() == this.getClass()) {</b>
+<b class="fc">&nbsp;			Pirate otherPirate = (Pirate) other;</b>
+<b class="fc">&nbsp;			return this.player == otherPirate.player;</b>
+&nbsp;		}
+<b class="nc">&nbsp;		return false;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	@Override
+&nbsp;	public int hashCode() {
+<b class="nc">&nbsp;		return player.hashCode();</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:42</div>
+</div>
+</body>
+</html>

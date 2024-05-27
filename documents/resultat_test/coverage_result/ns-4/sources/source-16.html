@@ -1,0 +1,313 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > TokenPanel</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.boundary.presentation</a>
+</div>
+
+<h1>Coverage Summary for Class: TokenPanel (fr.call_of_rum.boundary.presentation)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TokenPanel</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/61)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">TokenPanel$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">TokenPanel$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/66)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;/*
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+&nbsp; */
+&nbsp;package fr.call_of_rum.boundary.presentation;
+&nbsp;
+&nbsp;import fr.call_of_rum.boundary.dialog.IDialog;
+&nbsp;import fr.call_of_rum.util.ItemType;
+&nbsp;import fr.call_of_rum.util.Player;
+&nbsp;import java.awt.Color;
+&nbsp;import java.awt.Component;
+&nbsp;import java.awt.Image;
+&nbsp;import java.awt.image.BufferedImage;
+&nbsp;import static java.lang.Math.abs;
+&nbsp;import javax.swing.ImageIcon;
+&nbsp;
+&nbsp;/**
+&nbsp; *
+&nbsp; * @author Solène
+&nbsp; */
+&nbsp;public class TokenPanel extends javax.swing.JPanel {
+&nbsp;
+&nbsp;    private BoardPanel boardPanel;
+&nbsp;    private Player player;
+&nbsp;    private int posX;
+&nbsp;    private int posY;
+<b class="nc">&nbsp;    private boolean isMovable=false;</b>
+&nbsp;    private CellPanel position;
+&nbsp;    private IDialog dialog;
+&nbsp;    private int newX;
+&nbsp;    private int newY;
+<b class="nc">&nbsp;    private CellPanel wrongPosition=null;</b>
+&nbsp;    
+&nbsp;    public void setBoardPanel(BoardPanel boardPanel) {
+<b class="nc">&nbsp;        this.boardPanel = boardPanel;</b>
+&nbsp;    }
+&nbsp;    public void setPlayer(Player player) {
+<b class="nc">&nbsp;        this.player = player;</b>
+<b class="nc">&nbsp;        putImageToken();</b>
+&nbsp;    }
+&nbsp;    public CellPanel getPosition(){
+<b class="nc">&nbsp;        return position;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public void setPosition(CellPanel position){
+<b class="nc">&nbsp;        this.position=position;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public void setIsMovable(boolean choice){
+<b class="nc">&nbsp;        this.isMovable=choice;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public void setDialog(IDialog dialog){
+<b class="nc">&nbsp;        this.dialog=dialog;</b>
+&nbsp;    }
+&nbsp;    /**
+&nbsp;     * Creates new form PiecePanel
+&nbsp;     */
+<b class="nc">&nbsp;    public TokenPanel() {</b>
+<b class="nc">&nbsp;        initComponents();</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public void putImageToken(){
+<b class="nc">&nbsp;        BufferedImage typeImage = ImageLoader.loadImage(&quot;presentation/&quot;+player+&quot;.png&quot;);</b>
+&nbsp;        Image scaledTypeImage;
+<b class="nc">&nbsp;        scaledTypeImage = typeImage.getScaledInstance(70, 70, Image.SCALE_SMOOTH);</b>
+<b class="nc">&nbsp;        ImageIcon typeIcon = new ImageIcon(scaledTypeImage);</b>
+<b class="nc">&nbsp;        tokenLabel.setIcon(typeIcon);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * This method is called from within the constructor to initialize the form.
+&nbsp;     * WARNING: Do NOT modify this code. The content of this method is always
+&nbsp;     * regenerated by the Form Editor.
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+&nbsp;    private void initComponents() {
+&nbsp;
+<b class="nc">&nbsp;        tokenLabel = new javax.swing.JLabel();</b>
+&nbsp;
+<b class="nc">&nbsp;        setMinimumSize(new java.awt.Dimension(70, 70));</b>
+<b class="nc">&nbsp;        setOpaque(false);</b>
+<b class="nc">&nbsp;        setPreferredSize(new java.awt.Dimension(70, 70));</b>
+<b class="nc">&nbsp;        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {</b>
+&nbsp;            public void mouseDragged(java.awt.event.MouseEvent evt) {
+<b class="nc">&nbsp;                formMouseDragged(evt);</b>
+&nbsp;            }
+&nbsp;        });
+<b class="nc">&nbsp;        addMouseListener(new java.awt.event.MouseAdapter() {</b>
+&nbsp;            public void mousePressed(java.awt.event.MouseEvent evt) {
+<b class="nc">&nbsp;                formMousePressed(evt);</b>
+&nbsp;            }
+&nbsp;            public void mouseReleased(java.awt.event.MouseEvent evt) {
+<b class="nc">&nbsp;                formMouseReleased(evt);</b>
+&nbsp;            }
+&nbsp;        });
+<b class="nc">&nbsp;        setLayout(null);</b>
+&nbsp;
+<b class="nc">&nbsp;        tokenLabel.setMinimumSize(new java.awt.Dimension(70, 70));</b>
+<b class="nc">&nbsp;        tokenLabel.setPreferredSize(new java.awt.Dimension(70, 70));</b>
+<b class="nc">&nbsp;        add(tokenLabel);</b>
+<b class="nc">&nbsp;        tokenLabel.setBounds(0, 0, 70, 70);</b>
+&nbsp;    }// &lt;/editor-fold&gt;//GEN-END:initComponents
+&nbsp;
+&nbsp;    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+<b class="nc">&nbsp;        if (player.equals(Player.BILL_JAMBE_DE_BOIS) &amp;&amp; boardPanel.getisToken1Movable()){</b>
+<b class="nc">&nbsp;            posX=evt.getX();</b>
+<b class="nc">&nbsp;            posY=evt.getY();</b>
+<b class="nc">&nbsp;            setIsMovable(true);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;On change la position initiale du pion1&quot;);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (player.equals(Player.JACK_LE_BORGNE) &amp;&amp; boardPanel.getisToken2Movable()){</b>
+<b class="nc">&nbsp;            posX=evt.getX();</b>
+<b class="nc">&nbsp;            posY=evt.getY();</b>
+<b class="nc">&nbsp;            setIsMovable(true);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;On change la position initiale du pion2&quot;);</b>
+&nbsp;        }
+&nbsp;    }//GEN-LAST:event_formMousePressed
+&nbsp;
+&nbsp;    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+<b class="nc">&nbsp;        if (isMovable){</b>
+<b class="nc">&nbsp;            if (wrongPosition!=null){</b>
+<b class="nc">&nbsp;                wrongPosition.setNumColor(Color.white);</b>
+<b class="nc">&nbsp;                repaint();</b>
+&nbsp;            }
+<b class="nc">&nbsp;            int depX = evt.getX() - posX;</b>
+<b class="nc">&nbsp;            int depY = evt.getY() - posY;</b>
+<b class="nc">&nbsp;            newX=getX()+depX;</b>
+<b class="nc">&nbsp;            newY=getY()+depY;        </b>
+<b class="nc">&nbsp;            if ((newX&gt;(boardPanel.getX()+boardPanel.getWidth())) </b>
+<b class="nc">&nbsp;                    ||(newX&lt;boardPanel.getX()) </b>
+&nbsp;                    ||(newY&lt;0)
+<b class="nc">&nbsp;                    ||(newY&gt;boardPanel.getHeight())){</b>
+<b class="nc">&nbsp;                this.setLocation(posX, posY);</b>
+&nbsp;            }else{
+<b class="nc">&nbsp;                this.setLocation(newX, newY);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            repaint();</b>
+&nbsp;        }
+&nbsp;    }//GEN-LAST:event_formMouseDragged
+&nbsp;
+&nbsp;    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
+<b class="nc">&nbsp;        Component initialCell = boardPanel.getComponentAt(posX-posX%100, posY-posY%100); </b>
+<b class="nc">&nbsp;        Component arrivalCell=boardPanel.getComponentAt(newX-newX%100, newY-newY%100);</b>
+<b class="nc">&nbsp;        if (arrivalCell instanceof CellPanel){</b>
+<b class="nc">&nbsp;            if (dialog.getDicesResult()+((CellPanel) initialCell).getNum() == ((CellPanel) arrivalCell).getNum()){</b>
+<b class="nc">&nbsp;                position=boardPanel.getCellsPanel()[(((CellPanel)arrivalCell).getNum())-1]; //On récupère la position du pion. </b>
+<b class="nc">&nbsp;                dialog.move();</b>
+<b class="nc">&nbsp;                setIsMovable(false);</b>
+&nbsp;            }else{
+<b class="nc">&nbsp;                wrongPosition=((CellPanel) arrivalCell);</b>
+<b class="nc">&nbsp;                ((CellPanel) arrivalCell).setNumColor(Color.red);</b>
+<b class="nc">&nbsp;                repaint();</b>
+<b class="nc">&nbsp;                this.setLocation(posX, posY);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }//GEN-LAST:event_formMouseReleased
+&nbsp;
+&nbsp;
+&nbsp;    // Variables declaration - do not modify//GEN-BEGIN:variables
+&nbsp;    private javax.swing.JLabel tokenLabel;
+&nbsp;    // End of variables declaration//GEN-END:variables
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:38</div>
+</div>
+</body>
+</html>

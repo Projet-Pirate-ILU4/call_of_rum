@@ -1,0 +1,320 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > MoveController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: MoveController (fr.call_of_rum.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MoveController</td>
+<td class="coverageStat">
+  <span class="percent">
+    69,2%
+  </span>
+  <span class="absValue">
+    (9/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    62,4%
+  </span>
+  <span class="absValue">
+    (53/85)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">MoveController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    71,4%
+  </span>
+  <span class="absValue">
+    (10/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    62,8%
+  </span>
+  <span class="absValue">
+    (54/86)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.call_of_rum.controller;
+&nbsp;
+&nbsp;import java.util.Optional;
+&nbsp;import java.util.random.RandomGenerator;
+&nbsp;
+&nbsp;import fr.call_of_rum.boundary.IBoundary;
+&nbsp;import fr.call_of_rum.model.board.Board;
+&nbsp;import fr.call_of_rum.model.board.cells.Cell;
+&nbsp;import fr.call_of_rum.model.board.cells.Chest;
+&nbsp;import fr.call_of_rum.model.item.Item;
+&nbsp;import fr.call_of_rum.model.item.weapon.Weapon;
+&nbsp;import fr.call_of_rum.model.pirate.Pirate;
+&nbsp;import fr.call_of_rum.util.CellType;
+&nbsp;import fr.call_of_rum.util.ItemType;
+&nbsp;
+&nbsp;public class MoveController {
+&nbsp;	
+&nbsp;	private RandomGenerator rng;
+&nbsp;	
+&nbsp;	private IBoundary boundary;
+&nbsp;	
+&nbsp;	private DiceController diceController;
+&nbsp;	private PlayerController playerController;
+&nbsp;	
+&nbsp;	private Board board;
+&nbsp;	private Pirate pirate1;
+&nbsp;	private Pirate pirate2;
+&nbsp;	
+<b class="fc">&nbsp;	public MoveController(RandomGenerator rng, IBoundary boundary, DiceController diceController, PlayerController playerController, Board board, Pirate pirate1, Pirate pirate2) {</b>
+<b class="fc">&nbsp;		this.rng = rng;</b>
+<b class="fc">&nbsp;		this.boundary = boundary;</b>
+<b class="fc">&nbsp;		this.diceController = diceController;</b>
+<b class="fc">&nbsp;		this.playerController = playerController;</b>
+<b class="fc">&nbsp;		this.board = board;</b>
+<b class="fc">&nbsp;		this.pirate1 = pirate1;</b>
+<b class="fc">&nbsp;		this.pirate2 = pirate2;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	private void triggerChestCell(Chest chest, Pirate pirate) {
+<b class="nc">&nbsp;		chest.setOpened(true);</b>
+<b class="nc">&nbsp;		int chestCoins = chest.getCoins();</b>
+<b class="nc">&nbsp;		if (pirate.getInventory().contains(ItemType.CLOVER)) {</b>
+<b class="nc">&nbsp;			chestCoins = (int) (1.5 * chestCoins);</b>
+&nbsp;		}
+<b class="nc">&nbsp;		pirate.setCoins(pirate.getCoins() + chestCoins);</b>
+<b class="nc">&nbsp;		chest.setCoins(0);</b>
+<b class="nc">&nbsp;		boolean tookItem = boundary.chestFound(chestCoins, chest.getItem().getType());</b>
+<b class="nc">&nbsp;		if (tookItem) {</b>
+<b class="nc">&nbsp;			playerController.takeItem(pirate, chest.getItem());</b>
+<b class="nc">&nbsp;			chest.setItem(null);</b>
+&nbsp;		}
+&nbsp;	}
+&nbsp;	
+&nbsp;	private void triggerOpenedChestCell(Chest chest) {
+<b class="nc">&nbsp;		Item chestItem = chest.getItem();</b>
+<b class="nc">&nbsp;		Optional&lt;ItemType&gt; itemType = chestItem == null ? Optional.empty() : Optional.of(chestItem.getType());</b>
+<b class="nc">&nbsp;		boundary.openedChestFound(chest.getCoins(), itemType);</b>
+&nbsp;		
+&nbsp;	}
+&nbsp;	
+&nbsp;	private void triggerBombCell(Pirate pirate) {
+<b class="fc">&nbsp;		pirate.setHealthPoints(pirate.getHealthPoints() - 2);</b>
+<b class="fc">&nbsp;		boundary.stepOnBomb();</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	private void triggerShortcut(Pirate pirate) {
+<b class="nc">&nbsp;		Pirate otherPirate = pirate.equals(pirate1) ? pirate2 : pirate1;</b>
+<b class="nc">&nbsp;		board.movePirateTo(pirate, otherPirate);</b>
+<b class="nc">&nbsp;		boundary.tookShortcut();</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	private void triggerMerchant() {
+&nbsp;		// TODO implements
+<b class="nc">&nbsp;	}</b>
+&nbsp;	
+&nbsp;	private static final float DEFAULT_STEALING_POTENTIAL = 0.2f;
+&nbsp;	
+&nbsp;	private void steal(Pirate winner, Pirate loser) {
+<b class="fc">&nbsp;		Weapon equippedWeapon = winner.getEquippedWeapon();</b>
+<b class="fc">&nbsp;		float stealingPotential = DEFAULT_STEALING_POTENTIAL;</b>
+<b class="fc">&nbsp;		if (equippedWeapon != null)</b>
+<b class="nc">&nbsp;			stealingPotential = equippedWeapon.getStealingPotential();</b>
+<b class="fc">&nbsp;		if (winner.getInventory().contains(ItemType.BANDANA))</b>
+<b class="nc">&nbsp;			stealingPotential *= 1.5;</b>
+<b class="fc">&nbsp;		int amountStealed = (int) (stealingPotential * loser.getCoins());</b>
+<b class="fc">&nbsp;		winner.setCoins(winner.getCoins() + amountStealed);</b>
+<b class="fc">&nbsp;		loser.setCoins(loser.getCoins() - amountStealed);</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	private static final int DEFAULT_DAMAGES = 1;
+&nbsp;	
+&nbsp;	private void harm(Pirate winner, Pirate loser) {
+<b class="fc">&nbsp;		Weapon equippedWeapon = winner.getEquippedWeapon();</b>
+<b class="fc">&nbsp;		int damages = DEFAULT_DAMAGES;</b>
+<b class="fc">&nbsp;		if (equippedWeapon != null)</b>
+<b class="nc">&nbsp;			damages = equippedWeapon.getDamages();</b>
+<b class="fc">&nbsp;		loser.setHealthPoints(loser.getHealthPoints() - damages);</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	private double getPirateFightBonus(Pirate pirate) {
+<b class="fc">&nbsp;		double fightBonus = 1.0; // start with even chances</b>
+&nbsp;		
+<b class="fc">&nbsp;		Weapon equippedWeapon = pirate.getEquippedWeapon();</b>
+<b class="fc">&nbsp;		if (equippedWeapon != null)</b>
+<b class="nc">&nbsp;			fightBonus += equippedWeapon.getFightBonus();</b>
+&nbsp;		
+<b class="fc">&nbsp;		if (pirate.getInventory().contains(ItemType.GUNPOWDER))</b>
+<b class="nc">&nbsp;			fightBonus = 1.5 * fightBonus;</b>
+&nbsp;		
+<b class="fc">&nbsp;		return fightBonus;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	private static final double EPSILON = 0.0001;
+&nbsp;	
+&nbsp;	private boolean isWinner(Pirate pirate, Pirate otherPirate) {
+&nbsp;		// getting pirates intoxications
+<b class="fc">&nbsp;		double pirateIntoxication = pirate.getIntoxicationGauge().getLevel();</b>
+<b class="fc">&nbsp;		double otherPirateIntoxication = otherPirate.getIntoxicationGauge().getLevel();</b>
+&nbsp;		
+&nbsp;		// ignore intoxication effects if pirate have a lucidity stone
+<b class="fc">&nbsp;		if (pirate.getInventory().contains(ItemType.LUCIDITY_STONE)) pirateIntoxication = 0.0;</b>
+<b class="fc">&nbsp;		if (otherPirate.getInventory().contains(ItemType.LUCIDITY_STONE)) otherPirateIntoxication = 0.0;</b>
+&nbsp;		
+&nbsp;		// calculation of pirate chance bonuses
+<b class="fc">&nbsp;		double pirateBonus = getPirateFightBonus(pirate);</b>
+<b class="fc">&nbsp;		double otherPirateBonus = getPirateFightBonus(otherPirate);</b>
+&nbsp;		
+&nbsp;		// reducing chances by intoxication
+&nbsp;		// EPSILON is used to avoid division by zero
+<b class="fc">&nbsp;		double pirateChance = pirateBonus * Math.max(1-pirateIntoxication, EPSILON);</b>
+<b class="fc">&nbsp;		double otherPirateChance = otherPirateBonus * Math.max(1-otherPirateIntoxication, EPSILON);</b>
+&nbsp;		
+&nbsp;		// relative chance: the chance of pirate to win against otherPirate
+<b class="fc">&nbsp;		double relativeChance = pirateChance / otherPirateChance;</b>
+&nbsp;		
+&nbsp;		// calculation of the pirate winning chance knowing the relative chance
+<b class="fc">&nbsp;		double pirateWinChance = relativeChance/(1+relativeChance);</b>
+&nbsp;		
+<b class="fc">&nbsp;		return rng.nextDouble() &lt; pirateWinChance;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	private void triggerDuel() {
+&nbsp;		Pirate winner;
+&nbsp;		Pirate loser;
+<b class="fc">&nbsp;		if (this.isWinner(pirate1, pirate2)) {</b>
+<b class="fc">&nbsp;            winner = pirate1;</b>
+<b class="fc">&nbsp;            loser = pirate2;</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            winner = pirate2;</b>
+<b class="nc">&nbsp;            loser = pirate1;</b>
+&nbsp;        }
+<b class="fc">&nbsp;		this.steal(winner, loser);</b>
+<b class="fc">&nbsp;		this.harm(winner, loser);</b>
+<b class="fc">&nbsp;		boundary.duel(winner.getPlayer());</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public void triggerCell(Cell cell, Pirate pirate) {
+<b class="fc">&nbsp;		CellType cellType = cell.getType();</b>
+<b class="fc">&nbsp;		switch (cellType) {</b>
+&nbsp;		case CHEST:
+<b class="nc">&nbsp;			triggerChestCell((Chest) cell, pirate);</b>
+<b class="nc">&nbsp;			break;</b>
+&nbsp;		case OPENED_CHEST:
+<b class="nc">&nbsp;			triggerOpenedChestCell((Chest) cell);</b>
+<b class="nc">&nbsp;			break;</b>
+&nbsp;		case BOMB:
+<b class="fc">&nbsp;			triggerBombCell(pirate);</b>
+<b class="fc">&nbsp;			break;</b>
+&nbsp;		case SHORTCUT:
+<b class="nc">&nbsp;			triggerShortcut(pirate);</b>
+<b class="nc">&nbsp;			break;</b>
+&nbsp;		case MERCHANT:
+<b class="nc">&nbsp;			triggerMerchant();</b>
+<b class="nc">&nbsp;			break;</b>
+&nbsp;		default:
+&nbsp;			break;
+&nbsp;		}
+<b class="fc">&nbsp;		if (pirate1.getLocation() == pirate2.getLocation()) {</b>
+<b class="fc">&nbsp;			triggerDuel();</b>
+&nbsp;		}
+&nbsp;	}
+&nbsp;	
+&nbsp;	public void movePirate(Pirate pirate) {
+<b class="fc">&nbsp;		int pirateLocation = pirate.getLocation();</b>
+<b class="fc">&nbsp;		int newLocation = pirateLocation + diceController.getDicesResult();</b>
+<b class="fc">&nbsp;		board.movePirateTo(pirate, newLocation);</b>
+<b class="fc">&nbsp;		this.triggerCell(board.getCell(newLocation), pirate);</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:42</div>
+</div>
+</body>
+</html>

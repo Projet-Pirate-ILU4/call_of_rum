@@ -1,0 +1,153 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > IDialog</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.boundary.dialog</a>
+</div>
+
+<h1>Coverage Summary for Class: IDialog (fr.call_of_rum.boundary.dialog)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">IDialog</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;/*
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+&nbsp; */
+&nbsp;package fr.call_of_rum.boundary.dialog;
+&nbsp;
+&nbsp;
+&nbsp;import fr.call_of_rum.util.CellType;
+&nbsp;import fr.call_of_rum.util.ItemType;
+&nbsp;import fr.call_of_rum.util.Player;
+&nbsp;
+&nbsp;/**
+&nbsp; *
+&nbsp; * @author Solène
+&nbsp; */
+&nbsp;public interface IDialog {
+&nbsp;	
+&nbsp;	// ### ACTIONS ###
+&nbsp;	boolean buy(int itemIndex);
+&nbsp;	
+&nbsp;	boolean drink(Player player, int itemIndex);
+&nbsp;	
+&nbsp;	boolean equip(Player player, int itemIndex);
+&nbsp;	
+&nbsp;	boolean dropItem(Player player, int itemIndex);
+&nbsp;	
+&nbsp;	boolean pickUpItem(int itemIndex);
+&nbsp;	
+&nbsp;	boolean move();
+&nbsp;	
+&nbsp;	// ### INFORMATIONS ###
+&nbsp;	// # cells
+&nbsp;	CellType[] getCellsType();
+&nbsp;	
+&nbsp;	ItemType[] getDroppedItems(int cellIndex);
+&nbsp;	
+&nbsp;	int getNumberOfDroppedItems(int cellIndex);
+&nbsp;	
+&nbsp;	// # market
+&nbsp;	// get the items in the market
+&nbsp;	ItemType[] getMarketItems();
+&nbsp;	
+&nbsp;	// get the price of an item in the market
+&nbsp;	int getPrice(int itemIndex);
+&nbsp;	
+&nbsp;	int getNumberOfFreeSlots();
+&nbsp;	
+&nbsp;	// # player
+&nbsp;	int checkfunds(Player player);
+&nbsp;	
+&nbsp;	ItemType[] getInventory(Player player);
+&nbsp;	
+&nbsp;	int getPlayerHealth(Player player);
+&nbsp;	
+&nbsp;	int getPlayerMaxHealth(Player player);
+&nbsp;	
+&nbsp;	ItemType getWeapon(Player player);
+&nbsp;	
+&nbsp;	float getIntoxication(Player player);
+&nbsp;	
+&nbsp;	// # dice
+&nbsp;	int getDicesResult();
+&nbsp;	
+&nbsp;	// # items String resolution
+&nbsp;	String getItemName(ItemType itemType);
+&nbsp;	
+&nbsp;	String getItemDescription(ItemType itemType);
+&nbsp;	
+&nbsp;	// ### SPECIAL REQUESTS ###
+&nbsp;	boolean isLiquid(ItemType itemType);
+&nbsp;	
+&nbsp;	boolean isWeapon(ItemType itemType);
+&nbsp;	
+&nbsp;	void print(String s);
+&nbsp;	
+&nbsp;	void endTurn();
+&nbsp;
+&nbsp;    Player getPlayer2();
+&nbsp;
+&nbsp;	Player getPlayer1();
+&nbsp;
+&nbsp;	Player getDuelWinner();
+&nbsp;
+&nbsp;    void trowDice();
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:38</div>
+</div>
+</body>
+</html>

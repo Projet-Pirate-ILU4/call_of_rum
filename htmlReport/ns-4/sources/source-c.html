@@ -1,0 +1,236 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > GraphicsCard</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.boundary.presentation</a>
+</div>
+
+<h1>Coverage Summary for Class: GraphicsCard (fr.call_of_rum.boundary.presentation)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GraphicsCard</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/56)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;/*
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+&nbsp; */
+&nbsp;package fr.call_of_rum.boundary.presentation;
+&nbsp;
+&nbsp;import fr.call_of_rum.boundary.dialog.IDialog;
+&nbsp;import fr.call_of_rum.util.ItemType;
+&nbsp;
+&nbsp;import java.awt.*;
+&nbsp;import java.awt.image.BufferedImage;
+&nbsp;import javax.swing.ImageIcon;
+&nbsp;
+&nbsp;/**
+&nbsp; *
+&nbsp; * @author wil-mcjohnley
+&nbsp; */
+&nbsp;public class GraphicsCard extends javax.swing.JPanel {
+&nbsp;    private ItemType imageName;
+&nbsp;    private  IDialog dialog;
+<b class="nc">&nbsp;    private boolean clickable = true;</b>
+&nbsp;    private int marketPrice;
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;    public GraphicsCard() {</b>
+<b class="nc">&nbsp;        initComponents();</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public void setImage(ItemType item){
+<b class="nc">&nbsp;        this.imageName=item;</b>
+<b class="nc">&nbsp;        designImage(marketPrice,dialog.getItemName(item),dialog.getItemDescription(item));</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public void setDialog(IDialog dialog){
+<b class="nc">&nbsp;        this.dialog = dialog;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public void setMarketPrice(int marketPrice) {
+<b class="nc">&nbsp;    	this.marketPrice = marketPrice;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public ItemType getItemType() {
+<b class="nc">&nbsp;        return imageName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void designImage(int value, String nameValue, String descriptionValue){
+<b class="nc">&nbsp;        BufferedImage image = ImageLoader.loadImage(&quot;presentation/&quot;+imageName.toString().toLowerCase()+&quot;.png&quot;);</b>
+&nbsp;        Image scaledTypeImage;
+<b class="nc">&nbsp;        scaledTypeImage = image.getScaledInstance(imageContainer.getWidth(), imageContainer.getHeight(), Image.SCALE_SMOOTH);</b>
+<b class="nc">&nbsp;        imageContainer.setLocation(0, getWidth()/2);</b>
+<b class="nc">&nbsp;        price.setText(&quot;&quot;+value);</b>
+<b class="nc">&nbsp;        nameLabel.setText(nameValue);</b>
+<b class="nc">&nbsp;        description.setText(descriptionValue);</b>
+&nbsp;        
+<b class="nc">&nbsp;        ImageIcon typeIcon = new ImageIcon(scaledTypeImage);</b>
+<b class="nc">&nbsp;        imageContainer.setIcon(typeIcon);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Méthode pour mettre à jour l&#39;état de clic
+&nbsp;    private void updateClickableState() {
+<b class="nc">&nbsp;        setEnabled(false); // Désactive le clic si le JPanel n&#39;est pas cliquable</b>
+<b class="nc">&nbsp;        if (!clickable) {</b>
+<b class="nc">&nbsp;            setForeground(Color.PINK); // Grise visuellement le JPanel</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    // Méthode pour activer ou désactiver le clic
+&nbsp;    public void setClickable(boolean clickable) {
+<b class="nc">&nbsp;        this.clickable = clickable;</b>
+<b class="nc">&nbsp;        System.out.println(&quot;je ne suis pâs sensé etre clicable&quot;);</b>
+<b class="nc">&nbsp;        updateClickableState(); // Met à jour l&#39;état de clic après chaque modification</b>
+&nbsp;    }
+&nbsp;    /**
+&nbsp;     * This method is called from within the constructor to initialize the form.
+&nbsp;     * WARNING: Do NOT modify this code. The content of this method is always
+&nbsp;     * regenerated by the Form Editor.
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+&nbsp;    private void initComponents() {
+&nbsp;
+<b class="nc">&nbsp;        imageContainer = new javax.swing.JLabel();</b>
+<b class="nc">&nbsp;        nameLabel = new javax.swing.JLabel();</b>
+<b class="nc">&nbsp;        price = new javax.swing.JLabel();</b>
+<b class="nc">&nbsp;        description = new javax.swing.JLabel();</b>
+&nbsp;
+<b class="nc">&nbsp;        nameLabel.setText(&quot;0&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        price.setText(&quot;jLabel1&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        description.setText(&quot;jLabel1&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);</b>
+<b class="nc">&nbsp;        this.setLayout(layout);</b>
+<b class="nc">&nbsp;        layout.setHorizontalGroup(</b>
+<b class="nc">&nbsp;            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(11, 11, 11)</b>
+<b class="nc">&nbsp;                .addComponent(imageContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                .addGap(18, 18, 18)</b>
+<b class="nc">&nbsp;                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;                    .addComponent(nameLabel)</b>
+<b class="nc">&nbsp;                    .addComponent(description)</b>
+<b class="nc">&nbsp;                    .addComponent(price))</b>
+<b class="nc">&nbsp;                .addContainerGap(86, Short.MAX_VALUE))</b>
+&nbsp;        );
+<b class="nc">&nbsp;        layout.setVerticalGroup(</b>
+<b class="nc">&nbsp;            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addComponent(nameLabel)</b>
+<b class="nc">&nbsp;                .addGap(10, 10, 10)</b>
+<b class="nc">&nbsp;                .addComponent(price)</b>
+<b class="nc">&nbsp;                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</b>
+<b class="nc">&nbsp;                .addComponent(description)</b>
+<b class="nc">&nbsp;                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addContainerGap()</b>
+<b class="nc">&nbsp;                .addComponent(imageContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</b>
+&nbsp;        );
+&nbsp;    }// &lt;/editor-fold&gt;//GEN-END:initComponents
+&nbsp;
+&nbsp;
+&nbsp;    // Variables declaration - do not modify//GEN-BEGIN:variables
+&nbsp;    private javax.swing.JLabel description;
+&nbsp;    private javax.swing.JLabel imageContainer;
+&nbsp;    private javax.swing.JLabel nameLabel;
+&nbsp;    private javax.swing.JLabel price;
+&nbsp;    // End of variables declaration//GEN-END:variables
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:42</div>
+</div>
+</body>
+</html>

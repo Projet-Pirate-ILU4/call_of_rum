@@ -1,0 +1,153 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > MarketController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: MarketController (fr.call_of_rum.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MarketController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (1/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    17,6%
+  </span>
+  <span class="absValue">
+    (3/17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.call_of_rum.controller;
+&nbsp;
+&nbsp;import fr.call_of_rum.controller.accessible.IMarketController;
+&nbsp;import fr.call_of_rum.model.item.Item;
+&nbsp;import fr.call_of_rum.model.market.ItemStock;
+&nbsp;import fr.call_of_rum.model.market.Market;
+&nbsp;import fr.call_of_rum.model.pirate.Pirate;
+&nbsp;import fr.call_of_rum.util.ItemType;
+&nbsp;
+&nbsp;public class MarketController implements IMarketController {
+&nbsp;	
+&nbsp;	private PlayerController playerController;
+&nbsp;	
+&nbsp;	private Market market;
+&nbsp;	
+<b class="fc">&nbsp;	public MarketController(Market market, PlayerController playerController) {</b>
+<b class="fc">&nbsp;		this.market = market;</b>
+<b class="fc">&nbsp;		this.playerController = playerController;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public ItemType[] getItemForSale() {
+<b class="nc">&nbsp;		ItemType[] itemTypes = new ItemType[market.getNumberOfItems()];</b>
+<b class="nc">&nbsp;		ItemStock[] itemStock = market.getItemsForSale();</b>
+<b class="nc">&nbsp;		for (int i = 0; i&lt;itemStock.length; i++) {</b>
+<b class="nc">&nbsp;			itemTypes[i] = itemStock[i].getType();</b>
+&nbsp;		}
+<b class="nc">&nbsp;		return itemTypes;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getPrice(int itemIndex) {
+<b class="nc">&nbsp;		return market.getPrice(itemIndex);</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public boolean buy(Pirate pirate, int itemIndex) {
+<b class="nc">&nbsp;        int price = market.getPrice(itemIndex);</b>
+&nbsp;        
+<b class="nc">&nbsp;        int savings = pirate.getCoins();</b>
+<b class="nc">&nbsp;        if (savings &gt;= price) {</b>
+<b class="nc">&nbsp;    		Item boughtItem = market.getItem(itemIndex);</b>
+<b class="nc">&nbsp;    		boolean itemTook = playerController.takeItem(pirate, boughtItem);</b>
+<b class="nc">&nbsp;        	if (itemTook) pirate.setCoins(savings - price);</b>
+<b class="nc">&nbsp;        	return itemTook;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:38</div>
+</div>
+</body>
+</html>

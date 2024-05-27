@@ -1,0 +1,274 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > DialogStub</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.boundary.dialog</a>
+</div>
+
+<h1>Coverage Summary for Class: DialogStub (fr.call_of_rum.boundary.dialog)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DialogStub</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/30)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/39)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;
+&nbsp;package fr.call_of_rum.boundary.dialog;
+&nbsp;
+&nbsp;import fr.call_of_rum.util.CellType;
+&nbsp;import fr.call_of_rum.util.ItemType;
+&nbsp;import fr.call_of_rum.util.Player;
+&nbsp;
+<b class="nc">&nbsp;public class DialogStub implements IDialog {</b>
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean buy(int itemIndex) {
+<b class="nc">&nbsp;		return true;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean drink(Player player, int itemIndex) {
+<b class="nc">&nbsp;		return true;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean equip(Player player, int itemIndex) {
+<b class="nc">&nbsp;		return true;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean dropItem(Player player, int itemIndex) {
+<b class="nc">&nbsp;		return true;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean pickUpItem(int itemIndex) {
+<b class="nc">&nbsp;		return true;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean move() {
+<b class="nc">&nbsp;		return true;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public CellType[] getCellsType() {
+<b class="nc">&nbsp;		CellType[] cellType = new CellType[30];</b>
+<b class="nc">&nbsp;		for (int i = 0; i &lt; 30; i++) {</b>
+<b class="nc">&nbsp;			cellType[i] = CellType.NORMAL;</b>
+&nbsp;		}
+<b class="nc">&nbsp;		return cellType;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public ItemType[] getDroppedItems(int cellIndex) {
+<b class="nc">&nbsp;		return new ItemType[] {ItemType.CLOVER};</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getNumberOfDroppedItems(int cellIndex) {
+<b class="nc">&nbsp;		return 1;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public ItemType[] getMarketItems() {
+<b class="nc">&nbsp;		return new ItemType[] {ItemType.HEALTH_POTION, ItemType.FLINTLOCK_PISTOL, ItemType.RUM, ItemType.SABER};</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getPrice(int itemIndex) {
+<b class="nc">&nbsp;		return 75;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getNumberOfFreeSlots() {
+<b class="nc">&nbsp;		return 2;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int checkfunds(Player player) {
+<b class="nc">&nbsp;		return 1000;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public ItemType[] getInventory(Player player) {
+<b class="nc">&nbsp;		if (player.equals(Player.JACK_LE_BORGNE)) {</b>
+<b class="nc">&nbsp;			return new ItemType[] {ItemType.RUM, null, null};</b>
+&nbsp;		}
+<b class="nc">&nbsp;		return new ItemType[] {ItemType.LUCIDITY_STONE, ItemType.GUNPOWDER, null};</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getPlayerHealth(Player player) {
+<b class="nc">&nbsp;		return 9;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getPlayerMaxHealth(Player player) {
+<b class="nc">&nbsp;		if (player.equals(Player.JACK_LE_BORGNE)) {</b>
+<b class="nc">&nbsp;			return 15;</b>
+&nbsp;		}
+<b class="nc">&nbsp;		return 10;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public ItemType getWeapon(Player player) {
+<b class="nc">&nbsp;		if (player.equals(Player.JACK_LE_BORGNE)) {</b>
+<b class="nc">&nbsp;			return ItemType.MUSKET;</b>
+&nbsp;		}
+<b class="nc">&nbsp;		return ItemType.DAGGER;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public float getIntoxication(Player player) {
+<b class="nc">&nbsp;		return 0.1f;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getDicesResult() {
+<b class="nc">&nbsp;		return 6;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean isLiquid(ItemType itemType) {
+<b class="nc">&nbsp;		return itemType == ItemType.HEALTH_POTION || itemType == ItemType.RUM;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean isWeapon(ItemType itemType) {
+<b class="nc">&nbsp;		return itemType == ItemType.DAGGER ||</b>
+&nbsp;				itemType == ItemType.FLINTLOCK_PISTOL ||
+&nbsp;				itemType == ItemType.MUSKET ||
+&nbsp;				itemType == ItemType.SABER;
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public String getItemName(ItemType itemType) {
+<b class="nc">&nbsp;		return itemType.toString();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public String getItemDescription(ItemType itemType) {
+<b class="nc">&nbsp;		return &quot;lorem ipsum&quot;;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void print(String s) {
+<b class="nc">&nbsp;		System.out.println(s);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void endTurn() {
+&nbsp;		// do nothing
+<b class="nc">&nbsp;	}</b>
+&nbsp;
+&nbsp;	public Player getPlayer2() {
+<b class="nc">&nbsp;		return Player.JACK_LE_BORGNE;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public Player getPlayer1() {
+<b class="nc">&nbsp;		return Player.BILL_JAMBE_DE_BOIS;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public Player getDuelWinner() {
+<b class="nc">&nbsp;		return Player.JACK_LE_BORGNE;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void trowDice() {
+&nbsp;
+<b class="nc">&nbsp;	}</b>
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:38</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlayerController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">all Tests Coverage Results</a> &gt; <a href="index.source.html" class="el_package">fr.call_of_rum.controller</a> &gt; <span class="el_source">PlayerController.java</span></div><h1>PlayerController.java</h1><pre class="source lang-java linenums">package fr.call_of_rum.controller;
+
+import fr.call_of_rum.controller.accessible.IPlayerController;
+import fr.call_of_rum.model.inventory.Inventory;
+import fr.call_of_rum.model.item.Item;
+import fr.call_of_rum.model.item.liquid.Liquid;
+import fr.call_of_rum.model.item.weapon.Weapon;
+import fr.call_of_rum.model.pirate.Pirate;
+import fr.call_of_rum.util.ItemType;
+import fr.call_of_rum.util.Player;
+
+public class PlayerController implements IPlayerController {
+	
+	private Pirate pirate1;
+	private Pirate pirate2;
+	
+<span class="fc" id="L17">	public PlayerController(Pirate pirate1, Pirate pirate2) {</span>
+<span class="fc" id="L18">		this.pirate1 = pirate1;</span>
+<span class="fc" id="L19">		this.pirate2 = pirate2;</span>
+<span class="fc" id="L20">	}</span>
+	
+	private Pirate getPirate(Player player) {
+<span class="nc bnc" id="L23" title="All 2 branches missed.">		return pirate1.getPlayer() == player ? pirate1 : pirate2;</span>
+	}
+
+	@Override
+	public int getHealth(Player player) {
+<span class="nc" id="L28">		Pirate pirate = getPirate(player);</span>
+<span class="nc" id="L29">		return pirate.getHealthPoints();</span>
+	}
+
+	@Override
+	public int getMaxHealth(Player player) {
+<span class="nc" id="L34">		Pirate pirate = getPirate(player);</span>
+<span class="nc" id="L35">		return pirate.getMaxHealth();</span>
+	}
+
+	@Override
+	public float getIntoxicationLevel(Player player) {
+<span class="nc" id="L40">		Pirate pirate = getPirate(player);</span>
+<span class="nc" id="L41">		return pirate.getIntoxicationGauge().getLevel();</span>
+	}
+
+	@Override
+	public int getCoins(Player player) {
+<span class="nc" id="L46">		Pirate pirate = getPirate(player);</span>
+<span class="nc" id="L47">		return pirate.getCoins();</span>
+	}
+
+	@Override
+	public ItemType[] getInventoryItems(Player player) {
+<span class="nc" id="L52">		Pirate pirate = getPirate(player);</span>
+<span class="nc" id="L53">		Inventory&lt;Item&gt; inventory = pirate.getInventory();</span>
+<span class="nc" id="L54">		ItemType[] itemTypes = new ItemType[3];</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">		for (int i = 0; i&lt;3; i++) {</span>
+<span class="nc" id="L56">			Item item = inventory.get(i);</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">			itemTypes[i] = item == null ? null : item.getType();</span>
+		}
+<span class="nc" id="L59">		return itemTypes;</span>
+	}
+
+	@Override
+	public ItemType getEquippedWeapon(Player player) {
+<span class="nc" id="L64">		Pirate pirate = getPirate(player);</span>
+<span class="nc" id="L65">		Weapon weapon = pirate.getEquippedWeapon();</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">		return weapon == null ? null : weapon.getType();</span>
+	}
+	
+	public boolean takeItem(Pirate pirate, Item item) {
+<span class="nc" id="L70">		Inventory&lt;Item&gt; inventory = pirate.getInventory();</span>
+		
+<span class="nc bnc" id="L72" title="All 2 branches missed.">		if (item instanceof Weapon weapon) {</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">			if (pirate.getEquippedWeapon() == null) {</span>
+<span class="nc" id="L74">				pirate.equipWeapon(weapon);</span>
+<span class="nc" id="L75">				weapon.setOwner(pirate);</span>
+<span class="nc" id="L76">				return true;</span>
+			}
+<span class="nc bnc" id="L78" title="All 2 branches missed.">			if (!inventory.isFull()) {</span>
+<span class="nc" id="L79">				inventory.add(weapon);</span>
+<span class="nc" id="L80">				weapon.setOwner(pirate);</span>
+<span class="nc" id="L81">				return true;</span>
+			}
+<span class="nc bnc" id="L83" title="All 2 branches missed.">		} else if (inventory.isFull()) {</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">			if (item instanceof Liquid liquid) {</span>
+<span class="nc" id="L85">				pirate.drink(liquid);</span>
+<span class="nc" id="L86">				return true;</span>
+			}
+		} else {
+<span class="nc" id="L89">			inventory.add(item);</span>
+<span class="nc" id="L90">			item.setOwner(pirate);</span>
+<span class="nc" id="L91">			return true;</span>
+		}
+<span class="nc" id="L93">		return false;</span>
+	}
+
+	@Override
+	public int getLocation(Player player) {
+<span class="nc" id="L98">		Pirate pirate = getPirate(player);</span>
+<span class="nc" id="L99">		return pirate.getLocation();</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Weapon.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">all Tests Coverage Results</a> &gt; <a href="index.source.html" class="el_package">fr.call_of_rum.model.item.weapon</a> &gt; <span class="el_source">Weapon.java</span></div><h1>Weapon.java</h1><pre class="source lang-java linenums">package fr.call_of_rum.model.item.weapon;
+
+import fr.call_of_rum.model.item.UseableItem;
+import fr.call_of_rum.util.ItemType;
+
+public abstract class Weapon extends UseableItem {
+	
+	private float fightBonus;
+	private int damages;
+	private float stealingPotential;
+
+	protected Weapon(ItemType itemType, float fightBonus, int damages, float stealingPotential) {
+<span class="fc" id="L13">		super(itemType);</span>
+<span class="fc" id="L14">		this.fightBonus = fightBonus;</span>
+<span class="fc" id="L15">		this.damages = damages;</span>
+<span class="fc" id="L16">		this.stealingPotential = stealingPotential;</span>
+<span class="fc" id="L17">	}</span>
+	
+	public float getFightBonus() {
+<span class="fc" id="L20">		return fightBonus;</span>
+	}
+	
+	
+	public int getDamages() {
+<span class="fc" id="L25">		return damages;</span>
+	}
+	
+	public float getStealingPotential() {
+<span class="fc" id="L29">		return stealingPotential;</span>
+	}
+	
+	@Override
+	public void use() {
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">		if (owner == null) return;</span>
+<span class="fc" id="L35">		Weapon previouslyEquippedWeapon = owner.getEquippedWeapon();</span>
+<span class="fc" id="L36">		owner.getInventory().remove(this);</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">		if (previouslyEquippedWeapon != null)</span>
+<span class="fc" id="L38">			owner.getInventory().add(previouslyEquippedWeapon);</span>
+<span class="fc" id="L39">		owner.equipWeapon(this);</span>
+<span class="fc" id="L40">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

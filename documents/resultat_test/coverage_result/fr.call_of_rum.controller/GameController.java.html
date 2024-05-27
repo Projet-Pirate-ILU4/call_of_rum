@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">all Tests Coverage Results</a> &gt; <a href="index.source.html" class="el_package">fr.call_of_rum.controller</a> &gt; <span class="el_source">GameController.java</span></div><h1>GameController.java</h1><pre class="source lang-java linenums">package fr.call_of_rum.controller;
+
+import fr.call_of_rum.boundary.IBoundary;
+import fr.call_of_rum.controller.accessible.IBoardController;
+import fr.call_of_rum.controller.accessible.IMarketController;
+import fr.call_of_rum.controller.accessible.IPlayerController;
+import fr.call_of_rum.model.board.Board;
+import fr.call_of_rum.model.pirate.Pirate;
+import fr.call_of_rum.util.Player;
+
+public class GameController {
+	
+	private IBoundary boundary;
+	
+	private ActionController actionController;
+	private DiceController rollDiceController;
+	
+	private Board board;
+	private int numberOfPlayers;
+<span class="fc" id="L20">	private Pirate[] pirates = new Pirate[2];</span>
+<span class="fc" id="L21">	private int currentPlayer = 0;</span>
+	
+<span class="fc" id="L23">	public GameController(IBoundary boundary, ActionController actionController, DiceController rollDiceController, Board board, Pirate player1, Pirate player2) {</span>
+<span class="fc" id="L24">		this.boundary = boundary;</span>
+<span class="fc" id="L25">		this.actionController = actionController;</span>
+<span class="fc" id="L26">		this.rollDiceController = rollDiceController;</span>
+<span class="fc" id="L27">		this.board = board;</span>
+<span class="fc" id="L28">		this.numberOfPlayers = Player.values().length;</span>
+<span class="fc" id="L29">		pirates[0] = player1;</span>
+<span class="fc" id="L30">		pirates[1] = player2;</span>
+<span class="fc" id="L31">	}</span>
+	
+	private Player getWinner() {
+<span class="nc bnc" id="L34" title="All 2 branches missed.">		if (pirates[0].getHealthPoints() &lt;= 0) return Player.BILL_JAMBE_DE_BOIS;</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">		if (pirates[1].getHealthPoints() &lt;= 0) return Player.JACK_LE_BORGNE;</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">		if (pirates[0].getCoins() &gt; pirates[1].getCoins()) return Player.JACK_LE_BORGNE;</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">		if (pirates[1].getCoins() &gt; pirates[0].getCoins()) return Player.BILL_JAMBE_DE_BOIS;</span>
+<span class="nc" id="L38">		return null;</span>
+	}
+	
+	private boolean isGameFinished() {
+<span class="nc bnc" id="L42" title="All 2 branches missed.">		return  pirates[0].getHealthPoints() &lt;= 0 ||</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">				pirates[1].getHealthPoints() &lt;= 0 ||</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">				board.getCell(pirates[0]).getNum() == board.getBoardSize() - 1 ||</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">				board.getCell(pirates[1]).getNum() == board.getBoardSize() - 1;</span>
+	}
+	
+	public void start() {
+<span class="nc bnc" id="L49" title="All 2 branches missed.">		while (!isGameFinished()) {</span>
+<span class="nc" id="L50">			rollDiceController.rollDices();</span>
+<span class="nc" id="L51">			actionController.setCurrentPirate(pirates[currentPlayer]);</span>
+<span class="nc" id="L52">			boundary.giveTurn(Player.values()[currentPlayer]);</span>
+<span class="nc" id="L53">			currentPlayer = (currentPlayer + 1) % numberOfPlayers;</span>
+		}
+<span class="nc" id="L55">		boundary.gameEnded(getWinner());</span>
+<span class="nc" id="L56">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

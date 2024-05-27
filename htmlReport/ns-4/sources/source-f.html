@@ -1,0 +1,421 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > InventoryPanel</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.boundary.presentation</a>
+</div>
+
+<h1>Coverage Summary for Class: InventoryPanel (fr.call_of_rum.boundary.presentation)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">InventoryPanel</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/134)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">InventoryPanel$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">InventoryPanel$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">InventoryPanel$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/140)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.call_of_rum.boundary.presentation;
+&nbsp;
+&nbsp;import javax.swing.ImageIcon;
+&nbsp;import javax.swing.JLabel;
+&nbsp;import javax.swing.JOptionPane;
+&nbsp;import fr.call_of_rum.boundary.dialog.IDialog;
+&nbsp;import fr.call_of_rum.util.ItemType;
+&nbsp;import fr.call_of_rum.util.Player;
+&nbsp;
+&nbsp;import java.awt.*;
+&nbsp;import java.awt.image.BufferedImage;
+&nbsp;
+&nbsp;public class InventoryPanel extends javax.swing.JPanel {
+&nbsp;
+&nbsp;    private IDialog dialog;
+&nbsp;
+<b class="nc">&nbsp;    private boolean activate = true;</b>
+&nbsp;
+&nbsp;    public boolean isActivate() {
+<b class="nc">&nbsp;        return activate;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setActivate(boolean activate) {
+<b class="nc">&nbsp;        this.activate = activate;</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private ItemType[] inventory = {null,null,null};</b>
+<b class="nc">&nbsp;    private JLabel[] imageLabels = new JLabel[3];</b>
+&nbsp;
+<b class="nc">&nbsp;    public InventoryPanel() {</b>
+<b class="nc">&nbsp;        initComponents();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    private void initComponents() {
+<b class="nc">&nbsp;        jPanel1 = new javax.swing.JPanel();</b>
+<b class="nc">&nbsp;        jPanel2 = new javax.swing.JPanel();</b>
+<b class="nc">&nbsp;        jPanel3 = new javax.swing.JPanel();</b>
+<b class="nc">&nbsp;        jLabel1 = new javax.swing.JLabel();</b>
+&nbsp;
+<b class="nc">&nbsp;        setMaximumSize(new java.awt.Dimension(200, 32767));</b>
+<b class="nc">&nbsp;        setPreferredSize(new java.awt.Dimension(208, 131));</b>
+&nbsp;
+<b class="nc">&nbsp;        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));</b>
+<b class="nc">&nbsp;        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {</b>
+&nbsp;            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<b class="nc">&nbsp;                jPanel1MouseClicked(evt);</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));</b>
+<b class="nc">&nbsp;        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {</b>
+&nbsp;            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<b class="nc">&nbsp;                jPanel2MouseClicked(evt);</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));</b>
+<b class="nc">&nbsp;        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {</b>
+&nbsp;            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<b class="nc">&nbsp;                jPanel3MouseClicked(evt);</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        jLabel1.setText(&quot;Inventaire : &quot;);</b>
+&nbsp;
+&nbsp;        // Initialize image labels
+<b class="nc">&nbsp;        imageLabels[0] = new JLabel();</b>
+<b class="nc">&nbsp;        imageLabels[1] = new JLabel();</b>
+<b class="nc">&nbsp;        imageLabels[2] = new JLabel();</b>
+&nbsp;
+<b class="nc">&nbsp;        jPanel1.add(imageLabels[0]);</b>
+<b class="nc">&nbsp;        jPanel2.add(imageLabels[1]);</b>
+<b class="nc">&nbsp;        jPanel3.add(imageLabels[2]);</b>
+&nbsp;
+<b class="nc">&nbsp;        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);</b>
+<b class="nc">&nbsp;        jPanel1.setLayout(jPanel1Layout);</b>
+<b class="nc">&nbsp;        jPanel1Layout.setHorizontalGroup(</b>
+<b class="nc">&nbsp;            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addComponent(imageLabels[0], javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)</b>
+&nbsp;        );
+<b class="nc">&nbsp;        jPanel1Layout.setVerticalGroup(</b>
+<b class="nc">&nbsp;            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addComponent(imageLabels[0], javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)</b>
+&nbsp;        );
+<b class="nc">&nbsp;        imageLabels[0].setOpaque(true);</b>
+<b class="nc">&nbsp;        imageLabels[1].setOpaque(true);</b>
+<b class="nc">&nbsp;        imageLabels[2].setOpaque(true);</b>
+<b class="nc">&nbsp;        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);</b>
+<b class="nc">&nbsp;        jPanel2.setLayout(jPanel2Layout);</b>
+<b class="nc">&nbsp;        jPanel2Layout.setHorizontalGroup(</b>
+<b class="nc">&nbsp;            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addComponent(imageLabels[1], javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)</b>
+&nbsp;        );
+<b class="nc">&nbsp;        jPanel2Layout.setVerticalGroup(</b>
+<b class="nc">&nbsp;            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addComponent(imageLabels[1], javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)</b>
+&nbsp;        );
+&nbsp;
+<b class="nc">&nbsp;        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);</b>
+<b class="nc">&nbsp;        jPanel3.setLayout(jPanel3Layout);</b>
+<b class="nc">&nbsp;        jPanel3Layout.setHorizontalGroup(</b>
+<b class="nc">&nbsp;            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addComponent(imageLabels[2], javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)</b>
+&nbsp;        );
+<b class="nc">&nbsp;        jPanel3Layout.setVerticalGroup(</b>
+<b class="nc">&nbsp;            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addComponent(imageLabels[2], javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)</b>
+&nbsp;        );
+&nbsp;
+<b class="nc">&nbsp;        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);</b>
+<b class="nc">&nbsp;        this.setLayout(layout);</b>
+<b class="nc">&nbsp;        layout.setHorizontalGroup(</b>
+<b class="nc">&nbsp;            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;                    .addComponent(jLabel1)</b>
+<b class="nc">&nbsp;                    .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                        .addContainerGap()</b>
+<b class="nc">&nbsp;                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</b>
+<b class="nc">&nbsp;                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</b>
+<b class="nc">&nbsp;                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))</b>
+<b class="nc">&nbsp;                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</b>
+&nbsp;        );
+<b class="nc">&nbsp;        layout.setVerticalGroup(</b>
+<b class="nc">&nbsp;            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addComponent(jLabel1)</b>
+<b class="nc">&nbsp;                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</b>
+<b class="nc">&nbsp;                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</b>
+<b class="nc">&nbsp;                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</b>
+&nbsp;        );
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setDialog(IDialog dialog) {
+<b class="nc">&nbsp;        this.dialog = dialog;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setPlayer(Player player) {
+<b class="nc">&nbsp;        this.player = player;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setInventory(ItemType item) {
+<b class="nc">&nbsp;        for (int position = 0; position &lt; inventory.length; position++) {</b>
+<b class="nc">&nbsp;            if (inventory[position] == null) {</b>
+<b class="nc">&nbsp;                inventory[position] = item;</b>
+<b class="nc">&nbsp;                updateImage(position);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;    
+&nbsp;
+&nbsp;    private void updateImage(int position) {
+<b class="nc">&nbsp;        if (inventory[position] != null) {</b>
+<b class="nc">&nbsp;            BufferedImage image = ImageLoader.loadImage(&quot;presentation/&quot;+inventory[position].toString().toLowerCase()+&quot;.png&quot;);</b>
+&nbsp;            Image scaledTypeImage;
+<b class="nc">&nbsp;            scaledTypeImage = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);</b>
+<b class="nc">&nbsp;            ImageIcon typeIcon = new ImageIcon(scaledTypeImage);</b>
+<b class="nc">&nbsp;            imageLabels[position].setIcon(typeIcon);</b>
+<b class="nc">&nbsp;        } else {</b>
+<b class="nc">&nbsp;            imageLabels[position].setIcon(null);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void removeItem(ItemType itemType) {
+<b class="nc">&nbsp;        for (int i =  inventory.length -1; i &gt;= 0; i--) {</b>
+<b class="nc">&nbsp;            if  (inventory[i] != null &amp;&amp; inventory[i].equals(itemType)) {</b>
+<b class="nc">&nbsp;                inventory[i] = null;</b>
+<b class="nc">&nbsp;                updateImage(i);</b>
+&nbsp;                return;
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+<b class="nc">&nbsp;        if (isActivate() &amp;&amp; inventory[0] != null) {</b>
+<b class="nc">&nbsp;            int itemIndex = inventory[0].ordinal();</b>
+<b class="nc">&nbsp;            popUpItem(itemIndex,0);</b>
+&nbsp;        }
+&nbsp;    }//GEN-LAST:event_jPanel1MouseClicked
+&nbsp;
+&nbsp;    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+<b class="nc">&nbsp;        if (isActivate() &amp;&amp; inventory[1] != null) {</b>
+<b class="nc">&nbsp;            int itemIndex = inventory[1].ordinal();</b>
+<b class="nc">&nbsp;            popUpItem(itemIndex,1);</b>
+&nbsp;        }
+&nbsp;    }//GEN-LAST:event_jPanel2MouseClicked
+&nbsp;
+&nbsp;    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+<b class="nc">&nbsp;        if (isActivate() &amp;&amp; inventory[2] != null) {</b>
+<b class="nc">&nbsp;            int itemIndex = inventory[2].ordinal();</b>
+<b class="nc">&nbsp;            popUpItem(itemIndex,2);</b>
+&nbsp;        }
+&nbsp;    }//GEN-LAST:event_jPanel3MouseClicked
+&nbsp;
+&nbsp;    void popUpItem(int itemIndex, int inventoryIndex){
+<b class="nc">&nbsp;        String message = &quot;&quot;;</b>
+&nbsp;           
+<b class="nc">&nbsp;            message += &quot;Que voulez-vous faire avec cet objet ?&quot;;</b>
+<b class="nc">&nbsp;            Object[] options = {&quot;Utiliser&quot;, &quot;Jeter&quot;, &quot;Examiner&quot;, &quot;Ne rien Faire&quot;};</b>
+<b class="nc">&nbsp;            int choice = JOptionPane.showOptionDialog(null, message, &quot;Actions sur l&#39;objet&quot;, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[3]);</b>
+<b class="nc">&nbsp;            switch (choice) {</b>
+&nbsp;                case JOptionPane.YES_OPTION:
+<b class="nc">&nbsp;                	ItemType item = inventory[inventoryIndex];</b>
+<b class="nc">&nbsp;                	boolean succeded = false;</b>
+<b class="nc">&nbsp;                	if (dialog.isLiquid(item)) {</b>
+<b class="nc">&nbsp;                		succeded = dialog.drink(player, inventoryIndex);</b>
+<b class="nc">&nbsp;                	} else if (dialog.isWeapon(item)) {</b>
+<b class="nc">&nbsp;                		succeded = dialog.equip(player, inventoryIndex);</b>
+&nbsp;            		}
+<b class="nc">&nbsp;                	if (succeded) {</b>
+<b class="nc">&nbsp;                		inventory[inventoryIndex] = null;</b>
+<b class="nc">&nbsp;                		updateImage(inventoryIndex);</b>
+<b class="nc">&nbsp;                		System.out.println(&quot;L&#39;objet a été utilisé&quot;);</b>
+&nbsp;                	} else {
+<b class="nc">&nbsp;                		System.out.println(&quot;L&#39;objet n&#39;as pas été utilisé&quot;);</b>
+&nbsp;                	}
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case JOptionPane.NO_OPTION:
+<b class="nc">&nbsp;                	dialog.dropItem(player, inventoryIndex);</b>
+<b class="nc">&nbsp;                	inventory[inventoryIndex] = null;</b>
+<b class="nc">&nbsp;                	updateImage(inventoryIndex);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;L&#39;objet a été jeté&quot;);</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case JOptionPane.CANCEL_OPTION:
+<b class="nc">&nbsp;                	String description = dialog.getItemDescription(inventory[inventoryIndex]);</b>
+<b class="nc">&nbsp;                    JOptionPane.showMessageDialog(null, description, &quot;Description de l&#39;objet&quot;, JOptionPane.INFORMATION_MESSAGE);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Vous examinez l&#39;objet&quot;);</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case 3:
+<b class="nc">&nbsp;                    System.out.println(&quot;Aucune action n&#39;a été effectuée sur l&#39;objet&quot;);</b>
+&nbsp;                    break;
+&nbsp;            }
+&nbsp;    }
+&nbsp;
+&nbsp;    private Player player;
+&nbsp;    private javax.swing.JLabel jLabel1;
+&nbsp;    private javax.swing.JPanel jPanel1;
+&nbsp;    private javax.swing.JPanel jPanel2;
+&nbsp;    private javax.swing.JPanel jPanel3;
+&nbsp;
+&nbsp;    public void setInventories(ItemType[] inventory) {
+<b class="nc">&nbsp;        for (ItemType itemType : inventory) {</b>
+<b class="nc">&nbsp;            setInventory(itemType);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:42</div>
+</div>
+</body>
+</html>

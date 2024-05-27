@@ -1,0 +1,539 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > GameFrame</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.boundary.presentation</a>
+</div>
+
+<h1>Coverage Summary for Class: GameFrame (fr.call_of_rum.boundary.presentation)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameFrame</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/188)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">GameFrame$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">GameFrame$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">GameFrame$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/25)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/194)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;/*
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+&nbsp; */
+&nbsp;package fr.call_of_rum.boundary.presentation;
+&nbsp;
+&nbsp;import java.awt.Color;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;import javax.swing.BorderFactory;
+&nbsp;import javax.swing.JOptionPane;
+&nbsp;import javax.swing.UIManager;
+&nbsp;import javax.swing.UnsupportedLookAndFeelException;
+&nbsp;
+&nbsp;import com.formdev.flatlaf.FlatLightLaf;
+&nbsp;
+&nbsp;import fr.call_of_rum.boundary.dialog.DialogStub;
+&nbsp;import fr.call_of_rum.boundary.dialog.IDialog;
+&nbsp;import fr.call_of_rum.util.ItemType;
+&nbsp;import fr.call_of_rum.util.Player;
+&nbsp;
+&nbsp;/**
+&nbsp; *
+&nbsp; * @author loferga
+&nbsp; */
+&nbsp;public class GameFrame extends Presentation {
+&nbsp;	
+&nbsp;	private IDialog dialog;
+<b class="nc">&nbsp;    private Player player1 = Player.BILL_JAMBE_DE_BOIS;</b>
+&nbsp;
+<b class="nc">&nbsp;    private Player player2 = Player.JACK_LE_BORGNE;</b>
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates new form GameFrame
+&nbsp;     * @param dialog
+&nbsp;     */
+<b class="nc">&nbsp;    public GameFrame(IDialog dialog) {</b>
+<b class="nc">&nbsp;    	this.dialog = dialog;</b>
+&nbsp;    	try {
+<b class="nc">&nbsp;			UIManager.setLookAndFeel(new FlatLightLaf());</b>
+<b class="nc">&nbsp;		} catch (UnsupportedLookAndFeelException e) {</b>
+<b class="nc">&nbsp;			e.printStackTrace();</b>
+<b class="nc">&nbsp;		}</b>
+<b class="nc">&nbsp;        initComponents();</b>
+<b class="nc">&nbsp;        player1 = dialog.getPlayer1();</b>
+<b class="nc">&nbsp;        player2 = dialog.getPlayer2();</b>
+<b class="nc">&nbsp;        playerPanel2.setDialog(dialog);</b>
+<b class="nc">&nbsp;        playerPanel1.setDialog(dialog);</b>
+<b class="nc">&nbsp;        dicePanel1.setDialog(dialog);</b>
+<b class="nc">&nbsp;        playerPanel1.setPlayer(player1);</b>
+<b class="nc">&nbsp;        playerPanel2.setPlayer(player2);</b>
+<b class="nc">&nbsp;        getContentPane().setBackground(Color.WHITE);</b>
+<b class="nc">&nbsp;        playerPanel2.update();</b>
+<b class="nc">&nbsp;        playerPanel1.update();</b>
+<b class="nc">&nbsp;        endTurnSecondPlayerActionPerformed(null);</b>
+<b class="nc">&nbsp;        endTurnFirstPlayer.setEnabled(true);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * This method is called from within the constructor to initialize the form.
+&nbsp;     * WARNING: Do NOT modify this code. The content of this method is always
+&nbsp;     * regenerated by the Form Editor.
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+&nbsp;    private void initComponents() {
+&nbsp;
+<b class="nc">&nbsp;        jSplitPane1 = new javax.swing.JSplitPane();</b>
+<b class="nc">&nbsp;        rightPanel = new javax.swing.JPanel();</b>
+<b class="nc">&nbsp;        endTurnSecondPlayer = new javax.swing.JButton();</b>
+<b class="nc">&nbsp;        playerPanel2 = new fr.call_of_rum.boundary.presentation.PlayerPanel();</b>
+<b class="nc">&nbsp;        jSplitPane2 = new javax.swing.JSplitPane();</b>
+<b class="nc">&nbsp;        leftPanel = new javax.swing.JPanel();</b>
+<b class="nc">&nbsp;        endTurnFirstPlayer = new javax.swing.JButton();</b>
+<b class="nc">&nbsp;        playerPanel1 = new fr.call_of_rum.boundary.presentation.PlayerPanel();</b>
+<b class="nc">&nbsp;        centerPanel = new javax.swing.JPanel();</b>
+<b class="nc">&nbsp;        boardPanel = new fr.call_of_rum.boundary.presentation.BoardPanel();</b>
+<b class="nc">&nbsp;        boardPanel.initBoard(dialog);</b>
+<b class="nc">&nbsp;        boardPanel.setCellsType(dialog.getCellsType());</b>
+<b class="nc">&nbsp;        jScrollPane1 = new javax.swing.JScrollPane();</b>
+<b class="nc">&nbsp;        descriptionArea = new javax.swing.JTextArea();</b>
+<b class="nc">&nbsp;        dicePanel1 = new fr.call_of_rum.boundary.presentation.DicePanel();</b>
+<b class="nc">&nbsp;        marketLabel = new javax.swing.JLabel();</b>
+&nbsp;
+<b class="nc">&nbsp;        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);</b>
+<b class="nc">&nbsp;        setMinimumSize(new java.awt.Dimension(1330, 853));</b>
+&nbsp;
+<b class="nc">&nbsp;        endTurnSecondPlayer.setText(&quot;End Turn&quot;);</b>
+<b class="nc">&nbsp;        endTurnSecondPlayer.setEnabled(false);</b>
+<b class="nc">&nbsp;        endTurnSecondPlayer.addActionListener(new java.awt.event.ActionListener() {</b>
+&nbsp;            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<b class="nc">&nbsp;                endTurnSecondPlayerActionPerformed(evt);</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);</b>
+<b class="nc">&nbsp;        rightPanel.setLayout(rightPanelLayout);</b>
+<b class="nc">&nbsp;        rightPanelLayout.setHorizontalGroup(</b>
+<b class="nc">&nbsp;            rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGroup(rightPanelLayout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;                    .addGroup(rightPanelLayout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                        .addContainerGap()</b>
+<b class="nc">&nbsp;                        .addComponent(playerPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</b>
+<b class="nc">&nbsp;                    .addGroup(rightPanelLayout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                        .addGap(83, 83, 83)</b>
+<b class="nc">&nbsp;                        .addComponent(endTurnSecondPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))</b>
+<b class="nc">&nbsp;                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</b>
+&nbsp;        );
+<b class="nc">&nbsp;        rightPanelLayout.setVerticalGroup(</b>
+<b class="nc">&nbsp;            rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addContainerGap()</b>
+<b class="nc">&nbsp;                .addComponent(playerPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addComponent(endTurnSecondPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                .addGap(41, 41, 41))</b>
+&nbsp;        );
+&nbsp;
+<b class="nc">&nbsp;        jSplitPane1.setRightComponent(rightPanel);</b>
+&nbsp;
+<b class="nc">&nbsp;        endTurnFirstPlayer.setText(&quot;End Turn&quot;);</b>
+<b class="nc">&nbsp;        endTurnFirstPlayer.setEnabled(false);</b>
+<b class="nc">&nbsp;        endTurnFirstPlayer.addActionListener(new java.awt.event.ActionListener() {</b>
+&nbsp;            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<b class="nc">&nbsp;                endTurnFirstPlayerActionPerformed(evt);</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);</b>
+<b class="nc">&nbsp;        leftPanel.setLayout(leftPanelLayout);</b>
+<b class="nc">&nbsp;        leftPanelLayout.setHorizontalGroup(</b>
+<b class="nc">&nbsp;            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGroup(leftPanelLayout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;                    .addGroup(leftPanelLayout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                        .addGap(16, 16, 16)</b>
+<b class="nc">&nbsp;                        .addComponent(playerPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))</b>
+<b class="nc">&nbsp;                    .addGroup(leftPanelLayout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                        .addGap(110, 110, 110)</b>
+<b class="nc">&nbsp;                        .addComponent(endTurnFirstPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))</b>
+<b class="nc">&nbsp;                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</b>
+&nbsp;        );
+<b class="nc">&nbsp;        leftPanelLayout.setVerticalGroup(</b>
+<b class="nc">&nbsp;            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGroup(leftPanelLayout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addContainerGap()</b>
+<b class="nc">&nbsp;                .addComponent(playerPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addComponent(endTurnFirstPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                .addGap(45, 45, 45))</b>
+&nbsp;        );
+&nbsp;
+<b class="nc">&nbsp;        jSplitPane2.setLeftComponent(leftPanel);</b>
+&nbsp;
+<b class="nc">&nbsp;        descriptionArea.setColumns(20);</b>
+<b class="nc">&nbsp;        descriptionArea.setRows(5);</b>
+<b class="nc">&nbsp;        jScrollPane1.setViewportView(descriptionArea);</b>
+&nbsp;
+<b class="nc">&nbsp;        marketLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/presentation/market.png&quot;))); // NOI18N</b>
+<b class="nc">&nbsp;        marketLabel.addMouseListener(new java.awt.event.MouseAdapter() {</b>
+&nbsp;            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<b class="nc">&nbsp;                marketLabelMouseClicked(evt);</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        javax.swing.GroupLayout centerPanelLayout = new javax.swing.GroupLayout(centerPanel);</b>
+<b class="nc">&nbsp;        centerPanel.setLayout(centerPanelLayout);</b>
+<b class="nc">&nbsp;        centerPanelLayout.setHorizontalGroup(</b>
+<b class="nc">&nbsp;            centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGroup(centerPanelLayout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addContainerGap()</b>
+<b class="nc">&nbsp;                .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, centerPanelLayout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                        .addComponent(marketLabel)</b>
+<b class="nc">&nbsp;                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                        .addComponent(dicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                        .addGap(171, 171, 171))</b>
+<b class="nc">&nbsp;                    .addGroup(centerPanelLayout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                        .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)</b>
+<b class="nc">&nbsp;                            .addComponent(jScrollPane1)</b>
+<b class="nc">&nbsp;                            .addComponent(boardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</b>
+<b class="nc">&nbsp;                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))</b>
+&nbsp;        );
+<b class="nc">&nbsp;        centerPanelLayout.setVerticalGroup(</b>
+<b class="nc">&nbsp;            centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGroup(centerPanelLayout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGroup(centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;                    .addComponent(dicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                    .addComponent(marketLabel))</b>
+<b class="nc">&nbsp;                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</b>
+<b class="nc">&nbsp;                .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</b>
+<b class="nc">&nbsp;                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                .addContainerGap())</b>
+&nbsp;        );
+&nbsp;
+<b class="nc">&nbsp;        jSplitPane2.setRightComponent(centerPanel);</b>
+&nbsp;
+<b class="nc">&nbsp;        jSplitPane1.setLeftComponent(jSplitPane2);</b>
+&nbsp;
+<b class="nc">&nbsp;        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</b>
+<b class="nc">&nbsp;        getContentPane().setLayout(layout);</b>
+<b class="nc">&nbsp;        layout.setHorizontalGroup(</b>
+<b class="nc">&nbsp;            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addComponent(jSplitPane1)</b>
+&nbsp;        );
+<b class="nc">&nbsp;        layout.setVerticalGroup(</b>
+<b class="nc">&nbsp;            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addComponent(jSplitPane1)</b>
+&nbsp;        );
+&nbsp;
+<b class="nc">&nbsp;        pack();</b>
+&nbsp;    }// &lt;/editor-fold&gt;//GEN-END:initComponents
+&nbsp;
+&nbsp;    private void endTurnFirstPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endTurnFirstPlayerActionPerformed
+<b class="nc">&nbsp;        synchronized (this) {</b>
+<b class="nc">&nbsp;            dialog.endTurn();</b>
+<b class="nc">&nbsp;            this.notifyAll();</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        enableSecondPlayer();</b>
+<b class="nc">&nbsp;        endTurnFirstPlayer.setEnabled(true);</b>
+<b class="nc">&nbsp;        playerPanel2.setBorder(BorderFactory.createLineBorder(Color.red));</b>
+<b class="nc">&nbsp;        boardPanel.setToken1Movable(false);</b>
+<b class="nc">&nbsp;        boardPanel.setToken2Movable(true);</b>
+&nbsp;    }//GEN-LAST:event_endTurnFirstPlayerActionPerformed
+&nbsp;
+&nbsp;    private void endTurnSecondPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endTurnSecondPlayerActionPerformed
+<b class="nc">&nbsp;        synchronized (this) {</b>
+<b class="nc">&nbsp;            dialog.endTurn();</b>
+<b class="nc">&nbsp;            this.notifyAll();</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        enableFirstPlayer();</b>
+<b class="nc">&nbsp;        endTurnSecondPlayer.setEnabled(false);</b>
+<b class="nc">&nbsp;        boardPanel.setToken1Movable(true);</b>
+<b class="nc">&nbsp;        playerPanel1.setBorder(BorderFactory.createLineBorder(Color.blue));</b>
+<b class="nc">&nbsp;        boardPanel.setToken2Movable(false);</b>
+&nbsp;    }//GEN-LAST:event_endTurnSecondPlayerActionPerformed
+&nbsp;
+&nbsp;    private void marketLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_marketLabelMouseClicked
+<b class="nc">&nbsp;        java.awt.EventQueue.invokeLater(() -&gt; new Market(this,true, Player.JACK_LE_BORGNE, dialog).setVisible(true));</b>
+&nbsp;    }//GEN-LAST:event_marketLabelMouseClicked
+&nbsp;    
+&nbsp;    /**
+&nbsp;     * @param args the command line arguments
+&nbsp;     */
+&nbsp;    public static void main(String args[]) {
+&nbsp;        /* Set the Nimbus look and feel */
+&nbsp;        //&lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot; Look and feel setting code (optional) &quot;&gt;
+&nbsp;        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+&nbsp;         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+&nbsp;         */
+&nbsp;    	
+&nbsp;        try {
+<b class="nc">&nbsp;            UIManager.setLookAndFeel(new FlatLightLaf());</b>
+<b class="nc">&nbsp;        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</b>
+<b class="nc">&nbsp;            java.util.logging.Logger.getLogger(GameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;        
+&nbsp;        //&lt;/editor-fold&gt;
+&nbsp;        
+&nbsp;        /* Create and display the form */
+<b class="nc">&nbsp;        java.awt.EventQueue.invokeLater(() -&gt; {</b>
+<b class="nc">&nbsp;            new GameFrame(new DialogStub()).setVisible(true);</b>
+&nbsp;        });
+&nbsp;    }
+&nbsp;
+&nbsp;    // Variables declaration - do not modify//GEN-BEGIN:variables
+&nbsp;    private fr.call_of_rum.boundary.presentation.BoardPanel boardPanel;
+&nbsp;    private javax.swing.JPanel centerPanel;
+&nbsp;    private javax.swing.JTextArea descriptionArea;
+&nbsp;    private fr.call_of_rum.boundary.presentation.DicePanel dicePanel1;
+&nbsp;    private javax.swing.JButton endTurnFirstPlayer;
+&nbsp;    private javax.swing.JButton endTurnSecondPlayer;
+&nbsp;    private javax.swing.JScrollPane jScrollPane1;
+&nbsp;    private javax.swing.JSplitPane jSplitPane1;
+&nbsp;    private javax.swing.JSplitPane jSplitPane2;
+&nbsp;    private javax.swing.JPanel leftPanel;
+&nbsp;    private javax.swing.JLabel marketLabel;
+&nbsp;    private fr.call_of_rum.boundary.presentation.PlayerPanel playerPanel1;
+&nbsp;    private fr.call_of_rum.boundary.presentation.PlayerPanel playerPanel2;
+&nbsp;    private javax.swing.JPanel rightPanel;
+&nbsp;    // End of variables declaration//GEN-END:variables
+&nbsp;    
+&nbsp;    @Override
+&nbsp;    public void enableFirstPlayer() {
+<b class="nc">&nbsp;        playerPanel2.setBorder(BorderFactory.createLineBorder(null));</b>
+<b class="nc">&nbsp;        endTurnFirstPlayer.setEnabled(true);</b>
+<b class="nc">&nbsp;        dicePanel1.setThrowButton(true);</b>
+<b class="nc">&nbsp;        boardPanel.setToken1Movable(true);</b>
+<b class="nc">&nbsp;        boardPanel.setToken2Movable(false);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void enableSecondPlayer() {
+<b class="nc">&nbsp;        playerPanel1.setBorder(BorderFactory.createLineBorder(null));</b>
+<b class="nc">&nbsp;    	endTurnSecondPlayer.setEnabled(true);</b>
+<b class="nc">&nbsp;        dicePanel1.setThrowButton(true);</b>
+<b class="nc">&nbsp;        boardPanel.setToken1Movable(false);</b>
+<b class="nc">&nbsp;        boardPanel.setToken2Movable(true);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean chestFound(int coinAmount, ItemType itemType) {
+<b class="nc">&nbsp;		ChestDialog chestDialog = new ChestDialog(this, itemType, coinAmount);</b>
+<b class="nc">&nbsp;		int returnStatus = chestDialog.getReturnStatus();</b>
+<b class="nc">&nbsp;		return returnStatus == ChestDialog.RET_OK;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean openedChestFound(int coinAmount, Optional&lt;ItemType&gt; optionalItemType) {
+<b class="nc">&nbsp;		if (optionalItemType.isEmpty()) {</b>
+<b class="nc">&nbsp;			JOptionPane.showMessageDialog(this, &quot;il n&#39;y a rien dans le coffre&quot;);</b>
+<b class="nc">&nbsp;			return false;</b>
+&nbsp;		}
+&nbsp;		else {
+<b class="nc">&nbsp;			ChestDialog chestDialog = new ChestDialog(this, optionalItemType.get(), coinAmount);</b>
+<b class="nc">&nbsp;			int returnStatus = chestDialog.getReturnStatus();</b>
+<b class="nc">&nbsp;			return returnStatus == ChestDialog.RET_OK;</b>
+&nbsp;		}
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void showExplosion() {
+&nbsp;		// TODO Auto-generated method stub
+&nbsp;		
+<b class="nc">&nbsp;	}</b>
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void showShortcut() {
+&nbsp;		// TODO Auto-generated method stub
+&nbsp;		
+<b class="nc">&nbsp;	}</b>
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void showDuel(Player player) {
+&nbsp;		// TODO Auto-generated method stub
+&nbsp;		
+<b class="nc">&nbsp;	}</b>
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void printMessage(String message) {
+<b class="nc">&nbsp;		descriptionArea.append(message + &quot;\n&quot;);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void updateScores() {
+<b class="nc">&nbsp;		playerPanel2.updateScore();</b>
+<b class="nc">&nbsp;		playerPanel1.updateScore();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void clearMessages() {
+<b class="nc">&nbsp;		descriptionArea.setText(&quot;&quot;);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void notifyDrop(ItemType itemType) {
+<b class="nc">&nbsp;		boardPanel.notifyDrop(itemType);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void notifyPickUp(ItemType itemType) {
+<b class="nc">&nbsp;		PlayerPanel playerPanel = endTurnFirstPlayer.isEnabled() ? playerPanel2 : playerPanel1;</b>
+<b class="nc">&nbsp;		playerPanel.notifyPickUp(itemType);</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:42</div>
+</div>
+</body>
+</html>

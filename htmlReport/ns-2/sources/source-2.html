@@ -1,0 +1,311 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > FunctionalKernelAdapter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.boundary</a>
+</div>
+
+<h1>Coverage Summary for Class: FunctionalKernelAdapter (fr.call_of_rum.boundary)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FunctionalKernelAdapter</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/35)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/39)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.call_of_rum.boundary;
+&nbsp;
+&nbsp;import java.util.Locale;
+&nbsp;import java.util.Optional;
+&nbsp;import java.util.ResourceBundle;
+&nbsp;
+&nbsp;import fr.call_of_rum.controller.accessible.IActionController;
+&nbsp;import fr.call_of_rum.controller.accessible.IBoardController;
+&nbsp;import fr.call_of_rum.controller.accessible.IDiceController;
+&nbsp;import fr.call_of_rum.controller.accessible.IMarketController;
+&nbsp;import fr.call_of_rum.controller.accessible.IPlayerController;
+&nbsp;import fr.call_of_rum.util.CellType;
+&nbsp;import fr.call_of_rum.util.ItemType;
+&nbsp;import fr.call_of_rum.util.Player;
+&nbsp;
+<b class="nc">&nbsp;public class FunctionalKernelAdapter implements IBoundary, IFunctionalKernel {</b>
+&nbsp;	
+&nbsp;	private static final String LANGUAGE_BASE_FILENAME = &quot;messages&quot;;
+<b class="nc">&nbsp;	private static final Locale LOCALE = Locale.ENGLISH;</b>
+&nbsp;	
+&nbsp;	// language bundle
+<b class="nc">&nbsp;	private ResourceBundle bundle = ResourceBundle.getBundle(LANGUAGE_BASE_FILENAME, LOCALE);</b>
+&nbsp;	
+&nbsp;	/*****************************
+&nbsp;	*  Notifications (upcalls)   *
+&nbsp;	*****************************/
+&nbsp;	
+&nbsp;	private IGraphicInterface graphicInterface;
+&nbsp;	
+&nbsp;	public void setGraphicInterface(IGraphicInterface graphicInterface) {
+<b class="nc">&nbsp;		this.graphicInterface = graphicInterface;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	@Override
+&nbsp;	public void giveTurn(Player player) {
+<b class="nc">&nbsp;		graphicInterface.giveTurn(player);</b>
+<b class="nc">&nbsp;		graphicInterface.printMessage(String.format(bundle.getString(&quot;your_turn&quot;), player));</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	@Override
+&nbsp;	public void stepOnBomb() {
+<b class="nc">&nbsp;		graphicInterface.showExplosion();</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	@Override
+&nbsp;	public void tookShortcut() {
+<b class="nc">&nbsp;		graphicInterface.showShortcut();</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	@Override
+&nbsp;	public boolean chestFound(int coinAmount, ItemType itemType) {
+<b class="nc">&nbsp;		return graphicInterface.chestFound(coinAmount, itemType);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean openedChestFound(int coinAmount, Optional&lt;ItemType&gt; optionalItemType) {
+<b class="nc">&nbsp;		return graphicInterface.openedChestFound(coinAmount, optionalItemType);</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	@Override
+&nbsp;	public void duel(Player winner) {
+<b class="nc">&nbsp;		graphicInterface.showDuel(winner);</b>
+<b class="nc">&nbsp;		graphicInterface.updateScores();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void gameEnded(Player winner) {
+<b class="nc">&nbsp;		graphicInterface.printMessage(String.format(bundle.getString(&quot;game_ended&quot;), winner));</b>
+<b class="nc">&nbsp;		graphicInterface.close();</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	/*****************************
+&nbsp;	*    Requests (downcalls)    *
+&nbsp;	*****************************/
+&nbsp;
+&nbsp;	private IActionController actionController;
+&nbsp;	private IBoardController boardController;
+&nbsp;	private IDiceController diceController;
+&nbsp;	private IMarketController marketController;
+&nbsp;	private IPlayerController playerController;
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void subscribeActionController(IActionController actionController) {
+<b class="nc">&nbsp;		this.actionController = actionController;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	@Override
+&nbsp;	public void subscribeBoardController(IBoardController boardController) {
+<b class="nc">&nbsp;		this.boardController = boardController;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void subscribeDiceController(IDiceController diceController) {
+<b class="nc">&nbsp;		this.diceController = diceController;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void subscribeMarketController(IMarketController marketController) {
+<b class="nc">&nbsp;		this.marketController = marketController;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void subscribePlayerController(IPlayerController playerController) {
+<b class="nc">&nbsp;		this.playerController = playerController;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public CellType askCellType(int numCell) {
+<b class="nc">&nbsp;		return boardController.getCellType(numCell);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public ItemType[] getDroppedItems(int numCell) {
+<b class="nc">&nbsp;		return boardController.getDroppedItems(numCell);</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	@Override
+&nbsp;	public int getNumberOfDroppedItems(int numCell) {
+<b class="nc">&nbsp;		return boardController.getNumberOfDroppedItems(numCell);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean buyItem(int itemIndex) {
+<b class="nc">&nbsp;		return actionController.buyItem(itemIndex);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean drink(int itemIndex) {
+<b class="nc">&nbsp;		return actionController.drink(itemIndex);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean equipWeapon(int itemIndex) {
+<b class="nc">&nbsp;		return actionController.equipWeapon(itemIndex);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean pickUpItem(int itemIndex) {
+<b class="nc">&nbsp;		return actionController.pickUpItem(itemIndex);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean dropItem(int itemIndex) {
+<b class="nc">&nbsp;		return actionController.dropItem(itemIndex);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean move() {
+<b class="nc">&nbsp;		return actionController.move();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public ItemType[] getItemsForSale() {
+<b class="nc">&nbsp;		return marketController.getItemForSale();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getPrice(int itemIndex) {
+<b class="nc">&nbsp;		return marketController.getPrice(itemIndex);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getScore(Player player) {
+<b class="nc">&nbsp;		return playerController.getCoins(player);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public ItemType[] getInventory(Player player) {
+<b class="nc">&nbsp;		return playerController.getInventoryItems(player);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getHealth(Player player) {
+<b class="nc">&nbsp;		return playerController.getHealth(player);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getMaxHealth(Player player) {
+<b class="nc">&nbsp;		return playerController.getMaxHealth(player);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public ItemType getWeapon(Player player) {
+<b class="nc">&nbsp;		return playerController.getEquippedWeapon(player);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public float getIntoxication(Player player) {
+<b class="nc">&nbsp;		return playerController.getIntoxicationLevel(player);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getFirstDiceResult() {
+<b class="nc">&nbsp;		return diceController.getFirstDiceResult();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getSecondDiceResult() {
+<b class="nc">&nbsp;		return diceController.getSecondDiceResult();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getDicesResult() {
+<b class="nc">&nbsp;		return diceController.getDicesResult();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:42</div>
+</div>
+</body>
+</html>

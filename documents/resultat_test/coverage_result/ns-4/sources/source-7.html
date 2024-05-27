@@ -1,0 +1,274 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Dice</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.boundary.presentation</a>
+</div>
+
+<h1>Coverage Summary for Class: Dice (fr.call_of_rum.boundary.presentation)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Dice</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/68)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;/*
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+&nbsp; */
+&nbsp;package fr.call_of_rum.boundary.presentation;
+&nbsp;
+&nbsp;import java.awt.Color;
+&nbsp;import java.awt.Graphics;
+&nbsp;import javax.swing.JFrame;
+&nbsp;
+&nbsp;/**
+&nbsp; *
+&nbsp; * @author assanendoye
+&nbsp; */
+&nbsp;public class Dice extends javax.swing.JPanel {
+&nbsp;    
+&nbsp;    private int faceValue;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates new form Dice
+&nbsp;     */
+<b class="nc">&nbsp;    public Dice() {</b>
+<b class="nc">&nbsp;        faceValue = 3;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public void setFaceValue(int value) {
+<b class="nc">&nbsp;        if (value &gt;= 1 &amp;&amp; value &lt;= 6) {</b>
+<b class="nc">&nbsp;            this.faceValue = value;</b>
+<b class="nc">&nbsp;            repaint(); // Redessiner le panneau avec la nouvelle valeur de la face</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            System.out.println(&quot;La valeur du dé doit être comprise entre 1 et 6.&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    
+&nbsp;    @Override
+&nbsp;    public void paintComponent(Graphics g) {
+<b class="nc">&nbsp;        super.paintComponent(g);</b>
+<b class="nc">&nbsp;        int panelWidth = getWidth();</b>
+<b class="nc">&nbsp;        int panelHeight = getHeight();</b>
+&nbsp;        
+&nbsp;        // Calculer la taille du carré en fonction des dimensions du panneau
+<b class="nc">&nbsp;        int squareSize = Math.min(panelWidth, panelHeight) * 2 / 3;</b>
+<b class="nc">&nbsp;        int squareX = (panelWidth - squareSize) / 2; // Position X pour centrer le carré horizontalement</b>
+<b class="nc">&nbsp;        int squareY = (panelHeight - squareSize) / 2; // Position Y pour centrer le carré verticalement</b>
+&nbsp;        
+&nbsp;        // Dessiner le carré
+<b class="nc">&nbsp;        g.setColor(Color.WHITE);</b>
+<b class="nc">&nbsp;        g.fillRect(squareX, squareY, squareSize, squareSize);</b>
+&nbsp;
+&nbsp;        // Dessiner les points en fonction de la valeur de la face du dé
+<b class="nc">&nbsp;        g.setColor(Color.BLACK);</b>
+&nbsp;       
+&nbsp;
+<b class="nc">&nbsp;        int dotSize = squareSize / 6; // Taille des points en fonction de la taille du carré</b>
+<b class="nc">&nbsp;        int dotOffset = dotSize * 3 / 2 ; // Espacement des points par rapport au bord du carré</b>
+&nbsp;        //drawDot(g, squareX + squareSize - dotOffset, squareY); // Point au milieu
+&nbsp;
+&nbsp;        
+<b class="nc">&nbsp;        switch (faceValue) {</b>
+&nbsp;            case 1:
+<b class="nc">&nbsp;                drawDotCenter(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case 2:
+<b class="nc">&nbsp;                drawDotTopLeft(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                drawDotBottomRight(g, squareX, squareY, squareSize,dotSize);</b>
+&nbsp;               
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case 3:
+<b class="nc">&nbsp;                drawDotTopLeft(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                drawDotCenter(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                drawDotBottomRight(g, squareX, squareY, squareSize, dotSize);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case 4:
+&nbsp;                
+<b class="nc">&nbsp;                drawDotTopLeft(g, squareX, squareY, dotOffset,dotSize);</b>
+<b class="nc">&nbsp;                drawDotBottomLeft(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                drawDotBottomRight(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                drawDotTopRight(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case 5:
+&nbsp;                // Dessiner cinq points
+<b class="nc">&nbsp;                drawDotTopLeft(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                drawDotBottomLeft(g, squareX, squareY, squareSize,dotSize); // Point en bas à gauche</b>
+<b class="nc">&nbsp;                drawDotCenter(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                drawDotBottomRight(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                drawDotTopRight(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case 6:
+&nbsp;                // Dessiner six points
+<b class="nc">&nbsp;                drawDotTopLeft(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                drawDotBottomLeft(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                drawDotMidLeft(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                drawDotMidRight(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                drawDotBottomRight(g, squareX, squareY, squareSize,dotSize);</b>
+<b class="nc">&nbsp;                drawDotTopRight(g, squareX, squareY, squareSize,dotSize);</b>
+&nbsp;                break;
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    
+&nbsp;    private void drawDot(Graphics g, int x, int y,int size) {
+<b class="nc">&nbsp;        g.fillOval(x, y, size, size); // Dessiner un point</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private void drawDotCenter(Graphics g, int x, int y,int squareSize,int dotSize){
+<b class="nc">&nbsp;        drawDot(g, x + squareSize / 2 - dotSize/2 , y + squareSize / 2 - dotSize/2,dotSize); // Point au milieu</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private void drawDotTopLeft(Graphics g, int x, int y,int squareSize,int dotSize){
+<b class="nc">&nbsp;        drawDot(g, x + dotSize, y +dotSize,dotSize); // Point au milieu</b>
+&nbsp;    }
+&nbsp;    private void drawDotTopRight(Graphics g, int x, int y,int squareSize,int dotSize){
+<b class="nc">&nbsp;        drawDot(g, x + squareSize - dotSize *2, y +dotSize,dotSize); // Point au milieu</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private void drawDotBottomLeft(Graphics g, int x, int y,int squareSize,int dotSize){
+&nbsp;
+<b class="nc">&nbsp;        drawDot(g, x + dotSize, y + squareSize - dotSize *2,dotSize ); // Point au milieu</b>
+&nbsp;    }
+&nbsp;    private void drawDotBottomRight(Graphics g, int x, int y,int squareSize,int dotSize){
+&nbsp;
+<b class="nc">&nbsp;        drawDot(g, x + squareSize - dotSize *2, y + squareSize - dotSize *2,dotSize ); // Point au milieu</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private void drawDotMidLeft(Graphics g, int x, int y,int squareSize,int dotSize){
+<b class="nc">&nbsp;        drawDot(g, x + dotSize, y + squareSize / 2 - dotSize/2,dotSize ); // Point au milieu</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private void drawDotMidRight(Graphics g, int x, int y,int squareSize,int dotSize){
+<b class="nc">&nbsp;        drawDot(g, x + squareSize - dotSize *2, y + squareSize / 2 - dotSize/2,dotSize ); // Point au milieu</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getValue() {
+<b class="nc">&nbsp;        return faceValue;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    
+&nbsp;    /**
+&nbsp;     * This method is called from within the constructor to initialize the form.
+&nbsp;     * WARNING: Do NOT modify this code. The content of this method is always
+&nbsp;     * regenerated by the Form Editor.
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+&nbsp;    private void initComponents() {
+&nbsp;
+<b class="nc">&nbsp;        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);</b>
+<b class="nc">&nbsp;        this.setLayout(layout);</b>
+<b class="nc">&nbsp;        layout.setHorizontalGroup(</b>
+<b class="nc">&nbsp;            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGap(0, 400, Short.MAX_VALUE)</b>
+&nbsp;        );
+<b class="nc">&nbsp;        layout.setVerticalGroup(</b>
+<b class="nc">&nbsp;            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGap(0, 300, Short.MAX_VALUE)</b>
+&nbsp;        );
+&nbsp;    }// &lt;/editor-fold&gt;//GEN-END:initComponents
+&nbsp;    public static void main(String[] args) {
+<b class="nc">&nbsp;        JFrame frame = new JFrame(&quot;Dice Faces&quot;);</b>
+<b class="nc">&nbsp;        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</b>
+<b class="nc">&nbsp;        frame.setSize(400, 400); // Taille de la fenêtre</b>
+<b class="nc">&nbsp;        Dice dice = new Dice();</b>
+<b class="nc">&nbsp;        frame.add(dice);</b>
+<b class="nc">&nbsp;        dice.setFaceValue(3);</b>
+<b class="nc">&nbsp;        frame.setVisible(true);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Variables declaration - do not modify//GEN-BEGIN:variables
+&nbsp;    // End of variables declaration//GEN-END:variables
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:38</div>
+</div>
+</body>
+</html>

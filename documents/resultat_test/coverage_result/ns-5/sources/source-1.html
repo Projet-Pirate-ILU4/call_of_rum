@@ -1,0 +1,184 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ActionController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: ActionController (fr.call_of_rum.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ActionController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    37,5%
+  </span>
+  <span class="absValue">
+    (3/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    40%
+  </span>
+  <span class="absValue">
+    (12/30)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.call_of_rum.controller;
+&nbsp;
+&nbsp;import fr.call_of_rum.controller.accessible.IActionController;
+&nbsp;import fr.call_of_rum.model.item.Item;
+&nbsp;import fr.call_of_rum.model.item.liquid.Liquid;
+&nbsp;import fr.call_of_rum.model.item.weapon.Weapon;
+&nbsp;import fr.call_of_rum.model.pirate.Pirate;
+&nbsp;
+&nbsp;public class ActionController implements IActionController {
+&nbsp;	
+&nbsp;	private MarketController marketController;
+&nbsp;	private MoveController moveController;
+&nbsp;	private BoardController boardController;
+&nbsp;
+<b class="fc">&nbsp;	private boolean canMove = false;</b>
+&nbsp;	private Pirate pirate;
+&nbsp;	
+<b class="fc">&nbsp;	public ActionController(MarketController marketController, MoveController moveController, BoardController boardController) {</b>
+<b class="fc">&nbsp;		this.marketController = marketController;</b>
+<b class="fc">&nbsp;		this.moveController = moveController;</b>
+<b class="fc">&nbsp;		this.boardController = boardController;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public void setCurrentPirate(Pirate pirate) {
+<b class="fc">&nbsp;		this.canMove = true;</b>
+<b class="fc">&nbsp;		this.pirate = pirate;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	@Override
+&nbsp;	public boolean buyItem(int itemIndex) {
+<b class="nc">&nbsp;		return marketController.buy(pirate, itemIndex);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean drink(int itemIndex) {
+<b class="fc">&nbsp;		Item item = pirate.getInventory().get(itemIndex);</b>
+<b class="fc">&nbsp;		if (item instanceof Liquid liquid) {</b>
+<b class="fc">&nbsp;			pirate.drink(liquid);</b>
+<b class="fc">&nbsp;			return true;</b>
+&nbsp;		}
+<b class="fc">&nbsp;		return false;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean equipWeapon(int itemIndex) {
+<b class="nc">&nbsp;		Item item = pirate.getInventory().get(itemIndex);</b>
+<b class="nc">&nbsp;		if (item instanceof Weapon weapon) {</b>
+<b class="nc">&nbsp;			Weapon equippedWeapon = pirate.getEquippedWeapon();</b>
+<b class="nc">&nbsp;			pirate.equipWeapon(weapon);</b>
+<b class="nc">&nbsp;			if (equippedWeapon != null) {</b>
+<b class="nc">&nbsp;				pirate.getInventory().add(equippedWeapon);</b>
+&nbsp;			}
+<b class="nc">&nbsp;			return true;</b>
+&nbsp;		}
+<b class="nc">&nbsp;		return false;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean pickUpItem(int itemIndex) {
+<b class="nc">&nbsp;		return boardController.pickUpItem(pirate, itemIndex);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public boolean dropItem(int itemIndex) {
+<b class="nc">&nbsp;		Item item = pirate.getInventory().get(itemIndex);</b>
+<b class="nc">&nbsp;		if (item == null) return false;</b>
+<b class="nc">&nbsp;		item.drop();</b>
+<b class="nc">&nbsp;		return true;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	@Override
+&nbsp;	public boolean move() {
+<b class="nc">&nbsp;		if (canMove) {</b>
+<b class="nc">&nbsp;			moveController.movePirate(pirate);</b>
+<b class="nc">&nbsp;			this.canMove = false;</b>
+&nbsp;		}
+<b class="nc">&nbsp;		return canMove;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:38</div>
+</div>
+</body>
+</html>

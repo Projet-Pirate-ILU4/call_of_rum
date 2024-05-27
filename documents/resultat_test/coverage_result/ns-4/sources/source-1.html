@@ -1,0 +1,628 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > BoardPanel</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.boundary.presentation</a>
+</div>
+
+<h1>Coverage Summary for Class: BoardPanel (fr.call_of_rum.boundary.presentation)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BoardPanel</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/408)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;/*
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+&nbsp; * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JLayeredPane.java to edit this template
+&nbsp; */
+&nbsp;package fr.call_of_rum.boundary.presentation;
+&nbsp;
+&nbsp;import fr.call_of_rum.boundary.dialog.Dialog;
+&nbsp;import fr.call_of_rum.boundary.dialog.IDialog;
+&nbsp;import fr.call_of_rum.model.item.Item;
+&nbsp;import fr.call_of_rum.util.CellType;
+&nbsp;import fr.call_of_rum.util.ItemType;
+&nbsp;import fr.call_of_rum.util.Player;
+&nbsp;import java.awt.Image;
+&nbsp;import java.awt.image.BufferedImage;
+&nbsp;import java.util.List;
+&nbsp;import javax.swing.ImageIcon;
+&nbsp;
+&nbsp;/**
+&nbsp; *
+&nbsp; * @author Solène
+&nbsp; */
+&nbsp;public class BoardPanel extends javax.swing.JLayeredPane {
+&nbsp;    
+&nbsp;    private CellPanel[] cellsPanel;
+<b class="nc">&nbsp;    private boolean isToken1Movable = false;</b>
+<b class="nc">&nbsp;    private boolean isToken2Movable = false;</b>
+&nbsp;    
+&nbsp;    public void setToken1Movable(boolean choice) {
+<b class="nc">&nbsp;        isToken1Movable = choice;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public void setToken2Movable(boolean choice) {
+<b class="nc">&nbsp;        isToken2Movable = choice;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public boolean getisToken1Movable() {
+<b class="nc">&nbsp;        return isToken1Movable;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public boolean getisToken2Movable() {
+<b class="nc">&nbsp;        return isToken2Movable;</b>
+&nbsp;    }
+&nbsp;   
+&nbsp;    /**
+&nbsp;     * Creates new form BoardPanel
+&nbsp;     */
+<b class="nc">&nbsp;    public BoardPanel() {</b>
+<b class="nc">&nbsp;        initComponents();</b>
+<b class="nc">&nbsp;        BufferedImage typeImage = ImageLoader.loadImage(&quot;presentation/background.png&quot;);</b>
+<b class="nc">&nbsp;        Image scaledTypeImage = typeImage.getScaledInstance(600, 500, Image.SCALE_SMOOTH);</b>
+<b class="nc">&nbsp;        ImageIcon typeIcon = new ImageIcon(scaledTypeImage);</b>
+<b class="nc">&nbsp;        backgroundLabel.setIcon(typeIcon);</b>
+<b class="nc">&nbsp;        cellsPanel=new CellPanel[30];</b>
+<b class="nc">&nbsp;        cellsPanel[0]=cellPanel1;</b>
+<b class="nc">&nbsp;        cellsPanel[1]=cellPanel2;</b>
+<b class="nc">&nbsp;        cellsPanel[2]=cellPanel3;</b>
+<b class="nc">&nbsp;        cellsPanel[3]=cellPanel4;</b>
+<b class="nc">&nbsp;        cellsPanel[4]=cellPanel5;</b>
+<b class="nc">&nbsp;        cellsPanel[5]=cellPanel6;</b>
+<b class="nc">&nbsp;        cellsPanel[6]=cellPanel7;</b>
+<b class="nc">&nbsp;        cellsPanel[7]=cellPanel8;</b>
+<b class="nc">&nbsp;        cellsPanel[8]=cellPanel9;</b>
+<b class="nc">&nbsp;        cellsPanel[9]=cellPanel10;</b>
+<b class="nc">&nbsp;        cellsPanel[10]=cellPanel11;</b>
+<b class="nc">&nbsp;        cellsPanel[11]=cellPanel12;</b>
+<b class="nc">&nbsp;        cellsPanel[12]=cellPanel13;</b>
+<b class="nc">&nbsp;        cellsPanel[13]=cellPanel14;</b>
+<b class="nc">&nbsp;        cellsPanel[14]=cellPanel15;</b>
+<b class="nc">&nbsp;        cellsPanel[15]=cellPanel16;</b>
+<b class="nc">&nbsp;        cellsPanel[16]=cellPanel17;</b>
+<b class="nc">&nbsp;        cellsPanel[17]=cellPanel18;</b>
+<b class="nc">&nbsp;        cellsPanel[18]=cellPanel19;</b>
+<b class="nc">&nbsp;        cellsPanel[19]=cellPanel20;</b>
+<b class="nc">&nbsp;        cellsPanel[20]=cellPanel21;</b>
+<b class="nc">&nbsp;        cellsPanel[21]=cellPanel22;</b>
+<b class="nc">&nbsp;        cellsPanel[22]=cellPanel23;</b>
+<b class="nc">&nbsp;        cellsPanel[23]=cellPanel24;</b>
+<b class="nc">&nbsp;        cellsPanel[24]=cellPanel25;</b>
+<b class="nc">&nbsp;        cellsPanel[25]=cellPanel26;</b>
+<b class="nc">&nbsp;        cellsPanel[26]=cellPanel27;</b>
+<b class="nc">&nbsp;        cellsPanel[27]=cellPanel28;</b>
+<b class="nc">&nbsp;        cellsPanel[28]=cellPanel29;</b>
+<b class="nc">&nbsp;        cellsPanel[29]=cellPanel30;</b>
+<b class="nc">&nbsp;        this.moveToFront(tokenPanelPlayer2);</b>
+<b class="nc">&nbsp;        this.moveToFront(tokenPanelPlayer1);</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public CellPanel[] getCellsPanel(){
+<b class="nc">&nbsp;        return cellsPanel;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public void initBoard(IDialog dialog){
+<b class="nc">&nbsp;        for (int i=0;i&lt;30;i++){</b>
+<b class="nc">&nbsp;            cellsPanel[i].initDroppedItems(dialog);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        tokenPanelPlayer1.setDialog(dialog);</b>
+<b class="nc">&nbsp;        tokenPanelPlayer2.setDialog(dialog);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * This method is called from within the constructor to initialize the form.
+&nbsp;     * WARNING: Do NOT modify this code. The content of this method is always
+&nbsp;     * regenerated by the Form Editor.
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+&nbsp;    private void initComponents() {
+&nbsp;
+<b class="nc">&nbsp;        cellPanel1 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel1.setNum(1);</b>
+<b class="nc">&nbsp;        cellPanel2 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel2.setNum(2);</b>
+<b class="nc">&nbsp;        cellPanel3 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel3.setNum(3);</b>
+<b class="nc">&nbsp;        cellPanel4 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel4.setNum(4);</b>
+<b class="nc">&nbsp;        cellPanel5 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel5.setNum(5);</b>
+<b class="nc">&nbsp;        cellPanel6 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel6.setNum(6);</b>
+<b class="nc">&nbsp;        cellPanel30 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel30.setNum(30);</b>
+<b class="nc">&nbsp;        cellPanel23 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel23.setNum(23);</b>
+<b class="nc">&nbsp;        cellPanel22 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel22.setNum(22);</b>
+<b class="nc">&nbsp;        cellPanel15 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel15.setNum(15);</b>
+<b class="nc">&nbsp;        cellPanel14 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel14.setNum(14);</b>
+<b class="nc">&nbsp;        cellPanel7 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel7.setNum(7);</b>
+<b class="nc">&nbsp;        cellPanel29 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel29.setNum(29);</b>
+<b class="nc">&nbsp;        cellPanel24 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel24.setNum(24);</b>
+<b class="nc">&nbsp;        cellPanel21 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel21.setNum(21);</b>
+<b class="nc">&nbsp;        cellPanel16 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel16.setNum(16);</b>
+<b class="nc">&nbsp;        cellPanel13 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel13.setNum(13);</b>
+<b class="nc">&nbsp;        cellPanel8 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel8.setNum(8);</b>
+<b class="nc">&nbsp;        cellPanel28 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel28.setNum(28);</b>
+<b class="nc">&nbsp;        cellPanel25 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel25.setNum(25);</b>
+<b class="nc">&nbsp;        cellPanel20 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel20.setNum(20);</b>
+<b class="nc">&nbsp;        cellPanel17 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel17.setNum(17);</b>
+<b class="nc">&nbsp;        cellPanel12 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel12.setNum(12);</b>
+<b class="nc">&nbsp;        cellPanel9 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel9.setNum(9);</b>
+<b class="nc">&nbsp;        cellPanel27 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel27.setNum(27);</b>
+<b class="nc">&nbsp;        cellPanel26 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel26.setNum(26);</b>
+<b class="nc">&nbsp;        cellPanel19 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel19.setNum(19);</b>
+<b class="nc">&nbsp;        cellPanel18 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel18.setNum(18);</b>
+<b class="nc">&nbsp;        cellPanel11 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel11.setNum(11);</b>
+<b class="nc">&nbsp;        cellPanel10 = new fr.call_of_rum.boundary.presentation.CellPanel();</b>
+<b class="nc">&nbsp;        cellPanel10.setNum(10);</b>
+<b class="nc">&nbsp;        backgroundLabel = new javax.swing.JLabel();</b>
+<b class="nc">&nbsp;        tokenPanelPlayer1 = new fr.call_of_rum.boundary.presentation.TokenPanel();</b>
+<b class="nc">&nbsp;        tokenPanelPlayer1.setBoardPanel(this);</b>
+<b class="nc">&nbsp;        tokenPanelPlayer1.setPlayer(Player.BILL_JAMBE_DE_BOIS);</b>
+<b class="nc">&nbsp;        tokenPanelPlayer1.setPosition(cellPanel1);</b>
+&nbsp;        ;
+<b class="nc">&nbsp;        tokenPanelPlayer2 = new fr.call_of_rum.boundary.presentation.TokenPanel();</b>
+<b class="nc">&nbsp;        tokenPanelPlayer2.setBoardPanel(this);</b>
+<b class="nc">&nbsp;        tokenPanelPlayer2.setPlayer(Player.JACK_LE_BORGNE);</b>
+<b class="nc">&nbsp;        tokenPanelPlayer2.setPosition(cellPanel1);</b>
+&nbsp;
+<b class="nc">&nbsp;        setMinimumSize(new java.awt.Dimension(600, 500));</b>
+<b class="nc">&nbsp;        setPreferredSize(new java.awt.Dimension(600, 500));</b>
+&nbsp;
+<b class="nc">&nbsp;        backgroundLabel.setMinimumSize(new java.awt.Dimension(600, 500));</b>
+<b class="nc">&nbsp;        backgroundLabel.setPreferredSize(new java.awt.Dimension(600, 500));</b>
+&nbsp;
+<b class="nc">&nbsp;        setLayer(cellPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel4, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel5, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel6, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel30, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel23, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel22, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel15, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel14, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel7, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel29, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel24, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel21, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel16, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel13, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel8, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel28, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel25, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel20, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel17, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel12, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel9, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel27, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel26, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel19, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel18, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel11, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(cellPanel10, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(backgroundLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(tokenPanelPlayer1, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+<b class="nc">&nbsp;        setLayer(tokenPanelPlayer2, javax.swing.JLayeredPane.DEFAULT_LAYER);</b>
+&nbsp;
+<b class="nc">&nbsp;        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);</b>
+<b class="nc">&nbsp;        this.setLayout(layout);</b>
+<b class="nc">&nbsp;        layout.setHorizontalGroup(</b>
+<b class="nc">&nbsp;            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(10, 10, 10)</b>
+<b class="nc">&nbsp;                .addComponent(tokenPanelPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;                .addGap(420, 420, 420)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(99, 99, 99))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(200, 200, 200)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(399, 399, 399))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(200, 200, 200)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(399, 399, 399))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(500, 500, 500)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(99, 99, 99))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(300, 300, 300)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(299, 299, 299))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(500, 500, 500)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(99, 99, 99))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(300, 300, 300)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(299, 299, 299))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(599, 599, 599))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(400, 400, 400)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(199, 199, 199))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(100, 100, 100)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(499, 499, 499))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(300, 300, 300)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(299, 299, 299))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(100, 100, 100)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(499, 499, 499))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(20, 20, 20)</b>
+<b class="nc">&nbsp;                .addComponent(tokenPanelPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(599, 599, 599))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(400, 400, 400)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(199, 199, 199))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(500, 500, 500)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(99, 99, 99))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(200, 200, 200)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(399, 399, 399))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(599, 599, 599))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(599, 599, 599))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(400, 400, 400)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(199, 199, 199))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(400, 400, 400)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(199, 199, 199))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(100, 100, 100)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(499, 499, 499))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(100, 100, 100)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(499, 499, 499))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(100, 100, 100)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(499, 499, 499))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(599, 599, 599))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(300, 300, 300)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(299, 299, 299))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(400, 400, 400)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(199, 199, 199))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(300, 300, 300)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(299, 299, 299))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(200, 200, 200)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(399, 399, 399))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(200, 200, 200)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(399, 399, 399))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(500, 500, 500)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(99, 99, 99))</b>
+<b class="nc">&nbsp;            .addComponent(backgroundLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+&nbsp;        );
+<b class="nc">&nbsp;        layout.setVerticalGroup(</b>
+<b class="nc">&nbsp;            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(20, 20, 20)</b>
+<b class="nc">&nbsp;                .addComponent(tokenPanelPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(499, 499, 499))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(200, 200, 200)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(299, 299, 299))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(300, 300, 300)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(199, 199, 199))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(100, 100, 100)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(399, 399, 399))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(100, 100, 100)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(399, 399, 399))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(400, 400, 400)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(99, 99, 99))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(400, 400, 400)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(99, 99, 99))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(400, 400, 400)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(99, 99, 99))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(20, 20, 20)</b>
+<b class="nc">&nbsp;                .addComponent(tokenPanelPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(400, 400, 400)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(99, 99, 99))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(200, 200, 200)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(299, 299, 299))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(200, 200, 200)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(299, 299, 299))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(300, 300, 300)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(199, 199, 199))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(200, 200, 200)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(299, 299, 299))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(100, 100, 100)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(399, 399, 399))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(100, 100, 100)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(399, 399, 399))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(300, 300, 300)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(199, 199, 199))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(200, 200, 200)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(299, 299, 299))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(100, 100, 100)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(399, 399, 399))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(300, 300, 300)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(199, 199, 199))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(200, 200, 200)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(299, 299, 299))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(300, 300, 300)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(199, 199, 199))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(300, 300, 300)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(199, 199, 199))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(100, 100, 100)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(399, 399, 399))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(400, 400, 400)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(99, 99, 99))</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGap(400, 400, 400)</b>
+<b class="nc">&nbsp;                .addComponent(cellPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                .addGap(99, 99, 99))</b>
+<b class="nc">&nbsp;            .addComponent(backgroundLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</b>
+<b class="nc">&nbsp;            .addGroup(layout.createSequentialGroup()</b>
+<b class="nc">&nbsp;                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</b>
+<b class="nc">&nbsp;                    .addComponent(cellPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                    .addComponent(cellPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                    .addComponent(cellPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                    .addComponent(cellPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</b>
+<b class="nc">&nbsp;                    .addComponent(cellPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</b>
+<b class="nc">&nbsp;                .addGap(499, 499, 499))</b>
+&nbsp;        );
+&nbsp;
+<b class="nc">&nbsp;        tokenPanelPlayer1.getAccessibleContext().setAccessibleParent(cellPanel1);</b>
+<b class="nc">&nbsp;        tokenPanelPlayer2.getAccessibleContext().setAccessibleParent(cellPanel1);</b>
+&nbsp;    }// &lt;/editor-fold&gt;//GEN-END:initComponents
+&nbsp;
+&nbsp;    public void setCellsType(CellType[] cellsType) {
+<b class="nc">&nbsp;        for (int i=0;i&lt;30;i++){</b>
+<b class="nc">&nbsp;            cellsPanel[i].setType(cellsType[i]);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void chestOpened(int numCell){
+<b class="nc">&nbsp;        cellsPanel[numCell].setType(CellType.OPENED_CHEST);</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public void notifyDrop(ItemType itemType){
+<b class="nc">&nbsp;        if (isToken1Movable){</b>
+<b class="nc">&nbsp;            this.moveToBack(tokenPanelPlayer1);</b>
+<b class="nc">&nbsp;            this.tokenPanelPlayer1.getPosition().notifyDrop(itemType);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (isToken2Movable){</b>
+<b class="nc">&nbsp;            this.moveToBack(tokenPanelPlayer2);</b>
+<b class="nc">&nbsp;            this.tokenPanelPlayer2.getPosition().notifyDrop(itemType);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    
+&nbsp;    // Variables declaration - do not modify//GEN-BEGIN:variables
+&nbsp;    private javax.swing.JLabel backgroundLabel;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel1;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel10;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel11;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel12;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel13;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel14;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel15;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel16;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel17;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel18;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel19;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel2;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel20;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel21;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel22;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel23;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel24;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel25;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel26;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel27;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel28;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel29;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel3;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel30;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel4;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel5;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel6;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel7;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel8;
+&nbsp;    private fr.call_of_rum.boundary.presentation.CellPanel cellPanel9;
+&nbsp;    private fr.call_of_rum.boundary.presentation.TokenPanel tokenPanelPlayer1;
+&nbsp;    private fr.call_of_rum.boundary.presentation.TokenPanel tokenPanelPlayer2;
+&nbsp;    // End of variables declaration//GEN-END:variables
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:38</div>
+</div>
+</body>
+</html>

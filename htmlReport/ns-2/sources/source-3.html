@@ -1,0 +1,120 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > IFunctionalKernel</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.boundary</a>
+</div>
+
+<h1>Coverage Summary for Class: IFunctionalKernel (fr.call_of_rum.boundary)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">IFunctionalKernel</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.call_of_rum.boundary;
+&nbsp;
+&nbsp;import fr.call_of_rum.util.CellType;
+&nbsp;import fr.call_of_rum.util.ItemType;
+&nbsp;import fr.call_of_rum.util.Player;
+&nbsp;
+&nbsp;/**
+&nbsp; * This interface contains all functionalities that the kernel should provide.
+&nbsp; */
+&nbsp;public interface IFunctionalKernel {
+&nbsp;    
+&nbsp;    boolean buyItem(int itemIndex);
+&nbsp;	
+&nbsp;    boolean drink(int itemIndex);
+&nbsp;	
+&nbsp;    boolean equipWeapon(int itemIndex);
+&nbsp;	
+&nbsp;    boolean pickUpItem(int itemIndex);
+&nbsp;	
+&nbsp;    boolean dropItem(int itemIndex);
+&nbsp;	
+&nbsp;    boolean move();
+&nbsp;
+&nbsp;    CellType askCellType(int numCell);
+&nbsp;    
+&nbsp;    ItemType[] getDroppedItems(int numCell);
+&nbsp;    
+&nbsp;    int getNumberOfDroppedItems(int numCell);
+&nbsp;    
+&nbsp;    ItemType[] getItemsForSale();
+&nbsp;	
+&nbsp;	int getPrice(int itemIndex);
+&nbsp;	
+&nbsp;	int getScore(Player player);
+&nbsp;	
+&nbsp;	ItemType[] getInventory(Player player);
+&nbsp;	
+&nbsp;	int getHealth(Player player);
+&nbsp;	
+&nbsp;	int getMaxHealth(Player player);
+&nbsp;	
+&nbsp;	ItemType getWeapon(Player player);
+&nbsp;	
+&nbsp;	float getIntoxication(Player player);
+&nbsp;	
+&nbsp;	int getFirstDiceResult();
+&nbsp;	
+&nbsp;	int getSecondDiceResult();
+&nbsp;	
+&nbsp;	int getDicesResult();
+&nbsp;    
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:42</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,206 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PlayerController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fr.call_of_rum.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: PlayerController (fr.call_of_rum.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PlayerController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    10%
+  </span>
+  <span class="absValue">
+    (1/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    7,1%
+  </span>
+  <span class="absValue">
+    (3/42)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fr.call_of_rum.controller;
+&nbsp;
+&nbsp;import fr.call_of_rum.controller.accessible.IPlayerController;
+&nbsp;import fr.call_of_rum.model.inventory.Inventory;
+&nbsp;import fr.call_of_rum.model.item.Item;
+&nbsp;import fr.call_of_rum.model.item.liquid.Liquid;
+&nbsp;import fr.call_of_rum.model.item.weapon.Weapon;
+&nbsp;import fr.call_of_rum.model.pirate.Pirate;
+&nbsp;import fr.call_of_rum.util.ItemType;
+&nbsp;import fr.call_of_rum.util.Player;
+&nbsp;
+&nbsp;public class PlayerController implements IPlayerController {
+&nbsp;	
+&nbsp;	private Pirate pirate1;
+&nbsp;	private Pirate pirate2;
+&nbsp;	
+<b class="fc">&nbsp;	public PlayerController(Pirate pirate1, Pirate pirate2) {</b>
+<b class="fc">&nbsp;		this.pirate1 = pirate1;</b>
+<b class="fc">&nbsp;		this.pirate2 = pirate2;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	private Pirate getPirate(Player player) {
+<b class="nc">&nbsp;		return pirate1.getPlayer() == player ? pirate1 : pirate2;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getHealth(Player player) {
+<b class="nc">&nbsp;		Pirate pirate = getPirate(player);</b>
+<b class="nc">&nbsp;		return pirate.getHealthPoints();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getMaxHealth(Player player) {
+<b class="nc">&nbsp;		Pirate pirate = getPirate(player);</b>
+<b class="nc">&nbsp;		return pirate.getMaxHealth();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public float getIntoxicationLevel(Player player) {
+<b class="nc">&nbsp;		Pirate pirate = getPirate(player);</b>
+<b class="nc">&nbsp;		return pirate.getIntoxicationGauge().getLevel();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getCoins(Player player) {
+<b class="nc">&nbsp;		Pirate pirate = getPirate(player);</b>
+<b class="nc">&nbsp;		return pirate.getCoins();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public ItemType[] getInventoryItems(Player player) {
+<b class="nc">&nbsp;		Pirate pirate = getPirate(player);</b>
+<b class="nc">&nbsp;		Inventory&lt;Item&gt; inventory = pirate.getInventory();</b>
+<b class="nc">&nbsp;		ItemType[] itemTypes = new ItemType[3];</b>
+<b class="nc">&nbsp;		for (int i = 0; i&lt;3; i++) {</b>
+<b class="nc">&nbsp;			Item item = inventory.get(i);</b>
+<b class="nc">&nbsp;			itemTypes[i] = item == null ? null : item.getType();</b>
+&nbsp;		}
+<b class="nc">&nbsp;		return itemTypes;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public ItemType getEquippedWeapon(Player player) {
+<b class="nc">&nbsp;		Pirate pirate = getPirate(player);</b>
+<b class="nc">&nbsp;		Weapon weapon = pirate.getEquippedWeapon();</b>
+<b class="nc">&nbsp;		return weapon == null ? null : weapon.getType();</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	public boolean takeItem(Pirate pirate, Item item) {
+<b class="nc">&nbsp;		Inventory&lt;Item&gt; inventory = pirate.getInventory();</b>
+&nbsp;		
+<b class="nc">&nbsp;		if (item instanceof Weapon weapon) {</b>
+<b class="nc">&nbsp;			if (pirate.getEquippedWeapon() == null) {</b>
+<b class="nc">&nbsp;				pirate.equipWeapon(weapon);</b>
+<b class="nc">&nbsp;				weapon.setOwner(pirate);</b>
+<b class="nc">&nbsp;				return true;</b>
+&nbsp;			}
+<b class="nc">&nbsp;			if (!inventory.isFull()) {</b>
+<b class="nc">&nbsp;				inventory.add(weapon);</b>
+<b class="nc">&nbsp;				weapon.setOwner(pirate);</b>
+<b class="nc">&nbsp;				return true;</b>
+&nbsp;			}
+<b class="nc">&nbsp;		} else if (inventory.isFull()) {</b>
+<b class="nc">&nbsp;			if (item instanceof Liquid liquid) {</b>
+<b class="nc">&nbsp;				pirate.drink(liquid);</b>
+<b class="nc">&nbsp;				return true;</b>
+&nbsp;			}
+&nbsp;		} else {
+<b class="nc">&nbsp;			inventory.add(item);</b>
+<b class="nc">&nbsp;			item.setOwner(pirate);</b>
+<b class="nc">&nbsp;			return true;</b>
+&nbsp;		}
+<b class="nc">&nbsp;		return false;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int getLocation(Player player) {
+<b class="nc">&nbsp;		Pirate pirate = getPirate(player);</b>
+<b class="nc">&nbsp;		return pirate.getLocation();</b>
+&nbsp;	}
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-27 12:38</div>
+</div>
+</body>
+</html>
